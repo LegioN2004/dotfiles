@@ -1,0 +1,29 @@
+#kill sxhkd 
+super + Escape
+  pkill -USR1 -x sxhkd
+
+#spawn firefox
+super + w
+  google-chrome
+
+#spawn terminal
+super + t
+  kitty
+
+#spawn filemanager
+super + f
+  thunar
+
+#spawn ranger
+# super + r 
+
+#spawn bravebrowser
+super + b
+  brave-browser
+
+#spawn min
+super + m
+  min
+
+#spawn neovide
+ super + n
