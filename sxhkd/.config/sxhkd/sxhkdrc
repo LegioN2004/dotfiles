@@ -8,7 +8,7 @@ super + w
 
 #spawn terminal
 super + t
-  kitty
+  alacritty
 
 #spawn filemanager
 super + f
@@ -16,6 +16,7 @@ super + f
 
 #spawn ranger
 # super + r 
+	ranger
 
 #spawn bravebrowser
 super + b
@@ -27,3 +28,4 @@ super + m
 
 #spawn neovide
  super + n
+	neovide

@@ -250,13 +250,13 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
-exec_always feh --bg-scale /home/sunny/Pictures/wallpapers/pexels-roberto-nickson-2559941.jpg
+exec_always feh --bg-scale /home/sunny/Downloads/dotfiles/nordic-wallpapers/wallpapers/ign_astronaut.png
 # exec_always feh --bg-scale /home/sunny/Downloads/11015703.png
 
 # exec_always --no-startup-id  "/home/sunny/colemak"
 
 
-# exec_always --no-startup-id "/home/sunny/Downloads/i3-auto-layout" 
+# exec_always --no-startup-id "/home/sunny/.config/i3/autotiling/i3-auto-layout" 
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
 exec_always picom --experimental-backends -b
@@ -292,7 +292,7 @@ default_floating_border pixel 1
 #new_window 1pixel
 
 #sxhkd autostart
-exec_always sxhkd -c $HOME/.config/sxhkd/sxhkdrc
+exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
 
 #dont know if this works but set up for colemak
 # exec --no-startup-id setxkbmap -model pc104 -layout us,de -variant colemak, -option "grp:alt_shift_toggle,shift:both_capslock,ctrl:swapcaps"

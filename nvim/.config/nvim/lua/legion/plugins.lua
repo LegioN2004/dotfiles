@@ -47,6 +47,7 @@ return require 'packer'.startup(function()
 	use 'navarasu/onedark.nvim'
 	use 'ayu-theme/ayu-vim'
 	use 'Mofiqul/dracula.nvim'
+	use { "ellisonleao/gruvbox.nvim" }
 	-- use 'shatur/neovim-session-manager' -- sessions
 	-- LSP
 	use 'neovim/nvim-lspconfig'

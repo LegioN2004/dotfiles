@@ -138,6 +138,7 @@ alias lla='ls -A'
 alias lm='ls -m'
 alias lr='ls -R'
 alias lg='ls -l --group-directories-first'
+
 # alias ll='exa -l -g --icons'
 alias ls='exa -l -g --icons'
 alias ll='exa -l -a --icons'
@@ -169,6 +170,11 @@ alias ide='./ide'
 #gotop
 alias htop='gotop'
 
+#laptop power management aliases
+alias sus= 'systemctl suspend'
+alias pow= 'poweroff'
+alias reb= 'reboot'
+
 #git bare alias
 # alias config='/usr/bin/git --git-dir=/home/sunny/mili-gitlab-repo --work-tree=/home/sunny'
 # alias dotfiles='/usr/bin/git --git-dir=/home/sunny/dotfiles --work-tree=/home/sunny'
@@ -180,8 +186,9 @@ alias htop='gotop'
 # alias gp='dotfiles push git@github.com:LegioN2004/dotfiles.git'     
 # alias gs='dotfiles status'   # 
 
+# always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z directory
-. ~/z.sh
+. ~/Downloads/dotfiles/z/z.sh
 
 #tmux
 # alias tmux='tmux -u'
