@@ -1,0 +1,11 @@
+\.git
+#LICENSE
+bashscripts
+ahkscripts
+bug.n
+configfiles
+images
+.vscode
+powershell
+README.md
+
