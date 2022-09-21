@@ -88,6 +88,20 @@ function! CHANGE_CURR_DIR()
     unlet _dir
 endfunction
 
+"neovide stuff
+if exists("g:neovide")   " Put anything you want to happen only in Neovide here
+	let g:neovide_refresh_rate=60
+	let g:neovide_refresh_rate_idle=5
+	let g:neovide_transparency=0.9
+	let g:neovide_refresh_rate=60
+	let g:neovide_refresh_rate_idle=5
+	let g:neovide_cursor_vfx_mode = "railgun"
+	let g:neovide_remember_window_size = v:true
+endif
+
 ]])
+
+
+
 
 
