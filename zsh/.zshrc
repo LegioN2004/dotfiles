@@ -168,7 +168,7 @@ alias run='./a.out'
 alias ide='./ide'
 
 #gotop
-alias htop='gotop'
+# alias htop='gotop'
 
 #laptop power management aliases
 alias sus= 'systemctl suspend'
