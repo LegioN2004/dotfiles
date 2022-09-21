@@ -50,7 +50,8 @@ vim.opt.mouse = a
 vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
 vim.opt.hidden = true --This option allows you to switch between multiple buffers without saving a changed buffer
 vim.opt.mousehide = true --Hide the mouse pointer while typing.
-
+--updatetime
+vim.opt.updatetime = 50
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
