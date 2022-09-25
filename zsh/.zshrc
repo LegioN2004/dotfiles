@@ -121,6 +121,7 @@ f() {
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS="--extended"
  
 #path for lunarvim
 export PATH=$PATH:~/.local/bin/
@@ -213,3 +214,5 @@ export LC_CTYPE=en_US.UTF-8
 #for wsl2 in win 10 display gui apps using vsxsrv
 #export DISPLAY=172.22.144.1:0.0
 #export LIBGL_ALWAYS_INDIRECT=1
+
+export PATH="/usr/bin:$PATH"
