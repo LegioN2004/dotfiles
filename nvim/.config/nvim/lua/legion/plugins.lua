@@ -43,6 +43,7 @@ packer.init({
 return require 'packer'.startup(function()
 	use 'wbthomason/packer.nvim' --main packer neovim plugin manager
 	use 'hoob3rt/lualine.nvim' -- Statusline
+	use 'easymotion/vim-easymotion'
 	-- use 'flazz/vim-colorschemes' -- every vim colorscheme known to mankind
 	use 'navarasu/onedark.nvim'
 	use 'ayu-theme/ayu-vim'
@@ -73,13 +74,13 @@ return require 'packer'.startup(function()
 	}
 	--hop.nvim
 	use {
-    'phaazon/hop.nvim',
-  branch = 'v2', -- optional but strongly recommended
-  config = function()
-    -- you can configure Hop the way you like here; see :h hop-config
-    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-  end
-   }
+		'phaazon/hop.nvim',
+		branch = 'v2', -- optional but strongly recommended
+		config = function()
+			-- you can configure Hop the way you like here; see :h hop-config
+			require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+		end
+	}
 	--language specific stuff
 	use 'tpope/vim-commentary'
 	use 'windwp/nvim-ts-autotag'
