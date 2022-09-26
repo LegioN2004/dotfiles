@@ -4,7 +4,7 @@
 
 # 
 #z directory jumper
-. ~/z.sh
+. ~/Downloads/dotfiles/z/z.sh
 
 alias config='/usr/bin/git --git-dir=/home/sunny/mili-gitlab-repo --work-tree=/home/sunny'
 
@@ -72,4 +72,11 @@ fi
 # source /home/sunny/.local/lib/python3.10/site-packages/powerline/bindings/bash/powerline.sh
 
 # PS1='\w\$'
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
+
+
+#fzf
+if [ -x "$(command -v fzf)"  ]
+then
+		source /usr/share/fzf/shell/key-bindings.bash
+fi
