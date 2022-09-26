@@ -73,12 +73,14 @@ export ZSH="$HOME/.oh-my-zsh"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -176,35 +178,17 @@ alias sus= 'systemctl suspend'
 alias pow= 'poweroff'
 alias reb= 'reboot'
 
-#git bare alias
-# alias config='/usr/bin/git --git-dir=/home/sunny/mili-gitlab-repo --work-tree=/home/sunny'
-# alias dotfiles='/usr/bin/git --git-dir=/home/sunny/dotfiles --work-tree=/home/sunny'
-# alias g='git'
-# alias gcl='git clone'
-# alias gi='git init'     
-# alias ga='dotfiles add'
-# alias gc='dotfiles commit -m'
-# alias gp='dotfiles push git@github.com:LegioN2004/dotfiles.git'     
-# alias gs='dotfiles status'   # 
-
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z directory
 . ~/Downloads/dotfiles/z/z.sh
 
-#tmux
-# alias tmux='tmux -u'
-
-
-
 # ~/.zshrc
 
+#starship
 # eval "$(starship init zsh)"
-
 # export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
-
 # source ~/powerlevel10k/powerlevel10k.zsh-theme
-
 
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -216,3 +200,4 @@ export LC_CTYPE=en_US.UTF-8
 #export LIBGL_ALWAYS_INDIRECT=1
 
 export PATH="/usr/bin:$PATH"
+
