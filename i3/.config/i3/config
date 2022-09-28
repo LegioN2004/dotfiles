@@ -252,14 +252,14 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
-exec_always feh --bg-scale /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/archlinux.png
+exec_always feh --bg-scale /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/ign_endeavour2.png
 
 # exec_always --no-startup-id  "/home/sunny/colemak"
 
 # exec_always --no-startup-id "/home/sunny/.config/i3/autotiling/i3-auto-layout" 
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
-# exec_always picom --experimental-backends -b
+exec_always picom --experimental-backends -b
 # exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
@@ -304,3 +304,5 @@ exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
 # exec_always --no-startup-id setxkbmap -layout us -variant colemak -option ctrl:swapcaps
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+exec_always xset r rate 300 50
