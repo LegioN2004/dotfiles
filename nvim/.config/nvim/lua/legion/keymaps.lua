@@ -48,12 +48,15 @@ keymap("n", "ts", ":so%<CR>", opts)
 --(window keybinds) new tab
 keymap("n", "tn", ":tabnew<Return><C-w>w", opts)
 -- keymap("n", "te", ":tabedit<cr>", opts), { silent = true })
+
 --splitting windows
 vim.keymap.set('n', 'ss', ':split<Return><C-w>w', { silent = true })
 vim.keymap.set('n', 'sv', ':vsplit<Return><C-w>w', { silent = true })
+
 --tab movement
 keymap("n", "<tab>", ":tabnext<Return>", opts)
 keymap("n", "<S-tab>", ":tabprevious<Return>", opts)
+
 --move window
 -- vim.keymap.set('n', '<Space>', '<C-w>w')
 vim.keymap.set('', 's<left>', '<C-w>h')
@@ -61,15 +64,35 @@ vim.keymap.set('', 's<up>', '<C-w>k')
 vim.keymap.set('', 's<down>', '<C-w>j')
 vim.keymap.set('', 's<right>', '<C-w>l')
 vim.keymap.set('', 's<right>', '<C-w>l')
+
 --better movement between splits
 keymap("n", "sh", "<C-w>h", opts)
 keymap("n", "sj", "<C-w>j", opts)
 keymap("n", "sk", "<C-w>k", opts)
 keymap("n", "sl", "<C-w>l", opts)
 
-
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+--fzf
+vim.cmd([[nnoremap <silent> <leader>f :FZF<cr>
+nnoremap <silent> <leader>F :FZF ~<cr>]])
+
+-- from ThePrimeagen ------------------------------------------
+-- greatest remap ever
+vim.keymap.set('x', "<leader>p", "\"_dP")
+
+-- next greatest remap ever : asbjornHaland
+vim.keymap.set('n', "<leader>y", "\"+y")
+vim.keymap.set('v', "<leader>y", "\"+y")
+vim.keymap.set('n', "<leader>Y", "\"+Y")
+
+vim.keymap.set('n', "<leader>d", "\"_d")
+vim.keymap.set('v', "<leader>d", "\"_d")
+
+vim.keymap.set('v', "<leader>d", "\"_d")
+
+------------------------------------------------------------------

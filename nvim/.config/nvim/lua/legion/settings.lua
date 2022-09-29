@@ -8,7 +8,7 @@ vim.wo.number = true
 
 vim.opt.title = true
 vim.opt.autoindent = true
-vim.opt.hlsearch = true --Switch on search pattern highlighting.
+vim.opt.hlsearch = false --Switch on search pattern highlighting.
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
@@ -50,8 +50,7 @@ vim.opt.mouse = a
 vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
 vim.opt.hidden = true --This option allows you to switch between multiple buffers without saving a changed buffer
 vim.opt.mousehide = true --Hide the mouse pointer while typing.
---updatetime
-vim.opt.updatetime = 50
+vim.opt.updatetime = 50 --updatetime
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
@@ -72,7 +71,7 @@ vim.opt.undofile = true
 vim.opt.swapfile = false
 
 -- copy to clipboard
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+-- vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 -- use mouse in neovim
 vim.opt.mouse = a
@@ -95,8 +94,22 @@ if exists("g:neovide")   " Put anything you want to happen only in Neovide here
 	let g:neovide_transparency=0.9
 	let g:neovide_refresh_rate=60
 	let g:neovide_refresh_rate_idle=5
-	let g:neovide_cursor_vfx_mode = "railgun"
+	"let g:neovide_cursor_vfx_mode = "railgun"
 	let g:neovide_remember_window_size = v:true
 endif
 
 ]])
+
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local yank_group = augroup('HighlightYank', {})
+autocmd('TextYankPost', {
+		group = yank_group,
+		pattern = '*',
+		callback = function ()
+				vim.highlight.on_yank({
+						higroup = 'IncSearch',
+						timeout = 40,
+				})
+		end,
+})
