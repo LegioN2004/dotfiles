@@ -76,7 +76,7 @@ fi
 
 
 #fzf
-if [ -x "$(command -v fzf)"  ]
-then
-		source /usr/share/fzf/shell/key-bindings.bash
-fi
+# if [ -x "$(command -v fzf)"  ]
+# then
+# 		source /usr/share/fzf/shell/key-bindings.bash
+# fi
