@@ -1,3 +1,13 @@
+vim.cmd [[if exists("&termguicolors") && exists ("&winblend")
+syntax enable
+set termguicolors
+set winblend=0 
+set wildoptions=pum
+"{} set plumblend=5
+set background=dark
+colorscheme gruvbox
+]]
+
 -- setup must be called before loading the colorscheme
 -- Default options:
 require("gruvbox").setup({
@@ -14,4 +24,3 @@ require("gruvbox").setup({
 	contrast = "", -- can be "hard", "soft" or empty string
 	overrides = {},
 })
-vim.cmd("colorscheme gruvbox")

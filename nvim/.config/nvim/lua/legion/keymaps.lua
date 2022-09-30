@@ -82,6 +82,8 @@ vim.cmd([[nnoremap <silent> <leader>f :FZF<cr>
 nnoremap <silent> <leader>F :FZF ~<cr>]])
 
 -- from ThePrimeagen ------------------------------------------
+
+-- best remap from the ThePrimeagen thanks brudda
 -- greatest remap ever
 vim.keymap.set('x', "<leader>p", "\"_dP")
 
@@ -96,3 +98,11 @@ vim.keymap.set('v', "<leader>d", "\"_d")
 vim.keymap.set('v', "<leader>d", "\"_d")
 
 ------------------------------------------------------------------
+
+-- some workaround for copy and pasting
+-- vim.cmd [[
+-- vmap <C-c> "+yi
+-- vmap <C-x> "+c
+-- vmap <C-v> c<ESC>"+p
+-- imap <C-v> <ESC>"+pa
+-- ]]

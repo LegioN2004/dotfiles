@@ -246,11 +246,6 @@ _G.packer_plugins = {
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
-  ["vim-easymotion"] = {
-    loaded = true,
-    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-easymotion",
-    url = "https://github.com/easymotion/vim-easymotion"
-  },
   ["vim-hug-neovim-rpc"] = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-hug-neovim-rpc",
