@@ -106,3 +106,8 @@ vim.keymap.set('v', "<leader>d", "\"_d")
 -- vmap <C-v> c<ESC>"+p
 -- imap <C-v> <ESC>"+pa
 -- ]]
+
+
+-- shortcuts for commenting
+vim.keymap.set('n', "<leader>/", "gcc")
+vim.keymap.set('v', "<leader>/", "gcc")

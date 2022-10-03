@@ -145,12 +145,6 @@ _G.packer_plugins = {
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/gruvbox-community/gruvbox"
   },
-  ["hop.nvim"] = {
-    config = { "\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\28etovxqpdygfblzhckisuran\nsetup\bhop\frequire\0" },
-    loaded = true,
-    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/hop.nvim",
-    url = "https://github.com/phaazon/hop.nvim"
-  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
@@ -258,10 +252,6 @@ time([[Defining packer_plugins]], false)
 time([[Config for alpha-nvim]], true)
 try_loadstring("\27LJ\2\na\0\0\5\0\5\0\n6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\1K\0\1\0\vconfig\27alpha.themes.dashboard\nsetup\nalpha\frequire\0", "config", "alpha-nvim")
 time([[Config for alpha-nvim]], false)
--- Config for: hop.nvim
-time([[Config for hop.nvim]], true)
-try_loadstring("\27LJ\2\nU\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\28etovxqpdygfblzhckisuran\nsetup\bhop\frequire\0", "config", "hop.nvim")
-time([[Config for hop.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
