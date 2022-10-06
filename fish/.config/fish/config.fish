@@ -11,7 +11,7 @@ set -gx PATH node_modules/.bin $PATH
 
 # aliases
 if type -q exa
-  alias ll "exa -l -g --icons"
+  alias ll "exa -l -a -g --icons"
   alias llt "exa --tree -g --icons"
   alias lla "ll -a"
 	alias la "ls -A"
