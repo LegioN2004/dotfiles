@@ -1,13 +1,9 @@
 #!/bin/sh
-#starship
-# eval "$(starship init bash)"
 
-# 
 #z directory jumper
-. ~/Downloads/dotfiles/z/z.sh
+. ~/ghq/github.com/rupa/z/z.sh
 
 alias config='/usr/bin/git --git-dir=/home/sunny/mili-gitlab-repo --work-tree=/home/sunny'
-
 
 #aliases
 # ls
@@ -54,14 +50,13 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 #powerline-shell
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
+# function _update_ps1() {
+#     PS1=$(powerline-shell $?)
+# }
 
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
+# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
 
 # # Powerline-status
 # export PATH="$PATH:/home/sunny/.local/bin/"
@@ -75,8 +70,8 @@ fi
 # . "$HOME/.cargo/env"
 
 
-#fzf
-# if [ -x "$(command -v fzf)"  ]
-# then
-# 		source /usr/share/fzf/shell/key-bindings.bash
-# fi
+# fzf
+#  if [ -x "$(command -v fzf)"  ]
+ # then
+ # 		source /usr/share/fzf/shell/key-bindings.bash
+ # fi
