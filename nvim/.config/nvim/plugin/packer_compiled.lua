@@ -140,6 +140,11 @@ _G.packer_plugins = {
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["fzf.vim"] = {
+    loaded = true,
+    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/fzf.vim",
+    url = "https://github.com/junegunn/fzf.vim"
+  },
   gruvbox = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/gruvbox",
