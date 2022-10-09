@@ -16,7 +16,7 @@ if type -q exa
   alias lla "ll -a"
 	alias la "ls -A"
 	alias g git
-	command -qv nvim && alias vim nvim
+	#command -qv nvim && alias  nvim
 
 #my aliases
 	alias l "ls -lh"

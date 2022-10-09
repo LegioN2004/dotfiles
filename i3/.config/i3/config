@@ -256,7 +256,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
-exec_always feh --bg-scale /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/ign_endeavour2.png
+exec_always feh --bg-scale /home/sunny/Pictures/arch-linux-logo-colorful.jpg
 # randomize wallpapers when with feh after every reload
 # exec_always --no-startup-id  /usr/bin/feh  -n 22 --randomize --bg-fill /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/* 
 
