@@ -1,5 +1,6 @@
 vim.cmd('autocmd!')
 
+vim.opt.list = true
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
@@ -98,18 +99,23 @@ if exists("g:neovide")   " Put anything you want to happen only in Neovide here
 	let g:neovide_remember_window_size = v:true
 endif
 
+if (exists('+colorcolumn'))
+    set colorcolumn=80
+    highlight ColorColumn ctermbg=9
+endif
+
 ]])
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 autocmd('TextYankPost', {
-		group = yank_group,
-		pattern = '*',
-		callback = function ()
-				vim.highlight.on_yank({
-						higroup = 'IncSearch',
-						timeout = 40,
-				})
-		end,
+	group = yank_group,
+	pattern = '*',
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = 'IncSearch',
+			timeout = 40,
+		})
+	end,
 })

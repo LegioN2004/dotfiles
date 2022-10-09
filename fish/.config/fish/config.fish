@@ -9,8 +9,6 @@ set -gx PATH ~/.local/bin $PATH
 # NodeJS
 set -gx PATH node_modules/.bin $PATH
 
-set --universal tide_left_prompt_items vi_mode $tide_left_prompt_items
-
 # aliases
 if type -q exa
   alias ll "exa -l -a -g --icons"
@@ -18,7 +16,7 @@ if type -q exa
   alias lla "ll -a"
 	alias la "ls -A"
 	alias g git
-	command -qv nvim && alias vim nvim
+	#command -qv nvim && alias  nvim
 
 #my aliases
 	alias l "ls -lh"
