@@ -42,7 +42,7 @@ packer.init({
 --put plugins here
 return require 'packer'.startup(function()
 	use 'wbthomason/packer.nvim' --main packer neovim plugin manager
-	use 'hoob3rt/lualine.nvim' -- Statusline
+	use 'nvim-lualine/lualine.nvim'
 	-- use 'easymotion/vim-easymotion'
 	-- use 'flazz/vim-colorschemes' -- every vim colorscheme known to mankind
 	use 'navarasu/onedark.nvim'
