@@ -87,7 +87,7 @@ return require 'packer'.startup(function()
 	use 'nvim-telescope/telescope.nvim'
 	use 'nvim-telescope/telescope-file-browser.nvim'
 	use 'junegunn/fzf.vim'
-  -- use = { 'junegunn/fzf', run = './install --bin', }
+	-- use = { 'junegunn/fzf', run = './install --bin', }
 	-- use {
 	--     'Shougo/defx.nvim',
 	--     run = ':UpdateRemotePlugins'
