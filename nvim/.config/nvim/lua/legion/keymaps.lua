@@ -52,6 +52,8 @@ keymap("n", "tn", ":tabnew<Return><C-w>w", opts)
 --splitting windows
 vim.keymap.set('n', 'ss', ':split<Return><C-w>w', { silent = true })
 vim.keymap.set('n', 'sv', ':vsplit<Return><C-w>w', { silent = true })
+vim.keymap.set('n', 'sh', '<C-w>s', { silent = true })
+vim.keymap.set('n', 'sx', ':close<CR>', { silent = true })
 
 --tab movement
 keymap("n", "<tab>", ":tabnext<Return>", opts)
