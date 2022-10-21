@@ -47,8 +47,6 @@ return require 'packer'.startup(function()
 	-- use 'flazz/vim-colorschemes' -- every vim colorscheme known to mankind
 	use 'navarasu/onedark.nvim'
 	use 'ayu-theme/ayu-vim'
-	use 'Mofiqul/dracula.nvim'
-	-- use { "gruvbox-community/gruvbox" }
 	use { "morhetz/gruvbox" }
 	-- use 'shatur/neovim-session-manager' -- sessions
 	-- LSP
@@ -93,6 +91,7 @@ return require 'packer'.startup(function()
 	--     'Shougo/defx.nvim',
 	--     run = ':UpdateRemotePlugins'
 	-- }
+		use {'neoclide/coc.nvim', branch="release"}
 	use 'roxma/nvim-yarp'
 	use 'roxma/vim-hug-neovim-rpc'
 	use {
