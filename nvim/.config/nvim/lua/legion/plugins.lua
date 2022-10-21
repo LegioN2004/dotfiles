@@ -53,6 +53,7 @@ return require 'packer'.startup(function()
 	-- use 'shatur/neovim-session-manager' -- sessions
 	-- LSP
 	use 'neovim/nvim-lspconfig'
+	use 'neovim/nvim-lsp'
 	use 'williamboman/nvim-lsp-installer'
 	use 'jose-elias-alvarez/null-ls.nvim'
 	use 'onsails/lspkind-nvim' -- vscode like pictograms
