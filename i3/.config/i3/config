@@ -40,7 +40,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -157,7 +157,7 @@ assign [class="Subl"] $ws8
 assign [class="VSCodium"] $ws7
 assign [class="firefox"] $ws2
 assign [class="Brave-browser"] $ws2
-assign [class="Chromium"] $ws2
+# assign [class="Google-chrome"] $ws2
 assign [class="vlc"] $ws6
 assign [class="Org.gnome.Nautilus"] $ws4
 assign [class="TelegramDesktop"] $ws8
