@@ -1,4 +1,6 @@
 set relativenumber
+set smartcase
+set ignorecase
 set tabstop=4
 set autoindent
 set number
@@ -17,10 +19,8 @@ set sw=4
 set si
 set nowrap
 
-colorscheme gruvbox
+" colorscheme gruvbox
 "make background transparent
-hi Normal ctermbg=NONE guibg=NONE
-hi NormalNC ctermbg=NONE guibg=NONE
 
 " Always change the directory to working directory of file in current buffer
 "
@@ -66,7 +66,11 @@ nmap <C-w><down> <C-w>-
 
 "fzf keymaps
 nnoremap <leader>fr :History<CR>
-nnoremap <leader>ff :e %:h/<C-d>
+nnoremap <leader>ff :FZF <C-d>
+
+"Plug-vim keybinds
+nnoremap <leader>pi :PlugInstall<CR>
+nnoremap <leader>pc :PlugClean<CR>
 
 "neovide stuff
 if exists("g:neovide")   " Put anything you want to happen only in Neovide here
@@ -82,9 +86,12 @@ endif
 "Plugins
 call plug#begin('C:/Users/sunny/AppData/Local/nvim-data/site/autoload')
 Plug 'tpope/vim-commentary'
+Plug 'vim-syntastic/syntastic'
+Plug 'overcache/NeoSolarized'
 Plug 'gruvbox-community/gruvbox'
 Plug 'easymotion/vim-easymotion'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -92,8 +99,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
+colorscheme NeoSolarized
+hi Normal ctermbg=NONE guibg=NONE
+hi NormalNC ctermbg=NONE guibg=NONE
+
 lua <<EOF
 require('lualine').setup()
+require('bufferline').setup()
 vim.opt.list = true
 
 -- from ThePrimeagen ------------------------------------------
@@ -126,10 +138,51 @@ autocmd('TextYankPost', {
 		})
 	end,
 })
+
+--bufferline things
+
+local status, bufferline = pcall(require, "bufferline")
+if (not status) then return end
+
+bufferline.setup({
+    options = {
+        mode = "tabs",
+        separator_style = 'slant',
+        always_show_bufferline = false,
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        color_icons = true
+    },
+    highlights = {
+        separator = {
+            fg = '#073642',
+            bg = '#002b36',
+        },
+        separator_selected = {
+            fg = '#073642',
+        },
+        background = {
+            fg = '#657b83',
+            bg = '#002b36'
+        },
+        buffer_selected = {
+            fg = '#fdf6e3',
+            bold = true,
+        },
+        fill = {
+            bg = '#073642'
+        }
+    },
+})
+
+vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
+vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
 ------------------------------------------------------------------------------------
 EOF
 
 " coc things ---------------------------------------------------------------
+"
+
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
@@ -146,9 +199,6 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-
 " GoTo code navigation.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -156,3 +206,15 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+

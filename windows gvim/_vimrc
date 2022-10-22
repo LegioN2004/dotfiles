@@ -2,6 +2,8 @@ syntax on                  " Enable syntax highlighting.
 set t_Co=256
 filetype plugin indent on  " Enable file type based indentation.
 
+set laststatus=2
+set showtabline=2
 set autoindent             " Respect indentation when starting a new line.
 set expandtab              " Expand tabs to spaces. Essential in Python.
 set tabstop=4              " Number of spaces tab is counted for.
@@ -20,7 +22,7 @@ noremap <c-j> <c-w><c-j>gruvbox
 noremap <c-k> <c-w><c-k>
 noremap <c-l> <c-w><c-l>
 
-set foldmethod=indent           " Indentation-based folding.
+" set foldmethod=indent           " Indentation-based folding.
 
 set wildmenu                    " Enable enhanced tab autocomplete.
 set wildmode=list:longest,full  " Complete till longest string, then open menu.
@@ -33,7 +35,7 @@ set incsearch                   " Search as you type.
 
 set clipboard=unnamed  " Copy into system (*, +) registers.
 
-set guifont=Hack:h12:cANSI "set font for gui version of vim/nvim
+set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h12:cANSI "set font for gui version of vim/nvim
 
 "some keybinds for convenience
 let mapleader = " "
@@ -68,6 +70,11 @@ nmap <C-w><right> <C-w>>
 nmap <C-w><up> <C-w>+
 nmap <C-w><down> <C-w>-
 
+"fzf keymaps
+nnoremap <leader>fr :History<CR>
+nnoremap <leader>ff :FZF <C-d>
+" nnoremap <leader>ff :e %:h/<C-d>
+
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "just to make those backup files in another directory so as to not make a mess
@@ -85,7 +92,6 @@ if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "Plugins
 call plug#begin()
@@ -93,25 +99,41 @@ Plug 'tpope/vim-commentary'
 Plug 'jiangmiao/auto-pairs'
 Plug 'gruvbox-community/gruvbox'
 Plug 'overcache/NeoSolarized'
-Plug 'easymotion/vim-easymotion'
+" Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"
+let g:lightline = {
+          \ 'enable': {
+            \ 'statusline': 1,
+            \ 'tabline': 1
+            \ }
+         \ }
+
+let g:lightline = {
+            \ 'colorscheme': 'one',
+            \ }
+
+" let g:airline#extensions#tabline#enabled = 1
 
 "someone  on holy stack overflow suggested to load the theme after the theme plugins has been loaded
 colorscheme gruvbox         " Change a colorscheme.
 
 "8.2 Always change the directory to working directory of file in current buffer - http://vim.wikia.com/wiki/VimTip64
 
-        function! CHANGE_CURR_DIR()
-            let _dir = expand("%:p:h")
-            exec "cd " . _dir
-            unlet _dir
-        endfunction
+function! CHANGE_CURR_DIR()
+    let _dir = expand("%:p:h")
+    exec "cd " . _dir
+    unlet _dir
+endfunction
 
 
 source $VIMRUNTIME/vimrc_example.vim
 
-au GUIEnter * simalt ~x
 set hls
 set is
 set ts=4
