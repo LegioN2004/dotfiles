@@ -644,7 +644,7 @@ Hyper: &Hyper
 # *iTerm2
 # *Hyper
 
-colors: *DoomOne
+colors: *Hyper
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

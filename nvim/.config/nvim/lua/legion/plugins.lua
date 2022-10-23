@@ -50,20 +50,20 @@ return require 'packer'.startup(function()
 	use { "morhetz/gruvbox" }
 	-- use 'shatur/neovim-session-manager' -- sessions
 	-- LSP
-	use 'neovim/nvim-lspconfig'
-	use 'neovim/nvim-lsp'
-	use 'williamboman/nvim-lsp-installer'
-	use 'jose-elias-alvarez/null-ls.nvim'
-	use 'onsails/lspkind-nvim' -- vscode like pictograms
-	use 'glepnir/lspsaga.nvim' -- UI for lsps
-	-- cmp plugin
-	use 'hrsh7th/nvim-cmp' -- code completion
-	use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
-	use 'hrsh7th/cmp-path' -- path completions
-	use 'saadparwaiz1/cmp_luasnip' -- snippet completions for nvim-cmp
-	use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp is a sourec for neovim's built in LSP client
-	use 'L3MON4D3/LuaSnip' -- snippet engine
-	use 'rafamadriz/friendly-snippets' --  snippets provider
+	-- use 'neovim/nvim-lspconfig'
+	-- use 'neovim/nvim-lsp'
+	-- use 'williamboman/nvim-lsp-installer'
+	-- use 'jose-elias-alvarez/null-ls.nvim'
+	-- use 'onsails/lspkind-nvim' -- vscode like pictograms
+	-- use 'glepnir/lspsaga.nvim' -- UI for lsps
+	-- -- cmp plugin
+	-- use 'hrsh7th/nvim-cmp' -- code completion
+	-- use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
+	-- use 'hrsh7th/cmp-path' -- path completions
+	-- use 'saadparwaiz1/cmp_luasnip' -- snippet completions for nvim-cmp
+	-- use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp is a sourec for neovim's built in LSP client
+	-- use 'L3MON4D3/LuaSnip' -- snippet engine
+	-- use 'rafamadriz/friendly-snippets' --  snippets provider
 	-- bufferline
 	use 'akinsho/bufferline.nvim'
 	--colorscheme
@@ -74,7 +74,7 @@ return require 'packer'.startup(function()
 	}
 	--language specific stuff
 	use 'tpope/vim-commentary'
-	use 'windwp/nvim-ts-autotag'
+	-- use 'windwp/nvim-ts-autotag'
 	use 'jiangmiao/auto-pairs'
 	use 'kyazdani42/nvim-web-devicons'
 	use {
@@ -91,7 +91,7 @@ return require 'packer'.startup(function()
 	--     'Shougo/defx.nvim',
 	--     run = ':UpdateRemotePlugins'
 	-- }
-		use {'neoclide/coc.nvim', branch="release"}
+	use { 'neoclide/coc.nvim', branch = "release" }
 	use 'roxma/nvim-yarp'
 	use 'roxma/vim-hug-neovim-rpc'
 	use {

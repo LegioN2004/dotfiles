@@ -80,8 +80,13 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 --fzf
-vim.cmd([[nnoremap <silent> <leader>f :FZF<cr>
-nnoremap <silent> <leader>F :FZF ~<cr>]])
+vim.cmd([[
+nnoremap <silent> <leader>fzf :FZF ~<cr>
+nnoremap <silent> <leader>fr :History<CR>
+nnoremap <silent> <leader>ff :e %:h/<C-d>
+ nnoremap <silent> <leader>src :FZF /home/sunny/ghq/github.com/legion2004/programs/ <cr>
+ nnoremap <silent> <leader>dot :FZF /home/sunny/dotfiles/ <cr>
+]])
 
 -- from ThePrimeagen ------------------------------------------
 
