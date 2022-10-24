@@ -1,4 +1,5 @@
 set relativenumber
+set cmdheight=1
 set smartcase
 set ignorecase
 set tabstop=4
@@ -66,11 +67,16 @@ nmap <C-w><down> <C-w>-
 
 "fzf keymaps
 nnoremap <leader>fr :History<CR>
-nnoremap <leader>ff :FZF <C-d>
+nnoremap <leader>ff :FZF ~<CR>
+nnoremap <leader>fi :FZF ~/Downloads/dotfiles/programs/ <CR>
+nnoremap <leader>dot :FZF ~/Downloads/dotfiles/dotfiles/ <CR>
 
 "Plug-vim keybinds
 nnoremap <leader>pi :PlugInstall<CR>
 nnoremap <leader>pc :PlugClean<CR>
+
+"toggle maximizer
+nnoremap <leader>sm :MaximizerToggle<CR>
 
 "neovide stuff
 if exists("g:neovide")   " Put anything you want to happen only in Neovide here
@@ -86,6 +92,8 @@ endif
 "Plugins
 call plug#begin('C:/Users/sunny/AppData/Local/nvim-data/site/autoload')
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'szw/vim-maximizer'
 Plug 'vim-syntastic/syntastic'
 Plug 'overcache/NeoSolarized'
 Plug 'gruvbox-community/gruvbox'
@@ -199,7 +207,9 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" GoTo code navigation.
+"" GoTo code navigation.
+
+
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
@@ -216,5 +226,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
 
 
