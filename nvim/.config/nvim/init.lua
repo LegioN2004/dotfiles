@@ -39,3 +39,6 @@ end
 -- if is_unix then
 --     require('unix')
 -- end
+--
+vim.cmd([[let g:coc_node_path = '~/.nvm/versions/node/v19.0.0/bin/node']])
+vim.cmd([[let g:coc_npm_path = '~/.nvm/versions/node/v19.0.0/bin/node']])
