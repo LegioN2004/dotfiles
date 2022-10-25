@@ -103,3 +103,5 @@ fi
 if [ -f /home/sunny/.config/synth-shell/better-history.sh ] && [ -n "$( echo $- | grep i )" ]; then
 	source /home/sunny/.config/synth-shell/better-history.sh
 fi
+
+export TERM="xterm-256color"
