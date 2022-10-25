@@ -105,16 +105,7 @@ vim.keymap.set('v', "<leader>d", "\"_d")
 vim.keymap.set('v', "<leader>d", "\"_d")
 
 ------------------------------------------------------------------
-
--- some workaround for copy and pasting
--- vim.cmd [[
--- vmap <C-c> "+yi
--- vmap <C-x> "+c
--- vmap <C-v> c<ESC>"+p
--- imap <C-v> <ESC>"+pa
--- ]]
-
-
+--
 -- shortcuts for commenting
 vim.keymap.set('n', "<leader>/", "gcc")
 vim.keymap.set('v', "<leader>/", "gcc")
