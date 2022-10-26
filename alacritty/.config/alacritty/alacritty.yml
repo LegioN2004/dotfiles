@@ -44,8 +44,8 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.6
-  # opacity: 0.80
+  opacity: 1.0
+  opacity: 0.80
 
   # Window decorations
   #
@@ -187,7 +187,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 10.7
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -216,7 +216,8 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  #use_thin_strokes: true
+  # use_thin_strokes: true
+  AppleFontSmoothing: true
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -627,6 +628,69 @@ Hyper: &Hyper
     cyan:    '0x00ffff'
     white:   '0xFFFFFF'
 
+
+    # ## Ayu-Dark theme ##
+# Ayu-Dark: &Ayu-Dark
+  # #  Default colors
+# primary:
+  # background: '0x0A0E14'
+  # foreground: '0xB3B1AD'
+    # # Normal colors
+
+  # normal:
+    # black: '0x01060E'
+    # red: '0xEA6C73'
+    # green: '0x91B362'
+    # yellow: '0xF9AF4F'
+    # blue: '0x53BDFA'
+    # magenta: '0xFAE994'
+    # cyan: '0x90E1C6'
+    # white: '0xC7C7C7'
+      
+    #   # Bright colors
+    # bright:
+
+    #   black: '0x686868'
+    #   red: '0xF07178'
+    #   green: '0xC2D94C'
+    #   yellow: '0xFFB454'
+    #   blue: '0x59C2FF'
+    #   magenta: '0xFFEE99'
+    #   cyan: '0x95E6CB'
+    #   white: '0xFFFFFF'
+
+
+colors:
+
+ Ayu-Mirage: &Ayu-Mirage
+  # Default colors
+  primary:
+    background: '#1f2430'
+    foreground: '#cbccc6'
+    bright_foreground: '#f28779'
+
+  # Normal colors
+  normal:
+    black:   '#212733' #
+    red:     '#f08778' #
+    green:   '#53bf97' #
+    yellow:  '#fdcc60' #
+    blue:    '#60b8d6' # 
+    magenta: '#ec7171' #
+    cyan:    '#98e6ca' #
+    white:   '#fafafa' #
+
+  # Brightened
+  bright:
+    black: '#686868'
+    red: '#f58c7d'
+    green: '#58c49c'
+    yellow: '#ffd165'
+    blue: '#65bddb'
+    magenta: '#f17676'
+    cyan: '#9debcf'
+    white: '#ffffff'
+
 ######################################################################
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
 ## ###################################################################
@@ -644,7 +708,7 @@ Hyper: &Hyper
 # *iTerm2
 # *Hyper
 
-colors: *Hyper
+colors: *Ayu-Mirage
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -706,13 +770,12 @@ live_config_reload: true
 # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
 # Entries in `shell.args` are passed unmodified as arguments to the shell.
 #
- # shell.program: /bin/bash
 # Default:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-# shell:
-#  program: /bin/bash
+shell:
+  program: pwsh
 #  args:
 #    - --login
 
@@ -720,7 +783,7 @@ live_config_reload: true
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-#working_directory: None
+working_directory: C:\Users\sunny\
 
 # WinPTY backend (Windows only)
 #
@@ -933,5 +996,3 @@ key_bindings:
   - { key: PageDown,  mods: None,          action: ScrollPageDown, mode: ~Alt  }
   - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt  }
   - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt  }
-
-
