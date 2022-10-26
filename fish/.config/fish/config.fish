@@ -9,7 +9,7 @@ set -gx PATH ~/.local/bin $PATH
 # NodeJS
 set -gx PATH node_modules/.bin $PATH
 
-set -gx PATH /home/sunny/.nvm/versions/node/v18.11.0/bin $PATH
+set -gx PATH /home/sunny/.nvm/versions/node/v19.0.0/bin $PATH
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

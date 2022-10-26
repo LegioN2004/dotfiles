@@ -43,7 +43,6 @@ packer.init({
 return require 'packer'.startup(function()
 	use 'wbthomason/packer.nvim' --main packer neovim plugin manager
 	use 'nvim-lualine/lualine.nvim'
-	-- use 'easymotion/vim-easymotion'
 	-- use 'flazz/vim-colorschemes' -- every vim colorscheme known to mankind
 	use 'navarasu/onedark.nvim'
 	use 'ayu-theme/ayu-vim'
@@ -87,10 +86,6 @@ return require 'packer'.startup(function()
 	use 'nvim-telescope/telescope-file-browser.nvim'
 	use 'junegunn/fzf.vim'
 	-- use = { 'junegunn/fzf', run = './install --bin', }
-	-- use {
-	--     'Shougo/defx.nvim',
-	--     run = ':UpdateRemotePlugins'
-	-- }
 	use { 'neoclide/coc.nvim', branch = "release" }
 	use 'roxma/nvim-yarp'
 	use 'roxma/vim-hug-neovim-rpc'

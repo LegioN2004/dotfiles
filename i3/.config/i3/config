@@ -262,7 +262,7 @@ exec_always feh --bg-scale /home/sunny/Pictures/arch-linux-logo-colorful.jpg
 
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
-exec_always picom --experimental-backends -b
+exec_always picom --experimental-backend -b
 # exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
