@@ -105,3 +105,5 @@ if [ -f /home/sunny/.config/synth-shell/better-history.sh ] && [ -n "$( echo $- 
 fi
 
 export TERM="xterm-256color"
+
+neofetch

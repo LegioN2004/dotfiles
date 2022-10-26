@@ -1,3 +1,5 @@
+fortune | cowsay
+
 set fish_greeting ""
 set -gx EDITOR nvim
 set -g theme_color_scheme terminal-dark
