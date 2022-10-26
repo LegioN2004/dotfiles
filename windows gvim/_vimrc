@@ -1,42 +1,46 @@
 syntax on                  " Enable syntax highlighting.
 set t_Co=256
 filetype plugin indent on  " Enable file type based indentation.
-
 set laststatus=2
 set showtabline=2
 set autoindent             " Respect indentation when starting a new line.
 set expandtab              " Expand tabs to spaces. Essential in Python.
 set tabstop=4              " Number of spaces tab is counted for.
 set shiftwidth=4           " Number of spaces to use for autoindent.
-
 set backspace=2            " Fix backspace behavior on most terminals.
-
 set background=dark
-
+set nowrap
 packloadall                     " Load all plugins.
 silent! helptags ALL            " Load help files for all plugins.
-
-" Navigate windows with <Ctrl-hjkl> instead of <Ctrl-w> followed by hjkl.
-noremap <c-h> <c-w><c-h>
-noremap <c-j> <c-w><c-j>gruvbox
-noremap <c-k> <c-w><c-k>
-noremap <c-l> <c-w><c-l>
-
-" set foldmethod=indent           " Indentation-based folding.
-
 set wildmenu                    " Enable enhanced tab autocomplete.
 set wildmode=list:longest,full  " Complete till longest string, then open menu.
-
 set number                      " Display column numbers.
 set relativenumber              " Display relative column numbers.
-
-set hlsearch                    " Highlight search results.
+set nohlsearch                    " Highlight search results.
 set incsearch                   " Search as you type.
-
-set clipboard=unnamed  " Copy into system (*, +) registers.
-
 set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h12:cANSI "set font for gui version of vim/nvim
+set is
+set si
+set guioptions-=m  "menu bar
+set guioptions-=T  "toolbar
+set guioptions-=r  "scrollbar
 
+
+" toggle button to show gui buttons and topbar
+function! ToggleGUICruft()
+  if &guioptions=='i'
+    exec('set guioptions=imTrL')
+  else
+    exec('set guioptions=i')
+  endif
+endfunction
+
+map <leader>gui <Esc>:call ToggleGUICruft()<cr>
+
+" by default, hide gui menus
+set guioptions=i
+
+" -------------------------------------------------------
 "some keybinds for convenience
 let mapleader = " "
 nmap tw :w!<cr>
@@ -44,7 +48,6 @@ nmap twq :wq!<cr>
 nmap tws :wq! && :so%<cr>
 nmap tq :q!<cr>
 nmap ts :so %<cr>
-vnoremap <C-c> "*y
 
 "some windows keybinds
 nmap ss :split<Return><C-w>w
@@ -72,9 +75,17 @@ nmap <C-w><down> <C-w>-
 
 "fzf keymaps
 nnoremap <leader>fr :History<CR>
-nnoremap <leader>ff :FZF <C-d>
-" nnoremap <leader>ff :e %:h/<C-d>
+nnoremap <leader>fr :History<CR>
+nnoremap <leader>ff :FZF ~<CR>
+nnoremap <leader>fi :FZF ~/Downloads/dotfiles/programs/ <CR>
+nnoremap <leader>dot :FZF ~/Downloads/dotfiles/dotfiles/ <CR>
 
+" maximizer
+nnoremap <leader>sm :MaximizerToggle<CR>
+
+"Plug-vim keybinds
+nnoremap <leader>pi :PlugInstall<CR>
+nnoremap <leader>pc :PlugClean<CR>
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "just to make those backup files in another directory so as to not make a mess
@@ -100,6 +111,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'gruvbox-community/gruvbox'
 Plug 'overcache/NeoSolarized'
 " Plug 'vim-airline/vim-airline'
+Plug 'szw/vim-maximizer'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -134,11 +146,6 @@ endfunction
 
 source $VIMRUNTIME/vimrc_example.vim
 
-set hls
-set is
-set ts=4
-set sw=4
-set si
 
 autocmd filetype cpp nnoremap <leader>f :w <bar> !g++ -std=c++14 % -o %:r -Wl,--stack,268435456<CR>
 autocmd filetype cpp nnoremap <leader>r :!%:r<CR>
