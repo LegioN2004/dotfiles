@@ -9,4 +9,5 @@ images
 .vscode
 powershell
 README.md
+.gitignore
 
