@@ -16,3 +16,5 @@ This is a backup of my dotfiles for my ubuntu and windows machine  . Feel free t
 I will make the readme better once I get hold of how to use  markdown for better preview of my dotflies
 
 You can directly copy my neovim config and add it to the .config folder for unix systems and it will automatically set up everything for you 
+
+the unnecessary stuff from this repo has been moved to the repo some-other-stuff
