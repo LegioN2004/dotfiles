@@ -14,6 +14,7 @@ require('legion.bufferline')
 -- require('legion.lspconfig')
 require('legion.neovide')
 require('legion.coc')
+require('legion.impatient')
 -- require('legion.gruvbox')
 -- require('legion.colorscheme')
 -- require('legion.onedark')
@@ -42,3 +43,12 @@ end
 --
 vim.cmd([[let g:coc_node_path = '~/.nvm/versions/node/v19.0.0/bin/node']])
 vim.cmd([[let g:coc_npm_path = '~/.nvm/versions/node/v19.0.0/bin/node']])
+
+
+
+-- keybinds for easier saving and quitting
+vim.keymap.set("n", "tw", ":w!<CR>", opts)
+vim.keymap.set("n", "tq", ":q!<CR>", opts)
+vim.keymap.set("n", "tqa", ":qa!<CR>", opts)
+vim.keymap.set("n", "twq", ":wq!<CR>", opts)
+vim.keymap.set("n", "ts", ":so%<CR>", opts)

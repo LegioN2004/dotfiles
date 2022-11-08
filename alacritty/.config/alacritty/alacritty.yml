@@ -44,7 +44,6 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 1.0
   opacity: 0.80
 
   # Window decorations
@@ -138,7 +137,7 @@ font:
     # family: Source Code Pro
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
-    family: Hack NF   
+    family: Hack NF
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
@@ -187,13 +186,13 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 1
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -687,41 +686,38 @@ Hyper: &Hyper
       cyan:    '0x0db9d7'
       white:   '0xacb0d0'
 
-=======
     # ## Ayu-Dark theme ##
-# Ayu-Dark: &Ayu-Dark
-  # #  Default colors
-# primary:
-  # background: '0x0A0E14'
-  # foreground: '0xB3B1AD'
-    # # Normal colors
+Ayu-Dark: &Ayu-Dark
+  #  Default colors
+  primary:
+    background: '0x0A0E14'
+    foreground: '0xB3B1AD'
+    # Normal colors
 
-  # normal:
-    # black: '0x01060E'
-    # red: '0xEA6C73'
-    # green: '0x91B362'
-    # yellow: '0xF9AF4F'
-    # blue: '0x53BDFA'
-    # magenta: '0xFAE994'
-    # cyan: '0x90E1C6'
-    # white: '0xC7C7C7'
+  normal:
+    black: '0x01060E'
+    red: '0xEA6C73'
+    green: '0x91B362'
+    yellow: '0xF9AF4F'
+    blue: '0x53BDFA'
+    magenta: '0xFAE994'
+    cyan: '0x90E1C6'
+    white: '0xC7C7C7'
       
-    #   # Bright colors
-    # bright:
+      # Bright colors
+    bright:
 
-    #   black: '0x686868'
-    #   red: '0xF07178'
-    #   green: '0xC2D94C'
-    #   yellow: '0xFFB454'
-    #   blue: '0x59C2FF'
-    #   magenta: '0xFFEE99'
-    #   cyan: '0x95E6CB'
-    #   white: '0xFFFFFF'
+      black: '0x686868'
+      red: '0xF07178'
+      green: '0xC2D94C'
+      yellow: '0xFFB454'
+      blue: '0x59C2FF'
+      magenta: '0xFFEE99'
+      cyan: '0x95E6CB'
+      white: '0xFFFFFF'
 
 
-colors:
-
- Ayu-Mirage: &Ayu-Mirage
+Ayu-Mirage: &Ayu-Mirage
   # Default colors
   primary:
     background: '#1f2430'
@@ -749,7 +745,6 @@ colors:
     magenta: '#f17676'
     cyan: '#9debcf'
     white: '#ffffff'
->>>>>>> 9828056f9491cdaf997dd3ca33b30064c5bc4624
 
 ######################################################################
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
@@ -768,12 +763,11 @@ colors:
 # *iTerm2
 # *Hyper
 # *tokyo-night
+# *tokyo-night-storm
+# *Ayu-Dark
+# *Ayu-Mirage
 
-<<<<<<< HEAD
-colors: *tokyo-night
-=======
-colors: *Ayu-Mirage
->>>>>>> 9828056f9491cdaf997dd3ca33b30064c5bc4624
+colors: *Ayu-Dark
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -839,8 +833,8 @@ live_config_reload: true
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: pwsh
+# shell:
+#   program: pwsh
 #  args:
 #    - --login
 
@@ -848,7 +842,6 @@ shell:
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-working_directory: C:\Users\sunny\
 
 # WinPTY backend (Windows only)
 #

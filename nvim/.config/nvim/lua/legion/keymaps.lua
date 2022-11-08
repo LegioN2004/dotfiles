@@ -38,12 +38,12 @@ vim.keymap.set('n', '-', '<C-x>')
 vim.keymap.set('n', '<C-a>', 'gg<S-v>G')
 
 
--- keybinds for easier saving and quitting
-keymap("n", "tw", ":w!<CR>", opts)
-keymap("n", "tq", ":q!<CR>", opts)
-keymap("n", "tqa", ":qa!<CR>", opts)
-keymap("n", "twq", ":wq!<CR>", opts)
-keymap("n", "ts", ":so%<CR>", opts)
+-- -- keybinds for easier saving and quitting
+-- keymap("n", "tw", ":w!<CR>", opts)
+-- keymap("n", "tq", ":q!<CR>", opts)
+-- keymap("n", "tqa", ":qa!<CR>", opts)
+-- keymap("n", "twq", ":wq!<CR>", opts)
+-- keymap("n", "ts", ":so%<CR>", opts)
 
 --(window keybinds) new tab
 keymap("n", "tn", ":tabnew<Return><C-w>w", opts)
@@ -79,7 +79,7 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
---fzf
+--fzf keybindings
 vim.cmd([[
 nnoremap <silent> <leader>fzf :FZF ~<cr>
 nnoremap <silent> <leader>fr :History<CR>
@@ -109,3 +109,7 @@ vim.keymap.set('v', "<leader>d", "\"_d")
 -- shortcuts for commenting
 vim.keymap.set('n', "<leader>/", "gcc")
 vim.keymap.set('v', "<leader>/", "gcc")
+
+
+-- undotree keymaps
+vim.keymap.set('n', "<leader>un", "UndoTreeToggle")
