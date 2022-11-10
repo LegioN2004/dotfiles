@@ -155,6 +155,7 @@ bindsym $mod+Shift+0 move container to workspace  $ws10
 assign [class="neovide"] $ws7
 assign [class="Subl"] $ws8
 assign [class="VSCodium"] $ws7
+assign [class="code"] $ws7
 assign [class="firefox"] $ws2
 assign [class="Brave-browser"] $ws2
 # assign [class="Google-chrome"] $ws2
