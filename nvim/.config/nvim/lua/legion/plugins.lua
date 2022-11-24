@@ -47,7 +47,9 @@ return require 'packer'.startup(function()
 	-- use 'flazz/vim-colorschemes' -- every vim colorscheme known to mankind
 	use 'navarasu/onedark.nvim'
 	use 'ayu-theme/ayu-vim'
-  use 'mbbill/undotree'
+	use 'mbbill/undotree'
+	use 'lewis6991/gitsigns.nvim'
+	use 'xolox/vim-session'
 	use { "morhetz/gruvbox" }
 	-- use 'shatur/neovim-session-manager' -- sessions
 	-- LSP
