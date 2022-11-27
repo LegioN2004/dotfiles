@@ -50,6 +50,7 @@ return require 'packer'.startup(function()
 	use 'mbbill/undotree'
 	use 'lewis6991/gitsigns.nvim'
 	use 'xolox/vim-session'
+	use 'xolox/vim-misc'
 	use { "morhetz/gruvbox" }
 	-- use 'shatur/neovim-session-manager' -- sessions
 	-- LSP
