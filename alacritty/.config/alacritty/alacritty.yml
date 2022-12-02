@@ -767,7 +767,7 @@ Ayu-Mirage: &Ayu-Mirage
 # *Ayu-Dark
 # *Ayu-Mirage
 
-colors: *Ayu-Dark
+colors: *Hyper
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

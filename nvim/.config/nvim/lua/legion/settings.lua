@@ -1,6 +1,6 @@
 vim.cmd('autocmd!')
 
-vim.opt.list = true
+vim.opt.list = false
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
@@ -79,8 +79,9 @@ vim.opt.mouse = a
 -- Always change the directory to working directory of file in current buffer
 vim.cmd([[
 
+let g:session_autosave = 'no'
 "set listchars=eol:⏎,tab:\ \ ┊,trail:●,extends:…,precedes:…,space:·
-set listchars=tab:\ \ ┊,trail:,extends:…,precedes:…,space:
+"" set listchars=tab:\ \ ┊,trail:,extends:…,precedes:…,space:
 
 " Always change the directory to working directory of file in current buffer - http://vim.wikia.com/wiki/VimTip64
 autocmd BufEnter * call CHANGE_CURR_DIR()
