@@ -22,6 +22,7 @@ if type -q exa
   alias llt "exa --tree -g --icons"
   alias lla "ll -a"
 	alias la "ls -A"
+  alias tree "exa --tree -g"
 	alias g git
 	#command -qv nvim && alias  nvim
 
@@ -60,6 +61,10 @@ if type -q exa
 	alias sus  "systemctl suspend"
 	alias pow  "poweroff"
 	alias reb  "reboot"
+
+# config shortcut aliases
+		alias i3config "nvim ~/.config/i3/config"
+		alias fishconfig "nvim ~/.config/fish/config.fish"
 
 
 end

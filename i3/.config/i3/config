@@ -258,13 +258,14 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 exec_always feh --bg-scale /home/sunny/Pictures/arch-linux-logo-colorful.jpg
+# exec_always --no-startup-id feh --bg-scale --slideshow-delay 20 --randomize /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 # randomize wallpapers when with feh after every reload
-# exec_always --no-startup-id  /usr/bin/feh  -n 22 --randomize --bg-fill /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/* 
+# exec_always --no-startup-id  usr/bin/feh  -n 22 --randomize --bg-fill /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
-exec_always picom --experimental-backend -b
-# exec_always picom 
+# exec_always picom --experimental-backend -b
+exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
 bindsym $mod+shift+n exec redshift -x
@@ -294,6 +295,13 @@ for_window [class="^.*"] border pixel 1
 
 #sxhkd autostart
 exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
+
+#alt tab switcher for i3
+# bindsym $mod+Tab exec  ~/ghq/github.com/yoshimoto/i3-alt-tab.py next all
+# bindsym $mod+Shift+Tab exec ~/ghq/github.com/yoshimoto/i3-alt-tab.py all
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 #dont know if this works but set up for colemak
 # exec --no-startup-id setxkbmap -model pc104 -layout us,de -variant colemak, -option "grp:alt_shift_toggle,shift:both_capslock,ctrl:swapcaps"

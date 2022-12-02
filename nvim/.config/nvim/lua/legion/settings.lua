@@ -73,12 +73,14 @@ vim.opt.swapfile = false
 
 -- copy to clipboard
 -- vim.api.nvim_set_option("clipboard", "unnamedplus")
-
 -- use mouse in neovim
 vim.opt.mouse = a
 
 -- Always change the directory to working directory of file in current buffer
 vim.cmd([[
+
+set listchars=eol:⏎,tab:\ \ ┊,trail:●,extends:…,precedes:…,space:·
+
 " Always change the directory to working directory of file in current buffer - http://vim.wikia.com/wiki/VimTip64
 autocmd BufEnter * call CHANGE_CURR_DIR()
 
@@ -119,3 +121,6 @@ autocmd('TextYankPost', {
 		})
 	end,
 })
+
+
+
