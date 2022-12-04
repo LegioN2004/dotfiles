@@ -84,8 +84,8 @@ vim.cmd([[
 nnoremap <silent> <leader>fzf :FZF ~<cr>
 nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>ff :e %:h/<C-d>
- nnoremap <silent> <leader>src :FZF /home/sunny/ghq/github.com/legion2004/programs/ <cr>
- nnoremap <silent> <leader>dot :FZF /home/sunny/dotfiles/ <cr>
+nnoremap <silent> <leader>fi :FZF /home/sunny/ghq/github.com/legion2004/programs/ <cr>
+nnoremap <silent> <leader>dot :FZF /home/sunny/dotfiles/ <cr>
 ]])
 
 -- from ThePrimeagen ------------------------------------------
@@ -104,12 +104,14 @@ vim.keymap.set('v', "<leader>d", "\"_d")
 
 vim.keymap.set('v', "<leader>d", "\"_d")
 
+-- half page up/down with centered view
+vim.keymap.set('n', "<C-u>", "<C-u>zz")
+vim.keymap.set('n', "<C-d>", "<C-d>zz")
 ------------------------------------------------------------------
 --
 -- shortcuts for commenting
 vim.keymap.set('n', "<leader>/", "gcc")
 vim.keymap.set('v', "<leader>/", "gcc")
-
 
 -- undotree keymaps
 vim.keymap.set('n', "<leader>un", "UndoTreeToggle")
