@@ -1,0 +1,6 @@
+#!/bin/bash
+npm install -g depcheck
+
+npx depcheck | sed '/Missing/q' | grep '\*' | cut -c 3- | while read my_package; do
+  npm uninstall "$my_package"
+done
