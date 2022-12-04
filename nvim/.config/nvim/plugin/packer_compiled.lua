@@ -200,6 +200,11 @@ _G.packer_plugins = {
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-hug-neovim-rpc",
     url = "https://github.com/roxma/vim-hug-neovim-rpc"
   },
+  ["vim-maximizer"] = {
+    loaded = true,
+    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-maximizer",
+    url = "https://github.com/szw/vim-maximizer"
+  },
   ["vim-misc"] = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-misc",
@@ -209,6 +214,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-session",
     url = "https://github.com/xolox/vim-session"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-surround",
+    url = "https://github.com/tpope/vim-surround"
   }
 }
 
