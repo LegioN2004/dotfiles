@@ -257,15 +257,15 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
-exec_always feh --bg-scale /home/sunny/Pictures/arch-linux-logo-colorful.jpg
+# exec_always feh --bg-scale /home/sunny/Pictures/arch-linux-logo-colorful.jpg
 # exec_always --no-startup-id feh --bg-scale --slideshow-delay 20 --randomize /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 # randomize wallpapers when with feh after every reload
 # exec_always --no-startup-id  usr/bin/feh  -n 22 --randomize --bg-fill /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
-# exec_always picom --experimental-backend -b
 exec_always picom 
+# exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
 bindsym $mod+shift+n exec redshift -x
@@ -315,3 +315,6 @@ bindsym $mod+Shift+Tab workspace prev
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec_always xset r rate 300 50
+
+# exec_always --no-startup-id ~/watch -n 300 feh --randomize --bg-scale ~/Pictures/wallpapers/wallpapers/* &>~/fehdump &
+ exec_always --no-startup-id ~/watch

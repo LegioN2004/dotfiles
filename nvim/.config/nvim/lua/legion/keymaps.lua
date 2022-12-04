@@ -113,3 +113,6 @@ vim.keymap.set('v', "<leader>/", "gcc")
 
 -- undotree keymaps
 vim.keymap.set('n', "<leader>un", "UndoTreeToggle")
+
+-- maximizer keymap
+vim.keymap.set('n', "<leader>mt", "MaximizerToggle")
