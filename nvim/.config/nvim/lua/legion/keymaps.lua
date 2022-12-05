@@ -107,6 +107,11 @@ vim.keymap.set('v', "<leader>d", "\"_d")
 -- half page up/down with centered view
 vim.keymap.set('n', "<C-u>", "<C-u>zz")
 vim.keymap.set('n', "<C-d>", "<C-d>zz")
+
+-- searching forward or back with half page up/down
+vim.keymap.set('n', "n", "nzzzv")
+vim.keymap.set('n', "N", "nzzzv")
+
 ------------------------------------------------------------------
 --
 -- shortcuts for commenting

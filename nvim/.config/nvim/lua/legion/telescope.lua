@@ -44,7 +44,7 @@ telescope.load_extension("file_browser")
 
 local opts = { noremap = true, silent = true }
 -- keymaps
-vim.keymap.set('n', ';f',
+vim.keymap.set('n', 'ff',
   function()
     builtin.find_files({
       no_ignore = false,
@@ -60,9 +60,9 @@ end)
 vim.keymap.set('n', ';t', function()
   builtin.help_tags()
 end)
-vim.keymap.set('n', ';;', function()
-  builtin.resume()
-end)
+-- vim.keymap.set('n', ';;', function()
+--   builtin.resume()
+-- end)
 vim.keymap.set('n', ';e', function()
   builtin.diagnostics()
 end)
