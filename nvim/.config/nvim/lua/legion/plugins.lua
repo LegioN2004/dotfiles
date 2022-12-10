@@ -46,19 +46,18 @@ return require 'packer'.startup(function()
 		use 'nvim-lualine/lualine.nvim'
 		use 'ThePrimeagen/vim-be-good'
 		-- use 'flazz/vim-colorschemes' -- every vim colorscheme known to mankind
-		use 'navarasu/onedark.nvim'
+		-- use 'navarasu/onedark.nvim'
 		use 'ayu-theme/ayu-vim'
 		use 'mbbill/undotree'
 		use 'lewis6991/gitsigns.nvim'
-		use 'xolox/vim-session'
-		use 'xolox/vim-misc'
 		use 'szw/vim-maximizer'
-		use { "morhetz/gruvbox" }
+		-- use { "morhetz/gruvbox" }
 		-- use 'shatur/neovim-session-manager' -- sessions
 		-- LSP
 		-- use 'neovim/nvim-lspconfig'
 		-- use 'neovim/nvim-lsp'
 		-- use 'williamboman/nvim-lsp-installer'
+		-- use 'williamboman/mason.nvim' -- use this for lsp installation ui 
 		-- use 'jose-elias-alvarez/null-ls.nvim'
 		-- use 'onsails/lspkind-nvim' -- vscode like pictograms
 		-- use 'glepnir/lspsaga.nvim' -- UI for lsps
@@ -74,6 +73,7 @@ return require 'packer'.startup(function()
 		use 'akinsho/bufferline.nvim'
 		--colorscheme
 		use 'overcache/NeoSolarized'
+		use 'folke/tokyonight.nvim'
 		use {
 				'svrana/neosolarized.nvim',
 				requires = { 'tjdevries/colorbuddy.nvim' }
@@ -92,7 +92,15 @@ return require 'packer'.startup(function()
 		use 'nvim-lua/popup.nvim'
 		use 'nvim-lua/plenary.nvim'
 		use 'nvim-telescope/telescope.nvim'
-		use 'nvim-telescope/telescope-file-browser.nvim'
+		-- not using the telescope file explorer doesn't show files like ide's i need to see them without entering the folder everytime
+		-- instead this
+		use {
+		  'nvim-tree/nvim-tree.lua',
+		  requires = {
+			 'nvim-tree/nvim-web-devicons', -- optional, for file icons
+		  },
+		  tag = 'nightly' -- optional, updated every week. (see issue #1193)
+		}
 		use 'junegunn/fzf.vim'
 		-- use = { 'junegunn/fzf', run = './install --bin', }
 		use { 'neoclide/coc.nvim', branch = "release" }

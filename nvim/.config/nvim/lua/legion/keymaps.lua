@@ -123,3 +123,6 @@ vim.keymap.set('n', "<leader>un", "UndoTreeToggle")
 
 -- maximizer keymap
 vim.keymap.set('n', "<leader>mt", "MaximizerToggle")
+
+-- nvim tree toggle
+vim.keymap.set('n', ";f", "NvimTreeToggle")
