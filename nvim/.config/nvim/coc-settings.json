@@ -1,0 +1,3 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["json","lua","java","js","html","css","cpp","c", "markdown"]
+}

@@ -108,6 +108,20 @@ if (exists('+colorcolumn'))
     highlight ColorColumn ctermbg=9
 endif
 
+" format on save with coc-prettier
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
+let s:coc_extensions = [
+\   'coc-css',
+\   'coc-sumneko-lua',
+\   'coc-lightbulb',
+\   'coc-clangd',
+\   'coc-html',
+\   'coc-htmlhint',
+\   'coc-emmet',
+\   'coc-eslint',
+\   'coc-prettier'
+\ ]
 ]])
 
 local augroup = vim.api.nvim_create_augroup
