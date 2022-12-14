@@ -44,7 +44,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 -- vim.opt.cmdheight=2 --give more space for displaying messages.
 vim.opt.smartindent = true
-vim.opt.undofile = false
+vim.opt.undofile = true
 vim.opt.ruler = true
 vim.opt.mouse = a
 -- vim.opt.clipboard=unnamed,unnamedplus -- set clipboard to universal for easy copy/paste to diff apps
@@ -122,6 +122,18 @@ let s:coc_extensions = [
 \   'coc-eslint',
 \   'coc-prettier'
 \ ]
+
+"just to make those backup files in another directory so as to not make a mess
+let &directory = expand('~/nvimfiles/swap')
+set backup
+let &backupdir = expand('~/nvimfiles/backup')
+set undofile
+let &undodir = expand('~/nvimfiles/undo')
+
+if !isdirectory(&undodir) | call mkdir(&undodir, "p") | endif
+if !isdirectory(&backupdir) | call mkdir(&backupdir, "p") | endif
+if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
+
 ]])
 
 local augroup = vim.api.nvim_create_augroup
