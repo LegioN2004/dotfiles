@@ -125,4 +125,4 @@ vim.keymap.set('n', "<leader>un", "UndoTreeToggle")
 vim.keymap.set('n', "<leader>mt", "MaximizerToggle")
 
 -- nvim tree toggle
-vim.keymap.set('n', ";f", "NvimTreeToggle")
+vim.keymap.set('n', "<leader>e", vim.cmd.Lex)

@@ -120,11 +120,6 @@ _G.packer_plugins = {
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
-  gruvbox = {
-    loaded = true,
-    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/gruvbox",
-    url = "https://github.com/morhetz/gruvbox"
-  },
   ["impatient.nvim"] = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/impatient.nvim",
@@ -139,6 +134,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/neosolarized.nvim",
     url = "https://github.com/svrana/neosolarized.nvim"
+  },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -155,11 +155,6 @@ _G.packer_plugins = {
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/nvim-yarp",
     url = "https://github.com/roxma/nvim-yarp"
   },
-  ["onedark.nvim"] = {
-    loaded = true,
-    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/onedark.nvim",
-    url = "https://github.com/navarasu/onedark.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -175,15 +170,15 @@ _G.packer_plugins = {
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["telescope-file-browser.nvim"] = {
-    loaded = true,
-    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
-    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   undotree = {
     loaded = true,
@@ -209,16 +204,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-maximizer",
     url = "https://github.com/szw/vim-maximizer"
-  },
-  ["vim-misc"] = {
-    loaded = true,
-    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-misc",
-    url = "https://github.com/xolox/vim-misc"
-  },
-  ["vim-session"] = {
-    loaded = true,
-    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/vim-session",
-    url = "https://github.com/xolox/vim-session"
   },
   ["vim-surround"] = {
     loaded = true,
