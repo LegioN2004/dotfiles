@@ -1,0 +1,70 @@
+font-0 = "Roboto:size=10;1"
+font-1 = "Font Awesome:size=10;1"
+
+background = #2c3e50
+foreground = #ecf0f1
+
+height = 22
+
+position = bottom
+
+; Modules
+
+; Left modules
+; Note: The order of the modules here determines their position from left to right
+modules-left = date time
+
+; Center modules
+; Note: The order of the modules here determines their position from left to right
+modules-center = kernel
+
+; Right modules
+; Note: The order of the modules here determines their position from left to right
+modules-right = battery workspace
+
+[module/date]
+type = internal/date
+
+format = %Y-%m-%d
+
+[module/time]
+type = internal/time
+
+format = %H:%M:%S
+
+[module/battery]
+type = internal/battery
+
+format-charging =  %percentage%%
+format-discharging = %percentage%%
+
+[module/kernel]
+type = internal/exec
+
+exec = uname -r
+
+interval = 10
+
+[module/workspace]
+type = internal/workspace
+
+label = %name%
+
+
+
+
+
+
+
+[module/example]
+type = custom/text
+
+format =  %title% 
+
+[module/example2]
+type = custom/text
+
+format =  %title% 
+In this example, the first module will display an arrow separator on the left and the second module will display an arrow separator on the right. The format parameter specifies the text that will be displayed by the module, and the  characters are Unicode characters that correspond to arrow separators in the Font Awesome font.
+
+You can also use different arrow separator characters depending on your preference. For example, you can use  for a thicker arrow separator or  for a double arrow separator.
