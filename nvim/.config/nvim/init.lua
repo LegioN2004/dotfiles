@@ -43,10 +43,8 @@ end
 --     require('unix')
 -- end
 --
-vim.cmd([[let g:coc_node_path = '~/.nvm/versions/node/v19.2.0/bin/node']])
-vim.cmd([[let g:coc_npm_path = '~/.nvm/versions/node/v19.2.0/bin/node']])
-
-
+vim.cmd([[let g:coc_node_path = '~/.nvm/versions/node/v18.12.1/bin/node']])
+vim.cmd([[let g:coc_npm_path = '~/.nvm/versions/node/v18.12.1/bin/node']])
 
 -- keybinds for easier saving and quitting
 vim.keymap.set("n", "tw", ":w!<CR>", opts)
