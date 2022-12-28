@@ -79,13 +79,29 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
---fzf keybindings
 vim.cmd([[
+"fzf keybindings
 nnoremap <silent> <leader>fzf :FZF ~<cr>
 nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>ff :e %:h/<C-d>
 nnoremap <silent> <leader>fi :FZF /home/sunny/ghq/github.com/legion2004/programs/ <cr>
 nnoremap <silent> <leader>dot :FZF /home/sunny/dotfiles/ <cr>
+
+"toggle fugitive
+nnoremap <leader>gs :Git<CR>
+
+"sessions management
+nnoremap <leader>mk :mksession ~/.nvim/sessions/
+nnoremap <leader>so :so ~/.nvim/sessions/
+
+"xolox-vim-sessions management
+let g:session_directory = "~/nvimfiles/xolox-vim-sessions"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+
+nnoremap ;f <Esc>:Lex<CR>:vertical resize 30<CR><CR>
+let g:netrw_liststyle = 3
 ]])
 
 -- from ThePrimeagen ------------------------------------------
@@ -115,14 +131,17 @@ vim.keymap.set('n', "N", "nzzzv")
 ------------------------------------------------------------------
 --
 -- shortcuts for commenting
-vim.keymap.set('n', "<leader>/", "gcc")
-vim.keymap.set('v', "<leader>/", "gcc")
+vim.keymap.set('n', "<leader>/", vim.cmd.Commentary)
+vim.keymap.set('v', "<leader>/", vim.cmd.Commentary)
 
 -- undotree keymaps
-vim.keymap.set('n', "<leader>un", "UndoTreeToggle")
+vim.keymap.set('n', "<leader>un", ":UndoTreeToggle<CR>")
 
 -- maximizer keymap
-vim.keymap.set('n', "<leader>mt", "MaximizerToggle")
+vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<CR>")
 
 -- nvim tree toggle
-vim.keymap.set('n', "<leader>e", vim.cmd.Lex)
+-- vim.keymap.set('n', ";f", vim.cmd.Lex)
+
+-- open files from home folder
+-- vim.keymap.set('n', "<leader>f", ":FZF~")

@@ -6,7 +6,7 @@ foreground = #ecf0f1
 
 height = 22
 
-position = bottom
+position = top
 
 ; Modules
 
@@ -25,18 +25,18 @@ modules-right = battery workspace
 [module/date]
 type = internal/date
 
-format = %Y-%m-%d
+format =  %Y-%m-%d 
 
 [module/time]
 type = internal/time
 
-format = %H:%M:%S
+format =  %H:%M:%S  
 
 [module/battery]
 type = internal/battery
 
 format-charging =  %percentage%%
-format-discharging = %percentage%%
+format-discharging =  %percentage%%  
 
 [module/kernel]
 type = internal/exec
