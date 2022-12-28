@@ -1,11 +1,11 @@
  fortune | cowsay
 
-echo ".___                           _____ ___________________   ___ ___   _______________________      __  "
-echo "|   |  __ __  ______ ____     /  _  \\______   \_   ___ \ /   |   \  \______   \__    ___/  \    /  \ " 
-echo "|   | |  |  \/  ___// __ \   /  /_\  \|       _/    \  \//    ~    \  |    |  _/ |    |  \   \/\/   / "
-echo "|   | |  |  /\___ \\  ___/  /    |    \    |   \     \___\    Y    /  |    |   \ |    |   \        /  "
-echo "|___| |____//____  >\___  > \____|__  /____|_  /\______  /\___|_  /   |______  / |____|    \__/\  /   "
-echo "                 \/     \/          \/       \/        \/       \/           \/                 \/    "
+#echo ".___                           _____ ___________________   ___ ___   _______________________      __  "
+#echo "|   |  __ __  ______ ____     /  _  \\______   \_   ___ \ /   |   \  \______   \__    ___/  \    /  \ " 
+#echo "|   | |  |  \/  ___// __ \   /  /_\  \|       _/    \  \//    ~    \  |    |  _/ |    |  \   \/\/   / "
+#echo "|   | |  |  /\___ \\  ___/  /    |    \    |   \     \___\    Y    /  |    |   \ |    |   \        /  "
+#echo "|___| |____//____  >\___  > \____|__  /____|_  /\______  /\___|_  /   |______  / |____|    \__/\  /   "
+#echo "                 \/     \/          \/       \/        \/       \/           \/                 \/    "
 
 set fish_greeting ""
 set -gx EDITOR nvim
@@ -18,26 +18,23 @@ set -gx PATH ~/.local/bin $PATH
 # NodeJS
 set -gx PATH node_modules/.bin $PATH
 
-set -gx PATH /home/sunny/.nvm/versions/node/v19.0.0/bin $PATH
+set -gx PATH /home/sunny/.nvm/versions/node/v18.12.1/bin $PATH
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # aliases
 if type -q exa
+	alias ls='ls -a'
+#	alias ls='exa -l -g --icons'
   alias ll "exa -l -a -g --icons"
   alias llt "exa --tree -g --icons"
   alias lla "ll -a"
-	alias la "ls -A"
   alias tree "exa --tree -g"
+	alias lr='ls -R'
 	alias g git
 	#command -qv nvim && alias  nvim
 
-#my aliases
-	alias l "ls -lh"
-	alias lm "ls -m"
-	alias lr "ls -R"
-	alias lg "ls -l --group-directories-first"
 # git
 	alias g "git"
 	alias gcl "git clone"
@@ -72,10 +69,5 @@ if type -q exa
 # config shortcut aliases
 		alias i3config "nvim ~/.config/i3/config"
 		alias fishconfig "nvim ~/.config/fish/config.fish"
-
-
 end
 
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
