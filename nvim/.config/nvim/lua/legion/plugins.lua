@@ -44,6 +44,8 @@ return require 'packer'.startup(function()
 		use 'wbthomason/packer.nvim' --main packer neovim plugin manager
 		use 'lewis6991/impatient.nvim'
 		use 'nvim-lualine/lualine.nvim'
+		use 'tjdevries/express_line.nvim'
+		use 'j-hui/fidget.nvim'
 		use 'ThePrimeagen/vim-be-good'
 		use 'mbbill/undotree'
 		use 'lewis6991/gitsigns.nvim'
