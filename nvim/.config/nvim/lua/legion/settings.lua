@@ -45,7 +45,6 @@ vim.opt.relativenumber = true
 -- vim.opt.cmdheight=2 --give more space for displaying messages.
 vim.opt.smartindent = true
 vim.opt.ruler = true
-vim.opt.mouse = a
 -- vim.opt.clipboard=unnamed,unnamedplus -- set clipboard to universal for easy copy/paste to diff apps
 vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
 vim.opt.hidden = true --This option allows you to switch between multiple buffers without saving a changed buffer
@@ -72,8 +71,6 @@ vim.opt.formatoptions:append { 'r' }
 
 -- copy to clipboard
 -- vim.api.nvim_set_option("clipboard", "unnamedplus")
--- use mouse in neovim
-vim.opt.mouse = a
 
 -- Always change the directory to working directory of file in current buffer
 vim.cmd([[
@@ -133,6 +130,7 @@ if !isdirectory(&undodir) | call mkdir(&undodir, "p") | endif
 if !isdirectory(&backupdir) | call mkdir(&backupdir, "p") | endif
 if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
 
+set mouse=a
 ]])
 
 local augroup = vim.api.nvim_create_augroup

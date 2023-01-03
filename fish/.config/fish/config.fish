@@ -69,5 +69,12 @@ if type -q exa
 # config shortcut aliases
 		alias i3config "nvim ~/.config/i3/config"
 		alias fishconfig "nvim ~/.config/fish/config.fish"
+
+# pacman aliases
+  alias install "sudo pacman -S "
+  alias update  "sudo pacman -Syu "
+  alias remove "sudo pacman -R "
+  alias clean "yes|sudo pacman -Scc && yes|yay -Scc "
+
 end
 

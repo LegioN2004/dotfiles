@@ -45,18 +45,11 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+q kill
 
-#run dmenu(suckless) with the following command 
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+d exec rofi -show drun -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
 # bindsym $mod+p exec --no-startup-id rofi -show drun -show-icons -lines 8 -columns 3 -eh 2 -width 74 -padding 200 -opacity "40"
 bindsym $mod+p exec  rofi -show drun 
-bindsym $mod+d exec  rofi -show run
-
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec  dmenu_run -i
 
 # change focus
 bindsym $mod+h focus left
@@ -226,13 +219,13 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
-
 #polybar launch script
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # exec_always --no-startup-id polybar
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+for_window [title=".*"] title_format | %title
 bar {
 #to use i3blocks install it explicitly otherwise dependencies don't get fulfilled
 # for bumblebee status bar u will need extra psutil from pip to show cpu meter (you can install bumblebee status from pip also)
@@ -277,8 +270,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
-exec_always picom 
-# exec_always picom 
+# exec_always picom --experimental-backends -b 
+ exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
 bindsym $mod+shift+n exec redshift -x
