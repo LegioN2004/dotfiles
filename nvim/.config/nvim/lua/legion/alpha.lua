@@ -38,22 +38,7 @@ dashboard.section.buttons.val = {
 local fortune = require("alpha.fortune")
 dashboard.section.footer.val = fortune()
 
--- local function footer()
--- -- NOTE: requires the fortune-mod package to work
--- 	-- local handle = io.popen("fortune")
--- 	-- local fortune = handle:read("*a")
--- 	-- handle:close()
--- 	-- return fortune
--- 	return "github.com/LegioN2004"
--- end
-
-
--- dashboard.section.footer.val = footer()
-
--- dashboard.section.footer.opts.hl = "Type"
--- dashboard.section.header.opts.hl = "Include"
--- dashboard.section.buttons.opts.hl = "Keyword"
-
+-- disabled_filetypes = {'lualine'}
 -- dashboard.opts.opts.noautocmd = true
 vim.cmd([[autocmd User FileType alpha nofoldenable setlocal AlphaReady echo 'ready']])
 alpha.setup(dashboard.opts)

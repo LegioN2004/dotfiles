@@ -44,6 +44,9 @@ return require 'packer'.startup(function()
 		use 'wbthomason/packer.nvim' --main packer neovim plugin manager
 		use 'lewis6991/impatient.nvim'
 		use 'nvim-lualine/lualine.nvim'
+		use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+				require("toggleterm").setup()
+		end}
 		use 'tjdevries/express_line.nvim'
 		use 'j-hui/fidget.nvim'
 		use 'ThePrimeagen/vim-be-good'

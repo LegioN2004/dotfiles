@@ -16,6 +16,7 @@ require('legion.neovide')
 require('legion.coc')
 require('legion.impatient')
 require('legion.gitsigns')
+require('legion.toggleterm')
 
 
 local has = function(x)
