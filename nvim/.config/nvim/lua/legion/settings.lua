@@ -87,18 +87,6 @@ function! CHANGE_CURR_DIR()
     exec "cd " . _dir
     unlet _dir
 endfunction
-
-"neovide stuff
-if exists("g:neovide")   " Put anything you want to happen only in Neovide here
-	let g:neovide_refresh_rate=60
-	let g:neovide_refresh_rate_idle=5
-	let g:neovide_transparency=0.9
-	let g:neovide_refresh_rate=60
-	let g:neovide_refresh_rate_idle=5
-	"let g:neovide_cursor_vfx_mode = "railgun"
-	let g:neovide_remember_window_size = v:true
-endif
-
 if (exists('+colorcolumn'))
     set colorcolumn=80
     highlight ColorColumn ctermbg=9
@@ -131,6 +119,13 @@ if !isdirectory(&backupdir) | call mkdir(&backupdir, "p") | endif
 if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
 
 set mouse=a
+
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 ]])
 
 local augroup = vim.api.nvim_create_augroup
@@ -146,6 +141,3 @@ autocmd('TextYankPost', {
 		})
 	end,
 })
-
-
-

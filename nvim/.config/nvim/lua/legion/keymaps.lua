@@ -1,7 +1,5 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 -- local keymap = vim.keymap -- for the keymap vim.keymap.set use keymap and single quotes only for the specifying key
@@ -39,11 +37,11 @@ vim.keymap.set('n', '<C-a>', 'gg<S-v>G')
 
 
 -- -- keybinds for easier saving and quitting
--- keymap("n", "tw", ":w!<CR>", opts)
--- keymap("n", "tq", ":q!<CR>", opts)
--- keymap("n", "tqa", ":qa!<CR>", opts)
--- keymap("n", "twq", ":wq!<CR>", opts)
--- keymap("n", "ts", ":so%<CR>", opts)
+keymap("n", "tw", ":w!<CR>", opts)
+keymap("n", "tq", ":q!<CR>", opts)
+keymap("n", "tqa", ":qa!<CR>", opts)
+keymap("n", "twq", ":wq!<CR>", opts)
+keymap("n", "ts", ":so%<CR>", opts)
 
 --(window keybinds) new tab
 keymap("n", "tn", ":tabnew<Return><C-w>w", opts)
@@ -145,3 +143,9 @@ vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<CR>")
 
 -- open files from home folder
 -- vim.keymap.set('n', "<leader>f", ":FZF~")
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>te', ":Telescope<CR>")
+vim.keymap.set('n', '<leader>ps', function()
+	builtin.grep_string({search = vim.fn.input("Grep > ")});
+end)
