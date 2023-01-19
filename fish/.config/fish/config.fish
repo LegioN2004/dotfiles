@@ -11,6 +11,8 @@ set fish_greeting ""
 set -gx EDITOR nvim
 set -g theme_color_scheme terminal-dark
 
+set TLP_ENABLE 1
+
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
@@ -76,5 +78,7 @@ if type -q exa
   alias remove "sudo pacman -R "
   alias clean "yes|sudo pacman -Scc && yes|yay -Scc "
 
+# miscellaneous
+ alias cat "bat"
 end
 
