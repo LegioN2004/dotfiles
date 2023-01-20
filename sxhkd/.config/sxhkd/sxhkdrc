@@ -7,15 +7,15 @@ super + w
   google-chrome
 
 #spawn terminal
-super + t
-  alacritty
+super + k
+  konsole
 
 #spawn filemanager
 super + f
   thunar
 
 #spawn ranger
-# super + r 
+super + r 
 	ranger
 
 #spawn bravebrowser
@@ -27,5 +27,5 @@ super + m
   min
 
 #spawn neovide
- super + n
-	neovide
+ super + s
+	subl
