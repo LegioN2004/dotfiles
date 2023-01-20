@@ -227,9 +227,6 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 # finds out, if available)
 for_window [title=".*"] title_format | %title
 bar {
-# to use i3blocks install it explicitly otherwise dependencies don't get fulfilled
-# for bumblebee status bar u will need extra psutil from pip to show cpu meter (you can install bumblebee status from pip also)
-
 # i3status sht
 # status_command i3status
 # position top
@@ -240,9 +237,13 @@ bar {
 
 #  status_command i3blocks -c ~/.i3/i3blocks.conf
 
+# to use i3blocks install it explicitly otherwise dependencies don't get fulfilled
+# for bumblebee status bar u will need extra psutil from pip to show cpu meter (you can install bumblebee status from pip also)
+# dependencies bluez bluez-utils pasink pactl  blueman xkb-switch dbus-send bt-dualboot
   status_command ~/.local/bin/bumblebee-status \
    -t  dracula-powerline \
-   -m  cpu memory disk pasink battery datetime -p cpu.interval=3s memory.interval=10s pasink.interval=1s datetime.interval=1s \
+   -m  cpu memory disk  pasink bluetooth battery datetime -p cpu.interval=3s memory.interval=10s pasink.interval=1s datetime.interval=1s layout.xkbswitch \
+	 -p  disk.format={used} memory.format={used} cpu.format={:.1f}% cpu.minwidth="60.00%"
 
    colors {
      background $bg-color
