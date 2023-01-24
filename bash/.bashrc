@@ -42,25 +42,6 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-
-# pomodoro terminal
-declare -A pomo_options
-pomo_options["study"]="30"
-pomo_options["break"]="7"
-
-pomodoro () {
-		if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
-				val=$1
-				echo $val | lolcat 
-				timer ${pomo_options["$val"]}m
-				spd-say "'$val' session done"
-		fi
-}
-
-alias study="pomodoro 'study'"
-alias break="pomodoro 'break'"
-
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 

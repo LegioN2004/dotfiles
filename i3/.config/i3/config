@@ -242,8 +242,8 @@ bar {
 # dependencies bluez bluez-utils pasink pactl  blueman xkb-switch dbus-send bt-dualboot
   status_command ~/.local/bin/bumblebee-status \
    -t  dracula-powerline \
-   -m  cpu memory disk  pasink bluetooth battery datetime -p cpu.interval=3s memory.interval=10s pasink.interval=1s datetime.interval=1s layout.xkbswitch \
-	 -p  disk.format={used} memory.format={used} cpu.format={:.1f}% cpu.minwidth="60.00%"
+   -m  cpu memory disk  pasink battery datetime -p cpu.interval=3s memory.interval=10s pasink.interval=1s datetime.interval=1s  \
+	 -p  disk.format={used} memory.format={used} cpu.format={:.1f}% 
 
    colors {
      background $bg-color
@@ -274,15 +274,19 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 
-# exec_always feh --bg-scale /home/sunny/Pictures/arch-linux-logo-colorful.jpg
+#wallpapers stuff
+ exec_always feh --bg-scale /home/sunny/Pictures/wallpapers/wallpapers/nord_valley.png
 # exec_always --no-startup-id feh --bg-scale --slideshow-delay 20 --randomize /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 # randomize wallpapers when with feh after every reload
 # exec_always --no-startup-id  usr/bin/feh  -n 22 --randomize --bg-fill /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 
+# exec_always --no-startup-id ~/watch -n 300 feh --randomize --bg-scale ~/Pictures/wallpapers/wallpapers/* &>~/fehdump &
+# exec_always --no-startup-id ~/watch
+
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
-# exec_always picom --experimental-backends -b 
- exec_always picom 
+ # exec_always picom --experimental-backends 
+exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
 bindsym $mod+shift+n exec redshift -x
@@ -300,7 +304,6 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 #always run xinput list-props "xinput set-prop "ETPS/2 Elantech Touchpad" and run the following commands to set tap to click and natural scrolling 
 exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
 exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1
-
 
 #hide title bar 
 default_border pixel 1
@@ -333,8 +336,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec_always xset r rate 300 50
 
-# exec_always --no-startup-id ~/watch -n 300 feh --randomize --bg-scale ~/Pictures/wallpapers/wallpapers/* &>~/fehdump &
-exec_always --no-startup-id ~/watch
 
  # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
@@ -354,4 +355,4 @@ mode "$mode_system" {
 
 bindsym $mod+shift+q mode "$mode_system"
 
-exec_always --no-startup-id yakuake
+exec --no-startup-id yakuake
