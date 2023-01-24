@@ -9,7 +9,7 @@
 
 set fish_greeting ""
 set -gx EDITOR nvim
-set -g theme_color_scheme terminal-dark
+# set -g theme_color_scheme terminal-dark
 
 set TLP_ENABLE 1
 
@@ -25,17 +25,18 @@ set -gx PATH /home/sunny/.nvm/versions/node/v18.12.1/bin $PATH
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# aliases
-if type -q exa
-	alias ls='ls -a'
-#	alias ls='exa -l -g --icons'
-  alias ll "exa -l -a -g --icons"
-  alias llt "exa --tree -g --icons"
-  alias lla "ll -a"
+# Replace ls with exa
+alias ll='exa -al --color=always --group-directories-first --icons' # preferred listing
+alias ls='exa -a --color=always --group-directories-first --icons'  # all files and dirs
+alias la='exa -l --color=always --group-directories-first --icons'  # long format
+alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+alias l='exa -lah --color=always --group-directories-first --icons' # tree listing
+
+ if type -q exa
   alias tree "exa --tree -g"
 	alias lr='ls -R'
 	alias g git
-	#command -qv nvim && alias  nvim
+
 
 # git
 	alias g "git"
@@ -57,11 +58,11 @@ if type -q exa
 	alias compile "g++"
 	alias run "./a.out"
 
+#iso details
+alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
+
 #tmux
 	alias ide "./ide"
-
-#gotop
-# alias htop "gotop"
 
 #laptop power management aliases
 	alias sus  "systemctl suspend"
@@ -71,10 +72,16 @@ if type -q exa
 # config shortcut aliases
 		alias i3config "nvim ~/.config/i3/config"
 		alias fishconfig "nvim ~/.config/fish/config.fish"
+		alias sxhkdrc "nvim ~/.config/sxhkd/sxhkdrc"
+		alias alacrittyconfig "nvim ~/.config/alacritty/alacritty.yml"
+		alias bashrc "nvim ~/.bashrc"
+		alias zshrc "nvim ~/.zshrc"
+		alias nvimconfig "nvim ~/.config/nvim/init.lua"
+		alias picomconfig "nvim ~/.config/picom/picom.conf"
 
 # pacman aliases
-  alias install "sudo pacman -S "
-  alias update  "sudo pacman -Syu "
+  alias install "sudo pacman -Syy "
+  alias update  "sudo pacman -Syyu "
   alias remove "sudo pacman -R "
   alias clean "yes|sudo pacman -Scc && yes|yay -Scc "
 
