@@ -40,7 +40,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+set $myTerm alacritty
+bindsym $mod+Return exec $myTerm
 
 # kill focused window
 bindsym $mod+q kill
@@ -48,8 +49,8 @@ bindsym $mod+q kill
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # bindsym $mod+d exec rofi -show drun -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
 # bindsym $mod+p exec --no-startup-id rofi -show drun -show-icons -lines 8 -columns 3 -eh 2 -width 74 -padding 200 -opacity "40"
-bindsym $mod+d exec  rofi -show drun 
-bindsym $mod+p exec  dmenu_run -i
+bindsym $mod+p exec  rofi -show drun 
+bindsym $mod+d exec  dmenu_run -i
 
 # change focus
 bindsym $mod+h focus left
@@ -275,7 +276,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 #wallpapers stuff
- exec_always feh --bg-scale /home/sunny/Pictures/wallpapers/wallpapers/nord_valley.png
+ exec_always feh --bg-scale /home/sunny/Pictures/wallpapers/wallpapers/karsten-wurth-7BjhtdogU3A-unsplash.jpg
 # exec_always --no-startup-id feh --bg-scale --slideshow-delay 20 --randomize /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 # randomize wallpapers when with feh after every reload
 # exec_always --no-startup-id  usr/bin/feh  -n 22 --randomize --bg-fill /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
@@ -334,8 +335,8 @@ bindsym $mod+Shift+Tab workspace prev
 # gnome's authorization agent to mount drives and adding passwords whenever necessary
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+# keyboard repeat delay in ms
 exec_always xset r rate 300 50
-
 
  # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff

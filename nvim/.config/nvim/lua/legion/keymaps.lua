@@ -133,7 +133,7 @@ vim.keymap.set('n', "<leader>/", vim.cmd.Commentary)
 vim.keymap.set('v', "<leader>/", vim.cmd.Commentary)
 
 -- undotree keymaps
-vim.keymap.set('n', "<leader>un", ":UndoTreeToggle<CR>")
+vim.keymap.set('n', "<leader>un", ":UndotreeToggle<CR>")
 
 -- maximizer keymap
 vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<CR>")
