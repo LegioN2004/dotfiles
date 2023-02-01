@@ -134,18 +134,12 @@ export PATH=$PATH:~/.local/bin/
 #aliases
 # alias nv="nvim -u /home/sunny/.config/nvim/init.vim"
 
-# ls
-alias l='ls -lh'
-# alias ll='ls -lah'
-alias lla='ls -a'
-alias lm='ls -m'
-alias lr='ls -R'
-alias lg='ls -l --group-directories-first'
-
-# alias ll='exa -l -g --icons'
-alias ls='exa -l -g --icons'
-alias ll='exa -l -a --icons'
-alias ld='exa -l -a -T --icons'
+# Replace ls with exa
+alias ll='exa -al --color=always --group-directories-first --icons' # preferred listing
+alias ls='exa -a --color=always --group-directories-first --icons'  # all files and dirs
+alias la='exa -l --color=always --group-directories-first --icons'  # long format
+alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+alias l='exa -lah --color=always --group-directories-first --icons' # tree listing
  
 # git
 alias g='git'
