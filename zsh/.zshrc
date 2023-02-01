@@ -1,9 +1,9 @@
-echo ".___                           _____ ___________________   ___ ___   _______________________      __  "
-echo "|   |  __ __  ______ ____     /  _  \\______   \_   ___ \ /   |   \  \______   \__    ___/  \    /  \ " 
-echo "|   | |  |  \/  ___// __ \   /  /_\  \|       _/    \  \//    ~    \  |    |  _/ |    |  \   \/\/   / "
-echo "|   | |  |  /\___ \\  ___/  /    |    \    |   \     \___\    Y    /  |    |   \ |    |   \        /  "
-echo "|___| |____//____  >\___  > \____|__  /____|_  /\______  /\___|_  /   |______  / |____|    \__/\  /   "
-echo "                 \/     \/          \/       \/        \/       \/           \/                 \/    "
+# echo ".___                           _____ ___________________   ___ ___   _______________________      __  "
+# echo "|   |  __ __  ______ ____     /  _  \\______   \_   ___ \ /   |   \  \______   \__    ___/  \    /  \ " 
+# echo "|   | |  |  \/  ___// __ \   /  /_\  \|       _/    \  \//    ~    \  |    |  _/ |    |  \   \/\/   / "
+# echo "|   | |  |  /\___ \\  ___/  /    |    \    |   \     \___\    Y    /  |    |   \ |    |   \        /  "
+# echo "|___| |____//____  >\___  > \____|__  /____|_  /\______  /\___|_  /   |______  / |____|    \__/\  /   "
+# echo "                 \/     \/          \/       \/        \/       \/           \/                 \/    "
 
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -174,7 +174,7 @@ alias reb= 'reboot'
 
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z directory
-. ~/Downloads/dotfiles/z/z.sh
+. ~/z.sh
 
 # ~/.zshrc
 
@@ -196,19 +196,19 @@ export LC_CTYPE=en_US.UTF-8
 export PATH="/usr/bin:$PATH"
 
 # terminal pomodoro beware works only with zsh
-declare -A pomo_options
-pomo_options["study"]="30"
-pomo_options["break"]="7"
+# declare -A pomo_options
+# pomo_options["study"]="30"
+# pomo_options["break"]="7"
 
-pomodoro () {
-		if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
-				val=$1
-				echo $val | lolcat 
-				timer ${pomo_options["$val"]}m
-				spd-say "'$val' session done"
-		fi
-}
+# pomodoro () {
+# 		if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
+# 				val=$1
+# 				echo $val | lolcat 
+# 				timer ${pomo_options["$val"]}m
+# 				spd-say "'$val' session done"
+# 		fi
+# }
 
-alias study="pomodoro 'study'"
-alias break="pomodoro 'break'"
+# alias study="pomodoro 'study'"
+# alias break="pomodoro 'break'"
 
