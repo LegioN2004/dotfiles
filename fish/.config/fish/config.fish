@@ -76,7 +76,7 @@ alias bashrc "nvim ~/.bashrc"
 alias zshrc "nvim ~/.zshrc"
 alias nvimconfig "nvim ~/.config/nvim/init.lua"
 alias picomconfig "nvim ~/.config/picom/picom.conf"
-alias hyprlconfig "nvim ~/.config/hypr/hyprland.conf.conf"
+alias hyprlconfig "nvim ~/.config/hypr/hyprland.conf"
 alias hyprconfig "nvim ~/.config/hypr/hypr.conf"
 alias tmuxconfig "nvim ~/.tmux.conf"
 
@@ -96,5 +96,7 @@ alias clean "yes|sudo pacman -Scc && yes|yay -Scc "
 alias cat "bat"
 alias idea "idea.sh"
 alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
+alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"
+alias update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"
 end
 
