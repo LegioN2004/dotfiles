@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+#echo "  ____                           _____ ___________________   ___ ___   _______________________      __  "
+=======
 # echo ".___                           _____ ___________________   ___ ___   _______________________      __  "
+>>>>>>> b660600c05c12e607054bc4ade028d2dd0e2464a
 # echo "|   |  __ __  ______ ____     /  _  \\______   \_   ___ \ /   |   \  \______   \__    ___/  \    /  \ " 
 # echo "|   | |  |  \/  ___// __ \   /  /_\  \|       _/    \  \//    ~    \  |    |  _/ |    |  \   \/\/   / "
 # echo "|   | |  |  /\___ \\  ___/  /    |    \    |   \     \___\    Y    /  |    |   \ |    |   \        /  "
@@ -17,8 +21,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
@@ -33,16 +35,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -74,7 +71,6 @@ ENABLE_CORRECTION="true"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bg=cyan,bold,underline"
 
-# Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -85,11 +81,10 @@ bindkey -v
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -109,18 +104,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
  alias zshconfig="nvim  ~/.zshrc"
  alias bashconfig="nvim  ~/.bashrc"
+ alias fishconfig="nvim  ~/.config/fish/config.fish"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Add this to your .bashrc, .zshrc or equivalent.
-# Run 'fff' with 'f' or whatever you decide to name the function.
-f() {
-    fff "$@"
-    cd "$(cat "${XDG_CACHE_HOME:=${HOME}/.cache}/fff/.fff_d")"
-}
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPS="--extended"
@@ -175,6 +163,8 @@ alias reb= 'reboot'
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z directory
 . ~/z.sh
+<<<<<<< HEAD
+=======
 
 # ~/.zshrc
 
@@ -188,6 +178,7 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
 # setxkbmap -option caps:swapescape
+>>>>>>> b660600c05c12e607054bc4ade028d2dd0e2464a
 
 #for wsl2 in win 10 display gui apps using vsxsrv
 #export DISPLAY=172.22.144.1:0.0
@@ -212,3 +203,6 @@ export PATH="/usr/bin:$PATH"
 # alias study="pomodoro 'study'"
 # alias break="pomodoro 'break'"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
