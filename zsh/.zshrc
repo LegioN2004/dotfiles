@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-#echo "  ____                           _____ ___________________   ___ ___   _______________________      __  "
-=======
-# echo ".___                           _____ ___________________   ___ ___   _______________________      __  "
->>>>>>> b660600c05c12e607054bc4ade028d2dd0e2464a
 # echo "|   |  __ __  ______ ____     /  _  \\______   \_   ___ \ /   |   \  \______   \__    ___/  \    /  \ " 
 # echo "|   | |  |  \/  ___// __ \   /  /_\  \|       _/    \  \//    ~    \  |    |  _/ |    |  \   \/\/   / "
 # echo "|   | |  |  /\___ \\  ___/  /    |    \    |   \     \___\    Y    /  |    |   \ |    |   \        /  "
@@ -119,9 +114,6 @@ export PATH=$PATH:~/.local/bin/
 #lunarvim alias
 # alias -g [lvim]=”cd ~/.local/bin/ && ./lvim”
 
-#aliases
-# alias nv="nvim -u /home/sunny/.config/nvim/init.vim"
-
 # Replace ls with exa
 alias ll='exa -al --color=always --group-directories-first --icons' # preferred listing
 alias ls='exa -a --color=always --group-directories-first --icons'  # all files and dirs
@@ -163,22 +155,6 @@ alias reb= 'reboot'
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z directory
 . ~/z.sh
-<<<<<<< HEAD
-=======
-
-# ~/.zshrc
-
-#starship
-# eval "$(starship init zsh)"
-# export STARSHIP_CONFIG=~/.config/starship/starship.toml
-
-# source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-export LANG=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-
-# setxkbmap -option caps:swapescape
->>>>>>> b660600c05c12e607054bc4ade028d2dd0e2464a
 
 #for wsl2 in win 10 display gui apps using vsxsrv
 #export DISPLAY=172.22.144.1:0.0
