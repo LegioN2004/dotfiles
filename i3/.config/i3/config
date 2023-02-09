@@ -276,9 +276,9 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 #wallpapers stuff
-exec_always nitrogen --set-auto ~/Pictures/wallpapers/wallpapers/nord_scenary.png
-bindsym $mod+shift+w exec nitrogen --set-scaled --random
-# exec_always --no-startup-id feh --bg-scale --slideshow-delay 20 --randomize /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
+# exec_always nitrogen --set-auto ~/Pictures/wallpapers-stuff/nord_scenary.png
+bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff/
+exec_always --no-startup-id feh --bg-scale --slideshow-delay 20 --randomize /home/sunny/Pictures/wallpapers-stuff/*
 # randomize wallpapers when with feh after every reload
 # exec_always --no-startup-id  usr/bin/feh  -n 22 --randomize --bg-fill /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 

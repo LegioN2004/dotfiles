@@ -12,7 +12,7 @@ super + k
 
 #spawn filemanager
 super + f
-  thunar
+  nautilus
 
 #spawn ranger
 super + r 
