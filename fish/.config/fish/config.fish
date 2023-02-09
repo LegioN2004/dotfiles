@@ -1,5 +1,5 @@
 # fortune | cowsay
-afetch #download afetch fastfetch from aur
+nitch #download afetch fastfetch from aur
 #echo ".___                           _____ ___________________   ___ ___   _______________________      __  "
 #echo "|   |  __ __  ______ ____     /  _  \\______   \_   ___ \ /   |   \  \______   \__    ___/  \    /  \ " 
 #echo "|   | |  |  \/  ___// __ \   /  /_\  \|       _/    \  \//    ~    \  |    |  _/ |    |  \   \/\/   / "
@@ -79,6 +79,7 @@ alias picomconfig "nvim ~/.config/picom/picom.conf"
 alias hyprlconfig "nvim ~/.config/hypr/hyprland.conf"
 alias hyprconfig "nvim ~/.config/hypr/hypr.conf"
 alias tmuxconfig "nvim ~/.tmux.conf"
+alias kittyconfig "nvim ~/.config/kitty/kitty.conf"
 
 # source config files
 alias sourceb "source ~/.bashrc"
