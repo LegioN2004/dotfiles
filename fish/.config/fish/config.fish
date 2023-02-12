@@ -22,7 +22,7 @@ set -gx PATH node_modules/.bin $PATH
 set -gx PATH /home/sunny/.nvm/versions/node/v18.12.1/bin $PATH
 
 # IntelliJ IdeaIC2022 path
-set -gx PATH ~/Downloads/idea-IC-223.8214.52/bin/ $PATH
+# set -gx PATH ~/Downloads/idea-IC-223.8214.52/bin/ $PATH
 
 # Replace ls with exa
 alias ll='exa -al --color=always --group-directories-first --icons' # preferred listing
@@ -43,7 +43,9 @@ alias gi "git init"
 alias ga "git add"
 alias gc "git commit -m"
 alias gp "git push"
+alias gpl "git pull"
 alias gs "git status"
+# alias ghq "ghq get"
 
 #ranger
 alias ran "ranger"
@@ -95,7 +97,7 @@ alias clean "yes|sudo pacman -Scc && yes|yay -Scc "
 
 # miscellaneous
 alias cat "bat"
-alias idea "idea.sh"
+alias idea "./home/sunny/Downloads/idea-IC-223.8214.52/bin/idea.sh"
 alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
 alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"
 alias update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"

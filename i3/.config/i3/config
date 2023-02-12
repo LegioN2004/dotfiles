@@ -278,12 +278,12 @@ bindsym XF86AudioPrev exec playerctl previous
 #wallpapers stuff
 # exec_always nitrogen --set-auto ~/Pictures/wallpapers-stuff/nord_scenary.png
 bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff/
-exec_always --no-startup-id feh --bg-scale --slideshow-delay 20 --randomize /home/sunny/Pictures/wallpapers-stuff/*
+# exec_always --no-startup-id feh --bg-fill --slideshow-delay 20 --randomize /home/sunny/Pictures/wallpapers-stuff/*
 # randomize wallpapers when with feh after every reload
 # exec_always --no-startup-id  usr/bin/feh  -n 22 --randomize --bg-fill /home/sunny/Pictures/wallpapers/nordic-wallpapers/wallpapers/*
 
-# exec_always --no-startup-id ~/watch -n 300 feh --randomize --bg-scale ~/Pictures/wallpapers/wallpapers/* &>~/fehdump &
-# exec_always --no-startup-id ~/watch
+# exec_always --no-startup-id ~/watch -n 300 feh --randomize --bg-scale /home/sunny/Pictures/wallpapers-stuff/* &>~/fehdump &
+ exec_always --no-startup-id ~/dotfiles/watch
 
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
@@ -354,7 +354,5 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+shift+q mode "$mode_system"
-
 exec --no-startup-id yakuake
