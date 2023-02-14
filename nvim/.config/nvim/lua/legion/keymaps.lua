@@ -99,6 +99,7 @@ let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
 nnoremap ;f <Esc>:Lex<CR>:vertical resize 30<CR><CR>
+nnoremap <leader>ex <Esc>:Ex<CR>
 let g:netrw_liststyle = 3
 ]])
 
