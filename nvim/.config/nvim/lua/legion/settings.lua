@@ -20,7 +20,6 @@ vim.opt.smarttab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-vim.opt.backupskip = '/tmp/*,/private/tmp/*'
 vim.opt.inccommand = 'split'
 vim.opt.breakindent = true
 vim.opt.incsearch = true
@@ -108,15 +107,12 @@ let s:coc_extensions = [
 \ ]
 
 "just to make those backup files in another directory so as to not make a mess
-let &directory = expand('~/nvimfiles/swap')
+set swapfile
 set backup
-let &backupdir = expand('~/nvimfiles/backup')
 set undofile
-let &undodir = expand('~/nvimfiles/undo')
-
-if !isdirectory(&undodir) | call mkdir(&undodir, "p") | endif
-if !isdirectory(&backupdir) | call mkdir(&backupdir, "p") | endif
-if !isdirectory(&directory) | call mkdir(&directory, "p") | endif
+set directory=~/nvimfiles/swap//
+set backupdir=~/nvimfiles/backup//
+set undodir=~/nvimfiles/undo//
 
 set mouse=a
 

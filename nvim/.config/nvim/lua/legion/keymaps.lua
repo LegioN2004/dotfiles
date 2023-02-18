@@ -41,7 +41,7 @@ keymap("n", "tw", ":w!<CR>", opts)
 keymap("n", "tq", ":q!<CR>", opts)
 keymap("n", "tqa", ":qa!<CR>", opts)
 keymap("n", "twq", ":wq!<CR>", opts)
-keymap("n", "ts", ":so%<CR>", opts)
+keymap("n", "ts", ":so ~/.config/nvim/init.lua", opts)
 
 --(window keybinds) new tab
 keymap("n", "tn", ":tabnew<Return><C-w>w", opts)
@@ -66,10 +66,10 @@ vim.keymap.set('', 's<right>', '<C-w>l')
 vim.keymap.set('', 's<right>', '<C-w>l')
 
 --better movement between splits
-keymap("n", "sh", "<C-w>h", opts)
-keymap("n", "sj", "<C-w>j", opts)
-keymap("n", "sk", "<C-w>k", opts)
-keymap("n", "sl", "<C-w>l", opts)
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -89,8 +89,8 @@ nnoremap <silent> <leader>dot :FZF /home/sunny/dotfiles/ <cr>
 nnoremap <leader>gs :Git<CR>
 
 "sessions management
-nnoremap <leader>mk :mksession ~/.nvim/sessions/
-nnoremap <leader>so :so ~/.nvim/sessions/
+nnoremap <leader>mk :mksession ~/nvimfiles/sessions/
+nnoremap <leader>so :so ~/nvimfiles/sessions/
 
 "xolox-vim-sessions management
 let g:session_directory = "~/nvimfiles/xolox-vim-sessions"
@@ -98,9 +98,12 @@ let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
 
-nnoremap ;f <Esc>:Lex<CR>:vertical resize 30<CR><CR>
-nnoremap <leader>ex <Esc>:Ex<CR>
-let g:netrw_liststyle = 3
+""nnoremap ;f <Esc>:Lex<CR>:vertical resize 30<CR><CR>
+""nnoremap <leader>ex <Esc>:Ex<CR>
+""let g:netrw_liststyle = 3
+" NvimTreeToggle remap
+ nnoremap ;f <Esc>:NvimTreeToggle<CR>:vertical resize 30<CR><CR>
+
 ]])
 
 -- from ThePrimeagen ------------------------------------------
@@ -138,12 +141,6 @@ vim.keymap.set('n', "<leader>un", ":UndotreeToggle<CR>")
 
 -- maximizer keymap
 vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<CR>")
-
--- nvim tree toggle
--- vim.keymap.set('n', ";f", vim.cmd.Lex)
-
--- open files from home folder
--- vim.keymap.set('n', "<leader>f", ":FZF~")
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>te', ":Telescope<CR>")
