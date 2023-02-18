@@ -285,7 +285,7 @@ bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-s
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
 
  # exec_always picom --experimental-backends 
-exec_always picom 
+# exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
 bindsym $mod+shift+n exec redshift -x

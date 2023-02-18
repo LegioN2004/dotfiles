@@ -61,12 +61,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 vim.opt.formatoptions:append { 'r' }
--- vim.opt.signcolumn = yes
--- Undo and backup options
--- vim.opt.backup = false
--- vim.opt.writebackup = false
--- vim.opt.undofile = true
--- vim.opt.swapfile = false
 
 -- copy to clipboard
 -- vim.api.nvim_set_option("clipboard", "unnamedplus")
@@ -86,6 +80,7 @@ let g:session_autosave = 'no'
 "   unlet _dir
 "endfunction
 
+colorscheme onedark
 if (exists('+colorcolumn'))
     set colorcolumn=80
     highlight ColorColumn ctermbg=9
