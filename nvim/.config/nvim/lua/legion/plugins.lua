@@ -28,8 +28,6 @@ require('lazy').setup({
 				-- amongst your other plugins
 				{'akinsho/toggleterm.nvim', version = "*", config = true}
 		},
-		'tjdevries/express_line.nvim',
-		'j-hui/fidget.nvim',
 		'ThePrimeagen/vim-be-good',
 		'mbbill/undotree',
 		'lewis6991/gitsigns.nvim',
@@ -41,7 +39,7 @@ require('lazy').setup({
 		--colorscheme
 		{
 				'svrana/neosolarized.nvim',
-				requires = { 'tjdevries/colorbuddy.nvim' }
+				dependencies = { 'tjdevries/colorbuddy.nvim' }
 		},
 		--language specific stuff
 		'tpope/vim-commentary',
@@ -50,10 +48,10 @@ require('lazy').setup({
 
 		-- 'windwp/nvim-ts-autotag',
 		'jiangmiao/auto-pairs',
-		'kyazdani42/nvim-web-devicons',
+		'nvim-tree/nvim-web-devicons',
 		{
 				'nvim-treesitter/nvim-treesitter',
-				run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+				build = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
 		},
 		'nvim-lua/popup.nvim',
 		'nvim-lua/plenary.nvim',
@@ -62,17 +60,17 @@ require('lazy').setup({
 		-- instead this
 		{
 				'nvim-tree/nvim-tree.lua',
-				requires = {
+				dependencies = {
 						'nvim-tree/nvim-web-devicons', -- optional, for file icons
 				},
 				tag = 'nightly' -- optional, updated every week. (see issue #1193)
 		},
 		'junegunn/fzf.vim',
-		-- use = { 'junegunn/fzf', run = './install --bin', }
+		-- use = { 'junegunn/fzf', build = './install --bin', }
 		{ 'neoclide/coc.nvim', branch = "release" },
 		{
 				'goolord/alpha-nvim',
-				requires = { 'kyazdani42/nvim-web-devicons' },
+				dependencies = { 'nvim-tree/nvim-web-devicons' },
 				config = function()
 						require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
 				end

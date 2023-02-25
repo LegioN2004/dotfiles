@@ -10,11 +10,11 @@ ts.setup {
     enable = true,
     disable = {},
   },
-  ensure_installed = {
-    "html",
-    "lua",
-    "cpp"
-  },
+  -- ensure_installed = {
+  --   "html",
+  --   "lua",
+  --   "cpp"
+  -- },
   autotag = {
     enable = true,
   },
