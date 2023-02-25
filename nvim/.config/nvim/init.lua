@@ -14,6 +14,8 @@ require('legion.impatient')
 require('legion.gitsigns')
 require('legion.toggleterm')
 require('legion.nvim-tree')
+require('legion.sneak') --checkout the hop and sneak plugin usage for better code jumping and then remove this line
+require('legion.hop')
 -- require('legion.elbytj')
 -- require('legion.ts-autotags')
 -- require('legion.bufferline')

@@ -49,6 +49,7 @@ vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
 vim.opt.hidden = true --This option allows you to switch between multiple buffers without saving a changed buffer
 vim.opt.mousehide = true --Hide the mouse pointer while typing.
 vim.opt.updatetime = 50 --updatetime
+vim.opt.timeoutlen = 500
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
@@ -80,7 +81,6 @@ let g:session_autosave = 'no'
 "   unlet _dir
 "endfunction
 
-colorscheme onedark
 if (exists('+colorcolumn'))
     set colorcolumn=80
     highlight ColorColumn ctermbg=9
@@ -89,17 +89,17 @@ endif
 " format on save with coc-prettier
 " command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
-let s:coc_extensions = [
-\   'coc-css',
-\   'coc-sumneko-lua',
-\   'coc-lightbulb',
-\   'coc-clangd',
-\   'coc-html',
-\   'coc-htmlhint',
-\   'coc-emmet',
-\   'coc-eslint',
-\   'coc-prettier'
-\ ]
+"let s:coc_extensions = [
+"\   'coc-css',
+"\  'coc-sumneko-lua',
+"\  'coc-lightbulb',
+"\  'coc-clangd',
+"\  'coc-html',
+"\  'coc-htmlhint',
+"\  'coc-emmet',
+"\  'coc-eslint',
+"\  'coc-prettier'
+"]
 
 "just to make those backup files in another directory so as to not make a mess
 set swapfile
