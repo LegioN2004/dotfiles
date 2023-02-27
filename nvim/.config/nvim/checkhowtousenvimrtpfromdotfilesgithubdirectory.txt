@@ -1,0 +1,1 @@
+check how to fix the usage of runtimepath to use the nvim config directly from the dotfiles directory from github instaead from the .config directory and also check the fishconfig to fix the alaises to use those config
