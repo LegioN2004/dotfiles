@@ -1,7 +1,6 @@
 require('legion.plugins')
 require('legion.alpha-startup')
 require('legion.settings')
-require('legion.plugins')
 require('legion.keymaps')
 require('legion.hightlights')
 require('legion.macros')

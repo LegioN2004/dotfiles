@@ -51,8 +51,11 @@ alias gs "git status"
 alias ran "ranger"
 
 #neovim
+#alias v "nvim -u ~/dotfiles/nvim/.config/nvim/MyOwn-Config.lua"
 alias v "nvim"
 alias nv "neovide"
+alias lv "lvim"
+alias lz "nvim -u ~/ghq/github.com/LegioN2004/some-other-stuff/lazy-vim-config/nvim/init.lua"
 
 #C++ run code alias
 alias compile "g++"
@@ -90,9 +93,10 @@ alias sourcef "source ~/.config/fish/config.fish"
 alias sourcet "source ~/.tmux.conf"
 
 # pacman aliases
-alias install "sudo pacman -Syy "
-alias update  "sudo pacman -Syyu "
-alias remove "sudo pacman -R "
+alias sps "sudo pacman -S "
+alias spsyy "sudo pacman -Syy "
+alias spsyyu  "sudo pacman -Syyu "
+alias spr "sudo pacman -R "
 alias clean "yes|sudo pacman -Scc && yes|yay -Scc "
 
 # miscellaneous
