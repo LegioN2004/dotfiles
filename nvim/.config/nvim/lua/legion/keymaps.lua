@@ -4,6 +4,9 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 -- local keymap = vim.keymap -- for the keymap vim.keymap.set use keymap and single quotes only for the specifying key
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 

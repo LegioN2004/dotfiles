@@ -28,4 +28,6 @@ super + m
 
 #spawn neovide
  super + s
-	subl
+  jgmenu
+#	subl
+
