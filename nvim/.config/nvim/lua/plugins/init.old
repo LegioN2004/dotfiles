@@ -1,9 +1,5 @@
 return {
 	'lewis6991/impatient.nvim',
-	{
-		"olimorris/onedarkpro.nvim",
-		priority = 1000 -- Ensure it loads first
-	},
 	'nvim-lualine/lualine.nvim',
 	{
 		-- amongst your other plugins
@@ -20,6 +16,10 @@ return {
 	-- bufferline
 	'akinsho/bufferline.nvim',
 	--colorscheme
+	{
+		"olimorris/onedarkpro.nvim",
+		priority = 1000 -- Ensure it loads first
+	},
 	{
 		'svrana/neosolarized.nvim',
 		dependencies = { 'tjdevries/colorbuddy.nvim' }
