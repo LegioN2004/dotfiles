@@ -1,11 +1,11 @@
 # dotfiles
 my dotfiles for ubuntu and windows machine
 
-## Here is an image of my setup of neovim, tmux, and i3wm
+## Here is an image of unixporn sht (my first and last one)
 
-![nvim, tmux, i3 in action screenshot](./images/archrice3rd.png)
+![nvim, tmux, i3 screenshot](./images/archrice3rd.png)
 
-You can also use this in wsl2
+In wsl2
 
 ![nvim, tmux in windows wsl2 screenshot](./images/windows10rice1stSSsame2ndpic.png)
 
