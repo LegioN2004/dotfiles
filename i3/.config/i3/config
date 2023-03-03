@@ -353,3 +353,5 @@ mode "$mode_system" {
 }
 bindsym $mod+shift+q mode "$mode_system"
 exec --no-startup-id yakuake
+
+#bindsym $mod+x exec "jgmenu --center"
