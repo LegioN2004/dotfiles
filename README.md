@@ -1,5 +1,5 @@
 # dotfiles
-my dotfiles for ubuntu and windows machine
+my dotfiles for linux and windows machine
 
 ## Here is an image of unixporn sht (my first and last one)
 
