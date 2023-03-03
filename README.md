@@ -1,16 +1,12 @@
 # dotfiles
-my dotfiles for ubuntu and windows machine
+my dotfiles for linux and windows machine
 
-## Here is an image of my setup of neovim, tmux, and i3wm
+## Here is an image of unixporn sht (my first and last one)
 
-![nvim, tmux, i3 in action screenshot](./images/archrice3rd.png)
+![nvim, tmux, i3 screenshot](./images/archrice3rd.png)
 
-You can also use this in wsl2
+In wsl2
 
 ![nvim, tmux in windows wsl2 screenshot](./images/windows10rice1stSSsame2ndpic.png)
 
-This is a backup of my dotfiles for linux and windows machine . :)
-
-I will make the readme better once I get hold of how to use markdown 
-
-the unnecessary stuff from this repo has been moved to the repo some-other-stuff
+This is a backup repo for my dotfiles of linux and windows machine . :)
