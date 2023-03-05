@@ -92,10 +92,10 @@ vim.keymap.set('n', "<c-/>", vim.cmd.commentary)
 vim.keymap.set('v', "<c-/>", vim.cmd.commentary)
 
 -- undotree keymaps
-vim.keymap.set('n', "<leader>un", ":undotreetoggle<cr>")
+vim.keymap.set('n', "<leader>un", ":UndotreeToggle<cr>")
 
 -- maximizer keymap
-vim.keymap.set('n', "<leader>mt", ":maximizertoggle<cr>")
+vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<cr>")
 
 vim.cmd([[
 "fzf keybindings
@@ -137,7 +137,7 @@ nnoremap <silent> <C-p> :Files<CR>
 "nnoremap <silent> <Leader>/ :BLines<CR> "line finder
 "nnoremap <silent> <Leader>/ :Lines<CR> "line finder
 "nnoremap <silent> <Leader>' :Marks<CR> "marked files find
-"nmap <Leader>t :BTags<CR>  "tag finder 
+"nmap <Leader>t :BTags<CR>  "tag finder
 "nmap <Leader>T :Tags<CR>   "search for tags across project
 "nnoremap <silent> <Leader>g :Commits<CR>
 "nnoremap <silent> <Leader>H :Helptags<CR> "help finder
@@ -166,5 +166,5 @@ command! -bang -nargs=* Rg
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>te', ":Telescope<CR>")
 vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({search = vim.fn.input("Grep > ")});
+	builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)

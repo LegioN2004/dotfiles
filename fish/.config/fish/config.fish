@@ -93,6 +93,7 @@ alias sourcef "source ~/.config/fish/config.fish"
 alias sourcet "source ~/.tmux.conf"
 
 # pacman aliases
+alias sp "sudo pacman "
 alias sps "sudo pacman -S "
 alias spsyy "sudo pacman -Syy "
 alias spsyyu  "sudo pacman -Syyu "
