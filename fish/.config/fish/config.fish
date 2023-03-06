@@ -100,6 +100,7 @@ alias spsyyu  "sudo pacman -Syyu "
 alias ysyyu  "yay -Syyu "
 alias yysyyu  "yes|yay -Syyu "
 alias spr "sudo pacman -R "
+alias sprs "sudo pacman -Rs "
 alias clean "yes|sudo pacman -Scc && yes|yay -Scc "
 
 # miscellaneous
