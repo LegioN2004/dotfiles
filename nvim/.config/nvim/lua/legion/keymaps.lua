@@ -88,8 +88,7 @@ vim.keymap.set('n', "N", "nzzzv")
 ------------------------------------------------------------------
 
 -- shortcuts for commenting
-vim.keymap.set('n', "<c-/>", vim.cmd.commentary)
-vim.keymap.set('v', "<c-/>", vim.cmd.commentary)
+vim.keymap.set('n', "<leader>/", ":Commentary<cr>")
 
 -- undotree keymaps
 vim.keymap.set('n', "<leader>un", ":UndotreeToggle<cr>")
