@@ -96,6 +96,9 @@ vim.keymap.set('n', "<leader>un", ":UndotreeToggle<cr>")
 -- maximizer keymap
 vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<cr>")
 
+-- open init.lua file
+vim.keymap.set('n', "<leader>my", ":e $MYVIMRC<cr>")
+
 vim.cmd([[
 "fzf keybindings
 nnoremap <silent> <leader>fzf :FZF ~<cr>
