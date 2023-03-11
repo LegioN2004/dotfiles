@@ -279,8 +279,8 @@ bindsym XF86AudioPrev exec playerctl previous
 # exec_always nitrogen --set-auto ~/Pictures/wallpapers-stuff/nord_scenary.png
 bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff/
 # script for changing wallpapers randomly after 5 mins
-# exec_always --no-startup-id ~/dotfiles/watch
-exec_always --no-startup-id feh --bg-scale /home/sunny/Pictures/wallpapers-stuff2/Xero-Plasma60.png
+exec_always --no-startup-id ~/dotfiles/watch
+# exec_always --no-startup-id feh --bg-scale /home/sunny/Pictures/wallpapers-stuff2/Xero-Plasma60.png
 
 # master stack layout python script
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
