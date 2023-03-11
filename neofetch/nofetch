@@ -1,4 +1,5 @@
 #!/bin/sh
+# from github.com/0xCUBE/nofetch
 # v0.0.1 - Copywright 2020 OxCUBE - All Rights Reserved
 # NOTICE: All redistributions of the following code must explicitly state what was modified by the end user
 # and the name '0xCUBE' must be mentioned in the credits of the public repository
@@ -96,15 +97,16 @@ clear
 elif [ "$type" = "flex" ] && [ "$should_run" = "true" ]; then
 clear
     echo """ ${color}
-${bold}${red}OS: ${normal}fku-server
-${bold}${red}Host: ${normal}Grandma's Computer
-${bold}${red}Uptime: ${normal}1 year, 420 days
-${bold}${red}CPU: ${normal}2xAMD Ryzen Threadripper 6990X (220) @ 6.90Ghz
-${bold}${red}GPU: ${normal}NVIDIA RTX 6090 1024 GB
-${bold}${red}Memory: ${normal}0.1000001MiB / 4300800MiB
+${bold}${red}OS: ${normal}fkurserver
+${bold}${red}Host: ${normal}of course my Computer
+${bold}${red}Uptime: ${normal}1 year, 50 days
+${bold}${red}CPU: ${normal}AMD EPYC 9654p (260) @ 3.75Ghz
+${bold}${red}GPU1: ${normal}2×NVIDIA RTX 4090 Ti 
+${bold}${red}GPU2: ${normal}NVIDIA RTX 6000 
+${bold}${red}Memory: ${normal}9GiB / 256GiB
 """
 
-# Help...obviously
+# Help...obviously not
 elif [ "$type" = "help" ] && [ "$should_run" = "true" ]; then
 clear
     echo """ ${color}

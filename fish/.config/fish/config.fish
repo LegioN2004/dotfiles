@@ -1,11 +1,6 @@
 # fortune | cowsay
-nitch #download afetch fastfetch from aur
-#echo ".___                           _____ ___________________   ___ ___   _______________________      __  "
-#echo "|   |  __ __  ______ ____     /  _  \\______   \_   ___ \ /   |   \  \______   \__    ___/  \    /  \ " 
-#echo "|   | |  |  \/  ___// __ \   /  /_\  \|       _/    \  \//    ~    \  |    |  _/ |    |  \   \/\/   / "
-#echo "|   | |  |  /\___ \\  ___/  /    |    \    |   \     \___\    Y    /  |    |   \ |    |   \        /  "
-#echo "|___| |____//____  >\___  > \____|__  /____|_  /\______  /\___|_  /   |______  / |____|    \__/\  /   "
-#echo "                 \/     \/          \/       \/        \/       \/           \/                 \/    "
+sh ~/dotfiles/neofetch/nofetch --flex #nitch #download afetch fastfetch from aur
+#use sh to run any bash scripts from the fish shell at startup 
 
 set fish_greeting ""
 set -gx EDITOR nvim

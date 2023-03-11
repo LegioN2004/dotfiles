@@ -241,6 +241,7 @@ bar {
 # to use i3blocks install it explicitly otherwise dependencies don't get fulfilled
 # for bumblebee status bar u will need extra psutil from pip to show cpu meter (you can install bumblebee status from pip also)
 # dependencies bluez bluez-utils pasink pactl  blueman xkb-switch dbus-send bt-dualboot
+height 20
   status_command ~/.local/bin/bumblebee-status \
    -t  dracula-powerline \
    -m  cpu memory disk  pasink battery datetime -p cpu.interval=3s memory.interval=10s pasink.interval=1s datetime.interval=1s  \
@@ -277,8 +278,9 @@ bindsym XF86AudioPrev exec playerctl previous
 #wallpapers stuff
 # exec_always nitrogen --set-auto ~/Pictures/wallpapers-stuff/nord_scenary.png
 bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff/
-# script for changing wallpapers  randomly after sometime
-exec_always --no-startup-id ~/dotfiles/watch
+# script for changing wallpapers randomly after 5 mins
+# exec_always --no-startup-id ~/dotfiles/watch
+exec_always --no-startup-id feh --bg-scale /home/sunny/Pictures/wallpapers-stuff2/Xero-Plasma60.png
 
 # master stack layout python script
 exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
@@ -311,8 +313,16 @@ default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
 
-#for_window [class="^.*"] border pixel 1
-#new_window 1pixel
+# gaps
+# Activate smart borders (always)
+smart_borders on
+# gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle  10
+# Examples
+gaps inner  4
+# gaps outer current plus 5
+# gaps horizontal current plus 40
+# gaps outer current toggle 60
+
 
 #sxhkd autostart
 exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
