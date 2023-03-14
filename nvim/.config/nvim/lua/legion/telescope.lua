@@ -4,19 +4,19 @@ local actions = require('telescope.actions')
 local builtin = require("telescope.builtin")
 
 local function telescope_buffer_dir()
-  return vim.fn.expand('%:p:h')
+	return vim.fn.expand('%:p:h')
 end
 
 -- local fb_actions = require "telescope".extensions.file_browser.actions
 
 telescope.setup {
-  defaults = {
-    mappings = {
-      n = {
-        ["q"] = actions.close
-      }
-    }
-  }
+	defaults = {
+		mappings = {
+			n = {
+				["q"] = actions.close
+			}
+		}
+	}
 }
 --   extensions = {
 --     file_browser = {
@@ -43,32 +43,33 @@ telescope.setup {
 
 -- telescope.load_extension("file_browser")
 
--- local opts = { noremap = true, silent = true }
--- -- keymaps
--- vim.keymap.set('n', 'ff',
---   function()
---     builtin.find_files({
---       no_ignore = false,
---       hidden = true
---     })
---   end)
+local opts = { noremap = true, silent = true }
+-- keymaps
+vim.keymap.set('n', ';l',
+	function()
+		builtin.find_files({
+			no_ignore = false,
+			hidden = false
+		})
+	end)
 vim.keymap.set('n', ';r', function()
-  builtin.live_grep()
+	builtin.live_grep()
 end)
 vim.keymap.set('n', '\\\\', function()
-  builtin.buffers()
+	builtin.buffers()
 end)
-vim.keymap.set('n', ';t', function()
-  builtin.help_tags()
+vim.keymap.set('n', ';h', function()
+	builtin.help_tags()
 end)
 -- vim.keymap.set('n', ';;', function()
 --   builtin.resume()
 -- end)
-vim.keymap.set('n', ';e', function()
-  builtin.diagnostics()
+vim.keymap.set('n', ';d', function()
+	builtin.diagnostics()
 end)
 
 
+-- telescope file_browser
 -- vim.keymap.set("n", "sf", function()
 --   telescope.extensions.file_browser.file_browser({
 --     path = "%:p:h",
@@ -81,4 +82,3 @@ end)
 --     layout_config = { height = 40 }
 --   })
 -- end)
-

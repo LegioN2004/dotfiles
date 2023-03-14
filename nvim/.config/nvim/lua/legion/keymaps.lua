@@ -37,7 +37,7 @@ keymap("n", "tw", ":w!<CR>", opts)
 keymap("n", "tq", ":q!<CR>", opts)
 keymap("n", "tqa", ":qa!<CR>", opts)
 keymap("n", "twq", ":wq!<CR>", opts)
-keymap("n", "ts", ":so ~/.config/nvim/init.lua", opts)
+keymap("n", "ts", ":so<CR>", opts)
 
 --splitting windows
 vim.keymap.set('n', 'sv', '<c-w>v', { silent = true })
@@ -133,7 +133,7 @@ let g:session_command_aliases = 1
 "checkout these fzf keybinds
 " PLUGIN: FZF
 "nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-f> :Files<CR>
 "nnoremap <silent> <Leader>rg :Rg<CR> "ripgrep grep lines
 "nnoremap <silent> <Leader>ag :Ag<CR> "project finder
 "nnoremap <silent> <Leader>/ :BLines<CR> "line finder
