@@ -97,8 +97,8 @@ clear
 elif [ "$type" = "flex" ] && [ "$should_run" = "true" ]; then
 clear
     echo """ ${color}
-${bold}${red}OS: ${normal}fkurserver
-${bold}${red}Host: ${normal}of course my Computer
+${bold}${red}OS: ${normal}not-a-server
+${bold}${red}Host: ${normal}My Computer of course
 ${bold}${red}Uptime: ${normal}1 year, 50 days
 ${bold}${red}CPU: ${normal}AMD EPYC 9654p (260) @ 3.75Ghz
 ${bold}${red}GPU1: ${normal}2×NVIDIA RTX 4090 Ti 
