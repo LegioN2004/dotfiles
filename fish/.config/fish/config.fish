@@ -12,6 +12,9 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 
+#fzf
+set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
+
 # NodeJS
 set -gx PATH node_modules/.bin $PATH
 set -gx PATH /home/sunny/.nvm/versions/node/v18.12.1/bin $PATH

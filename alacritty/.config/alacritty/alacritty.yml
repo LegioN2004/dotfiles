@@ -322,9 +322,14 @@ onedark: &onedark
 ## ###################################################################
 # Available themes are:
 # *DoomOne
-# *SolarizedDark
+# *onedark
 
-colors: *DoomOne 
+#set the theme
+#colors: *DoomOne 
+
+# import the colorscheme from the themes use this repo https://github.com/alarcitty/alacritty-theme.git
+import:
+ - ~/.config/alacritty/themes/themes/tokyo-night-storm.yaml
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
