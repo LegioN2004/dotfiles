@@ -15,6 +15,7 @@ require('nvim-treesitter.configs').setup {
 }
 
 require('orgmode').setup({
-	org_agenda_files = { '~/Dropbox/org/*', '~/my-orgs/**/*' },
-	org_default_notes_file = '~/Dropbox/org/refile.org',
+	--org_agenda_files = { '~/ghq/github.com/LegioN2004/programs/org-docs/*', '~/my-orgs/**/*' },
+	org_agenda_files = { '~/ghq/github.com/LegioN2004/programs/org-docs/*' },
+	org_default_notes_file = '~/ghq/github.com/LegioN2004/programs/org-docs/org-agenda/*',
 })
