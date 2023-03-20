@@ -59,6 +59,7 @@ return require 'packer'.startup(function()
 	use 'akinsho/bufferline.nvim'
 	--colorscheme
 	use 'olimorris/onedarkpro.nvim'
+	use 'gruvbox-community/gruvbox'
 	use {
 		'svrana/neosolarized.nvim',
 		requires = { 'tjdevries/colorbuddy.nvim' }
@@ -75,10 +76,6 @@ return require 'packer'.startup(function()
 		'nvim-treesitter/nvim-treesitter',
 		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
 	}
-	use { 'nvim-orgmode/orgmode', config = function()
-		require('orgmode').setup {}
-	end
-	}
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-lua/plenary.nvim'
 	use 'nvim-telescope/telescope.nvim'
@@ -89,7 +86,7 @@ return require 'packer'.startup(function()
 		requires = {
 			'nvim-tree/nvim-web-devicons', -- optional, for file icons
 		},
-		tag = 'nightly' -- optional, updated every week. (see issue #1193)
+		tag = 'nightly'           -- optional, updated every week. (see issue #1193)
 	}
 	use 'junegunn/fzf.vim'
 	--	use { 'junegunn/fzf', { 'do': { -> fzf#install() } }

@@ -6,8 +6,7 @@ set wildoptions=pum
 "{} set plumblend=5
 set background=dark
 
-runtime ./colors/NeoSolarized.vim
-colorscheme NeoSolarized
+colorscheme gruvbox
 ]]
 
 -- To enable transparency

@@ -93,6 +93,7 @@ alias sourcet "source ~/.tmux.conf"
 # pacman and paru/yay aliases
 alias sp "sudo pacman "
 alias sps "sudo pacman -S "
+alias spr "sudo pacman -R "
 alias spsyy "sudo pacman -Syy "
 alias spsyyu  "sudo pacman -Syyu "
 alias ysyyu  "yay -Syyu "
