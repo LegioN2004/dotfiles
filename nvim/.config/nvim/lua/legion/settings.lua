@@ -9,13 +9,13 @@ vim.wo.number = true
 
 vim.opt.title = true
 vim.opt.autoindent = true
-vim.opt.hlsearch = false --Switch on search pattern highlighting.
+vim.opt.hlsearch = true --Switch on search pattern highlighting.
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
 -- vim.opt.expandtab = true
 -- vim.opt.scrolloff = 10
--- vim.opt.shell = 'zsh'
+vim.opt.shell = 'bash'
 vim.opt.smarttab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -46,9 +46,9 @@ vim.opt.smartindent = true
 vim.opt.ruler = true
 -- vim.opt.clipboard=unnamed,unnamedplus -- set clipboard to universal for easy copy/paste to diff apps
 vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
-vim.opt.hidden = true --This option allows you to switch between multiple buffers without saving a changed buffer
-vim.opt.mousehide = true --Hide the mouse pointer while typing.
-vim.opt.updatetime = 50 --updatetime
+vim.opt.hidden = true                             --This option allows you to switch between multiple buffers without saving a changed buffer
+vim.opt.mousehide = true                          --Hide the mouse pointer while typing.
+vim.opt.updatetime = 50                           --updatetime
 vim.opt.timeoutlen = 300
 
 -- Undercurl
@@ -87,7 +87,7 @@ if (exists('+colorcolumn'))
 endif
 
 " format on save with coc-prettier
-" command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 "let s:coc_extensions = [
 "\   'coc-css',
