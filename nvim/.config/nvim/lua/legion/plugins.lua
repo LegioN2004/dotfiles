@@ -86,6 +86,7 @@ return require 'packer'.startup(function()
 	}
 	-- nvim ui stuff
 	--use 'akinsho/bufferline.nvim'
+	use 'folke/zen-mode.nvim'
 	use { "akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()
 	end }

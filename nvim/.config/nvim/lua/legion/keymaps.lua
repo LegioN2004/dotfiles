@@ -93,6 +93,7 @@ vim.keymap.set('n', "N", "nzzzv")
 
 -- shortcuts for commenting
 vim.keymap.set('n', "<leader>/", ":Commentary<cr>")
+vim.keymap.set('v', "<leader>/", ":Commentary<cr>")
 
 -- undotree keymaps
 vim.keymap.set('n', "<leader>un", ":UndotreeToggle<cr>")
@@ -112,6 +113,10 @@ nnoremap <silent> <leader>fi :FZF /home/sunny/ghq/github.com/legion2004/programs
 nnoremap <silent> <leader>dot :FZF /home/sunny/dotfiles/ <cr>
 "open files from the home folder
 "nnoremap <silent> <leader>hot :FZF~ <cr>
+
+"better tabbing
+vnoremap < <gv
+vnoremap > >gv
 
 "toggle fugitive
 nnoremap <leader>gs :Git<CR>
@@ -134,7 +139,7 @@ let g:session_command_aliases = 1
 " NvimTreeToggle remap
  nnoremap ;f <Esc>:NvimTreeToggle<CR>:vertical resize 30<CR><CR>
 
-"checkout these fzf keybinds
+"checkout and fix these fzf keybinds
 " PLUGIN: FZF
 "nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <C-f> :Files<CR>
