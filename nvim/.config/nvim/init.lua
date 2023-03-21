@@ -1,30 +1,34 @@
--- require('legion.onedark')
-require('legion.plugins')
-require('legion.settings')
 require('legion.alpha-startup')
+--require('legion.bufferline')
+--require('legion.cmp')
+require('legion.coc')
+require('legion.colorscheme')
+--require('legion.compi-prog')
+require('legion.gitsigns')
+--require('legion.gruvbox') --use this sometimes
+require('legion.hop')
+--require('legion.html')
+require('legion.impatient')
 require('legion.keymaps')
-require('legion.hightlights')
+--require('legion.lazy-plugins.lua')
+--require('legion.lspconfig')
+--require('legion.lspkind')
+--require('legion.lspsaga')
+require('legion.lualine')
+--require('legion.macos')
 require('legion.macros')
 --require('legion.neosolarized')
-require('legion.lualine')
-require('legion.treesitter')
-require('legion.telescope')
-require('legion.coc')
---require('legion.impatient')
-require('legion.gitsigns')
-require('legion.toggleterm')
-require('legion.nvim-tree')
---require('legion.nvim-orgmode')
-require('legion.sneak') --checkout the hop and sneak plugin usage for better code jumping and then remove this line
-require('legion.hop')
-require('legion.cmp')
--- require('legion.tabnine')
--- require('legion.elbytj')
--- require('legion.ts-autotags')
--- require('legion.bufferline')
--- require('legion.lspconfig')
 -- require('legion.neovide')
-require('legion.colorscheme')
+require('legion.nvim-tree')
+require('legion.onedark')
+require('legion.plugins')
+require('legion.settings')
+require('legion.sneak') --checkout the hop and sneak plugin usage for better code jumping and then remove this line
+-- require('legion.tabnine')
+require('legion.telescope')
+require('legion.toggleterm')
+require('legion.treesitter')
+--require('legion.whichkey')
 
 local has = function(x)
 	return vim.fn.has(x) == 1
@@ -46,5 +50,8 @@ end
 --     require('unix')
 -- end
 --
-vim.cmd([[let g:coc_node_path = '~/.nvm/versions/node/v18.14.0/bin/node']])
-vim.cmd([[let g:coc_npm_path = '~/.nvm/versions/node/v18.14.0/bin/node']])
+vim.cmd([[
+let g:coc_node_path = '~/.nvm/versions/node/v18.14.0/bin/node'
+let g:coc_npm_path = '~/.nvm/versions/node/v18.14.0/bin/node'
+au! BufWritePost $MYVIMRC source %
+]])

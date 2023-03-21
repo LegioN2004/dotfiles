@@ -1,17 +1,14 @@
-vim.cmd [[if exists("&termguicolors") && exists ("&winblend")
+vim.cmd [[
+if exists("&termguicolors") && exists ("&winblend")
 syntax enable
-set termguicolors
 set winblend=0
 set wildoptions=pum
-"{} set plumblend=5
-set background=dark
-
-colorscheme gruvbox
+set pumblend=5
+hi Normal ctermbg=NONE guibg=NONE
+hi NormalNC ctermbg=NONE guibg=NONE
+set termguicolors
+colorscheme onedark
 ]]
-
--- To enable transparency
-if vim.fn.has('gui_running') == 0 then
-	vim.g.solarized_termtrans = 0
-else
-	vim.g.solarized_termtrans = 1
-end
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.opt.cursorline = true
+vim.opt.background = 'dark'

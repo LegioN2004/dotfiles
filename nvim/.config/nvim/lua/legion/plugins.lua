@@ -42,43 +42,68 @@ packer.init({
 --put plugins here
 return require 'packer'.startup(function()
 	use 'wbthomason/packer.nvim' --main packer neovim plugin manager
-	use 'lewis6991/impatient.nvim'
-	use 'nvim-lualine/lualine.nvim'
+	use 'lewis6991/impatient.nvim' --load fast
+	--movement stuff
+	use 'justinmk/vim-sneak'
+	use 'phaazon/hop.nvim'
+	-- session stuff
+	-- use 'xolox/vim-session'
+	-- use 'xolox/vim-misc'
+	--language specific stuff
+	use 'tpope/vim-commentary'
+	use 'tpope/vim-surround'
+	use 'tpope/vim-fugitive'
+	--note taking org stuff
+	use {
+		'nvim-neorg/neorg',
+		config = function()
+			require('neorg').setup {
+				load = {
+					["core.defaults"] = {}, -- Loads default behaviour
+					["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
+					["core.norg.dirman"] = { -- Manages Neorg workspaces
+						config = {
+							workspaces = {
+								notes = "~/Documents/notes",
+								org = "~/ghq/github.com/LegioN2004/programs/org-docs",
+								norg = "~/ghq/github.com/LegioN2004/programs/norg-docs",
+							},
+						},
+					},
+				},
+			}
+		end,
+		run = ":Neorg sync-parsers",
+		requires = "nvim-lua/plenary.nvim",
+	}
+	-- use 'windwp/nvim-ts-autotag'
+	use 'jiangmiao/auto-pairs'
+	use 'kyazdani42/nvim-web-devicons'
+	--syntax highlighting
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+	}
+	-- nvim ui stuff
+	--use 'akinsho/bufferline.nvim'
 	use { "akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()
 	end }
-	use 'ThePrimeagen/vim-be-good'
+	use 'ThePrimeagen/vim-be-good' --Vim be good is a plugin designed to make you better at vim by creating a game to practice basic movements in
 	use 'mbbill/undotree'
+	use 'nvim-lualine/lualine.nvim'
 	use 'lewis6991/gitsigns.nvim'
 	use 'szw/vim-maximizer'
-	use 'justinmk/vim-sneak'
-	use 'phaazon/hop.nvim'
-	-- use 'xolox/vim-session'
-	-- use 'xolox/vim-misc'
-	-- bufferline
-	use 'akinsho/bufferline.nvim'
+	use 'nvim-lua/popup.nvim'
+	use 'nvim-lua/plenary.nvim'
+	use 'nvim-telescope/telescope.nvim'
 	--colorscheme
-	use 'olimorris/onedarkpro.nvim'
+	use 'navarasu/onedark.nvim'
 	use 'gruvbox-community/gruvbox'
 	use {
 		'svrana/neosolarized.nvim',
 		requires = { 'tjdevries/colorbuddy.nvim' }
 	}
-	--language specific stuff
-	use 'tpope/vim-commentary'
-	use 'tpope/vim-surround'
-	use 'tpope/vim-fugitive'
-
-	-- use 'windwp/nvim-ts-autotag'
-	use 'jiangmiao/auto-pairs'
-	use 'kyazdani42/nvim-web-devicons'
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-	}
-	use 'nvim-lua/popup.nvim'
-	use 'nvim-lua/plenary.nvim'
-	use 'nvim-telescope/telescope.nvim'
 	-- not using the telescope file explorer doesn't show files like ide's i need to see them without entering the folder everytime
 	-- instead this
 	use {
@@ -90,7 +115,7 @@ return require 'packer'.startup(function()
 	}
 	use 'junegunn/fzf.vim'
 	--	use { 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	use { 'neoclide/coc.nvim', branch = "release" }
+	use { 'neoclide/coc.nvim', branch = "release" } --code completion and lsp type stuff
 	use {
 		'goolord/alpha-nvim',
 		requires = { 'kyazdani42/nvim-web-devicons' },
@@ -98,7 +123,6 @@ return require 'packer'.startup(function()
 			require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
 		end
 	}
-
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
