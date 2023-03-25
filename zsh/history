@@ -1,0 +1,16 @@
+exit
+ls
+zsh
+exit
+cd dotfiles
+exit
+v .config/zsh
+v .config/zsh/.zshrc
+source .config/zsh/.zshrc
+zsh
+exit
+ls
+l
+ll
+lt
+exit
