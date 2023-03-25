@@ -267,3 +267,43 @@ gs
 cd -
 gs
 sourcez
+ls
+ls
+ll
+cd dotfiles
+gs
+cd
+cd ot
+cd dotfiles
+touch don'tforgetto-put.zindotfiles.txt
+touch dont-forget-to-put.z-in-dotfiles.txt
+gs
+cd
+zshconfig
+sourcez
+zshconfig
+sourcez
+zshconfig
+sourcez
+zshconfig
+sourcez
+cd dotfiles
+cd
+zshconfig
+sourcez
+cd dotfiles
+zshconfig
+sourcez
+ls
+cd
+z some
+ll
+z some
+zshconfig
+sourcez
+z some
+ls
+cd ../../../
+g pull
+d
+cd

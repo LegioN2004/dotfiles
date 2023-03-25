@@ -11,7 +11,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{green}%f %F{blue}%0~ ❯❯❯ %f %F{red}${vcs_info_msg_0_}%f'
+PROMPT='%F{green}%f %F{blue}%0~ ❯❯❯ %f%F{red}${vcs_info_msg_0_}%f'
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/bin:$PATH"
@@ -80,8 +80,7 @@ alias reb= 'reboot'
 
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z change directory
-# . ~/dotfiles/fish/z.sh
-$_Z_DATA=~/dotfiles/fish/.z
+. ~/dotfiles/fish/z.sh
 $_Z_NO_RESOLVE_SYMLINKS
 
 
