@@ -307,3 +307,18 @@ cd ../../../
 g pull
 d
 cd
+z some
+z programs
+z testing
+cd ../testing
+z .
+z testing
+cd ../random-sht-priv
+z progams
+z programs
+cd
+cd
+cd dotfiles
+stow -D zsh
+cd
+exit

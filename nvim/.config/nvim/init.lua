@@ -3,9 +3,9 @@ require('legion.alpha-startup')
 --require('legion.bufferline')
 --require('legion.cmp')
 require('legion.coc')
-require('legion.onedark')
+--require('legion.onedark') -- this and neosolarized .lua files are req btw
 --require('legion.neosolarized')
---require('legion.gruvbox') --use this sometimes
+--require('legion.gruvbox') --use this sometimes not needed for the community edition of gruvbox
 --require('legion.colorscheme')
 --require('legion.compi-prog')
 require('legion.gitsigns')

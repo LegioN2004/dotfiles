@@ -365,8 +365,11 @@ bindsym $mod+shift+q mode "$mode_system"
 
 # drop down terminal F12
 exec --no-startup-id yakuake
-#exec --no-startup-id tilda
 
 #bindsym $mod+x exec "jgmenu --center"
 
+#batteery notifier
 exec --no-startup-id ~/dotfiles/scripts-laptop/scripts/batterynotify
+
+#swallow for i3wm
+# exec --no-startup-id ~/.config/i3/scripts/i3-swallow.py
