@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #z directory jumper
-. ~/ghq/github.com/rupa/z/z.sh
+. ~/dotfiles/fish/z.sh
 
 # vi keybindings
 set -o vi
@@ -26,6 +26,7 @@ alias ran='ranger'
 #neovim
 alias v='nvim'
 alias nv='neovide'
+alias lv='lvim'
 
 #C++ run code alias
 alias compile='g++'
