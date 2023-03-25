@@ -170,3 +170,100 @@ sourcez
 ls
 cd dotfiles
 ls
+cd dotfiles
+ls
+cd 
+cd .config/zsh
+ls
+v .zprofile
+cd
+v ghq/github.com/rupa/z/z.sh
+g pull
+cd ghq/github.com/rupa/z/z.sh
+cd ghq/github.com/rupa/z/
+g pull
+g log
+fish
+ls
+ls
+ll
+cd dotfiles
+cd
+ls
+v .xinitrc
+mv .xinitrc ~/dotfiles/fish
+ls
+cd dotfiles/fish
+gs
+cd ..
+stow -D fish
+stow fish
+cd
+ls
+ll
+mv .z .zcompdump Documents/random-backup
+cd
+cd dotfiles/fish
+cd ..
+stow fish
+v .z
+cd
+v .z
+zshconfig
+rm .z
+ls
+cd dotfiles/fish
+ls
+cd ..
+stow fish
+stow fish
+stow fish
+ls
+ll
+cd
+ls
+ls
+cd dotfiles
+ls
+cd
+v .z
+z some
+cd ../../../
+ls
+cd
+z programs
+ls
+cd ..
+cd
+cd dotfiles
+ls
+gs
+cd
+ls
+./z.sh
+z some
+cd
+z nvim
+ls
+cd
+cd dotfiles
+ls
+ls
+cd fish
+ls
+v .z
+v .xinitrc.old
+v .xinitrc
+rm -rf .xinitrc.old
+gs
+cd
+zshconfig
+sourcez
+cd dotfiles
+ls
+git restore fish/.z
+cd
+gs
+cd -
+gs
+sourcez

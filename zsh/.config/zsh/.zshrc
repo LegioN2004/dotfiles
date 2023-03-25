@@ -81,6 +81,9 @@ alias reb= 'reboot'
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z change directory
 # . ~/dotfiles/fish/z.sh
+$_Z_DATA=~/dotfiles/fish/.z
+$_Z_NO_RESOLVE_SYMLINKS
+
 
 #for wsl2 in win 10 display gui apps using vcxsrv
 #export DISPLAY=172.22.144.1:0.0
