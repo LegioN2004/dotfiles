@@ -166,3 +166,8 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 # For when keys break
 alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 #-----------------------------------------------------------------------------------------------------
+
+
+#spacemacs chemacs2 aliases
+alias doom="emacs --with-profile=doom"
+alias space="emacs --with-profile=space"
