@@ -22,6 +22,7 @@ require('legion.lualine')
 require('legion.macros')
 -- require('legion.neovide')
 require('legion.nvim-tree')
+require('legion.nvim-orgmode')
 require('legion.settings')
 require('legion.sneak') --checkout the hop and sneak plugin usage for better code jumping and then remove this line
 -- require('legion.tabnine')
