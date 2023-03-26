@@ -76,6 +76,7 @@ return require 'packer'.startup(function()
 		run = ":Neorg sync-parsers",
 		requires = "nvim-lua/plenary.nvim",
 	}
+	use 'nvim-orgmode/orgmode'
 	-- use 'windwp/nvim-ts-autotag'
 	use 'jiangmiao/auto-pairs'
 	use 'kyazdani42/nvim-web-devicons'
