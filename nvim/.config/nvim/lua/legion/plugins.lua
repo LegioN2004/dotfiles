@@ -115,6 +115,7 @@ return require 'packer'.startup(function()
 		},
 		tag = 'nightly'           -- optional, updated every week. (see issue #1193)
 	}
+	use 'junegunn/fzf'
 	use 'junegunn/fzf.vim'
 	--	use { 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	use { 'neoclide/coc.nvim', branch = "release" } --code completion and lsp type stuff

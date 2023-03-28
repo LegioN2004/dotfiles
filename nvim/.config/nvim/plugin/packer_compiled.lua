@@ -95,6 +95,11 @@ _G.packer_plugins = {
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
     url = "https://github.com/tjdevries/colorbuddy.nvim"
   },
+  fzf = {
+    loaded = true,
+    path = "/home/sunny/.local/share/nvim/site/pack/packer/start/fzf",
+    url = "https://github.com/junegunn/fzf"
+  },
   ["fzf.vim"] = {
     loaded = true,
     path = "/home/sunny/.local/share/nvim/site/pack/packer/start/fzf.vim",

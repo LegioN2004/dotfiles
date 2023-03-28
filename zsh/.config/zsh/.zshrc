@@ -91,3 +91,20 @@ $_Z_NO_RESOLVE_SYMLINKS
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim" alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+function nvims() {
+items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+config=$(printf "%s\n" "${items[@]}" | fzf --prompt="y Neovim Config » --height=~50% --layout=reverse --border
+--exit-0)
+if [[ -z $config 1]; then
+echo "Nothing selected" elif [[ $config = "default" ]]; then
+return 0
+config"
+fi
+NVIM_APPNAME=$config nvim $@
+}
+bindkey -s a "nvims\n"
