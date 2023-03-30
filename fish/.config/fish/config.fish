@@ -91,30 +91,36 @@ alias sourcef "source ~/.config/fish/config.fish"
 alias sourcet "source ~/.tmux.conf"
 
 # pacman and paru/yay aliases
+#install with fzf  && remove with fzf  & aur fzf
+alias psfzf "pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rnsc"
+alias ysfzf "yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S" 
+
+		#install
 alias sp "sudo pacman "
 alias sps "sudo pacman -S "
 alias ysps "yes|sudo pacman -S "
-alias yspsyy "yes|sudo pacman -Syy "
-alias spr "sudo pacman -R "
-alias yspr "yes|sudo pacman -R "
 alias spsyy "sudo pacman -Syy "
+alias yspsyy "yes|sudo pacman -Syy "
 alias spsyyu  "sudo pacman -Syyu "
 alias ysyyu  "yay -Syyu "
 alias yysyyu  "yes|yay -Syyu "
 alias psyyu  "paru -Syyu "
 alias ypsyyu  "yes|paru -Syyu "
 alias psyu  "paru -Syu "
-alias ps  "paru -S "
+alias ps  "paru -S"
 alias yps  "yes|paru -S "
-alias psr  "paru -R "
-alias prns  "paru -Rns "
-alias yprns  "yes|paru -Rns "
-alias yspr "sudo pacman -R "
+		#remove
+alias spr "sudo pacman -R "
+alias yspr "yes|sudo pacman -R "
 alias sprs "sudo pacman -Rs "
 alias sprns "sudo pacman -Rns "
 alias ysprns "yes|sudo pacman -Rns "
 alias ysprs "sudo pacman -Rs "
-alias clean "yes|sudo pacman -Scc && yes|yay -Scc "
+alias psr  "paru -R "
+alias prns  "paru -Rns "
+alias yprns  "yes|paru -Rns "
+alias clean "yes|sudo pacman -Scc && yes|yay -Scc && yes|sudo pacman -Rns $(pacman -Qtdq)"
 
 # miscellaneous
 alias cat "bat"
@@ -122,6 +128,8 @@ alias idea "./home/sunny/Downloads/idea-IC-223.8214.52/bin/idea.sh"
 alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
 alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"
 alias update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias install-grub-efi "sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi"
+
 end
 alias xev-keyb "xev -event keyboard  | egrep -o 'keycode.*)'"
 
@@ -169,5 +177,5 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 
 
 #spacemacs chemacs2 aliases
-alias doom="emacs --with-profile=doom"
-alias space="emacs --with-profile=space"
+alias doom="emacs --with-profile=doom &"
+alias space="emacs --with-profile=space &"
