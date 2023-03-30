@@ -90,37 +90,27 @@ alias sourcez "source ~/dotfiles/zsh/.config/zsh/.zshrc"
 alias sourcef "source ~/.config/fish/config.fish"
 alias sourcet "source ~/.tmux.conf"
 
-# pacman and paru/yay aliases
+# pacman and paru aliases
 #install with fzf  && remove with fzf  & aur fzf
 alias psfzf "pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
 alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rnsc"
-alias ysfzf "yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro yay -S" 
+alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S" 
 
 		#install
-alias sp "sudo pacman "
 alias sps "sudo pacman -S "
 alias ysps "yes|sudo pacman -S "
 alias spsyy "sudo pacman -Syy "
-alias yspsyy "yes|sudo pacman -Syy "
 alias spsyyu  "sudo pacman -Syyu "
-alias ysyyu  "yay -Syyu "
-alias yysyyu  "yes|yay -Syyu "
+alias spsyyu  "yes|sudo pacman -Syyu "
+alias ps  "paru -S"
 alias psyyu  "paru -Syyu "
 alias ypsyyu  "yes|paru -Syyu "
-alias psyu  "paru -Syu "
-alias ps  "paru -S"
-alias yps  "yes|paru -S "
 		#remove
-alias spr "sudo pacman -R "
-alias yspr "yes|sudo pacman -R "
-alias sprs "sudo pacman -Rs "
-alias sprns "sudo pacman -Rns "
-alias ysprns "yes|sudo pacman -Rns "
-alias ysprs "sudo pacman -Rs "
-alias psr  "paru -R "
+alias pr  "paru -R "
+alias ypr  "yes|paru -R "
 alias prns  "paru -Rns "
 alias yprns  "yes|paru -Rns "
-alias clean "yes|sudo pacman -Scc && yes|yay -Scc && yes|sudo pacman -Rns $(pacman -Qtdq)"
+alias clean "yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq)"
 
 # miscellaneous
 alias cat "bat"
@@ -129,7 +119,6 @@ alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
 alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"
 alias update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias install-grub-efi "sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi"
-
 end
 alias xev-keyb "xev -event keyboard  | egrep -o 'keycode.*)'"
 

@@ -38,8 +38,8 @@ exec --no-startup-id nm-applet
 floating_modifier $mod
 
 # start a terminal
-set $myTerm alacritty
-bindsym $mod+Return exec $myTerm
+set $term alacritty
+bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+q kill
@@ -115,6 +115,7 @@ bindsym $mod+a focus parent
 
 # set workspace layout as tabbed
 workspace_layout tabbed
+
 # workspace with no
 set $ws1 "1" 
 set $ws2 "2"
@@ -255,7 +256,7 @@ height 20
    position top 
 }
 
-bindsym $mod+shift+x exec i3lock -i ~/Pictures/Wallpapers/minimal-landscape-wallpaper-1366x768-wallpaper.jpg
+bindsym $mod+shift+x exec i3lock -i ~/Pictures/wallpapers-stuff2/2944349.jpg
 
 #custom commnads for laptops like brightness and battery 
 # after installing light do these: sudo apt install light && sudo chmod +s /usr/bin/light
@@ -378,3 +379,26 @@ exec --no-startup-id ~/dotfiles/scripts-laptop/scripts/batterynotify
 
 #swallow for i3wm
 # exec --no-startup-id ~/.config/i3/scripts/i3-swallow.py
+
+#scratchpads
+# default i3wm binds
+bindsym $mod+shift+minus move scratchpad
+bindsym $mod+minus scratchpad show; move position center
+
+# binds custom from lukesmith
+for_window [instance="ttrm"] floating enable
+for_window [instance="ttrm"] resize set 825 408
+for_window [instance="ttrm"] move scratchpad
+for_window [instance="ttrm"] border pixel 5
+exec --no-startup-id st -n ttrm -e tmux
+bindsym $mod+t [instance="ttrm"] scratchpad show; [instance="ttrm"] move position center
+
+# sxhkd stuff added here spawn stuff with keybinds
+#spawn firefox
+bindsym Mod4+w exec Google-chrome
+# bindsym Mod4 + k exec konsole
+bindsym Mod4+f exec thunar #spawn filemanager
+bindsym Mod4+r  exec ranger
+bindsym Mod4+b exec Brave-browser
+bindsym Mod4+m exec min
+bindsym Mod4+s exec jgmenu

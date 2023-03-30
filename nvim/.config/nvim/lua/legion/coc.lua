@@ -3,7 +3,7 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appear/become resolved.
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "no"
 
 local keyset = vim.keymap.set
 -- Auto complete

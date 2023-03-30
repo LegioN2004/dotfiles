@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #for dwm
-# exec dwm
+ exec dwm
 
 # this is for qtile and watch script maybe
 # while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
@@ -12,6 +12,6 @@
 # 			exec watch
 
 # Startup script but everything important is in bspwmrc
-systemctl --user import-environment DISPLAY
-exec bspwm
+# systemctl --user import-environment display
+# exec bspwm
 
