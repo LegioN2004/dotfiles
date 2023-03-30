@@ -1,16 +1,4 @@
-Documents/VSCode programs/codewithharry/apnacollegeprograms/tut4.1/qno5.exe
-
- *.exe  
- !spec/*.exe
-
- *.out 
- !spec/*.out
-Documents/VSCode programs/codewithharry/apnacollegeprograms/tut5.2/qno5.exe
-
-.config/windows-nvim/autoload
-.config/windows-nvim/autoload/plugged/coc.nvim/
-Documents/VSCode programs/codewithharry/apnacollegeprograms/tut6.3/.cph/.qno1.cpp_56ab3556afdf4785cf61ab4c039f2d2f.prob
-Documents/VSCode programs/codewithharry/apnacollegeprograms/tut6.2/.cph/.qno5.cpp_6354c95407488c9817e70988d3afbfc9.prob
-Documents/VSCode programs/codewithharry/apnacollegeprograms/tut6.3/a.out
-
 alacritty/.config/alacritty/themes
+
+zsh/.config/zsh/.zcompdump
+zsh/history
