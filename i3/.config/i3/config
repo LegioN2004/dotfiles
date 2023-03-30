@@ -114,7 +114,7 @@ bindsym $mod+a focus parent
 # set $ws10 "10"
 
 # set workspace layout as tabbed
-workspace_layout tabbed
+# workspace_layout tabbed
 
 # workspace with no
 set $ws1 "1" 
@@ -155,20 +155,22 @@ bindsym $mod+Shift+0 move container to workspace  $ws10
 # assining apps to individual workspaces
 #following 3 lines are custom
 #assign [class="~/.cargo/bin/alacritty"] $ws3
-# assign [class="Min"] $ws2
+ assign [class="Min"] $ws3
 # assign [class="xfce4-terminal"] $ws3
-# assign [class="Shotcut"] $ws5
-# assign [class="obs"] $ws6
+ assign [class="kdenlive"] $ws5
+ assign [class="obs"] $ws6
 # assign [class="neovide"] $ws7
 # assign [class="Subl"] $ws8
 # assign [class="VSCodium"] $ws7
-# assign [class="code"] $ws7
-# assign [class="firefox"] $ws2
+ assign [class="code"] $ws7
+ assign [class="Emacs"] $ws7
+ assign [class="firefox"] $ws3
 # assign [class="Brave-browser"] $ws2
 # # assign [class="Google-chrome"] $ws2
-# assign [class="vlc"] $ws6
-# assign [class="Org.gnome.Nautilus"] $ws4
-# assign [class="TelegramDesktop"] $ws8
+ assign [class="vlc"] $ws6
+ assign [class="Org.gnome.Nautilus"] $ws4
+ assign [class="TelegramDesktop"] $ws8
+ assign [class="discord"] $ws8
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -336,7 +338,7 @@ exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
 # bindsym $mod+Tab exec  ~/ghq/github.com/yoshimoto/i3-alt-tab.py next all
 # bindsym $mod+Shift+Tab exec ~/ghq/github.com/yoshimoto/i3-alt-tab.py all
 
-bindsym $mod+Tab workspace next
+bindsym $mod+Tab workspace $ws2
 bindsym $mod+Shift+Tab workspace prev
 
 #dont know if this works but set up for colemak
