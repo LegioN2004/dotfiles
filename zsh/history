@@ -322,3 +322,122 @@ cd dotfiles
 stow -D zsh
 cd
 exit
+sourcez
+exit
+sourcez
+nvims
+exit
+z testing
+ls
+git checkout master
+ls
+gs
+git checkout main
+ls
+gs
+git remote -v
+ls
+git checkout master
+ls
+mv aioentrin.txt 2ndmasterfile.txt
+gs
+gc "aorient" aioentrin.txt && gp && ga 2ndmasterfile.txt && gc "added the second file to the master branch " && gp
+gs
+git remote -v
+g log
+git branch 4thbranch
+git checkout 3rd-branch
+git checkout 4thbranch
+ls
+git branch --delete 4thbranch 3rd-branch
+git checkout master && git branch --delete 4thbranch 3rd-branch
+git merge master
+git merge main
+exit
+zshconfig
+sourcef
+sourcez
+nvims
+cd
+nvims
+zshconfig
+sourcez
+zshconfig
+sourcez
+nvims
+sourcez
+nvims
+zshconfig
+nvims
+sourcez
+nvims
+nvims
+nvims
+nvims
+nvim
+nvims
+hyperfine "nvim-chad --headless +qa" --warmup 5
+hyperfine "nvim-chad --headless +qa" --warmup 5
+hyperfine "nvim-chad --headless +qa" --warmup 5
+hyperfine "nvim-lazy --headless +qa" --warmup 5
+lvim
+ls
+ls
+nvim-astro
+nvim-chad
+hyperfine "nvim-chad --headless +qa" --warmup 5
+hyperfine "nvim-chad --headless +qa" --warmup 5
+hyperfine "NVIM_APPNAME=NvChad nvim --headless +qa" --warmup 5
+hyperfine "NVIM_APPNAME=LazyVim nvim --headless +qa" --warmup 5
+nvim-chad
+ls
+z programs
+ls
+nvim-chad random-practices/random-cpp-files/fibonaccitesting.cpp
+nvim-chad random-practices/random-html-websites/web1.html 
+cd
+sourcez
+nvim-lazy
+zshconfig
+sourcez
+lz
+lv
+v
+lz
+lz
+lz
+lz
+lz
+cd .local/share/LazyVim/
+ls
+cd lazy
+ls
+cd ../mason
+ls
+cd
+lz
+nvim /etc/default/grub
+sudo vim /etc/default/grub
+reb
+ls
+nvims
+exit
+ps -aux | fzf
+ls
+ps -ax | fzf
+ps -ax | fzf
+ls
+gs
+v config.def.h.rej
+ls
+c d
+ls
+c d
+cd
+ls
+cd -
+ls
+ls
+v config.h
+sudo make clean install
+pkill i3
