@@ -49,7 +49,7 @@ vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
 vim.opt.hidden = true                             --This option allows you to switch between multiple buffers without saving a changed buffer
 vim.opt.mousehide = true                          --Hide the mouse pointer while typing.
 vim.opt.updatetime = 50                           --updatetime
-vim.opt.timeoutlen = 300
+-- vim.opt.timeoutlen = 300
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
@@ -63,6 +63,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 vim.opt.formatoptions:append { 'r' }
 
+-- vim.opt.guicursor = ""
 -- copy to clipboard
 -- vim.api.nvim_set_option("clipboard", "unnamedplus")
 

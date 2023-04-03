@@ -142,7 +142,7 @@ let g:session_command_aliases = 1
 "checkout and fix these fzf keybinds
 " PLUGIN: FZF
 "nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <C-f> :Telescope find_files<CR>
 "nnoremap <silent> <Leader>rg :Rg<CR> "ripgrep grep lines
 "nnoremap <silent> <Leader>ag :Ag<CR> "project finder
 "nnoremap <silent> <Leader>/ :BLines<CR> "line finder

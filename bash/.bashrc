@@ -36,8 +36,11 @@ alias run='./a.out'
 alias ide='./ide'
 
 #config files
-alias zshconfig="nvim  ~/.zshrc"
-alias bashconfig="nvim  ~/.bashrc"
+alias zshconfig="nvim ~/dotfiles/zsh/.config/zsh/.zshrc"
+alias bashconfig="nvim ~/.bashrc"
+alias fishconfig="nvim ~/dotfiles/fish/.config/fish/config.fish"
+alias sourceb="source ~/.bashrc"
+
 
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8

@@ -44,8 +44,8 @@ return require 'packer'.startup(function()
 	use 'wbthomason/packer.nvim' --main packer neovim plugin manager
 	use 'lewis6991/impatient.nvim' --load fast
 	--movement stuff
-	use 'justinmk/vim-sneak'
-	use 'phaazon/hop.nvim'
+	-- use 'justinmk/vim-sneak'
+	-- use 'phaazon/hop.nvim'
 	-- session stuff
 	-- use 'xolox/vim-session'
 	-- use 'xolox/vim-misc'
@@ -54,28 +54,6 @@ return require 'packer'.startup(function()
 	use 'tpope/vim-surround'
 	use 'tpope/vim-fugitive'
 	--note taking org stuff
-	use {
-		'nvim-neorg/neorg',
-		config = function()
-			require('neorg').setup {
-				load = {
-					["core.defaults"] = {}, -- Loads default behaviour
-					["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
-					["core.norg.dirman"] = { -- Manages Neorg workspaces
-						config = {
-							workspaces = {
-								notes = "~/Documents/notes",
-								org = "~/ghq/github.com/LegioN2004/programs/org-docs",
-								norg = "~/ghq/github.com/LegioN2004/programs/norg-docs",
-							},
-						},
-					},
-				},
-			}
-		end,
-		run = ":Neorg sync-parsers",
-		requires = "nvim-lua/plenary.nvim",
-	}
 	use 'nvim-orgmode/orgmode'
 	-- use 'windwp/nvim-ts-autotag'
 	use 'jiangmiao/auto-pairs'

@@ -10,7 +10,6 @@ require('legion.coc')
 --require('legion.compi-prog')
 -- require('legion.fzf')
 require('legion.gitsigns')
--- require('legion.hop')
 --require('legion.html')
 require('legion.impatient')
 require('legion.keymaps')
@@ -25,12 +24,12 @@ require('legion.macros')
 require('legion.nvim-tree')
 require('legion.nvim-orgmode')
 require('legion.settings')
-require('legion.sneak') --checkout the hop and sneak plugin usage for better code jumping and then remove this line
+-- require('legion.sneak') --checkout the hop and sneak plugin usage for better code jumping and then remove this line
 -- require('legion.tabnine')
 require('legion.telescope')
 require('legion.toggleterm')
 require('legion.treesitter')
---require('legion.whichkey')
+require('legion.whichkey')
 
 local has = function(x)
 	return vim.fn.has(x) == 1

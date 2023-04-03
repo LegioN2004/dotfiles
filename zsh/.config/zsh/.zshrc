@@ -93,10 +93,11 @@ export NVM_DIR="$HOME/.nvm"
 
 # from ellah majnor nvim switcher -------------------------------------------------------------------------------
 # alias default="NVIM_APPNAME="
-alias lz='NVIM_APPNAME=LazyVim nvim'
+alias lazy='NVIM_APPNAME=LazyVim nvim'
+alias astro='NVIM_APPNAME=AstroNvim nvim'
 
 function nvims() {
-		items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+		items=("LazyVim" "AstroNvim")
 		config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config » " --height=~50% --layout=reverse --border --exit-0)
 		if [[ -z $config ]]; then
 				echo "Nothing selected" 

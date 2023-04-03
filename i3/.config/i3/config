@@ -28,7 +28,7 @@ font pango:Hack NF 8.7
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -165,10 +165,10 @@ bindsym $mod+Shift+0 move container to workspace  $ws10
  assign [class="code"] $ws7
  assign [class="Emacs"] $ws7
  assign [class="firefox"] $ws3
-# assign [class="Brave-browser"] $ws2
+# assign [class="brave-browser"] $ws2
 # # assign [class="Google-chrome"] $ws2
  assign [class="vlc"] $ws6
- assign [class="Org.gnome.Nautilus"] $ws4
+ assign [class="Thunar"] $ws4
  assign [class="TelegramDesktop"] $ws8
  assign [class="discord"] $ws8
 
@@ -258,7 +258,11 @@ height 20
    position top 
 }
 
-bindsym $mod+shift+x exec i3lock -i ~/Pictures/wallpapers-stuff2/2944349.jpg
+# lock screen i3lock
+bindsym $mod+shift+x exec i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png
+# and another script to do stuff
+# bindsym $mod+shift+x exec ~/dotfiles/i3/.config/i3/scripts/betteri3lock
+
 
 #custom commnads for laptops like brightness and battery 
 # after installing light do these: sudo apt install light && sudo chmod +s /usr/bin/light
@@ -296,7 +300,7 @@ exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layout
 
 # compositor stuff blurr, rounded-corners, effects, shadows,etc download picom-jonaburg-git fork  
 # exec_always picom --experimental-backends 
-# exec_always picom 
+exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
 bindsym $mod+shift+n exec redshift -x
@@ -372,7 +376,7 @@ mode "$mode_system" {
 bindsym $mod+shift+q mode "$mode_system"
 
 # drop down terminal F12
-exec --no-startup-id yakuake
+# exec --no-startup-id yakuake
 
 #bindsym $mod+x exec "jgmenu --center"
 

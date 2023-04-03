@@ -2,6 +2,7 @@
 sh ~/dotfiles/neofetch/nofetch --flex #nitch #download afetch fastfetch from aur
 #use sh to run any bash scripts from the fish shell at startup 
 
+# fish stuff -----------------------------------------------------------------
 set fish_greeting ""
 set -gx EDITOR nvim
 # set -g theme_color_scheme terminal-dark
@@ -17,10 +18,17 @@ set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
 
 # NodeJS
 set -gx PATH node_modules/.bin $PATH
-set -gx PATH /home/sunny/.nvm/versions/node/v18.12.1/bin $PATH
+set -gx PATH /home/sunny/.nvm/versions/node/v18.15.0/bin $PATH
 
+# set fish_history $XDG_DATA_HOME/fish/fish_history
+# HISTSIZE=100000
+# HISTFILESIZE=100000
 # IntelliJ IdeaIC2022 path
+
 # set -gx PATH ~/Downloads/idea-IC-223.8214.52/bin/ $PATH
+
+# fish stuff -----------------------------------------------------------------
+
 
 # Replace ls with exa
 alias ll='exa -al --color=always --group-directories-first --icons' # preferred listing
@@ -53,7 +61,9 @@ alias ran "ranger"
 alias v "nvim"
 alias nv "neovide"
 alias lv "lvim"
-alias lz "nvim -u ~/ghq/github.com/LegioN2004/some-other-stuff/lazy-vim-config/nvim/init.lua"
+alias svim "vim -u ~/SpaceVim/vimrc "
+alias lazy='NVIM_APPNAME=LazyVim nvim'
+
 
 #C++ run code alias
 alias compile "g++"
@@ -69,6 +79,7 @@ alias ide "./ide"
 alias sus  "systemctl suspend"
 alias pow  "poweroff"
 alias reb  "reboot"
+alias hib  "sudo systemctl hibernate"
 
 # config shortcut aliases
 alias i3config "nvim ~/.config/i3/config"
@@ -97,15 +108,14 @@ alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sud
 alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S" 
 
 		#install
-alias sps "sudo pacman -S "
-alias ysps "yes|sudo pacman -S "
-alias spsyy "sudo pacman -Syy "
-alias spsyyu  "sudo pacman -Syyu "
-alias spsyyu  "yes|sudo pacman -Syyu "
-alias ps  "paru -S"
+#alias sps "sudo pacman -S "
+#alias ysps "yes|sudo pacman -S "
+#alias spsyy "sudo pacman -Syy "
+#alias spsyyu  "sudo pacman -Syyu "
 alias psyyu  "paru -Syyu "
 alias ypsyyu  "yes|paru -Syyu "
-		#remove
+
+#		#remove
 alias pr  "paru -R "
 alias ypr  "yes|paru -R "
 alias prns  "paru -Rns "
@@ -114,7 +124,7 @@ alias clean "yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo p
 
 # miscellaneous
 alias cat "bat"
-alias idea "./home/sunny/Downloads/idea-IC-223.8214.52/bin/idea.sh"
+# alias idea "./home/sunny/Downloads/idea-IC-223.8214.52/bin/idea.sh"
 alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
 alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"
 alias update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -164,7 +174,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 #-----------------------------------------------------------------------------------------------------
 
-
 #spacemacs chemacs2 aliases
 alias doom="emacs --with-profile=doom &"
 alias space="emacs --with-profile=space &"
+alias enw="emacs -nw"
