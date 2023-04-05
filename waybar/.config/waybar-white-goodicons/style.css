@@ -1,0 +1,140 @@
+* {
+  min-height: 0;
+  font-family: FiraCode Nerd Font;
+  font-size: 12px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#backlight,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#custom-power-menu,
+#custom-headset-battery,
+#custom-spotify {
+  margin: 5px;
+  padding: 9px 9px;
+  color: #ffffff;
+  border-radius: 9.5px;
+  background-color: #242933;
+}
+
+window#waybar {
+  background-color: rgba(26, 27, 38, 0);
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  border-radius: 8px;
+  transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  background-color: transparent;
+  box-shadow: inset 0 -3px transparent;
+  border: none;
+  border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+#workspaces button.focused {
+  color: #bf616a;
+}
+
+#workspaces button.active {
+  color: #6a92d7;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+#network {
+  margin: 5px;
+  padding-left: 10px;
+  padding-right: 19px;
+  color: #ffffff;
+  border-radius: 9.5px;
+  background-color: #242933;
+}
+
+#workspaces {
+  padding: 4px 8px;
+  margin: 5px;
+  border-radius: 9.5px;
+  background-color: #242933;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#battery.charging,
+#battery.full,
+#battery.plugged {
+  color: #9fe2bf;
+  background-color: #242933;
+  margin: 5px;
+}
+
+@keyframes blink {
+  to {
+    background-color: rgba(30, 34, 42, 0.5);
+    color: #abb2bf;
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#custom-media {
+  background-color: #66cc99;
+  color: #2a5c45;
+  min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+  background-color: #1ed760;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #eb4d4b;
+}
+
+#custom-spotify {
+  margin: 5px;
+  background-color: #242933;
+  color: #ffffff;
+}

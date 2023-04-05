@@ -47,8 +47,8 @@ bindsym $mod+q kill
 # app launcher
 # bindsym $mod+d exec rofi -show drun -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
 # bindsym $mod+p exec --no-startup-id rofi -show drun -show-icons -lines 8 -columns 3 -eh 2 -width 74 -padding 200 -opacity "40"
-bindsym $mod+p exec  rofi -show drun 
-bindsym $mod+d exec  dmenu_run -i
+bindsym $mod+d exec  rofi -show drun 
+bindsym $mod+p exec  dmenu_run -i
 
 # change focus
 bindsym $mod+h focus left
@@ -156,17 +156,18 @@ bindsym $mod+Shift+0 move container to workspace  $ws10
 #following 3 lines are custom
 #assign [class="~/.cargo/bin/alacritty"] $ws3
  assign [class="Min"] $ws3
+ assign [class="firefox"] $ws3
+# assign [class="brave-browser"] $ws2
+# assign [class="Google-chrome"] $ws2
 # assign [class="xfce4-terminal"] $ws3
- assign [class="kdenlive"] $ws5
+ assign [class="kdenlive"] $ws6
+ assign [class="Github-desktop"] $ws5
  assign [class="obs"] $ws6
 # assign [class="neovide"] $ws7
 # assign [class="Subl"] $ws8
-# assign [class="VSCodium"] $ws7
+assign [class="gimp"] $ws9
  assign [class="code"] $ws7
  assign [class="Emacs"] $ws7
- assign [class="firefox"] $ws3
-# assign [class="brave-browser"] $ws2
-# # assign [class="Google-chrome"] $ws2
  assign [class="vlc"] $ws6
  assign [class="Thunar"] $ws4
  assign [class="TelegramDesktop"] $ws8
@@ -289,7 +290,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 # exec_always nitrogen --set-auto ~/Pictures/wallpapers-stuff/nord_scenary.png
 bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff/
 # script for changing wallpapers randomly after 5 mins
-exec_always --no-startup-id ~/dotfiles/watch
+exec --no-startup-id ~/dotfiles/watch
 # exec_always --no-startup-id feh --bg-scale /home/sunny/Pictures/wallpapers-stuff2/Xero-Plasma60.png
 
 # master stack layout python script
@@ -408,3 +409,4 @@ bindsym Mod4+r  exec ranger
 bindsym Mod4+b exec Brave-browser
 bindsym Mod4+m exec min
 bindsym Mod4+s exec jgmenu
+

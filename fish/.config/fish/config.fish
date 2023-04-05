@@ -176,5 +176,5 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 
 #spacemacs chemacs2 aliases
 alias doom="emacs --with-profile=doom &"
-alias space="emacs --with-profile=space &"
+alias myemacs="emacs --with-profile=myemacs &"
 alias enw="emacs -nw"

@@ -15,7 +15,7 @@ vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
 -- vim.opt.expandtab = true
 -- vim.opt.scrolloff = 10
-vim.opt.shell = 'bash'
+vim.opt.shell = 'fish'
 vim.opt.smarttab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -118,6 +118,14 @@ let g:netrw_banner=0        " disable annoying banner
 "let g:netrw_liststyle=3     " tree view
 "let g:netrw_list_hide=netrw_gitignore#Hide()
 "let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" limelight stuff
+let g:limelight_conceal_ctermfg=244
+
+"markdown stuff
+let g:mkdp_refresh_slow=1
+let g:mkdp_markdown_css='~/ghq/github.com/sindresorhus/github-markdown-css/github-markdown-dark.css'
+
 ]])
 
 local augroup = vim.api.nvim_create_augroup

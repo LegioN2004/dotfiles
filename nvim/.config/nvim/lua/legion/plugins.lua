@@ -55,6 +55,14 @@ return require 'packer'.startup(function()
 	use 'tpope/vim-fugitive'
 	--note taking org stuff
 	use 'nvim-orgmode/orgmode'
+	-- markdown preview
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+		ft = { "markdown" },
+	})
+
 	-- use 'windwp/nvim-ts-autotag'
 	use 'jiangmiao/auto-pairs'
 	use 'kyazdani42/nvim-web-devicons'
@@ -66,6 +74,8 @@ return require 'packer'.startup(function()
 	-- nvim ui stuff
 	--use 'akinsho/bufferline.nvim'
 	use 'folke/zen-mode.nvim'
+	use 'junegunn/limelight.vim'
+	use 'junegunn/goyo.vim'
 	use { "akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()
 	end }
