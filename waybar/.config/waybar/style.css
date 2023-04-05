@@ -5,7 +5,8 @@
 }
 
 window#waybar {
-  background-color: rgba(26, 27, 38, 0.5);
+  /* background-color: rgba(26, 27, 38, 0.5); */
+  background-color: transparent;
   color: #ffffff;
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -57,6 +58,7 @@ window#waybar.hidden {
 #temperature,
 #backlight,
 #network,
+#wallpaper,
 #pulseaudio,
 #custom-media,
 #tray,
@@ -101,6 +103,11 @@ window#waybar.hidden {
   color: #ebcb8b;
   background-color: #1f2530;
 }
+
+/* #wallpaper { */
+/*   color: #ebcb8b; */
+/*   background-color: #1f2530; */
+/* } */
 
 #custom-power-menu {
   border-radius: 9.5px;
