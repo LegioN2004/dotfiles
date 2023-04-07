@@ -54,6 +54,9 @@ keymap("n", "<S-tab>", ":tabprevious<Return>", opts)
 --tab movement
 keymap("n", "<leader><tab>", ":bnext<Return>", opts)
 keymap("n", "<leader><S-tab>", ":bprevious<Return>", opts)
+-- keymap("n", "bn", ":bnext<Return>", opts)
+-- keymap("n", "bp", ":bprevious<Return>", opts)
+-- keymap("n", "bd", ":bdelete<Return>", opts)
 
 --better movement between splits
 keymap("n", "<C-h>", "<C-w>h", opts)
