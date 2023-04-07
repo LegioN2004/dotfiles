@@ -2,7 +2,9 @@
 
 my dotfiles for linux and windows machine
 
-## Here is an image of beautiful Hyprland unixporn sht (my second and last one)
+## Here is an image of beautiful Hyprland unixporn sht (my second and last one) (waybar from s1mpleman)[https://github.com/1amSimp1e/dots]
+
+i really need to learn css
 
 ![nvim, Hyprland screenshot](./images/archrice4thhyprland1st.png)
 ![nvim, Hyprland screenshot](./images/archrice4thhyprland1stkasecond.png)
