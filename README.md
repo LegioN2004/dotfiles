@@ -15,7 +15,7 @@ i really need to learn css
 
 ![nvim, tmux, i3 screenshot](./images/archrice3rd.png)
 
-In wsl2
+### In wsl2
 
 ![nvim, tmux in windows wsl2 screenshot](./images/windows10rice1stSSsame2ndpic.png)
 
