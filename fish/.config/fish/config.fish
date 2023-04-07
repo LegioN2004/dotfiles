@@ -90,7 +90,7 @@ alias zshconfig "nvim ~/dotfiles/zsh/.config/zsh/.zshrc"
 alias fishconfig "nvim ~/.config/fish/config.fish"
 alias nvimconfig "nvim ~/.config/nvim/init.lua"
 alias picomconfig "nvim ~/.config/picom/picom.conf"
-alias hyprconfig "nvim ~/.config/hypr/hyprland.conf"
+alias hyprlconfig "nvim ~/.config/hypr/hyprland.conf"
 alias waybarconf "nvim ~/.config/waybar/config"
 alias tmuxconfig "nvim ~/.tmux.conf"
 alias kittyconfig "nvim ~/.config/kitty/kitty.conf"
@@ -178,3 +178,10 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 alias doom="emacs --with-profile=doom &"
 alias myemacs="emacs --with-profile=myemacs &"
 alias enw="emacs -nw"
+
+
+#hyprland screenshot utility
+alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast
+
+# same like explorer alias
+alias ex="thunar"
