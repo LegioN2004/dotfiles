@@ -1,2 +1,0 @@
-check how to fix the usage of runtimepath to use the nvim config directly from the dotfiles directory from github instaead from the .config directory and also check the fishconfig to fix the alaises to use those config
-also check by changing the names of the files or directorise and then sourcing the file using the init.vim or using aliases
