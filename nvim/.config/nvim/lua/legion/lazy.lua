@@ -23,7 +23,7 @@ require('lazy').setup({
 		"iamcco/markdown-preview.nvim",
 		build = "cd app && npm install",
 		setup = function() vim.g.mkdp_filetypes = { "markdown" }
-		ft = { "markdown" }
+			ft = { "markdown" }
 		end
 	},
 	'jiangmiao/auto-pairs',
@@ -34,11 +34,7 @@ require('lazy').setup({
 	'folke/zen-mode.nvim',
 	'junegunn/limelight.vim',
 	'junegunn/goyo.vim',
-	{ 
-		"akinsho/toggleterm.nvim", tag = '*', config = function()
-			require("toggleterm").setup()
-		end 
-	},
+	{'akinsho/toggleterm.nvim', version = "*", config = true},
 	'ThePrimeagen/vim-be-good',
 	'mbbill/undotree',
 	'nvim-lualine/lualine.nvim',
@@ -63,5 +59,19 @@ require('lazy').setup({
 		config = function()
 			require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
 		end
+	},
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
 	},
 })
