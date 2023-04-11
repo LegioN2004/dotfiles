@@ -1,3 +1,4 @@
+--### also look things up in this site https://medium.com/linux-with-michael/lazy-nvim-the-blazingly-fast-neovim-package-manager-19a7a952835c
 --require('legion.plugins')
 require('legion.lazy')
 require('legion.alpha-startup')
