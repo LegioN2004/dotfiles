@@ -2,3 +2,5 @@ alacritty/.config/alacritty/themes
 
 zsh/.config/zsh/.zcompdump
 zsh/history
+
+fish/.config/fish/fishd.tmp*

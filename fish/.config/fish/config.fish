@@ -25,7 +25,8 @@ set -gx PATH /home/sunny/.nvm/versions/node/v18.15.0/bin $PATH
 # HISTFILESIZE=100000
 # IntelliJ IdeaIC2022 path
 
-# set -gx PATH ~/Downloads/idea-IC-223.8214.52/bin/ $PATH
+set -gx PATH ~/Downloads/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/ $PATH
+set -gx PATH /home/sunny/Downloads/jdk-17.0.6/bin/ $PATH
 
 # fish stuff -----------------------------------------------------------------
 
@@ -125,7 +126,7 @@ alias clean "yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo p
 
 # miscellaneous
 alias cat "bat"
-# alias idea "./home/sunny/Downloads/idea-IC-223.8214.52/bin/idea.sh"
+# alias idea ". /home/sunny/Downloads/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/idea.sh"
 alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
 alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"
 alias update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -176,8 +177,8 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 #-----------------------------------------------------------------------------------------------------
 
 #spacemacs chemacs2 aliases
-alias doom="emacs --with-profile=doom &"
-alias myemacs="emacs --with-profile=myemacs &"
+alias doom="emacs --with-profile=doom"
+alias myemacs="emacs --with-profile=myemacs"
 alias enw="emacs -nw"
 
 
