@@ -3,7 +3,7 @@ if vim.g.neovide == true then
 	-- vim.o.guifont='Consolas:h10'
 	-- vim.o.guifont='FiraCode NF:h14'
 	-- vim.o.guifont = 'JetBrains Mono:h10'
-	vim.api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
+	vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
 end
 vim.cmd([[
 "neovide stuff

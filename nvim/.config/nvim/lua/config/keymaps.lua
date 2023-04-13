@@ -4,8 +4,8 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 -- local keymap = vim.keymap -- for the keymap vim.keymap.set use keymap and single quotes only for the specifying key
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- vim.g.mapleader = " "
+-- vim.g.maplocalleader = " "
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -22,15 +22,15 @@ keymap("", "<Space>", "<Nop>", opts)
 --vim.keymap.set('n', 'x', '"_x')
 
 --increment / decrement
-vim.keymap.set('n', '+', '<C-a>')
-vim.keymap.set('n', '-', '<C-x>')
+vim.keymap.set("n", "+", "<C-a>")
+vim.keymap.set("n", "-", "<C-x>")
 
 -- delete a word backwords
 -- vim.keymap.set('n', '<C-w>', 'vb"_d')
 -- vim.keymap.set('n', 'dw', 'vb"_d')
 
 -- select all text at once
-vim.keymap.set('n', '<C-a>', 'gg<S-v>G')
+vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- -- keybinds for easier saving and quitting
 keymap("n", "tw", ":w!<CR>", opts)
@@ -40,9 +40,9 @@ keymap("n", "twq", ":wq!<CR>", opts)
 keymap("n", "ts", ":so<CR>", opts)
 
 --splitting windows
-vim.keymap.set('n', 'sv', '<c-w>v', { silent = true })
-vim.keymap.set('n', 'sh', '<c-w>s', { silent = true })
-vim.keymap.set('n', 'sx', ':close<cr>', { silent = true })
+vim.keymap.set("n", "sv", "<c-w>v", { silent = true })
+vim.keymap.set("n", "sh", "<c-w>s", { silent = true })
+vim.keymap.set("n", "sx", ":close<cr>", { silent = true })
 
 --(window keybinds) new tab
 keymap("n", "tn", ":tabnew<Return><C-w>w", opts)
@@ -74,43 +74,43 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- best remap from the ThePrimeagen
 -- greatest remap ever
-vim.keymap.set('x', "<leader>p", "\"_dP")
+vim.keymap.set("x", "<leader>p", '"_dP')
 
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set('n', "<leader>y", "\"+y")
-vim.keymap.set('v', "<leader>y", "\"+y")
-vim.keymap.set('n', "<leader>Y", "\"+Y")
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>Y", '"+Y')
 
-vim.keymap.set('n', "<leader>d", "\"_d")
-vim.keymap.set('v', "<leader>d", "\"_d")
+vim.keymap.set("n", "<leader>d", '"_d')
+vim.keymap.set("v", "<leader>d", '"_d')
 
 -- half page up/down with centered view
-vim.keymap.set('n', "<C-u>", "<C-u>zz")
-vim.keymap.set('n', "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
 -- searching forward or back with half page up/down
-vim.keymap.set('n', "n", "nzzzv")
-vim.keymap.set('n', "N", "nzzzv")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "nzzzv")
 
 ------------------------------------------------------------------
 
 -- shortcuts for commenting
-vim.keymap.set('n', "<leader>/", ":Commentary<cr>")
-vim.keymap.set('v', "<leader>/", ":Commentary<cr>")
+vim.keymap.set("n", "<leader>/", ":Commentary<cr>")
+vim.keymap.set("v", "<leader>/", ":Commentary<cr>")
 
 -- undotree keymaps
-vim.keymap.set('n', "<leader>un", ":UndotreeToggle<cr>")
+vim.keymap.set("n", "<leader>un", ":UndotreeToggle<cr>")
 
 -- maximizer keymap
-vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<cr>")
+vim.keymap.set("n", "<leader>mt", ":MaximizerToggle<cr>")
 
 -- open init.lua file
-vim.keymap.set('n', "<leader>my", ":e $MYVIMRC<cr>")
+vim.keymap.set("n", "<leader>my", ":e $MYVIMRC<cr>")
 
 vim.cmd([[
 "fzf keybindings
 nnoremap <silent> <leader>fzf :FZF ~<cr>
-nnoremap <silent> <leader>fr :History<CR>
+"nnoremap <silent> <leader>fr :History<CR>
 nnoremap <silent> <leader>ff :e %:h/<C-d>
 nnoremap <silent> <leader>fi :FZF /home/sunny/ghq/github.com/legion2004/programs/ <cr>
 nnoremap <silent> <leader>dot :FZF /home/sunny/dotfiles/ <cr>
@@ -177,8 +177,8 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 ]])
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>te', ":Telescope<CR>")
-vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") });
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>te", ":Telescope<CR>")
+vim.keymap.set("n", "<leader>ps", function()
+	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)

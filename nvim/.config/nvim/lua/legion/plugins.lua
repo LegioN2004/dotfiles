@@ -40,9 +40,9 @@ packer.init({
 })
 
 --put plugins here
-return require 'packer'.startup(function()
-	use 'wbthomason/packer.nvim' --main packer neovim plugin manager
-	use 'lewis6991/impatient.nvim' --load fast
+return require("packer").startup(function()
+	use("wbthomason/packer.nvim") --main packer neovim plugin manager
+	use("lewis6991/impatient.nvim") --load fast
 	--movement stuff
 	-- use 'justinmk/vim-sneak'
 	-- use 'phaazon/hop.nvim'
@@ -50,70 +50,77 @@ return require 'packer'.startup(function()
 	-- use 'xolox/vim-session'
 	-- use 'xolox/vim-misc'
 	--language specific stuff
-	use 'tpope/vim-commentary'
-	use 'tpope/vim-surround'
-	use 'tpope/vim-fugitive'
+	use("tpope/vim-commentary")
+	use("tpope/vim-surround")
+	use("tpope/vim-fugitive")
 	--note taking org stuff
-	use 'nvim-orgmode/orgmode'
+	use("nvim-orgmode/orgmode")
 	-- markdown preview
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = "cd app && npm install",
-		setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
 		ft = { "markdown" },
 	})
 
-	-- use 'windwp/nvim-ts-autotag'
-	use 'jiangmiao/auto-pairs'
-	use 'kyazdani42/nvim-web-devicons'
+	-- use("jiangmiao/auto-pairs")
+	use("kyazdani42/nvim-web-devicons")
 	--syntax highlighting
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-	}
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			require("nvim-treesitter.install").update({ with_sync = true })
+		end,
+	})
 	-- nvim ui stuff
 	--use 'akinsho/bufferline.nvim'
-	use 'folke/zen-mode.nvim'
-	use 'junegunn/limelight.vim'
-	use 'junegunn/goyo.vim'
-	use { "akinsho/toggleterm.nvim", tag = '*', config = function()
-		require("toggleterm").setup()
-	end }
-	use 'ThePrimeagen/vim-be-good' --Vim be good is a plugin designed to make you better at vim by creating a game to practice basic movements in
-	use 'mbbill/undotree'
-	use 'nvim-lualine/lualine.nvim'
-	use 'lewis6991/gitsigns.nvim'
-	use 'szw/vim-maximizer'
-	use 'nvim-lua/popup.nvim'
-	use 'nvim-lua/plenary.nvim'
-	use 'nvim-telescope/telescope.nvim'
+	use("folke/zen-mode.nvim")
+	use("junegunn/limelight.vim")
+	use("junegunn/goyo.vim")
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "*",
+		config = function()
+			require("toggleterm").setup()
+		end,
+	})
+	use("ThePrimeagen/vim-be-good") --Vim be good is a plugin designed to make you better at vim by creating a game to practice basic movements in
+	use("mbbill/undotree")
+	use("nvim-lualine/lualine.nvim")
+	use("lewis6991/gitsigns.nvim")
+	use("szw/vim-maximizer")
+	use("nvim-lua/popup.nvim")
+	use("nvim-lua/plenary.nvim")
+	use("nvim-telescope/telescope.nvim")
 	--colorscheme
-	use 'navarasu/onedark.nvim'
-	use 'gruvbox-community/gruvbox'
-	use {
-		'svrana/neosolarized.nvim',
-		requires = { 'tjdevries/colorbuddy.nvim' }
-	}
+	use("navarasu/onedark.nvim")
+	use("gruvbox-community/gruvbox")
+	use({
+		"svrana/neosolarized.nvim",
+		requires = { "tjdevries/colorbuddy.nvim" },
+	})
 	-- not using the telescope file explorer doesn't show files like ide's i need to see them without entering the folder everytime
 	-- instead this
-	use {
-		'nvim-tree/nvim-tree.lua',
+	use({
+		"nvim-tree/nvim-tree.lua",
 		requires = {
-			'nvim-tree/nvim-web-devicons', -- optional, for file icons
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = 'nightly'           -- optional, updated every week. (see issue #1193)
-	}
-	use 'junegunn/fzf'
-	use 'junegunn/fzf.vim'
+		tag = "nightly", -- optional, updated every week. (see issue #1193)
+	})
+	use("junegunn/fzf")
+	use("junegunn/fzf.vim")
 	--	use { 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	use { 'neoclide/coc.nvim', branch = "release" } --code completion and lsp type stuff
-	use {
-		'goolord/alpha-nvim',
-		requires = { 'kyazdani42/nvim-web-devicons' },
+	use({ "neoclide/coc.nvim", branch = "release" }) --code completion and lsp type stuff
+	use({
+		"goolord/alpha-nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
 		config = function()
-			require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
-		end
-	}
+			require("alpha").setup(require("alpha.themes.dashboard").config)
+		end,
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
