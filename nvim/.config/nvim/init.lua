@@ -2,7 +2,7 @@ require("config.lazy")
 require("config.macros")
 -- lazy stuff
 vim.api.nvim_create_autocmd("User", {
-	pattern = "VeryLazy",
+	-- pattern = VeryLazy,
 	callback = function()
 		require("config.autocmds")
 		require("config.icons")

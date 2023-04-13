@@ -91,6 +91,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.cmd([[
+filetype plugin on
 let g:session_autosave = 'no'
 "set listchars=eol:⏎,tab:\ \ ┊,trail:●,extends:…,precedes:…,space:·
 " set listchars=tab:\ \ ┊,trail:,extends:…,precedes:…,space:
@@ -139,7 +140,7 @@ let g:limelight_conceal_ctermfg=244
 let g:mkdp_refresh_slow=1
 let g:mkdp_markdown_css='~/ghq/github.com/sindresorhus/github-markdown-css/github-markdown-dark.css'
 
-"  "modifiable" setting turned on, to not prevent the "VeryLazy" autocommand  and other autocmds from being executed.
+"modifiable" setting turned on, to not prevent the "VeryLazy" autocommand  and other autocmds from being executed.
 set modifiable
-
+set buftype=
 ]])
