@@ -1,7 +1,3 @@
-ld
-#1672216554
-lm
-#1672216554
 ls
 #1672216555
 ll
@@ -545,4 +541,6 @@ cd
 ls
 cd dotfiles/
 gs
+exit
+sudo wireshark
 exit

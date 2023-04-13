@@ -27,6 +27,7 @@ set -gx PATH /home/sunny/.nvm/versions/node/v18.15.0/bin $PATH
 
 set -gx PATH ~/Downloads/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/ $PATH
 set -gx PATH /home/sunny/Downloads/jdk-17.0.6/bin/ $PATH
+set -gx PATH /home/sunny/Downloads/clangd_15.0.6/bin/ $PATH
 
 # fish stuff -----------------------------------------------------------------
 
@@ -112,9 +113,9 @@ alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -
 		#install
 #alias sps "sudo pacman -S "
 #alias ysps "yes|sudo pacman -S "
-#alias spsyy "sudo pacman -Syy "
+alias spsy "sudo pacman -Syy "
 #alias spsyyu  "sudo pacman -Syyu "
-alias psyyu  "paru -Syyu "
+alias psyy  "paru -Syy "
 alias ypsyyu  "yes|paru -Syyu "
 
 #		#remove
@@ -181,6 +182,8 @@ alias doom="emacs --with-profile=doom"
 alias myemacs="emacs --with-profile=myemacs"
 alias enw="emacs -nw"
 
+# neovim distro aliases
+alias lazy='NVIM_APPNAME=LazyVim nvim'
 
 #hyprland screenshot utility
 alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast
