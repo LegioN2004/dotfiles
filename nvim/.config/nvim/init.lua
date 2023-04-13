@@ -1,56 +1,36 @@
-require('legion.plugins')
-require('legion.alpha-startup')
---require('legion.bufferline')
---require('legion.cmp')
-require('legion.coc')
---require('legion.onedark') -- this and neosolarized .lua files are req btw
---require('legion.neosolarized')
---require('legion.gruvbox') --use this sometimes not needed for the community edition of gruvbox
---require('legion.colorscheme')
---require('legion.compi-prog')
--- require('legion.fzf')
-require('legion.gitsigns')
---require('legion.html')
-require('legion.impatient')
-require('legion.keymaps')
---require('legion.lazy.lua')
---require('legion.lspconfig')
---require('legion.lspkind')
---require('legion.lspsaga')
-require('legion.lualine')
---require('legion.macos')
-require('legion.macros')
--- require('legion.neovide')
-require('legion.nvim-tree')
-require('legion.nvim-orgmode')
-require('legion.settings')
--- require('legion.sneak') --checkout the hop and sneak plugin usage for better code jumping and then remove this line
--- require('legion.tabnine')
-require('legion.telescope')
-require('legion.toggleterm')
-require('legion.treesitter')
-require('legion.whichkey')
+require("config.lazy")
+require("config.macros")
+-- lazy stuff
+vim.api.nvim_create_autocmd("User", {
+	pattern = "VeryLazy",
+	callback = function()
+		require("config.autocmds")
+		require("config.icons")
+		require("config.keymaps")
+		require("config.settings")
+	end,
+})
 
 local has = function(x)
 	return vim.fn.has(x) == 1
 end
 
-local is_win = has "win32"
-local is_mac = has "macunix"
+local is_win = has("win32")
+local is_mac = has("macunix")
 -- local is_unix = has "Linux"
 
 if is_mac then
-	require('macos')
+	require("macos")
 end
 
 if is_win then
-	require('windows')
+	require("windows")
 end
 
 -- if is_unix then
 --     require('unix')
 -- end
---
+
 vim.cmd([[
 let g:coc_node_path = '~/.nvm/versions/node/v18.15.0/bin/node'
 let g:coc_npm_path = '~/.nvm/versions/node/v18.15.0/bin/node'
