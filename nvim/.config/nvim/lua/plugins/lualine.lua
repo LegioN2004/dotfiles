@@ -188,17 +188,17 @@ return {
 					},
 					lualine_x = {
 				-- stylua: ignore
-				{
-				  function() return require("noice").api.status.command.get() end,
-				  cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-				  color = fg("Statement")
-				},
-				-- stylua: ignore
-				{
-				  function() return require("noice").api.status.mode.get() end,
-				  cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-				  color = fg("Constant") ,
-				},
+				-- {
+				--   function() return require("noice").api.status.command.get() end,
+				--   cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+				--   color = fg("Statement")
+				-- },
+				-- -- stylua: ignore
+				-- {
+				--   function() return require("noice").api.status.mode.get() end,
+				--   cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+				--   color = fg("Constant") ,
+				-- },
 						{
 							require("lazy.status").updates,
 							cond = require("lazy.status").has_updates,
