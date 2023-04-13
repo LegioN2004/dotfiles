@@ -1,5 +1,6 @@
 return {
 	"LazyVim/LazyVim",
+	"goolord/alpha-nvim",
 	"tpope/vim-commentary",
 	{ "tpope/vim-surround", lazy = true },
 	{ "tpope/vim-fugitive", lazy = true },
@@ -25,7 +26,10 @@ return {
 	{ "szw/vim-maximizer", lazy = true },
 	"nvim-lua/popup.nvim",
 	"nvim-lua/plenary.nvim",
-	"nvim-telescope/telescope.nvim",
+		{
+				"nvim-tree/nvim-tree.lua", -- File browser
+				dependencies = { "nvim-tree/nvim-web-devicons" },
+		},
 	{ "gruvbox-community/gruvbox", lazy = true },
 
 	-- { 'junegunn/fzf',              lazy = true },
