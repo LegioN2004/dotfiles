@@ -1,5 +1,6 @@
 require("config.lazy")
 require("config.macros")
+require("config.alpha")
 -- lazy stuff
 vim.api.nvim_create_autocmd("User", {
 	-- pattern = VeryLazy,
