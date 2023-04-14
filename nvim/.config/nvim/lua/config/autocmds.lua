@@ -41,6 +41,7 @@ autocmd("TextYankPost", {
 --"   unlet _dir
 --"endfunction
 --]]
+
 -- close lazy panel with esc
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {

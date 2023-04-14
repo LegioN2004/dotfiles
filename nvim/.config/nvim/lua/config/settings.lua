@@ -11,7 +11,6 @@ vim.opt.title = true
 vim.opt.autoindent = true
 vim.opt.hlsearch = true --Switch on search pattern highlighting.
 vim.opt.showcmd = true
-vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
 -- vim.opt.expandtab = true
 -- vim.opt.scrolloff = 10
@@ -41,7 +40,6 @@ vim.opt.wildmenu = true
 vim.opt.showmatch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
--- vim.opt.cmdheight=2 --give more space for displaying messages.
 vim.opt.smartindent = true
 vim.opt.ruler = true
 -- vim.opt.clipboard=unnamed,unnamedplus -- set clipboard to universal for easy copy/paste to diff apps
@@ -89,6 +87,18 @@ vim.opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.x
 -- disable netrw at the very start of your init.lua (strongly advised nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+-- Reduce command line messages since we can't see them properly anyway with
+-- cmdheight = 0
+vim.opt.shortmess:append("C")
+vim.opt.shortmess:append("S") -- We have our own search counter
+vim.opt.shortmess:append("c")
+vim.opt.shortmess:append("s")
+
+vim.opt.list = true
+vim.opt.listchars = "tab:>⋅,eol:⏎,trail:·,extends:▷,precedes:◁,nbsp:␣"
+vim.opt.cmdheight = 0
+vim.opt.confirm = true
 
 vim.cmd([[
 filetype plugin on
