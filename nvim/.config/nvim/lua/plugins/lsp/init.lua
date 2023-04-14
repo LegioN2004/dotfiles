@@ -1,25 +1,32 @@
 return {
 		{
-				"neovim/nvim-lspconfig",
+				'neovim/nvim-lspconfig',
 				event = "BufReadPre",
 				dependencies = {
 						"hrsh7th/cmp-nvim-lsp",
 						"williamboman/mason-lspconfig.nvim",
 						'j-hui/fidget.nvim',
 						'folke/neodev.nvim',
+						{'rafamadriz/friendly-snippets'},
+				},
+				{
 						{
-								'hrsh7th/nvim-cmp',
-								dependencies = {
-										'hrsh7th/cmp-buffer' ,
-										'hrsh7th/cmp-path' ,
-										'saadparwaiz1/cmp_luasnip' ,
-										'hrsh7th/cmp-nvim-lsp' ,
-										'hrsh7th/cmp-nvim-lua' ,
-										"L3MON4D3/LuaSnip",
-								},
+								"williamboman/mason.nvim",
+								build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+						},
+						'hrsh7th/nvim-cmp',
+						event = "InsertEnter",
+						dependencies = {
+								'hrsh7th/cmp-nvim-lsp' ,
+								'hrsh7th/cmp-buffer' ,
+								'hrsh7th/cmp-path' ,
+								'hrsh7th/cmp-cmdline' ,
+								'saadparwaiz1/cmp_luasnip' ,
+								'L3MON4D3/LuaSnip',
+						{'rafamadriz/friendly-snippets'},
+				},
 						},
 						-- Snippets
-						{'rafamadriz/friendly-snippets'},
 				},
 				config = function(_, _)
 						local utils = require("utils")
@@ -118,4 +125,3 @@ return {
 						end,
 				},
 		}
-}

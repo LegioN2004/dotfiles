@@ -1,6 +1,6 @@
 return {
 		"nvim-tree/nvim-tree.lua", -- File browser
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
 		-- keys = {
 		-- 	{ ";f", ":NvimTreeToggle<CR>", desc = "Toggle file tree" },
 		-- 	{ "<leader>;f", ":NvimTreeFindFileToggle<CR>", desc = "Toggle file tree at current buffer" },

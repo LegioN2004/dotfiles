@@ -21,15 +21,15 @@ vim.g.maplocalleader = " "
 --put plugins here
 require("lazy").setup("plugins", {
 	-- install = { colorscheme = { "gruvbox" } },
-	-- ui = {
-	-- 	border = "rounded",
-	-- },
-	-- checker = { enabled = true },
-	-- debug = false,
+	ui = {
+		border = "rounded",
+	},
+	checker = { enabled = true },
+	debug = false,
 	-- defaults = { lazy = true },
-	-- change_detection = {
-	-- 	notify = true,
-	-- },
+	change_detection = {
+		notify = true,
+	},
 	performance = {
 		rtp = {
 			disabled_plugins = {

@@ -3,15 +3,15 @@ return {
     version = "*", 
     config = true ,
     event = VeryLazy,
-    cmd = { "ToggleTerm", "ToggleTermToggleAll" },
+    -- cmd = { "ToggleTerm", "ToggleTermToggleAll" },
     -- keys = {
-    --    { "<C-\>", ":ToggleTerm<CR>", silent = true, desc = "Toggle terminal" },
+    --    { "<c-\>", ":ToggleTerm<CR>", silent = true, desc = "Toggle terminal" },
     --    -- { "<leader>L", ":ToggleTermToggleAll<CR>", silent = true, desc = "Toggle all terminals" },
     -- },
     opts = {
         direction = "float",
         size = 20,
-        open_mapping = [[<c-\>]],
+        open_mapping = [[<C-\>]],
         hide_numbers = true,
         shade_filetypes = {},
         shade_terminals = true,
