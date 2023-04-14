@@ -1,5 +1,4 @@
 return {
-
     ------ ui for nvim-lsp progress ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     {
         "j-hui/fidget.nvim",
@@ -161,10 +160,9 @@ return {
     ------ lualine status bar as well as noice for getting a floating inbuilt cmd line in nvim ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     {
         "nvim-lualine/lualine.nvim",
-        -- event = "VeryLazy",
+        event = "BufEnter",
         opts = function()
             local icons = require("lazyvim.config").icons
-
             local function fg(name)
                 return function()
                     ---@type {foreground?:number}?
@@ -263,6 +261,7 @@ return {
     {
         "folke/noice.nvim",
         event = "VeryLazy",
+				dependencies = 'MunifTanjim/nui.nvim', 
         opts = {
             lsp = {
                 override = {
@@ -287,15 +286,15 @@ return {
         },
     },
 
-    ---- notifications when using noice.nvim
+    ---- notifications when using nvim-notify
     {
         -- local started = false, 
-
         "rcarriga/nvim-notify",
         config = function()
             vim.notify = function(msg, level, opts)
                 if not started then
                     require("notify").setup({
+												background_colour = "#d79921",
                         timeout = 3500,
                         render = "minimal",
                         stages = "static",
@@ -326,6 +325,7 @@ return {
     ------ file browser ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
         "nvim-tree/nvim-tree.lua", -- File browser
+        event = "BufEnter",
         dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
        config = function()
             local icons = require("config.icons").git
@@ -529,4 +529,28 @@ return {
             vim.api.nvim_set_hl(0, 'ZenBg', { ctermbg = 0 })
         end
     },
+
+		-- Getting you where you want with the fewest keystrokes
+  	{
+				"ThePrimeagen/harpoon",
+	 			event = VeryLazy,
+	 		keys = {
+	 				{ "<C-f>", function() require("harpoon.ui").toggle_quick_menu() end, mode = "n", desc = "Harpoon Menu" },
+	 				{ "<leader>a", function() require("harpoon.mark").add_file() end, mode = "n", desc = "Harpoon Add File" },
+	 				{ "<C-h>", function() require("harpoon.ui").nav_file(1) end, mode = "n", desc = "Harpoon Nav File 1" },
+	 				{ "<C-j>", function() require("harpoon.ui").nav_file(2) end, mode = "n", desc = "Harpoon Nav File 2" },
+	 				{ "<C-k>", function() require("harpoon.ui").nav_file(3) end, mode = "n", desc = "Harpoon Nav File 3" },
+	 				{ "<C-l>", function() require("harpoon.ui").nav_file(4) end, mode = "n", desc = "Harpoon Nav File 4" },
+	 		},
+	 		config = function()
+	 				vim.api.nvim_create_autocmd({ "Filetype" }, {
+	 						pattern = "harpoon",
+	 						callback = function()
+	 								vim.opt.cursorline = true
+	 								vim.api.nvim_set_hl(0, 'HarpoonWindow', { link = 'Normal' })
+	 								vim.api.nvim_set_hl(0, 'HarpoonBorder', { link = 'Normal' })
+	 						end
+	 				})
+	 		end
+	 },
 }

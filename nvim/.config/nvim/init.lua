@@ -1,8 +1,8 @@
 require("config.lazy")
-require("config.macros")
-require("config.alpha")
 require("config.settings")
+require("config.alpha")
 require("config.keymaps")
+require("config.macros")
 -- lazy stuff
 vim.api.nvim_create_autocmd("User", {
 		pattern = VeryLazy,

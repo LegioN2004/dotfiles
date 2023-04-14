@@ -1,6 +1,6 @@
 return {
 		"nvim-telescope/telescope.nvim",
-		version = "*",
+		event = "BufEnter",
 		dependencies = {
 				{
 						"nvim-telescope/telescope-fzf-native.nvim", -- FZF algorithm for telescope
@@ -9,7 +9,7 @@ return {
 				"nvim-lua/plenary.nvim",
 				"folke/trouble.nvim",
 		},
-		cmd = { "Telescope" },
+		cmd =  "Telescope" ,
 		keys = {
 				{
 						"<leader><leader>",
@@ -160,27 +160,4 @@ return {
 		"nvim-telescope/telescope-live-grep-args.nvim",
 				lazy = true
 },
-
-		-- Getting you where you want with the fewest keystrokes
-{
-"ThePrimeagen/harpoon",
-				keys = {
-						{ "<C-f>", function() require("harpoon.ui").toggle_quick_menu() end, mode = "n", desc = "Harpoon Menu" },
-{ "<leader>a", function() require("harpoon.mark").add_file() end, mode = "n", desc = "Harpoon Add File" },
-{ "<C-h>", function() require("harpoon.ui").nav_file(1) end, mode = "n", desc = "Harpoon Nav File 1" },
-						{ "<C-j>", function() require("harpoon.ui").nav_file(2) end, mode = "n", desc = "Harpoon Nav File 2" },
-{ "<C-k>", function() require("harpoon.ui").nav_file(3) end, mode = "n", desc = "Harpoon Nav File 3" },
-						{ "<C-l>", function() require("harpoon.ui").nav_file(4) end, mode = "n", desc = "Harpoon Nav File 4" },
-},
-				config = function()
-						vim.api.nvim_create_autocmd({ "Filetype" }, {
-								pattern = "harpoon",
-								callback = function()
-		vim.opt.cursorline = true
-										vim.api.nvim_set_hl(0, 'HarpoonWindow', { link = 'Normal' })
-										vim.api.nvim_set_hl(0, 'HarpoonBorder', { link = 'Normal' })
-								end
-})
-				end
-		},
 }
