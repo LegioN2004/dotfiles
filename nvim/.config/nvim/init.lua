@@ -1,15 +1,61 @@
-require("config.lazy")
 require("config.settings")
-require("config.alpha")
+-- lazy stuff
+local fn = vim.fn
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- set leader key = space
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+--put plugins here
+require("lazy").setup('plugins', {
+	-- install = { colorscheme = { "gruvbox" } },
+	ui = {
+		border = "rounded",
+	},
+	checker = { enabled = true },
+	debug = false,
+	defaults = { lazy = true },
+	change_detection = {
+		notify = true,
+	},
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+				"netrw",
+			},
+		},
+	},
+})
+
 require("config.keymaps")
+require("config.alpha")
 require("config.macros")
 -- lazy stuff
 vim.api.nvim_create_autocmd("User", {
 		pattern = VeryLazy,
 		callback = function()
 				require("config.autocmds")
-				require("config.icons")
-				require("config.autoformat")
 		end,
 })
 
