@@ -85,6 +85,10 @@ alias sus= 'systemctl suspend'
 alias pow= 'poweroff'
 alias reb= 'reboot'
 
+
+# emacs alias
+# alias emacs='emacs -nw'
+
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z change directory
 . ~/dotfiles/fish/z.sh
@@ -117,3 +121,8 @@ function nvims() {
 
 bindkey -s ^s "nvims\n"
 # -------------------------------------------------------------------------------
+
+# for fixing keyb layout in gui programs from wsl
+setxkbmap us -variant colemak
+WAYLAND_DISPLAY="wayland-1"
+

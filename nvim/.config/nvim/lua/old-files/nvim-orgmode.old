@@ -1,13 +1,13 @@
 return {
-	"nvim-orgmode/orgmode", 
-	event = VeryLazy ,
-		ft = {'org'},
-		config = function()
+	"nvim-orgmode/orgmode",
+	event = VeryLazy,
+	ft = { 'org' },
+	config = function()
 		require("orgmode").setup_ts_grammar()
 		require("orgmode").setup({
 			--org_agenda_files = { '~/ghq/github.com/LegioN2004/programs/org-docs/*', '~/my-orgs/**/*' },
 			org_agenda_files = { "~/ghq/github.com/LegioN2004/programs/org-docs/*" },
-			org_default_notes_file = { "~/ghq/github.com/LegioN2004/programs/org-docs/org-agenda/*" } ,
+			org_default_notes_file = { "~/ghq/github.com/LegioN2004/programs/org-docs/org-agenda/*" },
 		})
 		-- Treesitter configuration
 		--- Load custom treesitter grammar for org filetype
@@ -22,5 +22,5 @@ return {
 			},
 			ensure_installed = { "org" }, -- Or run :TSUpdate org
 		})
-		end
+	end
 }
