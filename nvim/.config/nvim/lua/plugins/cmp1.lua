@@ -103,13 +103,6 @@ return {
 				return vim_item
 		end
 
-		cmp.setup({
-				snippet = {
-						expand = function(args)
-								luasnip.lsp_expand(args.body)
-						end
-				},
-
 				--   פּ ﯟ   some other good icons
 				-- local kind_icons = {
 				--     Text = "",
@@ -226,7 +219,7 @@ confirm_opts = {
 								ghost_text = false,
 								native_menu = false,
 						},
-				}),
+				})
 
 				cmp.setup.cmdline(":", {
 						completion = {
@@ -296,7 +289,6 @@ maxwidth = 50, -- prevent the popup from showing more than provided characters (
 end
 								}),
 },
-}),
+})
 		end
-		}),
 }
