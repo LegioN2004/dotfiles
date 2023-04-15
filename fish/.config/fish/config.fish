@@ -45,16 +45,19 @@ alias lr='ls -R'
 alias g git
 
 # git
-alias g "git"
-alias gc "git commit -m"
-alias gcl "git clone"
-alias gi "git init"
-alias ga "git add"
-alias gcv "git commit -v"
-alias gp "git push"
-alias gpl "git pull"
-alias gs "git status"
-# alias ghq "ghq get"
+alias g='git'
+alias gcl='git clone'
+alias gl='git log'
+alias gi='git init'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+alias gs='git status'
+alias grv='git remote -v'
+alias gco='git checkout'
+alias gb='git branch'
+alias gbd='git branch -D -r'
+alias gr='git restore'
 
 #ranger
 alias ran "ranger"
