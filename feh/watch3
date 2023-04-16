@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Set the path to your wallpaper directory
+WALLPAPER_DIR="$HOME/Pictures/wallpapers-stuff2"
+
+while true; do
+		# Get a random wallpaper from the directory
+		WALLPAPER=$(ls $WALLPAPER_DIR/* | shuf -n 1)
+
+		# Set the wallpaper using swaybg
+		# swaymsg output "*" bg "$WALLPAPER" fill
+
+		# Set the wallpaper using feh
+		# feh --bg-fill "$WALLPAPER"
+
+		# Set the wallpaper using feh
+		nitrogen --set-zoom-fill "$WALLPAPER"
+		
+		# Wait for one minute before changing the wallpaper again
+		sleep 60
+done
+
+# Set random wallpaper
+# set $wallpapers_path $HOME/Pictures/wallpapers-stuff2/*
+# output * bg 'find $wallpapers_path -type f | shuf -n 1` fill
+
+

@@ -91,20 +91,21 @@ vim.g.loaded_netrwPlugin = 1
 -- Reduce command line messages since we can't see them properly anyway with
 -- cmdheight = 0
 vim.opt.shortmess:append("C")
-vim.opt.shortmess:append("S") -- We have our own search counter
+-- vim.opt.shortmess:append("S") -- We have our own search counter
 vim.opt.shortmess:append("c")
 vim.opt.shortmess:append("s")
 
 vim.opt.list = true
-vim.opt.listchars = "tab:>⋅,eol:⏎,trail:·,extends:▷,precedes:◁,nbsp:␣"
+vim.opt.listchars = "tab:>⋅,eol:⏎,trail:●,extends:▷,precedes:◁,nbsp:␣"
+
 vim.opt.cmdheight = 0
 vim.opt.confirm = true
 
 vim.cmd([[
 filetype plugin on
 let g:session_autosave = 'no'
-"set listchars=eol:⏎,tab:\ \ ┊,trail:●,extends:…,precedes:…,space:·
-" set listchars=tab:\ \ ┊,trail:,extends:…,precedes:…,space:
+"set listchars=eol:⏎,tab:\ \ ┊,trail:●·,extends:…,precedes:…,space:·
+"set listchars=tab:\ \ ┊,trail:,extends:…,precedes:…,space:
 
 if (exists('+colorcolumn'))
     set colorcolumn=80

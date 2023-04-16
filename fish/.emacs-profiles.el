@@ -1,5 +1,5 @@
 (
- ("default" . ((user-emacs-directory . "~/spacemacs")))
- ("doom" . ((user-emacs-directory . "~/doomemacs")))
+ ("default" . ((user-emacs-directory . "~/doomemacs")))
+ ("space" . ((user-emacs-directory . "~/spaceemacs")))
  ("myemacs" . ((user-emacs-directory . "~/emacs")))
  )

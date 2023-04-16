@@ -1,9 +1,3 @@
-ls
-#1672216555
-ll
-#1672216571
-source .bashr
-#1672216574
 source .bashrc 
 #1672216576
 ls
@@ -546,4 +540,49 @@ sudo wireshark
 exit
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
+exit
+find ~/Pictures/wallpapers/wallpapers-stuff2/* -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \)
+find ~/Pictures/wallpapers-stuff2/* -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \)
+				images=($(find ~/Pictures//wallpapers-stuff2/* -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \)))
+images=($(find ~/Pictures//wallpapers-stuff2/* -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \)))  						random_image=$(shuf -e "${images[@]}" -n 1)
+images=($(find ~/Pictures//wallpapers-stuff2/* -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" \)))
+random_image=$(shuf -e "${images[@]}" -n 1)
+swaymsg output "*" bg "$random_image" fill
+export SWAYSOCK=(ls /run/user/1000/sway-ipc.* | sed -n 2p)
+export SWAYSOCK=(ls /run/user/1000/sway-ipc.* | sed -n 2p)
+export SWAYSOCK=(ls /run/user/1000/sway-ipc.* | head -n 1)
+sway --get-socketpath
+ls /run/user/sway-ipc..sock | head -n 1
+yay swaysock
+yay sock
+yay sock | grep "sway"
+yay sway
+ls /run/user/1000/sway-ipc.* | head -n 1
+ls /run/user/1000/sway-ipc.* 
+gwd
+pwd
+ls
+cd
+cd dotfiles/feh/
+ls
+./watch2
+yay swaymsg
+export SWAYSOCK=$(sway --get-socketpath)
+find /run/user -name "sway-ipc.*.sock"
+sudo find /run/user -name "sway-ipc.*.sock"
+cd
+Sway
+sway
+cd
+ls
+cd dotfiles/feh/
+ls
+v watch3
+chmod +x watch3 
+./watch3 
+v watch
+v watch3
+v watch
+ls
+gs
 exit

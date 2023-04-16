@@ -97,16 +97,16 @@ return {
 					enable = true,
 					enable_autocmd = false, -- Disabled when used with Comment.nvim
 				},
-                
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = '<CR>',
-                        scope_incremental = '<CR>',
-                        node_incremental = '<TAB>',
-                        node_decremental = '<S-TAB>',
-                    },
-                },
+
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<CR>",
+						scope_incremental = "<CR>",
+						node_incremental = "<TAB>",
+						node_decremental = "<S-TAB>",
+					},
+				},
 			})
 		end,
 	},

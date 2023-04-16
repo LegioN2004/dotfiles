@@ -10,25 +10,25 @@
 -- })
 
 vim.api.nvim_create_autocmd("FileType", {
-		pattern = { "gitcommit", "markdown", "org", "gitignore" },
-		callback = function()
-				vim.opt_local.wrap = true
-				vim.opt_local.spell = true
-		end,
+	pattern = { "gitcommit", "markdown", "org", "gitignore" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.spell = true
+	end,
 })
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup("HighlightYank", {})
 autocmd("TextYankPost", {
-		group = yank_group,
-		pattern = "*",
-		callback = function()
-				vim.highlight.on_yank({
-						higroup = "IncSearch",
-						timeout = 40,
-				})
-		end,
+	group = yank_group,
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 40,
+		})
+	end,
 })
 
 --vim.cmd([[
@@ -44,11 +44,11 @@ autocmd("TextYankPost", {
 
 -- close lazy panel with esc
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "lazy",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "<Esc>", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end
+	pattern = {
+		"lazy",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "<Esc>", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+	end,
 })

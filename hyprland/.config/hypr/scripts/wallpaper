@@ -6,8 +6,10 @@ PICS=($(ls ${DIR}))
 RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
 
 if [[ $(pidof swaybg) ]]; then
-  pkill swaybg
+		pkill swaybg
 fi
 
-swaybg -m fill -i ${DIR}/${RANDOMPICS}
-notify-send "${RANDOMPICS}"
+		swaybg -m fill -i ${DIR}/${RANDOMPICS}
+		notify-send "${RANDOMPICS}"
+		sleep 5
+

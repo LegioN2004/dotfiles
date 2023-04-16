@@ -1,4 +1,13 @@
 return {
+	--	{
+	--			"xiyaowong/transparent.nvim",
+	--			lazy = false,
+	--			config = function()
+	--			require("transparent").setup {
+	--			}
+	--			end
+	--	},
+
 	------ ui for nvim-lsp progress ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	{
 		"j-hui/fidget.nvim",
@@ -28,9 +37,9 @@ return {
 	},
 
 	------ auto pairs for brackets braces etc ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 	{
 		"jiangmiao/auto-pairs",
+	  event = "BufEnter",
 		cmd = "Commentary",
 	},
 	--    {
@@ -58,9 +67,9 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			signs = {
-				add = { text = "▎" },
+				add = { text = "+" },
 				change = { text = "▎" },
-				delete = { text = "" },
+				delete = { text = "-" },
 				topdelete = { text = "" },
 				changedelete = { text = "▎" },
 				untracked = { text = "▎" },
@@ -280,7 +289,26 @@ return {
 					["vim.lsp.util.stylize_markdown"] = true,
 					{ 'config.lsp.hover.enabled' } == false,
 					{ 'config.lsp.signature.enabled' } == false,
+				  ["cmp.entry.get_documentation"] = true,
 				},
+								message = {
+										-- Messages shown by lsp servers
+										enabled = true,
+										view = "notify",
+										opts = {},
+								},
+								-- defaults for hover and signature help
+								documentation = {
+										view = "hover",
+										---@type NoiceViewOptions
+										opts = {
+												lang = "markdown",
+												replace = true,
+												render = "plain",
+												format = { "{message}" },
+												win_options = { concealcursor = "n", conceallevel = 3 },
+										},
+    },
 			},
 			presets = {
 				bottom_search = true,
@@ -639,6 +667,7 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		event = VeryLazy,
+		cmd = "Harpoon",
 		keys = {
 			{ "<C-f>", function() require("harpoon.ui").toggle_quick_menu() end, mode = "n", desc = "Harpoon Menu" },
 			{
