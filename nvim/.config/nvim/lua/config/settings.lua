@@ -84,6 +84,11 @@ vim.opt.mousemoveevent = true
 vim.opt.wildmode = "longest:full:full"
 vim.opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx,*DS_STORE,*.db"
 
+vim.opt.list = true
+vim.opt.listchars = "tab:>⋅,eol:⏎,trail:●,extends:▷,precedes:◁,nbsp:␣"
+
+vim.opt.cmdheight = 0
+--new
 -- disable netrw at the very start of your init.lua (strongly advised nvim-tree)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -95,11 +100,28 @@ vim.opt.shortmess:append("C")
 vim.opt.shortmess:append("c")
 vim.opt.shortmess:append("s")
 
-vim.opt.list = true
-vim.opt.listchars = "tab:>⋅,eol:⏎,trail:●,extends:▷,precedes:◁,nbsp:␣"
+vim.opt.shiftround = true -- Round indent
+vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+vim.opt.pumblend = 10 -- Popup blend
+vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 
-vim.opt.cmdheight = 0
-vim.opt.confirm = true
+vim.opt.autowrite = true -- Enable auto write
+vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
+vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
+-- vim.opt.format = "jcroqlnt" -- tcqj
+-- hello
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = "rg --vimgrep"
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
+vim.opt.winminwidth = 5 -- Minimum window width
+
+if vim.fn.has("nvim-0.9.0") == 1 then
+  vim.opt.splitkeep = "screen"
+  vim.opt.shortmess:append({ C = true })
+end
+
 
 vim.cmd([[
 filetype plugin on
@@ -155,3 +177,4 @@ let g:mkdp_markdown_css='~/ghq/github.com/sindresorhus/github-markdown-css/githu
 set modifiable
 set buftype=
 ]])
+
