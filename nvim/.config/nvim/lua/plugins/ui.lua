@@ -36,11 +36,16 @@ return {
 		end
 	},
 
+	-- comments  ------
+	{
+		"tpope/vim-commentary",
+		event = "VeryLazy",
+		cmd = "Commentary",
+	},
 	------ auto pairs for brackets braces etc ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	{
 		"jiangmiao/auto-pairs",
-	  event = "BufEnter",
-		cmd = "Commentary",
+		event = "BufEnter",
 	},
 	--    {
 	--        "windwp/nvim-autopairs",
@@ -183,69 +188,22 @@ return {
 			return {
 				options = {
 					theme = "auto",
-					background = transparent,
 					globalstatus = true,
 					disabled_filetypes = { statusline = { "dashboard", "alpha" } },
-					-- section_separators = { left = '', right = '' },
-					-- component_separators = { left = '', right = '' },
+					section_separators = { left = '', right = '' },
+					component_separators = { left = '', right = '' },
 				},
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch" },
-					-- 		disabled_filetypes = {}
-					-- 			file_status = true, -- displays file status (readonly status, modified status)
-					-- 			path = 0   -- 0 = just filename, 1 = relative path, 2 = absolute path
-					-- 		lualine_x = {
-					-- 			{
-					-- 				'diagnostics',
-					-- 				sources = { "nvim_diagnostic" },
-					-- 				symbols = {
-					-- 					error = ' ',
-					-- 					warn = ' ',
-					-- 					info = ' ',
-					-- 					hint = ' '
-					-- 				}
-					-- 			},
-					-- 			'encoding',
 					lualine_x = {
-						{
-							"diff",
-							symbols = {
-								added = icons.git.added,
-								modified = icons.git.modified,
-								removed = icons.git.removed,
-							},
-						},
 						{ "filetype", icon_only = true, separator = "  ", padding = { left = 1, right = 1 } },
-						-- stylua: ignore
-						{
-							function() return require("nvim-navic").get_location() end,
-							cond = function()
-								return package.loaded["nvim-navic"] and
-									require("nvim-navic").is_available()
-							end,
-						},
 					},
 					lualine_c = {
 						-- stylua: ignore
 						{
 							"filename",
-							path = 1,
 							symbols = { separator = "  ", modified = "  ", readonly = "  ", unnamed = "  " }
-						},
-						{
-							function() return require("noice").api.status.command.get() end,
-							cond = function()
-								return package.loaded["noice"] and
-									require("noice").api.status.command.has()
-							end,
-							color = fg("Statement")
-						},
-						-- stylua: ignore
-						{
-							function() return require("noice").api.status.mode.get() end,
-							cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-							color = fg("Constant"),
 						},
 						{
 							require("lazy.status").updates,
@@ -263,13 +221,30 @@ return {
 						},
 					},
 					lualine_y = {
-						{ "progress", separator = "",                   padding = { left = 1, right = 0 } },
-						{ "location", padding = { left = 1, right = 1 } },
+						-- stylua: ignore
+						{
+							function() return require("noice").api.status.command.get() end,
+							cond = function()
+								return package.loaded["noice"] and
+										require("noice").api.status.command.has()
+							end,
+							color = fg("Statement")
+						},
 					},
 					lualine_z = {
-						function()
-							return " " .. os.date("%R")
-						end,
+						-- function()
+						-- 	return " " .. os.date("%r")
+						-- end,
+						{ "progress", separator = "",                   padding = { left = 1, right = 0 } },
+						{ "location", padding = { left = 1, right = 1 } },
+						{
+							"diff",
+							symbols = {
+								added = icons.git.added,
+								modified = icons.git.modified,
+								removed = icons.git.removed,
+							},
+						},
 					},
 				},
 				extensions = { "neo-tree", "nvim-tree", "lazy" },
@@ -289,26 +264,26 @@ return {
 					["vim.lsp.util.stylize_markdown"] = true,
 					{ 'config.lsp.hover.enabled' } == false,
 					{ 'config.lsp.signature.enabled' } == false,
-				  ["cmp.entry.get_documentation"] = true,
+					["cmp.entry.get_documentation"] = true,
 				},
-								message = {
-										-- Messages shown by lsp servers
-										enabled = true,
-										view = "notify",
-										opts = {},
-								},
-								-- defaults for hover and signature help
-								documentation = {
-										view = "hover",
-										---@type NoiceViewOptions
-										opts = {
-												lang = "markdown",
-												replace = true,
-												render = "plain",
-												format = { "{message}" },
-												win_options = { concealcursor = "n", conceallevel = 3 },
-										},
-    },
+				message = {
+					-- Messages shown by lsp servers
+					enabled = true,
+					view = "notify",
+					opts = {},
+				},
+				-- defaults for hover and signature help
+				documentation = {
+					view = "hover",
+					---@type NoiceViewOptions
+					opts = {
+						lang = "markdown",
+						replace = true,
+						render = "plain",
+						format = { "{message}" },
+						win_options = { concealcursor = "n", conceallevel = 3 },
+					},
+				},
 			},
 			presets = {
 				bottom_search = true,
@@ -343,26 +318,26 @@ return {
 				desc =
 				"Noice All"
 			},
-			{
-				"<c-f>",
-				function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,
-				silent = true,
-				expr = true,
-				desc =
-				"Scroll forward",
-				mode = {
-					"i", "n", "s" }
-			},
-			{
-				"<c-b>",
-				function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end,
-				silent = true,
-				expr = true,
-				desc =
-				"Scroll backward",
-				mode = {
-					"i", "n", "s" }
-			},
+			-- {
+			-- 	"<c-f>",
+			-- 	function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,
+			-- 	silent = true,
+			-- 	expr = true,
+			-- 	desc =
+			-- 	"Scroll forward",
+			-- 	mode = {
+			-- 		"i", "n", "s" }
+			-- },
+			-- {
+			-- 	"<c-b>",
+			-- 	function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end,
+			-- 	silent = true,
+			-- 	expr = true,
+			-- 	desc =
+			-- 	"Scroll backward",
+			-- 	mode = {
+			-- 		"i", "n", "s" }
+			-- },
 		},
 	},
 
@@ -422,7 +397,7 @@ return {
 							{ key = { "l" }, action = "edit" }, -- Open node with l
 							{ key = { "h" }, action = "close_node" }, -- Close node with h
 							{
-								key = { "o" },   -- Close the tree when opening node with "o"
+								key = { "o" },                   -- Close the tree when opening node with "o"
 								action = "edit_and_close",
 								action_cb = function()
 									local api = require("nvim-tree.api")
@@ -528,10 +503,10 @@ return {
 		version = "*",
 		config = true,
 		event = VeryLazy,
-		-- cmd = { "ToggleTerm", "ToggleTermToggleAll" },
+		cmd = { "ToggleTerm", "ToggleTermToggleAll" },
 		-- keys = {
-		--    { "<c-\>", ":ToggleTerm<CR>", silent = true, desc = "Toggle terminal" },
-		--    -- { "<leader>L", ":ToggleTermToggleAll<CR>", silent = true, desc = "Toggle all terminals" },
+		-- 	{ "<C-\>", ":ToggleTerm<CR>", silent = true, desc = "Toggle terminal" },
+		-- 	-- { "<leader>L", ":ToggleTermToggleAll<CR>", silent = true, desc = "Toggle all terminals" },
 		-- },
 		opts = {
 			direction = "float",
@@ -601,40 +576,6 @@ return {
 
 	------ which-key ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	-- {
-	--     "folke/which-key.nvim",
-	--     event = "VeryLazy",
-	--     opts = {
-	--       plugins = { spelling = true },
-	--     },
-	--     config = function(_, opts)
-	--       local wk = require("which-key")
-	--       wk.setup(opts)
-	--       local keymaps = {
-	--         mode = { "n", "v" },
-	--         ["g"] = { name = "+goto" },
-	--         ["gz"] = { name = "+surround" },
-	--         ["]"] = { name = "+next" },
-	--         ["["] = { name = "+prev" },
-	--         ["<leader><tab>"] = { name = "+switch buffer n/p" },
-	--         ["<leader>b"] = { name = "+buffer" },
-	--         ["<leader>c"] = { name = "+code" },
-	--         ["<leader>f"] = { name = "+file/find" },
-	--         ["<leader>g"] = { name = "+git" },
-	--         ["<leader>gh"] = { name = "+hunks" },
-	--         ["<leader>q"] = { name = "+quit/session" },
-	--         ["<leader>s"] = { name = "+search" },
-	--         ["<leader>u"] = { name = "+ui" },
-	--         ["<leader>w"] = { name = "+windows" },
-	--         ["<leader>x"] = { name = "+diagnostics/quickfix" },
-	--       }
-	--       -- if Util.has("noice.nvim") then
-	--       --   keymaps["<leader>sn"] = { name = "+noice" }
-	--       -- end
-	--       -- wk.register(keymaps)
-	--     end
-	--   },
-
 	------limelight and goyo---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	{
 		"junegunn/limelight.vim",
@@ -646,7 +587,7 @@ return {
 	{
 		"folke/zen-mode.nvim",
 		event = VeryLazy,
-		cmd = "Zen",
+		cmd = "ZenMode",
 		config = function()
 			vim.api.nvim_set_hl(0, 'ZenBg', { ctermbg = 0 })
 		end
@@ -655,6 +596,7 @@ return {
 	{
 		"szw/vim-maximizer",
 		event = VeryLazy,
+		cmd = { "MaximizerToggle" },
 		keys = {
 			{ "<leader>mt", ":MaximizerToggle<CR>", desc = "Toggle file tree" },
 		},
@@ -669,37 +611,37 @@ return {
 		event = VeryLazy,
 		cmd = "Harpoon",
 		keys = {
-			{ "<C-f>", function() require("harpoon.ui").toggle_quick_menu() end, mode = "n", desc = "Harpoon Menu" },
+			{ "<leader>Ha", function() require("harpoon.ui").toggle_quick_menu() end, mode = "n", desc = "Harpoon Menu" },
 			{
-				"<leader>a",
+				"<leader>ad",
 				function() require("harpoon.mark").add_file() end,
 				mode = "n",
 				desc =
 				"Harpoon Add File"
 			},
 			{
-				"<C-h>",
+				"<leader>1",
 				function() require("harpoon.ui").nav_file(1) end,
 				mode = "n",
 				desc =
 				"Harpoon Nav File 1"
 			},
 			{
-				"<C-j>",
+				"<leader>2",
 				function() require("harpoon.ui").nav_file(2) end,
 				mode = "n",
 				desc =
 				"Harpoon Nav File 2"
 			},
 			{
-				"<C-k>",
+				"<leader>3",
 				function() require("harpoon.ui").nav_file(3) end,
 				mode = "n",
 				desc =
 				"Harpoon Nav File 3"
 			},
 			{
-				"<C-l>",
+				"<leader>4",
 				function() require("harpoon.ui").nav_file(4) end,
 				mode = "n",
 				desc =

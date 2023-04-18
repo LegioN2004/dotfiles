@@ -15,12 +15,12 @@ return {
 	},
 
 	-- commenting
-	{
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	},
+	-- {
+	-- 	"numToStr/Comment.nvim",
+	-- 	config = function()
+	-- 		require("Comment").setup()
+	-- 	end,
+	-- },
 
 	-- folding
 	{
@@ -33,8 +33,8 @@ return {
 			vim.o.foldenable = true
 
 			-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-			vim.keymap.set("n", "<leader>of", require("ufo").openAllFolds)
-			vim.keymap.set("n", "<leader>cf", require("ufo").closeAllFolds)
+			vim.keymap.set("n", "<leader>fo", require("ufo").openAllFolds)
+			vim.keymap.set("n", "<leader>fc", require("ufo").closeAllFolds)
 
 			require("ufo").setup({
 				provider_selector = function(bufnr, filetype, buftype)
@@ -56,7 +56,8 @@ return {
 	{
 		"tpope/vim-fugitive",
 		cmd = { "Git", "G" },
-		config = function() end,
+		config = function()
+		end,
 	},
 
 	-- displays a popup with possible keybindings of the command
@@ -81,7 +82,7 @@ return {
 	"goolord/alpha-nvim",
 	"LazyVim/LazyVim",
 	-- "tpope/vim-commentary",
-	{ "tpope/vim-surround", lazy = true },
+	{ "tpope/vim-surround",       lazy = true },
 	{
 		"iamcco/markdown-preview.nvim",
 		lazy = true,
@@ -105,7 +106,7 @@ return {
 		cmd = { "UndotreeShow", "UndotreeToggle", "UndotreeHide", "UndotreeFocus" },
 	},
 
-	{ "gruvbox-community/gruvbox", lazy = true },
+	{ "gruvbox-community/gruvbox" },
 
 	-- { 'junegunn/fzf',              lazy = true },
 	-- { 'junegunn/fzf.vim',          lazy = true },
@@ -113,9 +114,9 @@ return {
 	-- search/replace in multiple files
 	{
 		"windwp/nvim-spectre",
-				-- stylua: ignore
-				keys = {
-						{ "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
-				},
+		-- stylua: ignore
+		keys = {
+			{ "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+		},
 	},
 }

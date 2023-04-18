@@ -18,13 +18,12 @@ vim.opt.shell = "fish"
 vim.opt.smarttab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 2
 vim.opt.inccommand = "split"
 vim.opt.breakindent = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.tabstop = 2
 vim.opt.backspace = "start,eol,indent"
 vim.opt.path:append({ "**" }) -- while finding files it also looks in the subfolders
 vim.opt.wildignore:append({ "*/node_modules/*" })
@@ -44,9 +43,9 @@ vim.opt.smartindent = true
 vim.opt.ruler = true
 -- vim.opt.clipboard=unnamed,unnamedplus -- set clipboard to universal for easy copy/paste to diff apps
 vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
-vim.opt.hidden = true --This option allows you to switch between multiple buffers without saving a changed buffer
-vim.opt.mousehide = true --Hide the mouse pointer while typing.
-vim.opt.updatetime = 50 --updatetime
+vim.opt.hidden = true                             --This option allows you to switch between multiple buffers without saving a changed buffer
+vim.opt.mousehide = true                          --Hide the mouse pointer while typing.
+vim.opt.updatetime = 50                           --updatetime
 -- vim.opt.timeoutlen = 300
 
 -- Undercurl
@@ -100,14 +99,14 @@ vim.opt.shortmess:append("C")
 vim.opt.shortmess:append("c")
 vim.opt.shortmess:append("s")
 
-vim.opt.shiftround = true -- Round indent
+vim.opt.shiftround = true  -- Round indent
 vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-vim.opt.pumblend = 10 -- Popup blend
-vim.opt.pumheight = 10 -- Maximum number of entries in a popup
+vim.opt.pumblend = 10      -- Popup blend
+vim.opt.pumheight = 10     -- Maximum number of entries in a popup
 
-vim.opt.autowrite = true -- Enable auto write
-vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
-vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
+vim.opt.autowrite = true   -- Enable auto write
+vim.opt.conceallevel = 3   -- Hide * markup for bold and italic
+vim.opt.confirm = true     -- Confirm to save changes before exiting modified buffer
 -- vim.opt.format = "jcroqlnt" -- tcqj
 -- hello
 vim.opt.grepformat = "%f:%l:%c:%m"
@@ -118,8 +117,8 @@ vim.g.markdown_recommended_style = 0
 vim.opt.winminwidth = 5 -- Minimum window width
 
 if vim.fn.has("nvim-0.9.0") == 1 then
-  vim.opt.splitkeep = "screen"
-  vim.opt.shortmess:append({ C = true })
+	vim.opt.splitkeep = "screen"
+	vim.opt.shortmess:append({ C = true })
 end
 
 
@@ -177,4 +176,3 @@ let g:mkdp_markdown_css='~/ghq/github.com/sindresorhus/github-markdown-css/githu
 set modifiable
 set buftype=
 ]])
-
