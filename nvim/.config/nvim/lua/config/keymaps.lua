@@ -183,12 +183,6 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 ]])
 
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>te", ":Telescope<CR>")
-vim.keymap.set("n", "<leader>ps", function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end)
-
 -- new stufff from the lazyvim config --------------------------------------------------------
 
 local Util = require("lazyvim.util")
@@ -209,12 +203,12 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- Move Lines
-map("n", "<S-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "<S-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<S-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<S-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<S-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<S-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("n", "<S-down>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<S-up>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<S-down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<S-up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<S-down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<S-up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- buffers
 if Util.has("bufferline.nvim") then

@@ -1,6 +1,5 @@
 require("config.settings")
 -- lazy stuff
-local fn = vim.fn
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -53,7 +52,6 @@ require("config.alpha")
 require("config.macros")
 -- lazy stuff
 vim.api.nvim_create_autocmd("User", {
-	pattern = VeryLazy,
 	callback = function()
 		require("config.autocmds")
 	end,

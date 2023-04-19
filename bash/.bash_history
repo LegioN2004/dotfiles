@@ -1,93 +1,3 @@
-source .bashrc 
-#1672216576
-ls
-#1672216581
-lr
-#1672216583
-ll
-#1672216589
-l
-#1672216597
-ls -lah
-#1672216609
-ls
-#1672216627
-source .bashrc 
-#1672216629
-ls
-#1672216640
-exa -l -g --icons
-#1672216653
-source .bashr
-#1672216655
-source .bashrc 
-#1672216656
-ls
-#1672216658
-cd
-#1672216659
-ls
-#1672216661
-ll
-#1672216698
-source .bashrc 
-#1672216699
-ls
-#1672216708
-lr
-#1672216720
-source .bashrc 
-#1672216722
-ls
-#1672216723
-lt
-#1672216751
-source .bashrc 
-#1672216752
-ls
-#1672216756
-cd dow
-#1672216759
-cd dotfiles/
-#1672216760
-ls
-#1672216763
-cd ..
-#1672216764
-ls
-#1672216815
-source .bashrc 
-#1672216822
-cd
-#1672216827
-cd dotfiles/
-#1672216828
-ls
-#1672216830
-ls synth-shell/
-#1672216830
-ls
-#1672216833
-cd synth-shell/
-#1672216834
-ls
-#1672216837
-ll
-#1672216839
-cd ..
-#1672216841
-rm -rf synth-shell/
-#1672216842
-ls
-#1672216846
-cd
-#1672216852
-source .bashrc 
-#1672216863
-exit
-ls
-ll
-ll
 ls -A
 tldr ls
 ls -ltr
@@ -586,3 +496,5 @@ v watch
 ls
 gs
 exit
+hyperfine "nvim --headless +qa" --warmup 10
+zsh
