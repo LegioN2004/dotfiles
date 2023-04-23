@@ -521,6 +521,7 @@ return {
 		config = function()
 			local icons = require("config.icons").git
 			require("nvim-tree").setup({
+on_attach = on_attach,
 				view = {
 					mappings = {
 						custom_only = false,
