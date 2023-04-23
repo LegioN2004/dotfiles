@@ -1,3 +1,11 @@
+# Created by Zap installer
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/supercharge"
+plug "zap-zsh/zap-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
+
+
 # source ~/dotfiles/zsh/.config/zsh/custom/spaceship-prompt/spaceship.zsh
 # source ~/dotfiles/zsh/.config/zsh/custom/archcraft.zsh-theme
 fortune | cowsay
@@ -7,11 +15,11 @@ HISTSIZE=100000
 HISTFILE=~/dotfiles/zsh/history
 
 #setup version control system as well as PROMPT
-autoload -Uz vcs_info
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '%b '
-setopt PROMPT_SUBST
-PROMPT='%F{green}%f %F{blue}%0~ ❯❯❯ %f%F{red}${vcs_info_msg_0_}%f'
+# autoload -Uz vcs_info
+# precmd() { vcs_info }
+# zstyle ':vcs_info:git:*' formats '%b '
+# setopt PROMPT_SUBST
+# PROMPT='%F{green}%f %F{blue}%0~ ❯❯❯ %f%F{red}${vcs_info_msg_0_}%f'
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/bin:$PATH"
@@ -87,7 +95,7 @@ alias reb= 'reboot'
 
 
 # emacs alias
-# alias emacs='emacs -nw'
+alias e='emacs -nw'
 
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z change directory
@@ -123,6 +131,4 @@ bindkey -s ^s "nvims\n"
 # -------------------------------------------------------------------------------
 
 # for fixing keyb layout in gui programs from wsl
-setxkbmap us -variant colemak
-WAYLAND_DISPLAY="wayland-1"
-
+# setxkbmap us -variant colemak
