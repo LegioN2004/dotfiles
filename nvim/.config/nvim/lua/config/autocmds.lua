@@ -1,4 +1,3 @@
-
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "gitcommit", "markdown", "org", "gitignore" },
 	callback = function()
@@ -7,6 +6,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- highlight when yanked with a very fast 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup("HighlightYank", {})
@@ -20,6 +20,18 @@ autocmd("TextYankPost", {
 		})
 	end,
 })
+
+
+-- autoformat from lsp
+-- local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*.rs",
+--   callback = function()
+--     vim.lsp.buf.format({ timeout_ms = 200 })
+--   end,
+--   group = format_sync_grp,
+-- })
+
 
 --vim.cmd([[
 --" Always change the directory to working directory of file in current buffer - http://vim.wikia.com/wiki/VimTip64
@@ -109,4 +121,3 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
-
