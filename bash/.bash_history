@@ -1,6 +1,3 @@
-ls -A
-tldr ls
-ls -ltr
 source .bashrc 
 ls
 ll
@@ -498,3 +495,6 @@ gs
 exit
 hyperfine "nvim --headless +qa" --warmup 10
 zsh
+yes|paru -Syyu
+clean
+exit
