@@ -3,6 +3,8 @@
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
+plug "zap-zsh/completions"
+plug "zap-zsh/fzf"
 plug "zsh-users/zsh-syntax-highlighting"
 
 
@@ -115,19 +117,20 @@ export NVM_DIR="$HOME/.nvm"
 alias lazy='NVIM_APPNAME=LazyVim nvim'
 alias astro='NVIM_APPNAME=AstroNvim nvim'
 
-function nvims() {
-		items=("LazyVim")
-		config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config » " --height=~50% --layout=reverse --border --exit-0)
-		if [[ -z $config ]]; then
-				echo "Nothing selected" 
-				return 0
-		elif [[ $config = "default" ]]; then
-				config=""
-		fi
-		NVIM_APPNAME=$config nvim $@
-}
+# fzf menu to load the above mentioned nvim distros
+# function nvims() {
+# 		items=("LazyVim")
+# 		config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config » " --height=~50% --layout=reverse --border --exit-0)
+# 		if [[ -z $config ]]; then
+# 				echo "Nothing selected" 
+# 				return 0
+# 		elif [[ $config = "default" ]]; then
+# 				config=""
+# 		fi
+# 		NVIM_APPNAME=$config nvim $@
+# }
 
-bindkey -s ^s "nvims\n"
+# bindkey -s ^s "nvims\n"
 # -------------------------------------------------------------------------------
 
 # for fixing keyb layout in gui programs from wsl
