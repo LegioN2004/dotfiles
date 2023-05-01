@@ -50,6 +50,7 @@ require("lazy").setup('plugins', {
 require("config.keymaps")
 require("config.alpha")
 require("config.macros")
+require("config.functions")
 -- lazy stuff
 vim.api.nvim_create_autocmd("User", {
 	callback = function()

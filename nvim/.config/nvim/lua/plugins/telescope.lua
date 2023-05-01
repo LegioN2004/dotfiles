@@ -38,13 +38,6 @@ return {
 	  desc = "Toggle Telescope grep",
 	},
 	{
-	  "<leader>te",
-	  function()
-		require("telescope.builtin").find_files()
-	  end,
-	  desc = "Find file",
-	},
-	{
 	  "<leader><space>",
 	  function()
 		require("telescope.builtin").find_files()

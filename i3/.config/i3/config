@@ -304,7 +304,7 @@ exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layout
 exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
-bindsym $mod+shift+n exec redshift -x
+bindsym $mod+shift+n exec pkill redshift
 
 # Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date)"

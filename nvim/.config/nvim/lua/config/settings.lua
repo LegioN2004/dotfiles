@@ -100,7 +100,8 @@ vim.opt.shortmess:append("c")
 vim.opt.shortmess:append("s")
 
 vim.opt.shiftround = true  -- Round indent
-vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+-- vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+vim.wo.signcolumn = "yes"
 vim.opt.pumblend = 10      -- Popup blend
 vim.opt.pumheight = 10     -- Maximum number of entries in a popup
 
