@@ -4,3 +4,5 @@ zsh/.config/zsh/.zcompdump
 zsh/history
 
 fish/.config/fish/fishd.tmp*
+
+fish/.config/fish/fish_variables
