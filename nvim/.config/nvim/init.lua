@@ -58,21 +58,21 @@ vim.api.nvim_create_autocmd("User", {
 	end,
 })
 
-local has = function(x)
-	return vim.fn.has(x) == 1
-end
+-- local has = function(x)
+-- 	return vim.fn.has(x) == 1
+-- end
 
-local is_win = has("win32")
-local is_mac = has("macunix")
--- local is_unix = has "Linux"
+-- local is_win = has("win32")
+-- local is_mac = has("macunix")
+-- -- local is_unix = has "Linux"
 
-if is_mac then
-	require("macos")
-end
+-- if is_mac then
+-- 	require("macos")
+-- end
 
-if is_win then
-	require("windows")
-end
+-- if is_win then
+-- 	require("windows")
+-- end
 
 -- if is_unix then
 --     require('unix')
