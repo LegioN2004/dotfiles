@@ -1,134 +1,142 @@
 return {
   -- LSP
   {
-	'VonHeikemen/lsp-zero.nvim',
-	branch = 'v2.x',
-	lazy = true,
-	config = function()
-	  -- This is where you modify the settings for lsp-zero
-	  -- Note: autocompletion settings will not take effect
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
+    lazy = true,
+    config = function()
+      -- This is where you modify the settings for lsp-zero
+      -- Note: autocompletion settings will not take effect
 
-	  require('lsp-zero.settings').preset({})
-	end
+      require('lsp-zero.settings').preset({})
+    end
   },
   {
-	'neovim/nvim-lspconfig',
-	cmd = 'LspInfo',
-	event = { 'BufReadPre', 'BufNewFile' },
-	dependencies = {
-	  {
-		"williamboman/mason.nvim",
-		build = ":MasonUpdate",
-		opts = {
-		  pip = {
-			upgrade_pip = true,
-		  },
-		  ui = {
-			border = "rounded",
-			icons = {
-			  package_installed = "✓",
-			  package_pending = "➜",
-			  package_uninstalled = "✗",
-			},
-		  },
-		},
-	  },
-	  'williamboman/mason-lspconfig.nvim', -- Optional
-	},
+    'neovim/nvim-lspconfig',
+    cmd = 'LspInfo',
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+      {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        opts = {
+          pip = {
+            upgrade_pip = true,
+          },
+          ui = {
+            border = "rounded",
+            icons = {
+              package_installed = "✓",
+              package_pending = "➜",
+              package_uninstalled = "✗",
+            },
+          },
+        },
+      },
+      'williamboman/mason-lspconfig.nvim', -- Optional
+    },
   },
+  config = function()
+    --- this is where all the LSP shenanigans will live
 
-	--- this is where all the LSP shenanigans will live
+    local lsp = require('lsp-zero')
 
-	local lsp = require('lsp-zero')
+    -- lsp.preset("recommended")
+    -- lsp.ensure_installed ({
+    --   'clangd' ,
+    --   'lua_ls' ,
+    --   'jdtls' ,
+    -- })
 
-	lsp.preset("recommended")
-	lsp.ensure_installed ({
-	  'clangd' ,
-	  'lua_ls' ,
-	  'jdtls' ,
-	})
+    lsp.on_attach(function(client, bufnr)
+      lsp.default_keymaps({ buffer = bufnr })
+    end)
 
-	lsp.on_attach(function(client, bufnr)
-	  lsp.default_keymaps({ buffer = bufnr })
-	end)
+    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
-	-- Fix Undefined global 'vim'
-  lsp.configure('lua_ls', {
-	settings = {
-	  Lua = {
-		diagnostics = {
-		  -- Get the language server to recognize the `vim` global
-		  globals = { "vim" },
-		},
-		workspace = {
-		  -- Make the server aware of Neovim runtime files
-		  -- library = vim.api.nvim_get_runtime_file("", true),
-		  library = {
-			vim.fn.stdpath("config"),
-		  },
-		  checkThirdParty = false,
-		},
-		-- Do not send telemetry data containing a randomized but unique identifier
-		telemetry = {
-		  enable = false,
-		},
-	  },
-	},
-  })
-
-  -- Setup language servers.
-  local lspconfig = require('lspconfig')
-  -- lspconfig.pyright.setup {}
-  -- lspconfig.tsserver.setup {}
-  -- lspconfig.rust_analyzer.setup {
-  -- -- Server-specific settings. See `:help lspconfig-setup`
-  -- settings = {
-  -- ['rust-analyzer'] = {},
--- },
--- }
-
-
-  -- Global mappings.
-  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
-  -- Use LspAttach autocommand to only map the following keys
-  -- after the language server attaches to the current buffer
-  vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-	callback = function(ev)
-	  -- Enable completion triggered by <c-x><c-o>
-	  vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-	  -- Buffer local mappings.
-	  -- See `:help vim.lsp.*` for documentation on any of the below functions
-	  local opts = { buffer = ev.buf }
-	  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-	  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-	  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-	  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-	  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-	  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workleader_folder, opts)
-	  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workleader_folder, opts)
-	  vim.keymap.set('n', '<leader>wl', function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	  end, opts)
-	  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-	  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-	  vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
-	  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-	  vim.keymap.set('n', '<leader>f', function()
-		vim.lsp.buf.format { async = true }
-	  end, opts)
-	end,
-  })
-
+    lsp.setup()
+  end
 }
 
+-- from here 
 --------------------------------------------------------------------------
+-- Fix Undefined global 'vim'
+-- lsp.configure('lua_ls', {
+-- settings = {
+-- Lua = {
+-- diagnostics = {
+-- -- Get the language server to recognize the `vim` global
+-- globals = { "vim" },
+-- },
+-- workspace = {
+-- -- Make the server aware of Neovim runtime files
+-- -- library = vim.api.nvim_get_runtime_file("", true),
+-- library = {
+-- vim.fn.stdpath("config"),
+-- },
+-- checkThirdParty = false,
+-- },
+-- -- Do not send telemetry data containing a randomized but unique identifier
+-- telemetry = {
+-- enable = false,
+-- },
+-- },
+-- },
+-- })
+
+-- -- Setup language servers.
+-- local lspconfig = require('lspconfig')
+-- -- lspconfig.pyright.setup {}
+-- -- lspconfig.tsserver.setup {}
+-- -- lspconfig.rust_analyzer.setup {
+-- -- -- Server-specific settings. See `:help lspconfig-setup`
+-- -- settings = {
+-- -- ['rust-analyzer'] = {},
+-- -- },
+-- -- }
+
+
+-- -- Global mappings.
+-- -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+-- -- Use LspAttach autocommand to only map the following keys
+-- -- after the language server attaches to the current buffer
+-- vim.api.nvim_create_autocmd('LspAttach', {
+-- group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+-- callback = function(ev)
+-- -- Enable completion triggered by <c-x><c-o>
+-- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+-- -- Buffer local mappings.
+-- -- See `:help vim.lsp.*` for documentation on any of the below functions
+-- local opts = { buffer = ev.buf }
+-- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+-- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+-- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+-- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+-- vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workleader_folder, opts)
+-- vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workleader_folder, opts)
+-- vim.keymap.set('n', '<leader>wl', function()
+-- print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+-- end, opts)
+-- vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+-- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+-- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+-- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+-- vim.keymap.set('n', '<leader>f', function()
+-- vim.lsp.buf.format { async = true }
+-- end, opts)
+-- end,
+-- })
+-- }
+-- to here is the sane lspconfig defaults
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- 	-- (Optional) Configure lua language server for neovim
 -- 	require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())

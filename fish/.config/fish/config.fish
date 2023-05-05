@@ -101,6 +101,7 @@ alias hyprlconfig "nvim ~/.config/hypr/hyprland.conf"
 alias waybarconf "nvim ~/.config/waybar/config"
 alias tmuxconfig "nvim ~/.tmux.conf"
 alias kittyconfig "nvim ~/.config/kitty/kitty.conf"
+alias tlpconfig "sudo nvim /etc/tlp.conf"
 
 # source config files
 alias sourceb "source ~/.bashrc"
