@@ -65,13 +65,7 @@ vim.opt.formatoptions:append({ "r" })
 -- copy to clipboard
 -- vim.api.nvim_set_option("clipboard", "unnamedplus")
 
---highlights
-vim.opt.cursorline = true
-vim.opt.termguicolors = true
-vim.opt.winblend = 0
-vim.opt.wildoptions = 'pum'
-vim.opt.pumblend = 5
-vim.opt.background = 'dark'
+--highlights in the after/plugin/colorscheme.lua
 
 vim.opt.foldlevel = 99
 vim.o.foldcolumn = "1"

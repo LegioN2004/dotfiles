@@ -317,7 +317,7 @@ show_current_context = false,
 
 	  return {
 		options = {
-		  theme = "auto",
+		  theme = "solarized_dark",
 		  globalstatus = true,
 		  disabled_filetypes = { statusline = { "dashboard", "alpha" } },
 		  section_separators = { left = '', right = '' },
@@ -376,8 +376,20 @@ show_current_context = false,
 			  },
 			},
 		  },
+          inactive_sections = {
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {{
+              'filename',
+              file_status = true,
+              path = 1
+            }},
+            lualine_x = { 'location' },
+            lualine_y = {},
+            lualine_z = {},
+          },
 		},
-		extensions = { "neo-tree", "nvim-tree", "lazy", "fidget" },
+		extensions = { 'fugitive', 'neo-tree', 'nvim-tree', 'lazy', 'fidget' },
 	  }
 	end,
   },
