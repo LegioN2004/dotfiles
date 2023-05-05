@@ -1,438 +1,491 @@
 return {
-	{
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v2.x',
-		lazy = true,
-		config = function()
-			-- This is where you modify the settings for lsp-zero
-			-- Note: autocompletion settings will not take effect
+  -- LSP
+  {
+	'VonHeikemen/lsp-zero.nvim',
+	branch = 'v2.x',
+	lazy = true,
+	config = function()
+	  -- This is where you modify the settings for lsp-zero
+	  -- Note: autocompletion settings will not take effect
 
-			require('lsp-zero.settings').preset({})
-		end
-	},
-
-	-- LSP
-	{
-		'neovim/nvim-lspconfig',
-		cmd = 'LspInfo',
-		event = { 'BufReadPre', 'BufNewFile' },
-		dependencies = {
-			{ 'hrsh7th/cmp-nvim-lsp' },
-			{ 'williamboman/mason-lspconfig.nvim' },
-			{
-				'williamboman/mason.nvim',
-				build = function()
-					pcall(vim.cmd, 'MasonUpdate')
-				end,
-			},
-		},
-		config = function()
-			-- This is where all the LSP shenanigans will live
-
-			local lsp = require('lsp-zero')
-
-			lsp.on_attach(function(client, bufnr)
-				lsp.default_keymaps({ buffer = bufnr })
-			end)
-
-			-- (Optional) Configure lua language server for neovim
-			require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-			lsp.setup()
-		end
-	},
-	{
+	  require('lsp-zero.settings').preset({})
+	end
+  },
+  {
+	'neovim/nvim-lspconfig',
+	cmd = 'LspInfo',
+	event = { 'BufReadPre', 'BufNewFile' },
+	dependencies = {
+	  {
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate",
-		dependencies = { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 		opts = {
-			pip = {
-				upgrade_pip = true,
+		  pip = {
+			upgrade_pip = true,
+		  },
+		  ui = {
+			border = "rounded",
+			icons = {
+			  package_installed = "✓",
+			  package_pending = "➜",
+			  package_uninstalled = "✗",
 			},
-			ui = {
-				border = "rounded",
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
-				},
-			},
+		  },
 		},
+	  },
+	  'williamboman/mason-lspconfig.nvim', -- Optional
 	},
+  },
+
+	--- this is where all the LSP shenanigans will live
+
+	local lsp = require('lsp-zero')
+
+	lsp.preset("recommended")
+	lsp.ensure_installed ({
+	  'clangd' ,
+	  'lua_ls' ,
+	  'jdtls' ,
+	})
+
+	lsp.on_attach(function(client, bufnr)
+	  lsp.default_keymaps({ buffer = bufnr })
+	end)
+
+	-- Fix Undefined global 'vim'
+  lsp.configure('lua_ls', {
+	settings = {
+	  Lua = {
+		diagnostics = {
+		  -- Get the language server to recognize the `vim` global
+		  globals = { "vim" },
+		},
+		workspace = {
+		  -- Make the server aware of Neovim runtime files
+		  -- library = vim.api.nvim_get_runtime_file("", true),
+		  library = {
+			vim.fn.stdpath("config"),
+		  },
+		  checkThirdParty = false,
+		},
+		-- Do not send telemetry data containing a randomized but unique identifier
+		telemetry = {
+		  enable = false,
+		},
+	  },
+	},
+  })
+
+  -- Setup language servers.
+  local lspconfig = require('lspconfig')
+  -- lspconfig.pyright.setup {}
+  -- lspconfig.tsserver.setup {}
+  -- lspconfig.rust_analyzer.setup {
+  -- -- Server-specific settings. See `:help lspconfig-setup`
+  -- settings = {
+  -- ['rust-analyzer'] = {},
+-- },
+-- }
+
+
+  -- Global mappings.
+  -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+  vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+  vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+  -- Use LspAttach autocommand to only map the following keys
+  -- after the language server attaches to the current buffer
+  vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+	callback = function(ev)
+	  -- Enable completion triggered by <c-x><c-o>
+	  vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+	  -- Buffer local mappings.
+	  -- See `:help vim.lsp.*` for documentation on any of the below functions
+	  local opts = { buffer = ev.buf }
+	  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+	  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+	  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+	  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+	  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+	  vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workleader_folder, opts)
+	  vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workleader_folder, opts)
+	  vim.keymap.set('n', '<leader>wl', function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	  end, opts)
+	  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+	  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+	  vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+	  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+	  vim.keymap.set('n', '<leader>f', function()
+		vim.lsp.buf.format { async = true }
+	  end, opts)
+	end,
+  })
+
 }
---local function lsp_related_ui_adjust()
---	require("lspconfig.ui.windows").default_options.border = "rounded"
---	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
---	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
---	local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+--------------------------------------------------------------------------
 
---	for type, icon in pairs(signs) do
---		local hl = "DiagnosticSign" .. type
---		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
---	end
+-- 	-- (Optional) Configure lua language server for neovim
+-- 	require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
---	vim.diagnostic.config({
---		virtual_text = {
---			prefix = "●",
---			severity_sort = true,
---		},
---		float = {
---			border = "rounded",
---			source = "always", -- Or "if_many"
---			prefix = " - ",
---		},
---		severity_sort = true,
---	})
---end
+-- 	lsp.setup()
 
---local format = function()
---	local buf = vim.api.nvim_get_current_buf()
---	if require("config.autoformat").autoformat == false then
---		return
---	end
+--   local lsp_related_ui_adjust = function()
+-- 	require("lspconfig.ui.windows").default_options.border = "rounded"
+-- 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+-- 	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
---	local ft = vim.bo[buf].filetype
---	local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+-- 	local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
---	vim.lsp.buf.format({
---		bufnr = buf,
---		timeout_ms = 5000,
---		filter = function(client)
---			if have_nls then
---				return client.name == "null-ls"
---			end
---			return client.name ~= "null-ls"
---		end,
---	})
---end
+-- 	for type, icon in pairs(signs) do
+-- 	  local hl = "DiagnosticSign" .. type
+-- 	  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+-- 	end
 
---local function get_dprint_config_path()
---	local path_separator = _G.IS_WINDOWS and "\\" or "/"
---	local patterns = vim.tbl_flatten({ ".dprint.json", "dprint.json" })
---	local config_path = vim.fn.stdpath("config") .. "/lua/plugins/format/dprint.json"
---	for _, name in ipairs(patterns) do
---		if vim.loop.fs_stat(vim.loop.cwd() .. path_separator .. name) then
---			config_path = vim.loop.cwd() .. path_separator .. name
---		end
---	end
---	return { "--config", config_path }
---end
+-- 	vim.diagnostic.config({
+-- 	  virtual_text = {
+-- 		prefix = "●",
+-- 		severity_sort = true,
+-- 	  },
+-- 	  float = {
+-- 		border = "rounded",
+-- 		source = "always", -- Or "if_many"
+-- 		prefix = " - ",
+-- 	  },
+-- 	  severity_sort = true,
+-- 	})
+--   end
 
---local servers = {
---	--  html = {
---	--      name = "html-lsp",
---	--  },
---	--     pyright = {
---	--        name = "pyright",
---	--        config = {
---	--            settings = {
---	--                python = {
---	--                    analysis = {
---	--                        diagnosticMode = "openFilesOnly"
---	--                        -- diagnosticMode = "workspace"
---	--                    }
---	--                }
---	--            }
---	--        }
---	--    },
---	--    rust_analyzer = {
---	--        name = "rust-analyzer",
---	--        config = {
---	--            settings = {
---	--                ['rust-analyzer'] = {
---	--                    diagnostics = {
---	--                        enable = true,
---	--                        experimental = {
---	--                            enable = true,
---	--                        },
---	--                    },
---	--                }
---	--            }
---	--        }
---	--    },
---	clangd = {
---		name = "clangd",
---		function()
+-- 	local format = function()
+-- 	  local buf = vim.api.nvim_get_current_buf()
+-- 	  if require("config.autoformat").autoformat == false then
+-- 		return
+-- 	  end
 
---		end
---		--         disabled = not _G.IS_WINDOWS -- false represent don't use this server
---	},
---	--   gopls = {
---	--       name = "gopls",
---	--   },
---	--   tsserver = {
---	--       name = "typescript-language-server",
---	--   },
---	--   cssls = {
---	--       name = "css-lsp",
---	--   },
---	--   volar = {
---	--       name = "vue-language-server",
---	--   },
---	--   tailwindcss = {
---	--       name = "tailwindcss-language-server",
---	--   },
---	--   astro = {
---	--       name = "astro-language-server",
---	--   },
---	lua_ls = {
---		name = "lua-language-server",
---		config = {
---			settings = {
---				Lua = {
---					diagnostics = {
---						-- Get the language server to recognize the `vim` global
---						globals = { "vim" },
---					},
---					workspace = {
---						-- Make the server aware of Neovim runtime files
---						-- library = vim.api.nvim_get_runtime_file("", true),
---						library = {
---							vim.fn.stdpath("config"),
---						},
---						checkThirdParty = false,
---					},
---					-- Do not send telemetry data containing a randomized but unique identifier
---					telemetry = {
---						enable = false,
---					},
---				},
---			},
---		},
---	},
---}
+-- 	  local ft = vim.bo[buf].filetype
+-- 	  local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
 
---local function lspconfig_setup()
---	vim.api.nvim_create_autocmd("LspAttach", {
---		callback = function(args)
---			local bufnr = args.buf
---			local client = vim.lsp.get_client_by_id(args.data.client_id)
+-- 	  vim.lsp.buf.format({
+-- 		bufnr = buf,
+-- 		timeout_ms = 5000,
+-- 		filter = function(client)
+-- 		  if have_nls then
+-- 			return client.name == "null-ls"
+-- 		  end
+-- 		  return client.name ~= "null-ls"
+-- 		end,
+-- 	  })
+-- 	end
 
---			if client.supports_method("textDocument/formatting") then
---				vim.api.nvim_create_autocmd("BufWritePre", {
---					group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
---					buffer = bufnr,
---					callback = function()
---						if not require("config.autoformat").autoformat then
---							return
---						end
---						format()
---					end,
---				})
+-- 	local function get_dprint_config_path()
+-- 	local path_separator = _G.IS_WINDOWS and "\\" or "/"
+-- 	local patterns = vim.tbl_flatten({ ".dprint.json", "dprint.json" })
+-- 	local config_path = vim.fn.stdpath("config") .. "/lua/plugins/format/dprint.json"
+--   for _, name in ipairs(patterns) do
+--   if vim.loop.fs_stat(vim.loop.cwd() .. path_separator .. name) then
+--   config_path = vim.loop.cwd() .. path_separator .. name
+-- 	end
+-- 	end
+-- 	return { "--config", config_path }
+--   end
 
---				vim.api.nvim_create_user_command("FormatToggle", function()
---					require("config.autoformat").toggle()
---				end, { desc = "Toggle Format on Save" })
+-- 	local servers = {
+-- 	  --  html = {
+-- 	  --      name = "html-lsp",
+-- 	  --  },
+-- 	  --     pyright = {
+-- 	  --        name = "pyright",
+-- 	  --        config = {
+-- 	  --            settings = {
+-- 	  --                python = {
+-- 	  --                    analysis = {
+-- 	  --                        diagnosticMode = "openFilesOnly"
+-- 	  --                        -- diagnosticMode = "workspace"
+-- 	  --                    }
+-- 	  --                }
+-- 	  --            }
+-- 	  --        }
+-- 	  --    },
+-- 	  --    rust_analyzer = {
+-- 	  --        name = "rust-analyzer",
+-- 	  --        config = {
+-- 	  --            settings = {
+-- 	  --                ['rust-analyzer'] = {
+-- 	  --                    diagnostics = {
+-- 	  --                        enable = true,
+-- 	  --                        experimental = {
+-- 	  --                            enable = true,
+-- 	  --                        },
+-- 	  --                    },
+-- 	  --                }
+-- 	  --            }
+-- 	  --        }
+-- 	  --    },
+-- 	  clangd = {
+-- 		name = "clangd",
+-- 		function()
 
---				-- TODO: Format command in visual mode and normal mode
---				-- vim.api.nvim_create_user_command("Format", format
---				--   , { range = true, desc = "Format on range" })
---			end
+-- 		end
+-- 		--         disabled = not _G.IS_WINDOWS -- false represent don't use this server
+-- 	  },
+-- 	  --   gopls = {
+-- 	  --       name = "gopls",
+-- 	  --   },
+-- 	  --   tsserver = {
+-- 	  --       name = "typescript-language-server",
+-- 	  --   },
+-- 	  --   cssls = {
+-- 	  --       name = "css-lsp",
+-- 	  --   },
+-- 	  --   volar = {
+-- 	  --       name = "vue-language-server",
+-- 	  --   },
+-- 	  --   tailwindcss = {
+-- 	  --       name = "tailwindcss-language-server",
+-- 	  --   },
+-- 	  --   astro = {
+-- 	  --       name = "astro-language-server",
+-- 	  --   },
+-- 	  lua_ls = {
+-- 		name = "lua-language-server",
+-- 		config = {
+-- 		  settings = {
+-- 			Lua = {
+-- 			  diagnostics = {
+-- 				-- Get the language server to recognize the `vim` global
+-- 				globals = { "vim" },
+-- 			  },
+-- 			  workspace = {
+-- 				-- Make the server aware of Neovim runtime files
+-- 				-- library = vim.api.nvim_get_runtime_file("", true),
+-- 				library = {
+-- 				  vim.fn.stdpath("config"),
+-- 				},
+-- 				checkThirdParty = false,
+-- 			  },
+-- 			  -- Do not send telemetry data containing a randomized but unique identifier
+-- 			  telemetry = {
+-- 				enable = false,
+-- 			  },
+-- 			},
+-- 		  },
+-- 		},
+-- 	  },
+--   },
 
---			-- local opts = { buffer = bufnr }
---			local opts = { buffer = bufnr, remap = false }
---			vim.lsp.on_attach(function(client, bufnr)
---				if client.name == "eslint" then
---					vim.cmd.LspStop("eslint")
---					return
---				end
+--   local function lspconfig_setup()
+--   vim.api.nvim_create_autocmd("LspAttach", {
+-- 	callback = function(args)
+-- 	  local bufnr = args.buf
+-- 	  local client = vim.lsp.get_client_by_id(args.data.client_id)
 
---				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
---				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
---				vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
---				vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
---				vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
---				vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
---				vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
---				vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
---				vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
---				vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
---			end)
+-- 	  if client.supports_method("textDocument/formatting") then
+-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+-- 		  group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
+-- 		  buffer = bufnr,
+-- 		  callback = function()
+-- 			if not require("config.autoformat").autoformat then
+-- 			  return
+-- 			end
+-- 			format()
+-- 		  end,
+-- 		})
 
---			lsp.setup()
+-- 		vim.api.nvim_create_user_command("FormatToggle", function()
+-- 		  require("config.autoformat").toggle()
+-- 		  end, { desc = "Toggle Format on Save" })
 
---			vim.diagnostic.config({
---				virtual_text = true,
---			})
+-- 		-- TODO: Format command in visual mode and normal mode
+-- 		-- vim.api.nvim_create_user_command("Format", format
+-- 		--   , { range = true, desc = "Format on range" })
+-- 	  end
 
---			-- auto show diagnostic when cursor hold
---			vim.api.nvim_create_autocmd("CursorHold", {
---				buffer = bufnr,
---				callback = function()
---					local float_opts = {
---						focusable = false,
---						close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
---					}
+-- 	  local opts = { buffer = bufnr, remap = false }
+-- 	  vim.lsp.on_attach(function(client, bufnr)
+-- 		if client.name == "eslint" then
+-- 		  vim.cmd.LspStop("eslint")
+-- 		  return
+-- 		end
 
---					if not vim.b.diagnostics_pos then
---						vim.b.diagnostics_pos = { nil, nil }
---					end
+-- 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+-- 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+-- 		vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+-- 		vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+-- 		vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+-- 		vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+-- 		vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+-- 		vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
+-- 		vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+-- 		vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+-- 	  end)
 
---					local cursor_pos = vim.api.nvim_win_get_cursor(0)
---					if
---							(cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
---							and #vim.diagnostic.get() > 0
---					then
---						vim.diagnostic.open_float(nil, float_opts)
---					end
+-- 	  lsp.setup()
 
---					vim.b.diagnostics_pos = cursor_pos
---				end,
---			})
---		end,
---	})
+-- 	  vim.diagnostic.config({
+-- 		virtual_text = true,
+-- 	  })
 
---	local capabilities = vim.lsp.protocol.make_client_capabilities()
---	capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- 	  -- auto show diagnostic when cursor hold
+-- 	  vim.api.nvim_create_autocmd("CursorHold", {
+-- 		buffer = bufnr,
+-- 		callback = function()
+-- 		  local float_opts = {
+-- 			focusable = false,
+-- 			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+-- 		  }
 
---	local setup_server = function(server, config)
---		if not config then
---			return
---		end
+-- 		  if not vim.b.diagnostics_pos then
+-- 			vim.b.diagnostics_pos = { nil, nil }
+-- 		  end
 
---		if type(config) ~= "table" then
---			config = {}
---		end
+-- 		  local cursor_pos = vim.api.nvim_win_get_cursor(0)
+-- 		  if
+-- 			(cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
+-- 			and #vim.diagnostic.get() > 0
+-- 			then
+-- 			vim.diagnostic.open_float(nil, float_opts)
+-- 		  end
 
---		config = vim.tbl_deep_extend("force", {
---			capabilities = capabilities,
---		}, config)
+-- 		  vim.b.diagnostics_pos = cursor_pos
+-- 		end,
+-- 	  })
+-- 	end,
+--   })
+-- },
 
---		require("lspconfig")[server].setup(config)
---	end
+--   local capabilities = vim.lsp.protocol.make_client_capabilities()
+--   capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
---	for server, setting in pairs(servers) do
---		if setting.disabled then
---			goto continue
---		end
+--   local setup_server = function(server, config)
+--   if not config then
+--   return
+-- end
 
---		if setting.config ~= nil then
---			setup_server(server, setting.config)
---		else
---			setup_server(server, {})
---		end
+--   if type(config) ~= "table" then
+--   config = {}
+-- 	end
 
---		::continue::
---	end
---end
+-- 	config = vim.tbl_deep_extend("force", {
+-- 	  capabilities = capabilities,
+-- 	  }, config)
 
---return {
---	-- configuration for nvim lsp
---	{
---		"neovim/nvim-lspconfig",
---		event = { "BufReadPre", "BufNewFile" },
---		dependencies = {
+-- 	require("lspconfig")[server].setup(config)
+-- 	end
 
---			-- for develop neovim
---			--  {
---			--      "folke/neodev.nvim",
---			--      config = function()
---			--          require("neodev").setup()
---			--      end
---			--  },
+-- 	for server, setting in pairs(servers) do
+--   if setting.disabled then
+--   goto continue
+--   end
 
---			-- nvim-cmp source for neovim's built-in LSP
---			{
---				"hrsh7th/cmp-nvim-lsp",
---			},
+--   if setting.config ~= nil then
+--   setup_server(server, setting.config)
+-- else
+--   setup_server(server, {})
+-- end
 
---			-- Use Neovim as a language server to inject LSP
---			{
---				"jose-elias-alvarez/null-ls.nvim",
---				config = function()
---					require("null-ls").setup()
---				end,
---			},
---		},
---		config = function()
---			lsp_related_ui_adjust()
---			lspconfig_setup()
---		end,
---	},
+--   ::continue::
+-- 	end
+--   end
 
---	-- managing tool for lsp
---	{
---		"williamboman/mason.nvim",
---		build = ":MasonUpdate",
---		cmd = "Mason",
---		dependencies = {
---			-- bridges mason with the lspconfig
---			{
---				"williamboman/mason-lspconfig.nvim",
---				config = function()
---					require("mason-lspconfig").setup({})
---				end,
---			},
+-- 	return {
+-- 	  -- configuration for nvim lsp
+-- 	  {
+-- 		"neovim/nvim-lspconfig",
+-- 		event = { "BufReadPre", "BufNewFile" },
+-- 		dependencies = {
+-- 		  -- nvim-cmp source for neovim's built-in LSP
+-- 		  {
+-- 			"hrsh7th/cmp-nvim-lsp",
+-- 		  },
+-- 		  -- Use Neovim as a language server to inject LSP
+-- 		  {
+-- 			"jose-elias-alvarez/null-ls.nvim",
+-- 			config = function()
+-- 			  require("null-ls").setup()
+-- 			end,
+-- 		  },
+-- 		},
+-- 		config = function()
+-- 		  lsp_related_ui_adjust()
+-- 		  lspconfig_setup()
+-- 		end,
+-- 	  },
 
---			-- Install and upgrade third party tools automatically
---			{
---				"WhoIsSethDaniel/mason-tool-installer.nvim",
---				config = function()
---					local server_names = {}
---					for server, setting in pairs(servers) do
---						table.insert(server_names, setting.name)
---					end
---					require("mason-tool-installer").setup({
---						ensure_installed = server_names,
---					})
---				end,
---			},
+-- 	  -- Install and upgrade third party tools automatically
+-- 	  {
+-- 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+-- 		config = function()
+-- 		  local server_names = {}
+-- 		  for server, setting in pairs(servers) do
+-- 			table.insert(server_names, setting.name)
+-- 		  end
+-- 		  require("mason-tool-installer").setup({
+-- 			ensure_installed = server_names,
+-- 		  })
+-- 		end,
+-- 	  },
 
---			-- bridges mason.nvim with the null-ls plugin
---			{
---				"jay-babu/mason-null-ls.nvim",
---				config = function()
---					local nls = require("null-ls")
---					require("mason-null-ls").setup({
---						ensure_installed = {
---							"prettier",
---							'clangd',
---							'lua_ls',
---							'emmet_ls',
---							-- "dprint",
---							-- "rustfmt",
---						},
---						handlers = {
---							function()
---							end,
---							--  rustfmt = function(source_name, methods)
---							--      nls.register(nls.builtins.formatting.rustfmt.with({
---							--          filetypes = { "rust" },
---							--      }))
---							--  end,
---							prettier = function(source_name, methods)
---								nls.register(nls.builtins.formatting.prettier.with({
---									filetypes = { "html", "css", "scss", "java", "cpp", "lua", "vim" },
---									extra_args = { "--print-width", "120" },
---								}))
---							end,
---							--   dprint = function(source_name, methods)
---							--       filetypes = { "javascriptreact", "typescript", "typescriptreact", "json", "javascript" },
---							--       nls.register(nls.builtins.formatting.dprint.with({
---							--           -- check if project have dprint configuration
---							--           extra_args = get_dprint_config_path(),
---							--       }))
---							--   end,
---							-- eslint_d = function()
---							--   nls.register(nls.builtins.diagnostics.eslint_d)
---							-- end
---						},
---					})
---				end,
---			},
---		},
---		config = function()
---			require("mason").setup({
---				providers = {
---					"mason.providers.registry-api", -- default
---					"mason.providers.client",
---				},
---				ui = {
---					height = 0.85,
---					border = "rounded",
---				},
---			})
---		end,
---	},
---}
+-- 	  -- bridges mason.nvim with the null-ls plugin
+-- 	  {
+-- 		"jay-babu/mason-null-ls.nvim",
+-- 		config = function()
+-- 		  local nls = require("null-ls")
+-- 		  require("mason-null-ls").setup({
+-- 			ensure_installed = {
+-- 			  "prettier",
+-- 			  'clangd',
+-- 			  'lua_ls',
+-- 			  'emmet_ls',
+-- 			  'jdtls',
+-- 			  -- "dprint",
+-- 			  -- "rustfmt",
+-- 			},
+-- 			handlers = {
+-- 			  function()
+-- 			  end,
+-- 			  --  rustfmt = function(source_name, methods)
+-- 			  --      nls.register(nls.builtins.formatting.rustfmt.with({
+-- 			  --          filetypes = { "rust" },
+-- 			  --      }))
+-- 			  --  end,
+-- 			  prettier = function(source_name, methods)
+-- 				nls.register(nls.builtins.formatting.prettier.with({
+-- 				  filetypes = { "html", "css", "scss", "java", "cpp", "lua", "vim" },
+-- 				  extra_args = { "--print-width", "120" },
+-- 				}))
+-- 			  end,
+-- 			  --   dprint = function(source_name, methods)
+-- 			  --       filetypes = { "javascriptreact", "typescript", "typescriptreact", "json", "javascript" },
+-- 			  --       nls.register(nls.builtins.formatting.dprint.with({
+-- 			  --           -- check if project have dprint configuration
+-- 			  --           extra_args = get_dprint_config_path(),
+-- 			  --       }))
+-- 			  --   end,
+-- 			  -- eslint_d = function()
+-- 			  --   nls.register(nls.builtins.diagnostics.eslint_d)
+-- 			  -- end
+-- 			},
+-- 		  })
+-- 		end,
+-- 	  },
+--   },
+--   config = function()
+-- 	require("mason").setup({
+-- 	  providers = {
+-- 		"mason.providers.registry-api", -- default
+-- 		"mason.providers.client",
+-- 	  },
+-- 	  ui = {
+-- 		height = 0.85,
+-- 		border = "rounded",
+-- 	  },
+-- 	})
+--   end,
+-- },
+-- },
+-- }
