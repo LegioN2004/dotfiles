@@ -1,6 +1,6 @@
 vim.cmd("autocmd!")
 
-vim.opt.list = false
+vim.opt.list = true
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
@@ -28,7 +28,7 @@ vim.opt.backspace = "start,eol,indent" -- This option specifies which characters
 vim.opt.path:append({ "**" }) -- while finding files it also looks in the subfolders
 -- inbuilt command completion neovim stuff
 vim.opt.wildmenu = true
-vim.opt.wildmode = "longest,full"
+vim.opt.wildmode = "longest:full:full"
 vim.opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx,*DS_STORE,*.db,*/node_modules/*"
 
 vim.opt.splitright = true
@@ -36,17 +36,17 @@ vim.opt.splitbelow = true
 vim.opt.wrap = false
 vim.opt.ai = true -- always set autoindenting on
 vim.opt.si = true -- smart indent
-vim.opt.wildmenu = true
 vim.opt.showmatch = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.smartindent = true
-vim.opt.ruler = true
+vim.opt.ruler = false
 -- vim.opt.clipboard=unnamed,unnamedplus -- set clipboard to universal for easy copy/paste to diff apps
-vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
-vim.opt.hidden = true                             --This option allows you to switch between multiple buffers without saving a changed buffer
-vim.opt.mousehide = true                          --Hide the mouse pointer while typing.
-vim.opt.updatetime = 50                           --updatetime
+-- vim.opt.completeopt = "menuone,noinsert,noselect"  -- old -- as required by nvim-cmp 
+vim.opt.completeopt = "menu,menuone,noselect" --as required by nvim-cmp
+vim.opt.hidden = true   --This option allows you to switch between multiple buffers without saving a changed buffer
+vim.opt.mousehide = false --Hide the mouse pointer while typing.
+vim.opt.updatetime = 50    --updatetime
 -- vim.opt.timeoutlen = 300
 
 -- Undercurl stuff
@@ -83,24 +83,21 @@ vim.opt.fillchars = {
 }
 vim.opt.mousemoveevent = true
 -- command completion
-vim.opt.wildmode = "longest:full:full"
 vim.opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx,*DS_STORE,*.db"
 
 vim.opt.list = true
 vim.opt.listchars = "tab:>⋅,eol:⏎,trail:●,extends:▷,precedes:◁,nbsp:␣"
 
-vim.opt.cmdheight = 0
---new
--- disable netrw at the very start of your init.lua (strongly advised nvim-tree)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- Reduce command line messages since we can't see them properly anyway with
--- cmdheight = 0
-vim.opt.shortmess:append("C")
--- vim.opt.shortmess:append("S") -- We have our own search counter
-vim.opt.shortmess:append("c")
-vim.opt.shortmess:append("s")
+--- for noice.nvim stuff ---------------
+vim.opt.cmdheight = 1
+----new
+---- Reduce command line messages since we can't see them properly anyway with
+---- cmdheight = 0
+--vim.opt.shortmess:append("C")
+---- vim.opt.shortmess:append("S") -- We have our own search counter
+--vim.opt.shortmess:append("c")
+--vim.opt.shortmess:append("s")
+----------------------------------------
 
 vim.opt.shiftround = true  -- Round indent
 vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
