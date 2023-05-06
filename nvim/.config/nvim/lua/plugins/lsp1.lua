@@ -1,10 +1,14 @@
 return {
 {
-  'neovim/nvim-lspconfig',
+  'VonHeikemen/lsp-zero.nvim',
+  branch = 'v2.x',
   dependencies = {
+  { 'neovim/nvim-lspconfig' },
     {
       "williamboman/mason.nvim",
-      build = ":MasonUpdate",
+      build = function()
+        pcall(vim.cmd, 'MasonUpdate')
+      end,
       opts = {
         pip = {
           upgrade_pip = true,
@@ -19,7 +23,11 @@ return {
         },
       },
     },
-    'williamboman/mason-lspconfig.nvim', -- Optional
+    {'williamboman/mason-lspconfig.nvim'}, -- Optional
+    -- Autocompletion
+    {'hrsh7th/nvim-cmp'},     -- Required
+    {'hrsh7th/cmp-nvim-lsp'}, -- Required
+    {'L3MON4D3/LuaSnip'},     -- Required
   },
 },
 config = function()
