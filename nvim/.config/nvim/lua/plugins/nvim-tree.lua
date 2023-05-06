@@ -1,19 +1,4 @@
---
--- This function has been generated from your
---   view.mappings.list
---   view.mappings.custom_only
---   remove_keymaps
---
--- You should add this function to your configuration and set on_attach = on_attach in the nvim-tree setup call.
---
--- Although care was taken to ensure correctness and completeness, your review is required.
---
--- Please check for the following issues in auto generated content:
---   "Mappings removed" is as you expect
---   "Mappings migrated" are correct
---
 -- Please see https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach for assistance in migrating.
---
 
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
@@ -30,7 +15,7 @@ local function on_attach(bufnr)
   vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer,     opts('Open: In Place'))
   vim.keymap.set('n', '<C-k>', api.node.show_info_popup,              opts('Info'))
   vim.keymap.set('n', '<C-r>', api.fs.rename_sub,                     opts('Rename: Omit Filename'))
-  vim.keymap.set('n', 't', api.node.open.tab,                     opts('Open: New Tab'))
+  vim.keymap.set('n', '<C-n>', api.node.open.tab,                     opts('Open: New Tab'))
   vim.keymap.set('n', '<C-v>', api.node.open.vertical,                opts('Open: Vertical Split'))
   vim.keymap.set('n', '<C-x>', api.node.open.horizontal,              opts('Open: Horizontal Split'))
   vim.keymap.set('n', '<BS>',  api.node.navigate.parent_close,        opts('Close Directory'))
@@ -87,9 +72,10 @@ local function on_attach(bufnr)
   vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
   vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
   vim.keymap.set('n', 'o', function()
-    local node = api.tree.get_node_under_cursor()
-    -- your code goes here
-  end, opts('edit_and_close'))
+  local api = require("nvim-tree.api")
+  api.node.open.edit()
+  api.tree.close()
+  end)
 
 
 end

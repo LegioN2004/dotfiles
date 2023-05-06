@@ -523,29 +523,6 @@ config = function()
 	  require("nvim-tree").setup({
 		on_attach = on_attach,
         sync_root_with_cwd = true,
-		view = {
-		  mappings = {
-			custom_only = false,
-			list = {
-			  -- keys = {
-			  -- 	{ ";f", ":NvimTreeToggle<CR>", desc = "Toggle file tree" },
-			  -- 	{ "<leader>;f", ":NvimTreeFindFileToggle<CR>", desc = "Toggle file tree at current buffer" },
-			  -- },
-			  -- user mappings go here
-			  { key = { "l" }, action = "edit" }, -- Open node with l
-			  { key = { "h" }, action = "close_node" }, -- Close node with h
-			  {
-				key = { "o" },                   -- Close the tree when opening node with "o"
-				action = "edit_and_close",
-				action_cb = function()
-				  local api = require("nvim-tree.api")
-				  api.node.open.edit()
-				  api.tree.close()
-				end,
-			  },
-			},
-		  },
-		},
 		renderer = {
 		  highlight_opened_files = "name",
 		  indent_markers = {
