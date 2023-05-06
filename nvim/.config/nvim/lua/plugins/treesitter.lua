@@ -1,105 +1,105 @@
 return {
-	{
-		-- Used by mini.ai. No need to specify the text objects within treesitter config.
-		"nvim-treesitter/nvim-treesitter-textobjects", -- Additional textobjects for treesitter
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = "nvim-treesitter/nvim-treesitter",
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context", -- Keep e.g. function at top when scrolling below
-		name = "treesitter-context",
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = true,
-	},
-	{
-		"mrjones2014/nvim-ts-rainbow", -- Rainbow parentheses
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = "nvim-treesitter/nvim-treesitter",
-	},
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		name = "ts_context_commentstring",
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = "nvim-treesitter/nvim-treesitter",
-	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPost", "BufNewFile" },
-		build = function()
-			local ts_update = require("nvim-treesitter.install").update({
-				with_sync = true,
-			})
-			ts_update()
-		end,
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				-- A list of parser names, or "all"
-				ensure_installed = {
-					"lua",
-					"markdown",
-					"java",
-					"cpp",
-				},
+  {
+    -- Used by mini.ai. No need to specify the text objects within treesitter config.
+    "nvim-treesitter/nvim-treesitter-textobjects", -- Additional textobjects for treesitter
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context", -- Keep e.g. function at top when scrolling below
+    name = "treesitter-context",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = true,
+  },
+  {
+    "mrjones2014/nvim-ts-rainbow", -- Rainbow parentheses
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    name = "ts_context_commentstring",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    build = function()
+      local ts_update = require("nvim-treesitter.install").update({
+        with_sync = true,
+      })
+      ts_update()
+    end,
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        -- A list of parser names, or "all"
+        ensure_installed = {
+          "lua",
+          "markdown",
+          "java",
+          "cpp",
+        },
+        sync_install = false,
+        -- auto_install = true,
+        -- ignore_install = {  },
 
-				-- Install parsers synchronously (only applied to `ensure_installed`)
-				sync_install = false,
+        highlight = {
+          -- `false` will disable the whole extension
+          enable = true,
+          -- disable = { },
+          additional_vim_regex_highlighting = false,
+        },
 
-				-- Automatically install missing parsers when entering buffer
-				-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-				-- auto_install = true,
+        rainbow = {
+          enable = true,
+          extended_mode = true,
+        },
 
-				-- List of parsers to ignore installing (for "all")
-				-- ignore_install = {  },
+        autotag = {
+          enable = true, -- Through auto-tag plugin
+        },
 
-				---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-				-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+        indent = { -- Indentation based on = operator (experimental)
+          enable = true,
+        },
 
-				highlight = {
-					-- `false` will disable the whole extension
-					enable = true,
+        context_commentstring = { -- For nvim-ts-context-commentstring plugin
+          enable = true,
+          enable_autocmd = false, -- Disabled when used with Comment.nvim
+        },
 
-					-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-					-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-					-- the name of the parser)
-					-- list of language that will be disabled
-					-- disable = { },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<CR>",
+            scope_incremental = "<CR>",
+            node_incremental = "<TAB>",
+            node_decremental = "<S-TAB>",
+            -- ["af"] = { query = "@function.outer", desc = "Select outer part of a function region" },
+            -- ["if"] = { query = "@function.inner", desc = "Select inner part of a function region" },
+            -- ["ac"] = { query = "@class.outer", desc = "Select outer part of a class region" },
+            -- ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+          },
+        },
+        -- swap = {
+        --   enable = true,
+        --   swap_next = {
+        --     ["<leader>xp"] = { query = "@parameter.inner", desc = "Swap parameter with the next one" },
+        --   },
+        --   swap_previous = {
+        --     ["<leader>xP"] = { query = "@parameter.inner", desc = "Swap parameter with the previous one" },
+        --   },
+        -- },
+      })
 
-					-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-					-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-					-- Using this option may slow down your editor, and you may see some duplicate highlights.
-					-- Instead of true it can also be a list of languages
-					additional_vim_regex_highlighting = false,
-				},
-
-				rainbow = {
-					enable = true,
-					extended_mode = true,
-				},
-
-				autotag = {
-					enable = true, -- Through auto-tag plugin
-				},
-
-				indent = { -- Indentation based on = operator (experimental)
-					enable = true,
-				},
-
-				context_commentstring = { -- For nvim-ts-context-commentstring plugin
-					enable = true,
-					enable_autocmd = false, -- Disabled when used with Comment.nvim
-				},
-
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "<CR>",
-						scope_incremental = "<CR>",
-						node_incremental = "<TAB>",
-						node_decremental = "<S-TAB>",
-					},
-				},
-			})
-		end,
-	},
+        -- Must installed zig via scoop in Windows
+      -- if _G.IS_WINDOWS then
+      --   require("nvim-treesitter.install").compilers = { "zig" }
+      -- else
+      --   require("nvim-treesitter.install").compilers = { "clang", "gcc", "cc", "cl", "zig" }
+      -- end
+    end,
+  },
 }

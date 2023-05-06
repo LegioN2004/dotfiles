@@ -14,12 +14,15 @@ return {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     config = function()
-      require("fidget").setup {
-        -- window = {
-        -- 	blend = 0 -- set 0 if using transparent background, otherwise set 100
-        -- },
-      }
-    end
+      require("fidget").setup ({
+        text = {
+          spinner = "meter",
+        },
+        window = {
+          blend = 0, -- set 0 if using transparent background, otherwise set 100
+        },
+      })
+    end,
   },
 
   ------ Neovim plugin to improve the default vim.ui interfaces ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -164,13 +167,52 @@ return {
   --   end
   -- },
 
-  -- comments  ------
+  -- easy dressing config
   {
-    "tpope/vim-commentary",
-    event = "VeryLazy",
-    cmd = "Commentary",
+    "stevearc/dressing.nvim",
+    event = "BufEnter",
+    config = function()
+      require("dressing").setup({
+        input = {
+          win_options = {
+            winblend = 0,
+          },
+        },
+      })
+    end,
   },
-  ------ auto pairs for brackets braces etc ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  {
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        ft_ignore = { "neo-tree" },
+        segments = {
+          { sign = { name = { "Diagnostic" } } },
+          { sign = { name = { "Dap.*" } } },
+          { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+          { sign = { name = { "GitSigns.*" } } },
+        },
+      })
+    end,
+  },
+
+
+---- comments ---------------------------------------------------------------------------------
+  -- {
+  --   "tpope/vim-commentary",
+  --   event = "VeryLazy",
+  --   cmd = "Commentary",
+  -- },
+
+  {
+  	"numToStr/Comment.nvim",
+  	config = function()
+  		require("Comment").setup()
+  	end,
+  },
+  ------ auto pairs for brackets braces etc ------------------------------------------------------
   {
     "jiangmiao/auto-pairs",
     event = "BufEnter",
@@ -210,13 +252,6 @@ return {
     end,
   },
 
-  -- commenting
-  -- {
-  -- 	"numToStr/Comment.nvim",
-  -- 	config = function()
-  -- 		require("Comment").setup()
-  -- 	end,
-  -- },
 
   -- folding
   -- {
@@ -265,6 +300,74 @@ return {
           "fugitive",
         },
       }
+    end,
+  },
+
+  ------ references ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = { delay = 200 },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
+
+      local function map(key, dir, buffer)
+        vim.keymap.set("n", key, function()
+          require("illuminate")["goto_" .. dir .. "_reference"](false)
+        end, { desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference", buffer = buffer })
+      end
+
+      map("]]", "next")
+      map("[[", "prev")
+
+      -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          local buffer = vim.api.nvim_get_current_buf()
+          map("]]", "next", buffer)
+          map("[[", "prev", buffer)
+        end,
+      })
+    end,
+    keys = {
+      { "]]", desc = "Next Reference" },
+      { "[[", desc = "Prev Reference" },
+    },
+  },
+
+  ------ indent guides for Neovim ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      -- char = "▏",
+      char = "│",
+      filetype_exclude = { "help", "alpha", "dashboard", "nvim-tree", "neo-tree", "Trouble", "lazy" },
+      show_trailing_blankline_indent = false,
+      show_current_context = false,
+    },
+  },
+
+  -- active indent guide and indent text objects
+  {
+    "echasnovski/mini.indentscope",
+    version = false, -- wait till new 0.7.0 release to put it back on semver
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      -- symbol = "▏",
+      symbol = "│",
+      options = { try_as_border = true },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
+    config = function(_, opts)
+      require("mini.indentscope").setup(opts)
     end,
   },
 
@@ -377,8 +480,7 @@ return {
   --------------- previously present stuff ------------------------------------------------------------------------------
   "goolord/alpha-nvim",
   "LazyVim/LazyVim",
-  -- "tpope/vim-commentary",
-  { "tpope/vim-surround",       lazy = true },
+  -- { "tpope/vim-surround",       lazy = true },
   {
     "iamcco/markdown-preview.nvim",
     lazy = true,
@@ -475,4 +577,91 @@ return {
       })
     end
   },
+
+  --- code folding -------------------------------------------------
+  -- {
+  --   "kevinhwang91/nvim-ufo",
+  --   dependencies = "kevinhwang91/promise-async",
+  --   config = function()
+  --     vim.o.foldcolumn = "0" -- '0' is not bad
+  --     vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+  --     vim.o.foldlevelstart = 99
+  --     vim.o.foldenable = true
+
+  --     -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+  --     vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+  --     vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+
+  --     -- Adding number suffix of folded lines instead of the default ellipsis
+  --     local handler = function(virtText, lnum, endLnum, width, truncate)
+  --       local newVirtText = {}
+  --       local suffix = ("  %d "):format(endLnum - lnum)
+  --       local sufWidth = vim.fn.strdisplaywidth(suffix)
+  --       local targetWidth = width - sufWidth
+  --       local curWidth = 0
+  --       for _, chunk in ipairs(virtText) do
+  --         local chunkText = chunk[1]
+  --         local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+  --         if targetWidth > curWidth + chunkWidth then
+  --           table.insert(newVirtText, chunk)
+  --           print(vim.inspect(chunk))
+  --         else
+  --           chunkText = truncate(chunkText, targetWidth - curWidth)
+  --           local hlGroup = chunk[2]
+  --           table.insert(newVirtText, { chunkText, hlGroup })
+  --           chunkWidth = vim.fn.strdisplaywidth(chunkText)
+  --           -- str width returned from truncate() may less than 2nd argument, need padding
+  --           if curWidth + chunkWidth < targetWidth then
+  --             suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+  --           end
+  --           break
+  --         end
+  --         curWidth = curWidth + chunkWidth
+  --       end
+  --       table.insert(newVirtText, { suffix, "MoreMsg" })
+  --       return newVirtText
+  --     end
+
+  --     require("ufo").setup({
+  --       provider_selector = function(bufnr, filetype, buftype)
+  --         return { "treesitter", "indent" }
+  --       end,
+  --       fold_virt_text_handler = handler,
+  --       open_fold_hl_timeout = 200,
+  --     })
+  --   end,
+  -- },
+
+
+
+  -- TODO -----------------------------------------------
+  -- use this for some CSS stuff
+  -- color highlighter
+  -- {
+  --   "NvChad/nvim-colorizer.lua",
+  --   event = "BufEnter",
+  --   config = function()
+  --     require("colorizer").setup({
+  --       filetypes = { "*" },
+  --       user_default_options = {
+  --         names = false,
+  --         tailwind = "both",
+  --         mode = "background",
+  --       },
+  --     })
+  --   end,
+  -- },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "BufEnter",
+    config = function()
+        require("nvim-surround").setup({
+            -- Configuration here, or leave empty to use defaults
+        })
+    end
 }
+
+}
+
