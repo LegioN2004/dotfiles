@@ -1,198 +1,4 @@
 return {
-  --	{
-  --			"xiyaowong/transparent.nvim",
-  --			lazy = false,
-  --			config = function()
-  --			require("transparent").setup {
-  --			}
-  --			end
-  --	},
-
-  ------ ui for nvim-lsp progress ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  {
-    "j-hui/fidget.nvim",
-    event = "LspAttach",
-    config = function()
-      require("fidget").setup {
-        -- window = {
-        -- 	blend = 0 -- set 0 if using transparent background, otherwise set 100
-        -- },
-      }
-    end
-  },
-
-  ------ Neovim plugin to improve the default vim.ui interfaces ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  -- {
-  --   "stevearc/dressing.nvim",
-  --   event = "BufEnter",
-  --   config = function()
-  --     require("dressing").setup({
-  --       input = {
-  --         -- Set to false to disable the vim.ui.input implementation
-  --         enabled = true,
-  --         -- Default prompt string
-  --         default_prompt = "Input:",
-  --         -- Can be 'left', 'right', or 'center'
-  --         title_pos = "left",
-  --         -- When true, <Esc> will close the modal
-  --         insert_only = true,
-  --         -- When true, input will start in insert mode.
-  --         start_in_insert = true,
-  --         -- These are passed to nvim_open_win
-  --         anchor = "SW",
-  --         border = "rounded",
-  --         -- 'editor' and 'win' will default to being centered
-  --         relative = "cursor",
-  --         -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-  --         prefer_width = 50,
-  --         width = nil,
-  --         -- min_width and max_width can be a list of mixed types.
-  --         -- min_width = {20, 0.2} means "the greater of 20 columns or 20% of total"
-  --         max_width = { 140, 0.9 },
-  --         min_width = { 20, 0.2 },
-  --         buf_options = {},
-  --         win_options = {
-  --           -- Window transparency (0-100)
-  --           winblend = 0,
-  --           -- Disable line wrapping
-  --           wrap = false,
-  --           -- Indicator for when text exceeds window
-  --           list = true,
-  --           listchars = "precedes:…,extends:…",
-  --           -- Increase this for more context when text scrolls off the window
-  --           sidescrolloff = 0,
-  --         },
-  --         -- Set to `false` to disable
-  --         mappings = {
-  --           n = {
-  --             ["<Esc>"] = "Close",
-  --             ["<CR>"] = "Confirm",
-  --           },
-  --           i = {
-  --             ["<Esc>"] = "Close",
-  --             ["<CR>"] = "Confirm",
-  --             ["<Up>"] = "HistoryPrev",
-  --             ["<Down>"] = "HistoryNext",
-  --           },
-  --         },
-  --         override = function(conf)
-  --           -- This is the config that will be passed to nvim_open_win.
-  --           -- Change values here to customize the layout
-  --           return conf
-  --         end,
-  --         -- see :help dressing_get_config
-  --         get_config = nil,
-  --       },
-  --       select = {
-  --         -- Set to false to disable the vim.ui.select implementation
-  --         enabled = true,
-  --         -- Priority list of preferred vim.select implementations
-  --         backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
-  --         -- Trim trailing `:` from prompt
-  --         trim_prompt = true,
-  --         -- Options for telescope selector
-  --         -- These are passed into the telescope picker directly. Can be used like:
-  --         -- telescope = require('telescope.themes').get_ivy({...})
-  --         telescope = nil,
-  --         -- Options for fzf selector
-  --         fzf = {
-  --           window = {
-  --             width = 0.5,
-  --             height = 0.4,
-  --           },
-  --         },
-  --         -- Options for nui Menu
-  --         nui = {
-  --           position = "50%",
-  --           size = nil,
-  --           relative = "editor",
-  --           border = {
-  --             style = "rounded",
-  --           },
-  --           buf_options = {
-  --             swapfile = false,
-  --             filetype = "DressingSelect",
-  --           },
-  --           win_options = {
-  --             winblend = 10,
-  --           },
-  --           max_width = 80,
-  --           max_height = 40,
-  --           min_width = 40,
-  --           min_height = 10,
-  --         },
-  --         -- Options for built-in selector
-  --         builtin = {
-  --           -- These are passed to nvim_open_win
-  --           anchor = "NW",
-  --           border = "rounded",
-  --           -- 'editor' and 'win' will default to being centered
-  --           relative = "editor",
-  --           buf_options = {},
-  --           win_options = {
-  --             -- Window transparency (0-100)
-  --             winblend = 10,
-  -- },
-  --           -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-  --           -- the min_ and max_ options can be a list of mixed types.
-  --           -- max_width = {140, 0.8} means "the lesser of 140 columns or 80% of total"
-  --           width = nil,
-  --           max_width = { 140, 0.8 },
-  --           min_width = { 40, 0.2 },
-  --           height = nil,
-  --           max_height = 0.9,
-  --           min_height = { 10, 0.2 },
-  --           -- Set to `false` to disable
-  --           mappings = {
-  --             ["<Esc>"] = "Close",
-  --             ["<C-c>"] = "Close",
-  --             ["<CR>"] = "Confirm",
-  --           },
-  --           override = function(conf)
-  --             -- This is the config that will be passed to nvim_open_win.
-  --             -- Change values here to customize the layout
-  --             return conf
-  --           end,
-  --         },
-  --         -- Used to override format_item. See :help dressing-format
-  --         format_item_override = {},
-  -- -- see :help dressing_get_config
-  --         get_config = nil,
-  --       },
-  --     })
-  --   end
-  -- },
-
-  -- comments  ------
-  {
-    "tpope/vim-commentary",
-    event = "VeryLazy",
-    cmd = "Commentary",
-  },
-  ------ auto pairs for brackets braces etc ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  {
-    "jiangmiao/auto-pairs",
-    event = "BufEnter",
-  },
-  --    {
-  --        "windwp/nvim-autopairs",
-  --       event = "InsertEnter",
-  --       opts = {
-  --           check_ts = true,
-  --       },
-  --       config = function(_, opts)
-  --           require("nvim-autopairs").setup(opts)
-  --
-  --           --- setup for cmp
-  --           local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  --           local cmp_status_ok, cmp = pcall(require, "cmp")
-  --           if not cmp_status_ok then
-  --               return
-  --           end
-  --           cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-  --       end,
-  --   },
-
   ------ git signs ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   {
     "lewis6991/gitsigns.nvim",
@@ -216,8 +22,8 @@ return {
         -- stylua: ignore start
         map("n", "]h", gs.next_hunk, "Next Hunk")
         map("n", "[h", gs.prev_hunk, "Prev Hunk")
-        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+        map({ "n", "v" }, "<leader>gsh", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+        map({ "n", "v" }, "<leader>grh", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
         map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
         map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
         map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
@@ -378,7 +184,7 @@ return {
     end,
   },
 
-  -- noicer ui
+  --- noicer ui -------------------------------------------------------------------------
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -477,12 +283,12 @@ return {
           require("notify").dismiss({ silent = true, pending = true })
         end,
         desc = "Delete all Notifications",
-},
-},
-config = function()
-  vim.notify = function(msg, level, opts)
-    if not started then
-      require("notify").setup({
+      },
+    },
+    config = function()
+      vim.notify = function(msg, level, opts)
+        if not started then
+          require("notify").setup({
             background_colour = "#d79921",
             timeout = 3500,
             render = "minimal",
@@ -536,11 +342,11 @@ config = function()
                 deleted = icons.FileDeleted,
                 ignored = icons.FileIgnored,
               },
-},
-},
-},
-hijack_netrw = true,
-  filters = {
+            },
+          },
+        },
+        hijack_netrw = true,
+        filters = {
           dotfiles = false,
           git_clean = false,
           no_buffer = false,
@@ -548,70 +354,15 @@ hijack_netrw = true,
         actions = { open_file = { quit_on_open = false } },
         update_focused_file = {
           enable = true,
-},
+        },
       })
     end,
   },
 
-  -------- neo-tree file explorer -----------------------------
-  -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   cmd = "Neotree",
-  --   keys = {
-  --     {
-  --       ";f",
-  --       function()
-  --         require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
-  --       end,
-  --       desc = "Explorer NeoTree (root dir)",
-  --     },
-  --     {
-  --       ";F",
-  --       function()
-  --         require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-  --       end,
-  --       desc = "Explorer NeoTree (cwd)",
-  --     },
---     -- { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
---     -- { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
---   },
---   deactivate = function()
---     vim.cmd([[Neotree close]])
---   end,
---   init = function()
---     vim.g.neo_tree_remove_legacy_commands = 1
---     if vim.fn.argc() == 1 then
---       local stat = vim.loop.fs_stat(vim.fn.argv(0))
---       if stat and stat.type == "directory" then
---         require("neo-tree")
---       end
---     end
---   end,
---   opts = {
---     filesystem = {
---       bind_to_cwd = false,
---       follow_current_file = true,
---     },
---     window = {
---       mappings = {
---         ["<space>"] = "none",
---       },
---     },
---     default_component_configs = {
---       indent = {
---         with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
---         expander_collapsed = "",
---         expander_expanded = "",
---         expander_highlight = "NeoTreeExpander",
---       },
---     },
---   },
--- },
-
------- floating terminal for better reach ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-{
-"akinsho/toggleterm.nvim",
-version = "*",
+  ------ floating terminal for better reach ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
     config = true,
     event = VeryLazy,
     cmd = { "ToggleTerm", "ToggleTermToggleAll" },
@@ -704,22 +455,6 @@ version = "*",
     end,
   },
 
-  ------limelight and goyo---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  {
-    "junegunn/limelight.vim",
-    event = VeryLazy,
-    cmd = "Limelight",
-  },
-
-  -- Distraction-free coding for Neovim
-  {
-    "folke/zen-mode.nvim",
-    event = VeryLazy,
-    cmd = "ZenMode",
-    config = function()
-      vim.api.nvim_set_hl(0, 'ZenBg', { ctermbg = 0 })
-    end
-  },
 
   {
     "szw/vim-maximizer",
@@ -732,67 +467,4 @@ version = "*",
       vim.api.nvim_set_hl(0, 'ZenBg', { ctermbg = 0 })
     end
   },
-
-  -- Getting you where you want with the fewest keystrokes
-  {
-"ThePrimeagen/harpoon",
-event = VeryLazy,
-    cmd = "Harpoon",
-    keys = {
-      { "<leader>Ha", function() require("harpoon.ui").toggle_quick_menu() end, mode = "n", desc = "Harpoon Menu" },
-      {
-        "<leader>ad",
-        function() require("harpoon.mark").add_file() end,
-        mode = "n",
-        desc =
-          "Harpoon Add File"
-      },
-      {
-        "<leader>1",
-        function() require("harpoon.ui").nav_file(1) end,
-        mode = "n",
-        desc =
-          "Harpoon Nav File 1"
-      },
-      {
-        "<leader>2",
-        function() require("harpoon.ui").nav_file(2) end,
-        mode = "n",
-        desc =
-          "Harpoon Nav File 2"
-      },
-      {
-        "<leader>3",
-        function() require("harpoon.ui").nav_file(3) end,
-        mode = "n",
-        desc =
-          "Harpoon Nav File 3"
-      },
-      {
-        "<leader>4",
-        function() require("harpoon.ui").nav_file(4) end,
-        mode = "n",
-        desc =
-          "Harpoon Nav File 4"
-      },
-    },
-    config = function()
-      vim.api.nvim_create_autocmd({ "Filetype" }, {
-        pattern = "harpoon",
-        callback = function()
-          vim.opt.cursorline = true
-          vim.api.nvim_set_hl(0, 'HarpoonWindow', { link = 'Normal' })
-          vim.api.nvim_set_hl(0, 'HarpoonBorder', { link = 'Normal' })
-        end
-      })
-    end
-  },
-
-  {
-    "folke/todo-comments.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup {}
-    end
-  }
 }

@@ -45,7 +45,7 @@ vim.opt.ruler = false
 -- vim.opt.completeopt = "menuone,noinsert,noselect"  -- old -- as required by nvim-cmp 
 vim.opt.completeopt = "menu,menuone,noselect" --as required by nvim-cmp
 vim.opt.hidden = true   --This option allows you to switch between multiple buffers without saving a changed buffer
-vim.opt.mousehide = false --Hide the mouse pointer while typing.
+vim.opt.mousehide = true --Hide the mouse pointer while typing.
 vim.opt.updatetime = 50    --updatetime
 -- vim.opt.timeoutlen = 300
 
