@@ -11,7 +11,10 @@ return {
 	  end,
 	  -- "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	},
-	{"nvim-lua/plenary.nvim"},
+	{ 
+      "nvim-lua/plenary.nvim",
+      lazy = true,
+    },
 	{
 	  "folke/trouble.nvim",
 	  dependencies = "nvim-tree/nvim-web-devicons",

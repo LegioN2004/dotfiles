@@ -48,16 +48,17 @@ local m = {}
     -- find more here: https://www.nerdfonts.com/cheat-sheet
 
     cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body) -- For `luasnip` users.
-        end,
+      sources = {
+        { name = "luasnip" },
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "path" },
       },
       mapping = {
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+        ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
         ["<C-e>"] = cmp.mapping {
@@ -96,6 +97,16 @@ local m = {}
             "s",
           }),
       },
+      snippet = {
+        expand = function(args)
+          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end,
+      },
+      window = {
+        documentation = {
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        },
+      },
       formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
@@ -111,20 +122,9 @@ local m = {}
           return vim_item
         end,
       },
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
-      },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
-      },
-      window = {
-        documentation = {
-          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        },
       },
       experimental = {
         ghost_text = false,

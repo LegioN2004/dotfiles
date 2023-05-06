@@ -1,11 +1,13 @@
 return {
 {
   'VonHeikemen/lsp-zero.nvim',
+  event = {'BufEnter'},
   branch = 'v2.x',
   dependencies = {
   { 'neovim/nvim-lspconfig' },
     {
       "williamboman/mason.nvim",
+      cmd = 'Mason',
       build = ':MasonUpdate',
     },
     {'williamboman/mason-lspconfig.nvim'}, -- Optional

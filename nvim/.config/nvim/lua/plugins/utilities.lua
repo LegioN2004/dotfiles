@@ -60,10 +60,10 @@ return {
           "terminal",
         },
         buftype_exclude = { -- A list of buffer types for which the auto command gets disabled
-  "help",
-"nofile",
+          "help",
+          "nofile",
           "terminal",
-"prompt",
+          "prompt",
           "nvim-tree",
           "alpha",
           "fugitive",
@@ -81,9 +81,9 @@ return {
   },
 
   -- displays a popup with possible keybindings of the command
-{
-"folke/which-key.nvim",
-config = function()
+  {
+    "folke/which-key.nvim",
+    config = function()
       vim.o.timeout = true
       vim.timeoutlen = 300
       require("which-key").setup({
@@ -94,7 +94,7 @@ config = function()
         },
         window = {
           border = "single",
-},
+        },
       })
     end,
   },
@@ -107,7 +107,7 @@ config = function()
     "iamcco/markdown-preview.nvim",
     lazy = true,
     cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
-build = "cd app && npm install",
+    build = "cd app && npm install",
     setup = function()
       vim.g.mkdp_filetypes = { "markdown" }
       ft = { "markdown" }
@@ -117,13 +117,13 @@ build = "cd app && npm install",
   {
     "ThePrimeagen/vim-be-good",
     event = VeryLazy,
-cmd = "VimBeGood",
+    cmd = "VimBeGood",
   },
 
   {
     "mbbill/undotree",
     event = VeryLazy,
-cmd = { "UndotreeShow", "UndotreeToggle", "UndotreeHide", "UndotreeFocus" },
+    cmd = { "UndotreeShow", "UndotreeToggle", "UndotreeHide", "UndotreeFocus" },
   },
 
   -- colorschemes
