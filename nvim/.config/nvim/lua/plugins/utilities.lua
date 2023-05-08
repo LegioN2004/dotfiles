@@ -429,6 +429,7 @@ return {
   -- highilighted comments very good looking-----------------------------
   {
     "folke/todo-comments.nvim",
+    lazy = false,
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup {}

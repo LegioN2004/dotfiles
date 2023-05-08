@@ -1,3 +1,4 @@
+-- TODO check the  next tmux window neovim configuration for improvements in my main config and also load the session setup.vim(my one) copy.vim(the one for copying) which hass all the files
 return {
   "nvim-telescope/telescope.nvim",
   cmd = "Telescope",
