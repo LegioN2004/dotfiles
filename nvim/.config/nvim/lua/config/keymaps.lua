@@ -41,11 +41,11 @@ keymap("n", "ts", ":so<CR>", opts)
 
 --splitting windows
 vim.keymap.set("n", "sv", "<c-w>v", { silent = true })
-vim.keymap.set("n", "sh", "<c-w>s", { silent = true })
+vim.keymap.set("n", "ss", "<c-w>s", { silent = true })
 vim.keymap.set("n", "sx", ":close<cr>", { silent = true })
 
 --(window keybinds) new tab
-keymap("n", "tn", ":tabnew<Return><C-w>w", opts)
+keymap("n", "tn", ":tabnew<Return><C-w>w", { silent = true })
 
 --tab movement
 keymap("n", "<tab>", ":tabnext<Return>", opts)
@@ -59,10 +59,10 @@ keymap("n", "<leader><S-tab>", ":bprevious<Return>", opts)
 -- keymap("n", "bd", ":bdelete<Return>", opts)
 
 --better movement between splits
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "sh", "<C-w>h", opts)
+keymap("n", "sj", "<C-w>j", opts)
+keymap("n", "sk", "<C-w>k", opts)
+keymap("n", "sl", "<C-w>l", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
