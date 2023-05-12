@@ -122,3 +122,12 @@ vim.api.nvim_create_autocmd("FileType", {
 --     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 --   end,
 -- })
+
+
+-- new stuff 
+vim.cmd([[
+augroup Telescope
+  autocmd!
+  autocmd FileType TelescopePrompt let g:AutoPairsEnable = 0
+augroup END
+]])
