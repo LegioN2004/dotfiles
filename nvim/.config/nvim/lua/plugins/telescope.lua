@@ -37,7 +37,7 @@ return {
     },
 
     -- ui for telescope and some other related plugins
-    { 
+    {
       "nvim-lua/plenary.nvim",
       lazy = true,
     },

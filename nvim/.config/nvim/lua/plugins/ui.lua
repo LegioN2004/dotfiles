@@ -221,14 +221,12 @@ return {
     },
     config = function()
       vim.notify = function(msg, level, opts)
-        if not started then
           require("notify").setup({
             background_colour = "#d79921",
             timeout = 3500,
             render = "minimal",
             stages = "static",
           })
-        end
 
         msg = vim.trim(msg)
 
