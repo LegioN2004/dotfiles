@@ -225,7 +225,7 @@ schemes:
         - { index: 17, color: "#F5E0DC" }
 
 #set the theme
-# colors: *catpuccin-mocha
+colors: *catpuccin-mocha
 
 import:
  - /home/sunny/dotfiles/alacritty/.config/alacritty/themes/github_dark.yml
@@ -311,4 +311,3 @@ key_bindings:
   - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt  }
   - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt  }
   # - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
-

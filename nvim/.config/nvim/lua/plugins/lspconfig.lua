@@ -64,6 +64,16 @@ lsp.set_preferences({
   }
 })
 
+  require("lspconfig.ui.windows").default_options.border = "rounded"
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+
+  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+  end
+
 lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
@@ -82,7 +92,16 @@ end)
 lsp.setup()
 
 vim.diagnostic.config({
-  virtual_text = true,
-})
+    virtual_text = {
+      prefix = "●",
+      severity_sort = true,
+    },
+    float = {
+      border = "rounded",
+      source = "always", -- Or "if_many"
+      prefix = " - ",
+    },
+    severity_sort = true,
+  })
 
 return m

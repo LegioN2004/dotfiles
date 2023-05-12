@@ -9,8 +9,16 @@ return {
       "williamboman/mason.nvim",
       cmd = 'Mason',
       build = ':MasonUpdate',
+        priority = 100,
     },
-    {'williamboman/mason-lspconfig.nvim'}, -- Optional
+    {
+      -- bridges mason with the lspconfig
+        priority = 80,
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+          require("mason-lspconfig").setup({})
+        end,
+      },
     -- Autocompletion
     {'hrsh7th/nvim-cmp'},     -- Required
     {'hrsh7th/cmp-nvim-lsp'}, -- Required
