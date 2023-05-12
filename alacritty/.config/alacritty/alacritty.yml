@@ -228,7 +228,7 @@ schemes:
 # colors: *catpuccin-mocha
 
 import:
- - /home/sunny/.config/alacritty/themes/themes/nord.yml
+ - /home/sunny/dotfiles/alacritty/.config/alacritty/themes/github_dark.yml
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
