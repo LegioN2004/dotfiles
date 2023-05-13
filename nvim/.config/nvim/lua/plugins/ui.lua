@@ -62,20 +62,20 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch" },
-          lualine_x = {
-            { "filetype", icon_only = true, separator = "  ", padding = { left = 1, right = 1 } },
-          },
           lualine_c = {
             -- stylua: ignore
+            { "filetype", icon_only = true, padding = { left = 1, right = 1 } },
             {
               "filename",
-              symbols = { separator = "  ", modified = "  ", readonly = "  ", unnamed = "  " }
+              symbols = { modified = "  ", readonly = "  ", unnamed = "  ", padding = { left = 0, right = 0 } }
             },
             {
               require("lazy.status").updates,
               cond = require("lazy.status").has_updates,
               color = fg("Special"),
             },
+          },
+          lualine_x = {
             {
               "diagnostics",
               symbols = {
@@ -89,27 +89,27 @@ return {
           lualine_y = {
             -- stylua: ignore
             {
-              function() return require("noice").api.status.command.get() end,
-              cond = function()
-                return package.loaded["noice"] and
-                  require("noice").api.status.command.has()
-              end,
-              color = fg("Statement")
-            },
-          },
-          lualine_z = {
-            -- function()
-            -- 	return " " .. os.date("%r")
-            -- end,
-            { "progress", separator = "",                   padding = { left = 1, right = 0 } },
-            { "location", padding = { left = 1, right = 1 } },
-            {
               "diff",
               symbols = {
                 added = icons.git.added,
                 modified = icons.git.modified,
                 removed = icons.git.removed,
               },
+            },
+          },
+          lualine_z = {
+            -- function()
+            -- 	return " " .. os.date("%r")
+            -- end,
+            { "progress",  padding = { left = 1, right = 1 } },
+            { "location", padding = { left = 1, right = 1 } },
+            {
+              function() return require("noice").api.status.command.get() end,
+              cond = function()
+                return package.loaded["noice"] and
+                  require("noice").api.status.command.has()
+              end,
+              color = fg("Statement")
             },
           },
         },

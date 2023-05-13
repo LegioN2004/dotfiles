@@ -47,11 +47,10 @@ local m = {}
     -- find more here: https://www.nerdfonts.com/cheat-sheet
 
     cmp.setup {
-      sources = {
-        { name = "luasnip" },
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "path" },
+      snippet = {
+        expand = function(args)
+          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end,
       },
       mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -96,16 +95,6 @@ local m = {}
             "s",
           }),
       },
-      snippet = {
-        expand = function(args)
-          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        end,
-      },
-      window = {
-        documentation = {
-          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-        },
-      },
       formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
@@ -121,9 +110,20 @@ local m = {}
           return vim_item
         end,
       },
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+      },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
+      },
+      window = {
+        documentation = {
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        },
       },
       experimental = {
         ghost_text = false,
