@@ -89,12 +89,12 @@ return {
           lualine_y = {
             -- stylua: ignore
             {
-              "diff",
-              symbols = {
-                added = icons.git.added,
-                modified = icons.git.modified,
-                removed = icons.git.removed,
-              },
+              function() return require("noice").api.status.command.get() end,
+              cond = function()
+                return package.loaded["noice"] and
+                  require("noice").api.status.command.has()
+              end,
+              color = fg("Statement")
             },
           },
           lualine_z = {
@@ -104,12 +104,12 @@ return {
             { "progress",  padding = { left = 1, right = 1 } },
             { "location", padding = { left = 1, right = 1 } },
             {
-              function() return require("noice").api.status.command.get() end,
-              cond = function()
-                return package.loaded["noice"] and
-                  require("noice").api.status.command.has()
-              end,
-              color = fg("Statement")
+              "diff",
+              symbols = {
+                added = icons.git.added,
+                modified = icons.git.modified,
+                removed = icons.git.removed,
+              },
             },
           },
         },
