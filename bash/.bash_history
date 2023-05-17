@@ -1,11 +1,3 @@
-source .bashrc 
-ls
-ll
-lr
-source .bashrc 
-ld
-tldr tmux
-source .bashrc 
 lg
 ls
 ll
@@ -497,4 +489,12 @@ hyperfine "nvim --headless +qa" --warmup 10
 zsh
 yes|paru -Syyu
 clean
+exit
+ls
+cd ../../config/
+ls
+mv autoformat.lua autoformat.lua.old
+exit
+v
+cd
 exit

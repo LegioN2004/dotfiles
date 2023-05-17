@@ -64,18 +64,6 @@ return {
           lualine_b = { "branch" },
           lualine_c = {
             -- stylua: ignore
-            { "filetype", icon_only = true, padding = { left = 1, right = 1 } },
-            {
-              "filename",
-              symbols = { modified = "  ", readonly = "  ", unnamed = "  ", padding = { left = 0, right = 0 } }
-            },
-            {
-              require("lazy.status").updates,
-              cond = require("lazy.status").has_updates,
-              color = fg("Special"),
-            },
-          },
-          lualine_x = {
             {
               "diagnostics",
               symbols = {
@@ -85,24 +73,6 @@ return {
                 hint = icons.diagnostics.Hint,
               },
             },
-          },
-          lualine_y = {
-            -- stylua: ignore
-            {
-              function() return require("noice").api.status.command.get() end,
-              cond = function()
-                return package.loaded["noice"] and
-                  require("noice").api.status.command.has()
-              end,
-              color = fg("Statement")
-            },
-          },
-          lualine_z = {
-            -- function()
-            -- 	return " " .. os.date("%r")
-            -- end,
-            { "progress",  padding = { left = 1, right = 1 } },
-            { "location", padding = { left = 1, right = 1 } },
             {
               "diff",
               symbols = {
@@ -111,11 +81,41 @@ return {
                 removed = icons.git.removed,
               },
             },
+            {
+              require("lazy.status").updates,
+              cond = require("lazy.status").has_updates,
+              color = fg("Special"),
+            },
+          },
+          lualine_x = {
+            {
+              "filename",
+              symbols = { modified = "  ", readonly = "  ", unnamed = "  ", padding = { left = 0, right = 0 } },
+            },
+            { "filetype", icon_only = true, padding = { left = 1, right = 1 } },
+          },
+          lualine_y = {
+            -- stylua: ignore
+            {
+              function() return require("noice").api.status.command.get() end,
+              cond = function()
+                return package.loaded["noice"] and
+                    require("noice").api.status.command.has()
+              end,
+              color = fg("Statement")
+            },
+          },
+          lualine_z = {
+            -- function()
+            -- 	return " " .. os.date("%r")
+            -- end,
+            { "progress", padding = { left = 1, right = 1 } },
+            { "location", padding = { left = 0, right = 1 } },
           },
         },
         extensions = { 'fugitive', 'neo-tree', 'nvim-tree', 'lazy', 'fidget' },
       }
-    end,
+    end
   },
 
 
@@ -164,25 +164,25 @@ return {
         function() require("noice").redirect(vim.fn.getcmdline()) end,
         mode = "c",
         desc =
-          "Redirect Cmdline"
+        "Redirect Cmdline"
       },
       {
         "<leader>snl",
         function() require("noice").cmd("last") end,
         desc =
-          "Noice Last Message"
+        "Noice Last Message"
       },
       {
         "<leader>snh",
         function() require("noice").cmd("history") end,
         desc =
-          "Noice History"
+        "Noice History"
       },
       {
         "<leader>sna",
         function() require("noice").cmd("all") end,
         desc =
-          "Noice All"
+        "Noice All"
       },
       -- {
       -- 	"<c-f>",
@@ -222,12 +222,12 @@ return {
     },
     config = function()
       vim.notify = function(msg, level, opts)
-          require("notify").setup({
-            background_colour = "#d79921",
-            timeout = 3500,
-            render = "minimal",
-            stages = "static",
-          })
+        require("notify").setup({
+          background_colour = "#d79921",
+          timeout = 3500,
+          render = "minimal",
+          stages = "static",
+        })
 
         msg = vim.trim(msg)
 

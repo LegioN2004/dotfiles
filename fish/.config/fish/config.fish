@@ -197,4 +197,4 @@ alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast
 alias ex="thunar"
 
 #alias to update the browsers automatically
-alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome"
+alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-desktop discord"
