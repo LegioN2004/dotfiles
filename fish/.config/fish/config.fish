@@ -198,3 +198,7 @@ alias ex="thunar"
 
 #alias to update the browsers automatically
 alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-desktop discord"
+
+
+# nnn stuff
+export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'

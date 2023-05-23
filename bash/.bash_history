@@ -1,8 +1,3 @@
-lg
-ls
-ll
-lr
-nv
 v
 ide
 cd dotfiles/
@@ -496,5 +491,10 @@ ls
 mv autoformat.lua autoformat.lua.old
 exit
 v
+cd
+exit
+sl
+pwd
+ls
 cd
 exit

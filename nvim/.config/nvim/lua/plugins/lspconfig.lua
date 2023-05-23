@@ -2,7 +2,7 @@ local m = {}
 local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+  lsp.default_keymaps({ buffer = bufnr })
 end)
 
 -- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
@@ -26,7 +26,7 @@ lsp.configure('lua_ls', {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        -- library = 
+        -- library =
         library = {
           vim.api.nvim_get_runtime_file("", true),
           vim.fn.stdpath("config"),
@@ -42,7 +42,7 @@ lsp.configure('lua_ls', {
 })
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -64,18 +64,8 @@ lsp.set_preferences({
   }
 })
 
-  require("lspconfig.ui.windows").default_options.border = "rounded"
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-
-  local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-  end
-
 lsp.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+  local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -92,16 +82,16 @@ end)
 lsp.setup()
 
 vim.diagnostic.config({
-    virtual_text = {
-      prefix = "●",
-      severity_sort = true,
-    },
-    float = {
-      border = "rounded",
-      source = "always", -- Or "if_many"
-      prefix = " - ",
-    },
+  virtual_text = {
+    prefix = "●",
     severity_sort = true,
-  })
+  },
+  float = {
+    border = "rounded",
+    source = "always", -- Or "if_many"
+    prefix = " - ",
+  },
+  severity_sort = true,
+})
 
 return m
