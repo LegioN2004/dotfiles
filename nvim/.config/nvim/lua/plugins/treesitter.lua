@@ -95,7 +95,7 @@ return {
         -- },
       })
 
-        -- Must installed zig via scoop in Windows
+      -- Must installed zig via scoop in Windows
       -- if _G.IS_WINDOWS then
       --   require("nvim-treesitter.install").compilers = { "zig" }
       -- else
