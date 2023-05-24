@@ -35,7 +35,7 @@ return {
 			-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 			cmd = {
 				-- '/Users/hp/Library/Java/JavaVirtualMachines/temurin-18.0.1/Contents/Home/bin/java',
-				"/home/sunny/Downloads/jdk-17.0.6/bin/java",
+				"/usr/bin/java",
 				"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 				"-Dosgi.bundles.defaultStartLevel=4",
 				"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -65,7 +65,7 @@ return {
 			-- for a list of options
 			settings = {
 				java = {
-					home = "/home/sunny/Downloads/jdk-17.0.6/bin/java",
+					home = "/usr/bin/java",
 					eclipse = {
 						downloadSources = true,
 					},
@@ -78,7 +78,7 @@ return {
 							},
 							{
 								name = "JavaSE-17",
-								path = "/home/sunny/Downloads/jdk-17.0.6/bin/java",
+								path = "/usr/bin/java",
 							},
 						},
 					},

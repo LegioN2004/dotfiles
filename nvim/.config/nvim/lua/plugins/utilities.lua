@@ -199,18 +199,18 @@ return {
 	},
 
 	---- comments ---------------------------------------------------------------------------------
-	-- {
-	--   "tpope/vim-commentary",
-	--   event = "VeryLazy",
-	--   cmd = "Commentary",
-	-- },
-
 	{
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
+		"tpope/vim-commentary",
+		event = "VeryLazy",
+		cmd = "Commentary",
 	},
+
+	-- {
+	-- 	"numToStr/Comment.nvim",
+	-- 	config = function()
+	-- 		require("Comment").setup()
+	-- 	end,
+	-- },
 	------ auto pairs for brackets braces etc ------------------------------------------------------
 	{
 		"jiangmiao/auto-pairs",
