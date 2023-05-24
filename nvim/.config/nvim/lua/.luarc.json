@@ -6,7 +6,10 @@
         "${3rd}/busted/library",
         "${3rd}/luassert/library",
         "${3rd}/luv/library",
+<<<<<<< Updated upstream
         "/home/sunny/.local/share/lvim/mason/packages/lua-language-server/libexec/meta/67b47c02",
+=======
+>>>>>>> Stashed changes
         "/home/sunny/.local/share/lvim/mason/packages/lua-language-server/libexec/meta/67b47c02"
     ]
 }
