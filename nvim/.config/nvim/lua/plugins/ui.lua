@@ -116,7 +116,7 @@ return {
             { "location", padding = { left = 0, right = 1 } },
           },
         },
-        extensions = { "fugitive", "neo-tree", "nvim-tree", "lazy", "fidget" },
+        extensions = { "fugitive", "neo-tree", "nvim-tree", "lazy" },
       }
     end,
   },
