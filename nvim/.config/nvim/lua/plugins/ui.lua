@@ -65,20 +65,16 @@ return {
           lualine_c = {
             -- stylua: ignore
             {
+              "filename",
+              symbols = { modified = "  ", readonly = "  ", unnamed = "  ", padding = { left = 0, right = 0 } },
+            },
+            {
               "diagnostics",
               symbols = {
                 error = icons.diagnostics.Error,
                 warn = icons.diagnostics.Warn,
                 info = icons.diagnostics.Info,
                 hint = icons.diagnostics.Hint,
-              },
-            },
-            {
-              "diff",
-              symbols = {
-                added = icons.git.added,
-                modified = icons.git.modified,
-                removed = icons.git.removed,
               },
             },
             {
@@ -89,8 +85,12 @@ return {
           },
           lualine_x = {
             {
-              "filename",
-              symbols = { modified = "  ", readonly = "  ", unnamed = "  ", padding = { left = 0, right = 0 } },
+              "diff",
+              symbols = {
+                added = icons.git.added,
+                modified = icons.git.modified,
+                removed = icons.git.removed,
+              },
             },
             { "filetype", icon_only = true, padding = { left = 1, right = 1 } },
           },
