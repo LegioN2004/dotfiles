@@ -73,10 +73,6 @@ return {
               },
             },
             {
-              "filename",
-              symbols = { modified = "  ", readonly = "  ", unnamed = "  ", padding = { left = 0, right = 0 } },
-            },
-            {
               "diagnostics",
               symbols = {
                 error = icons.diagnostics.Error,
