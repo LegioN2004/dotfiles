@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- highlight when yanked with a very fast 
+-- highlight when yanked with a very fast
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup("HighlightYank", {})
@@ -22,17 +22,15 @@ autocmd("TextYankPost", {
 	end,
 })
 
-
 -- autoformat from lsp
 local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.rs",
-  callback = function()
-    vim.lsp.buf.format({ timeout_ms = 200 })
-  end,
-  group = format_sync_grp,
+	pattern = "*.rs",
+	callback = function()
+		vim.lsp.buf.format({ timeout_ms = 200 })
+	end,
+	group = format_sync_grp,
 })
-
 
 --vim.cmd([[
 --" Always change the directory to working directory of file in current buffer - http://vim.wikia.com/wiki/VimTip64
@@ -56,26 +54,25 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-
 -- from the LazyVim repo
 -- This file is automatically loaded by plugins.init
 
 local function augroup(name)
-  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+	return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime"),
-  command = "checktime",
+	group = augroup("checktime"),
+	command = "checktime",
 })
 
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-  group = augroup("resize_splits"),
-  callback = function()
-    vim.cmd("tabdo wincmd =")
-  end,
+	group = augroup("resize_splits"),
+	callback = function()
+		vim.cmd("tabdo wincmd =")
+	end,
 })
 
 -- go to last loc when opening a buffer
@@ -92,23 +89,23 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
-  pattern = {
-    "PlenaryTestPopup",
-    "help",
-    "lspinfo",
-    "man",
-    "notify",
-    "qf",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
-    "checkhealth",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end,
+	group = augroup("close_with_q"),
+	pattern = {
+		"PlenaryTestPopup",
+		"help",
+		"lspinfo",
+		"man",
+		"notify",
+		"qf",
+		"spectre_panel",
+		"startuptime",
+		"tsplayground",
+		"checkhealth",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+	end,
 })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
@@ -123,38 +120,39 @@ vim.api.nvim_create_autocmd("FileType", {
 --   end,
 -- })
 
-
--- new stuff 
+-- new stuff
 vim.cmd([[
 augroup Telescope
-  autocmd!
-  autocmd FileType TelescopePrompt let g:AutoPairsEnable = 0
+autocmd!
+autocmd FileType TelescopePrompt let g:AutoPairsEnable = 0
 augroup END
 ]])
 
 -- Use relative & absolute line numbers in 'n' & 'i' modes respectively
 autocmd("InsertEnter", {
-   callback = function()
-      vim.opt.relativenumber = false
-   end,
+	callback = function()
+		vim.opt.relativenumber = false
+	end,
 })
 autocmd("InsertLeave", {
-   callback = function()
-      vim.opt.relativenumber = true
-   end,
+	callback = function()
+		vim.opt.relativenumber = true
+	end,
 })
 
-
 -- Open a file from its last left off position
- autocmd("BufReadPost", {
-    callback = function()
-       if not vim.fn.expand("%:p"):match ".git" and vim.fn.line "'\"" > 1 and vim.fn.line "'\"" <= vim.fn.line "$" then
-          vim.cmd "normal! g'\""
-          vim.cmd "normal zz"
-       end
-    end,
- })
-
+autocmd("BufReadPost", {
+	callback = function()
+		if
+			not vim.fn.expand("%:p"):match(".git")
+			and vim.fn.line("'\"") > 1
+			and vim.fn.line("'\"") <= vim.fn.line("$")
+		then
+			vim.cmd("normal! g'\"")
+			vim.cmd("normal zz")
+		end
+	end,
+})
 
 -- File extension specific tabbing
 -- autocmd("Filetype", {
@@ -167,12 +165,10 @@ autocmd("InsertLeave", {
 --    end,
 -- })
 
-
 -- Enable spellchecking in markdown, text and gitcommit files
 autocmd("FileType", {
-   pattern = { "gitcommit", "markdown", "text" },
-   callback = function()
-      vim.opt_local.spell = true
-   end,
+	pattern = { "gitcommit", "markdown", "text" },
+	callback = function()
+		vim.opt_local.spell = true
+	end,
 })
-
