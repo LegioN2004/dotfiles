@@ -25,6 +25,7 @@ HISTFILE=~/dotfiles/zsh/history
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/bin:$PATH"
+# export PATH="~/.cargo/env:$PATH"
 
 export EDITOR='nvim'
 export TERMINAL='alacritty'
