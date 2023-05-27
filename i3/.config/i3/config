@@ -38,7 +38,7 @@ exec --no-startup-id nm-applet
 floating_modifier $mod
 
 # start a terminal
-set $term alacritty
+set $term kitty
 bindsym $mod+Return exec $term
 
 # kill focused window
@@ -47,7 +47,7 @@ bindsym $mod+q kill
 # app launcher
 # bindsym $mod+d exec rofi -show drun -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
 # bindsym $mod+p exec --no-startup-id rofi -show drun -show-icons -lines 8 -columns 3 -eh 2 -width 74 -padding 200 -opacity "40"
-bindsym $mod+d exec  rofi -show drun 
+bindsym $mod+d exec  rofi -show drun -columns 2
 bindsym $mod+p exec  dmenu_run -i
 
 # change focus
@@ -166,7 +166,7 @@ bindsym $mod+Shift+0 move container to workspace  $ws10
 # assign [class="neovide"] $ws7
 # assign [class="Subl"] $ws8
 assign [class="gimp"] $ws9
- assign [class="code"] $ws7
+ assign [class="code"] $ws8
  assign [class="Emacs"] $ws7
  assign [class="vlc"] $ws6
  assign [class="Thunar"] $ws4
@@ -304,7 +304,7 @@ exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layout
 exec_always picom 
 
 bindsym $mod+n exec redshift -P -O 2500
-bindsym $mod+shift+n exec pkill redshift -x
+bindsym $mod+shift+n exec pkill redshift
 
 # Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date)"

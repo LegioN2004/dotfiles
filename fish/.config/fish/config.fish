@@ -116,14 +116,16 @@ alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sud
 alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S" 
 
 		#install
-#alias sps "sudo pacman -S "
+alias sps "sudo pacman -S "
 #alias ysps "yes|sudo pacman -S "
-alias spsy "sudo pacman -Syy "
-#alias spsyyu  "sudo pacman -Syyu "
+alias spsy "sudo pacman -Sy "
+alias spsyy "sudo pacman -Syy "
+alias spsyyu  "sudo pacman -Syyu "
 alias psyy  "paru -Syy "
+alias psy  "paru -Sy "
 alias ypsyyu  "yes|paru -Syyu "
 
-#		#remove
+#remove
 alias pr  "paru -R "
 alias ypr  "yes|paru -R "
 alias prns  "paru -Rns "
