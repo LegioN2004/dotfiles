@@ -188,14 +188,14 @@ command! -bang -nargs=* Rg
 local Util = require("lazyvim.util")
 
 local function map(mode, lhs, rhs, opts)
-	local keys = require("lazy.core.handler").handlers.keys
-	---@cast keys LazyKeysHandler
-	-- do not create the keymap if a lazy keys handler exists
-	if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-		opts = opts or {}
-		opts.silent = opts.silent ~= false
-		vim.keymap.set(mode, lhs, rhs, opts)
-	end
+  local keys = require("lazy.core.handler").handlers.keys
+  ---@cast keys LazyKeysHandler
+  -- do not create the keymap if a lazy keys handler exists
+  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+    opts = opts or {}
+    opts.silent = opts.silent ~= false
+    vim.keymap.set(mode, lhs, rhs, opts)
+  end
 end
 
 -- better up/down
@@ -203,24 +203,28 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- Move Lines
-map("n", "<S-down>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "<S-up>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<S-down>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<S-up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<S-down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<S-up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "normal mode Move down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = " normal mode insertMove up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "insert mode Move down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "insert mode Move up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "visual mode Move down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "visual mode Move up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "visual mode Move down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "visual mode Move up" })
+map("n", "<A-S-j>", "yyp", { desc = "normal mode yank and Move up" })
+map("n", "<A-S-k>", "yyP", { desc = "normal mode yank and Move down" })
 
 -- buffers
 if Util.has("bufferline.nvim") then
-	-- map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-	-- map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
-	map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
-	map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  -- map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  -- map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+  map("n", "[b", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev buffer" })
+  map("n", "]b", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
 else
-	-- map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-	-- map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-	map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-	map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  -- map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  -- map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+  map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+  map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
 end
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
@@ -231,10 +235,10 @@ map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsea
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
 map(
-	"n",
-	"<leader>ur",
-	"<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
-	{ desc = "Redraw / clear hlsearch / diff update" }
+  "n",
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / clear hlsearch / diff update" }
 )
 
 map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
@@ -265,8 +269,8 @@ map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Location List" })
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Quickfix List" })
 
 if not Util.has("trouble.nvim") then
-	map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
-	map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
+  map("n", "[q", vim.cmd.cprev, { desc = "Previous quickfix" })
+  map("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 end
 
 -- stylua: ignore start
