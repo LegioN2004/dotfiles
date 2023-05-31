@@ -1,71 +1,37 @@
 local m = {}
-local lsp = require('lsp-zero').preset({})
+local lsp = require('lsp-zero')
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-end)
+lsp.preset('recommended')
 
--- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.preset("recommended")
-
--- lsp.ensure_installed ({
---   'clangd' ,
---   'lua_ls' ,
--- })
-
--- require'lspconfig'.clangd.setup {}
--- require'lspconfig'.jdtls.setup {}
-
-lsp.configure('lua_ls', {
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        -- library = 
-        library = {
-          vim.api.nvim_get_runtime_file("", true),
-          vim.fn.stdpath("config"),
-        },
-        checkThirdParty = false,
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
+lsp.ensure_installed({
 })
 
-local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp = require("cmp")
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+  ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+  ["<C-y>"] = cmp.mapping.confirm({ select = true }),
   ["<C-Space>"] = cmp.mapping.complete(),
 })
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+  mapping = cmp_mappings,
 })
 
 lsp.set_preferences({
-  suggest_lsp_servers = false,
+  suggest_lsp_servers = true,
   sign_icons = {
-    error = '',
-    warn = '',
-    hint = '',
-    info = ''
-  }
+    error = "",
+    warn = "",
+    hint = "",
+    info = "",
+  },
 })
 
 lsp.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+  print("help")
+  local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -82,7 +48,44 @@ end)
 lsp.setup()
 
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = {
+    prefix = "●",
+    severity_sort = true,
+  },
+  float = {
+    border = "rounded",
+    source = "always", -- Or "if_many"
+    prefix = " - ",
+  },
+  severity_sort = true,
 })
 
+
+-------- plugins configurationsssssssssssssss---------------------------------------------------------------------------------
+-- require'lspconfig'.clangd.setup {}
+-- require'lspconfig'.jdtls.setup {}
+
+lsp.configure("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { "vim" },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        -- library =
+        library = {
+          vim.api.nvim_get_runtime_file("", true),
+          vim.fn.stdpath("config"),
+        },
+        checkThirdParty = false,
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+})
 return m

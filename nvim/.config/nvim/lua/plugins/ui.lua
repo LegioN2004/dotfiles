@@ -37,7 +37,6 @@ return {
     },
   },
 
-
   ------ lualine status bar as well as noice for getting a floating inbuilt cmd line in nvim ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   {
     "nvim-lualine/lualine.nvim",
@@ -56,25 +55,22 @@ return {
           theme = "solarized_dark",
           globalstatus = true,
           disabled_filetypes = { statusline = { "dashboard", "alpha" } },
-          section_separators = { left = '', right = '' },
-          component_separators = { left = '', right = '' },
+          section_separators = { left = "", right = "" },
+          component_separators = { left = "", right = "" },
         },
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch" },
-          lualine_x = {
-            { "filetype", icon_only = true, separator = "  ", padding = { left = 1, right = 1 } },
-          },
           lualine_c = {
-            -- stylua: ignore
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
             {
               "filename",
-              symbols = { separator = "  ", modified = "  ", readonly = "  ", unnamed = "  " }
-            },
-            {
-              require("lazy.status").updates,
-              cond = require("lazy.status").has_updates,
-              color = fg("Special"),
+              symbols = {
+                modified = "  ",
+                readonly = "  ",
+                unnamed = "  ",
+                padding = { left = 0, right = 0 },
+              },
             },
             {
               "diagnostics",
@@ -85,24 +81,13 @@ return {
                 hint = icons.diagnostics.Hint,
               },
             },
-          },
-          lualine_y = {
-            -- stylua: ignore
             {
-              function() return require("noice").api.status.command.get() end,
-              cond = function()
-                return package.loaded["noice"] and
-                  require("noice").api.status.command.has()
-              end,
-              color = fg("Statement")
+              require("lazy.status").updates,
+              cond = require("lazy.status").has_updates,
+              color = fg("Special"),
             },
           },
-          lualine_z = {
-            -- function()
-            -- 	return " " .. os.date("%r")
-            -- end,
-            { "progress", separator = "",                   padding = { left = 1, right = 0 } },
-            { "location", padding = { left = 1, right = 1 } },
+          lualine_x = {
             {
               "diff",
               symbols = {
@@ -112,99 +97,117 @@ return {
               },
             },
           },
+          lualine_y = {
+            -- stylua: ignore
+            {
+              function() return require("noice").api.status.command.get() end,
+              cond = function()
+                return package.loaded["noice"] and
+                    require("noice").api.status.command.has()
+              end,
+              color = fg("Statement")
+            },
+          },
+          lualine_z = {
+            -- function()
+            -- 	return " " .. os.date("%r")
+            -- end,
+            { "progress", padding = { left = 1, right = 1 } },
+            { "location", padding = { left = 0, right = 1 } },
+          },
         },
-        extensions = { 'fugitive', 'neo-tree', 'nvim-tree', 'lazy', 'fidget' },
+        extensions = { "fugitive", "neo-tree", "nvim-tree", "lazy" },
       }
     end,
   },
 
   --- noicer ui -------------------------------------------------------------------------
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    dependencies = 'MunifTanjim/nui.nvim',
-    opts = {
-      lsp = {
-        { 'config.lsp.hover.enabled' } == false,
-        { 'config.lsp.signature.enabled' } == false,
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
-        },
-        message = {
-          -- Messages shown by lsp servers
-          enabled = true,
-          view = "notify",
-          opts = {},
-        },
-        -- defaults for hover and signature help
-        documentation = {
-          view = "hover",
-          opts = {
-            lang = "markdown",
-            replace = true,
-            render = "plain",
-            format = { "{message}" },
-            win_options = { concealcursor = "n", conceallevel = 3 },
-          },
-        },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-      },
-    },
-    -- stylua: ignore
-    keys = {
-      {
-        "<S-Enter>",
-        function() require("noice").redirect(vim.fn.getcmdline()) end,
-        mode = "c",
-        desc =
-          "Redirect Cmdline"
-      },
-      {
-        "<leader>snl",
-        function() require("noice").cmd("last") end,
-        desc =
-          "Noice Last Message"
-      },
-      {
-        "<leader>snh",
-        function() require("noice").cmd("history") end,
-        desc =
-          "Noice History"
-      },
-      {
-        "<leader>sna",
-        function() require("noice").cmd("all") end,
-        desc =
-          "Noice All"
-      },
-      -- {
-      -- 	"<c-f>",
-      -- 	function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,
-      -- 	silent = true,
-      -- 	expr = true,
-      -- 	desc =
-      -- 	"Scroll forward",
-      -- 	mode = {
-      -- 		"i", "n", "s" }
-      -- },
-      -- {
-      -- 	"<c-b>",
-      -- 	function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end,
-      -- 	silent = true,
-      -- 	expr = true,
-      -- 	desc =
-      -- 	"Scroll backward",
-      -- 	mode = {
-      -- 		"i", "n", "s" }
-      -- },
-    },
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = "MunifTanjim/nui.nvim",
+  --   opts = {
+  --     lsp = {
+  --       { "config.lsp.hover.enabled" } == false,
+  --       { "config.lsp.signature.enabled" } == false,
+  --       override = {
+  --         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+  --         ["vim.lsp.util.stylize_markdown"] = true,
+  --         ["cmp.entry.get_documentation"] = true,
+  --       },
+  --       message = {
+  --         -- Messages shown by lsp servers
+  --         enabled = true,
+  --         view = "notify",
+  --         opts = {},
+  --       },
+  --       -- defaults for hover and signature help
+  --       documentation = {
+  --         view = "hover",
+  --         opts = {
+  --           lang = "markdown",
+  --           replace = true,
+  --           render = "plain",
+  --           format = { "{message}" },
+  --           win_options = { concealcursor = "n", conceallevel = 3 },
+  --         },
+  --       },
+  --     },
+  --     presets = {
+  --       bottom_search = true,
+  --       command_palette = true,
+  --       long_message_to_split = true,
+  --     },
+  --   },
+  --   -- stylua: ignore
+  --   keys = {
+  --     {
+  --       "<S-Enter>",
+  --       function() require("noice").redirect(vim.fn.getcmdline()) end,
+  --       mode = "c",
+  --       desc =
+  --       "Redirect Cmdline"
+  --     },
+  --     {
+  --       "<leader>snl",
+  --       function() require("noice").cmd("last") end,
+  --       desc =
+  --       "Noice Last Message"
+  --     },
+  --     {
+  --       "<leader>snh",
+  --       function() require("noice").cmd("history") end,
+  --       desc =
+  --       "Noice History"
+  --     },
+  --     {
+  --       "<leader>sna",
+  --       function() require("noice").cmd("all") end,
+  --       desc =
+  --       "Noice All"
+  --     },
+  --     -- {
+  --     -- 	"<c-f>",
+  --     -- 	function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,
+  --     -- 	silent = true,
+  --     -- 	expr = true,
+  --     -- 	desc =
+  --     -- 	"Scroll forward",
+  --     -- 	mode = {
+  --     -- 		"i", "n", "s" }
+  --     -- },
+  --     -- {
+  --     -- 	"<c-b>",
+  --     -- 	function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end,
+  --     -- 	silent = true,
+  --     -- 	expr = true,
+  --     -- 	desc =
+  --     -- 	"Scroll backward",
+  --     -- 	mode = {
+  --     -- 		"i", "n", "s" }
+  --     -- },
+  --   },
+  -- },
 
   ---- notifications when using nvim-notify
   {
@@ -221,12 +224,12 @@ return {
     },
     config = function()
       vim.notify = function(msg, level, opts)
-          require("notify").setup({
-            background_colour = "#d79921",
-            timeout = 3500,
-            render = "minimal",
-            stages = "static",
-          })
+        require("notify").setup({
+          background_colour = "#d79921",
+          timeout = 3500,
+          render = "minimal",
+          stages = "static",
+        })
 
         msg = vim.trim(msg)
 
@@ -387,16 +390,12 @@ return {
     end,
   },
 
-
   {
     "szw/vim-maximizer",
-    event = VeryLazy,
+    lazy = true,
     cmd = { "MaximizerToggle" },
-    keys = {
-      { "<leader>mt", ":MaximizerToggle<CR>", desc = "Toggle file tree" },
-    },
     config = function()
-      vim.api.nvim_set_hl(0, 'ZenBg', { ctermbg = 0 })
-    end
+      vim.api.nvim_set_hl(0, "ZenBg", { ctermbg = 0 })
+    end,
   },
 }

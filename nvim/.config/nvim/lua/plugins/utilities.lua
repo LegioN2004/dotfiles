@@ -1,20 +1,22 @@
 return {
 
-  --	{
-  --			"xiyaowong/transparent.nvim",
-  --			lazy = false,
-  --			config = function()
-  --			require("transparent").setup {
-  --			}
-  --			end
-  --	},
+  ----- plugins for transparency --------------------------------------------------------------------------------------------------------------------------------
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    cmd = { "TransparentEnable", "TransparentDisable", " TransparentToggle" },
+    config = function()
+      require("transparent").setup {
+      }
+    end
+  },
 
   ------ ui for nvim-lsp progress ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     config = function()
-      require("fidget").setup ({
+      require("fidget").setup({
         text = {
           spinner = "meter",
         },
@@ -191,51 +193,50 @@ return {
         segments = {
           { sign = { name = { "Diagnostic" } } },
           { sign = { name = { "Dap.*" } } },
-          { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+          { text = { builtin.lnumfunc },       click = "v:lua.ScLa" },
           { sign = { name = { "GitSigns.*" } } },
         },
       })
     end,
   },
 
+  ---- comments ---------------------------------------------------------------------------------
+  {
+    "tpope/vim-commentary",
+    event = "VeryLazy",
+    cmd = "Commentary",
+  },
 
----- comments ---------------------------------------------------------------------------------
   -- {
-  --   "tpope/vim-commentary",
-  --   event = "VeryLazy",
-  --   cmd = "Commentary",
+  -- 	"numToStr/Comment.nvim",
+  -- 	config = function()
+  -- 		require("Comment").setup()
+  -- 	end,
   -- },
 
-  {
-  	"numToStr/Comment.nvim",
-  	config = function()
-  		require("Comment").setup()
-  	end,
-  },
   ------ auto pairs for brackets braces etc ------------------------------------------------------
+  -- {
+  -- 	"jiangmiao/auto-pairs",
+  -- 	event = "BufEnter",
+  -- },
   {
-    "jiangmiao/auto-pairs",
-    event = "BufEnter",
-  },
-  --    {
-  --        "windwp/nvim-autopairs",
-  --       event = "InsertEnter",
-  --       opts = {
-  --           check_ts = true,
-  --       },
-  --       config = function(_, opts)
-  --           require("nvim-autopairs").setup(opts)
-  --
-  --           --- setup for cmp
-  --           local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  --           local cmp_status_ok, cmp = pcall(require, "cmp")
-  --           if not cmp_status_ok then
-  --               return
-  --           end
-  --           cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-  --       end,
-  --   },
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {
+      check_ts = true,
+    },
+    config = function(_, opts)
+      require("nvim-autopairs").setup(opts)
 
+      --- setup for cmp
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+      local cmp_status_ok, cmp = pcall(require, "cmp")
+      if not cmp_status_ok then
+        return
+      end
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+    end,
+  },
 
   -- lua library for neovim
   {
@@ -251,7 +252,6 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
-
 
   -- folding
   -- {
@@ -279,10 +279,10 @@ return {
   {
     "nmac427/guess-indent.nvim",
     config = function()
-      require("guess-indent").setup {
-        auto_cmd = true,           -- Set to false to disable automatic execution
+      require("guess-indent").setup({
+        auto_cmd = true,               -- Set to false to disable automatic execution
         override_editorconfig = false, -- Set to true to override settings set by .editorconfig
-        filetype_exclude = {       -- A list of filetypes for which the auto command gets disabled
+        filetype_exclude = {           -- A list of filetypes for which the auto command gets disabled
           "netrw",
           "tutor",
           "nvim-tree",
@@ -299,7 +299,7 @@ return {
           "alpha",
           "fugitive",
         },
-      }
+      })
     end,
   },
 
@@ -432,8 +432,8 @@ return {
     lazy = false,
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
-      require("todo-comments").setup {}
-    end
+      require("todo-comments").setup({})
+    end,
   },
 
   ------limelight and goyo---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -449,24 +449,33 @@ return {
     event = VeryLazy,
     cmd = "ZenMode",
     config = function()
-      vim.api.nvim_set_hl(0, 'ZenBg', { ctermbg = 0 })
-    end
+      vim.api.nvim_set_hl(0, "ZenBg", { ctermbg = 0 })
+    end,
   },
   -- git wrapper
   {
     "tpope/vim-fugitive",
-    cmd = { "Git", "G" },
-    config = function()
-    end,
+    cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
+    dependencies = {
+      "tpope/vim-rhubarb",
+    },
+    -- stylua: ignore
+    keys = {
+      { "<leader>gs", "<cmd>Git<cr>", desc = "Status" },
+    },
   },
 
   -- displays a popup with possible keybindings of the command
   {
     "folke/which-key.nvim",
+    event = "VeryLazy",
     config = function()
       vim.o.timeout = true
       vim.timeoutlen = 300
-      require("which-key").setup({
+      opts = {
+        defaults = {
+          ["<leader>G"] = { name = "+Git" },
+        },
         plugins = {
           presets = {
             g = false,
@@ -475,8 +484,8 @@ return {
         window = {
           border = "single",
         },
-      })
-    end,
+      }
+    end
   },
   --------------- previously present stuff ------------------------------------------------------------------------------
   "goolord/alpha-nvim",
@@ -506,10 +515,12 @@ return {
   },
 
   -- colorschemes
-  { "gruvbox-community/gruvbox" },
+  {
+    "gruvbox-community/gruvbox",
+  },
   {
     "svrana/neosolarized.nvim",
-    dependencies = 'tjdevries/colorbuddy.nvim',
+    dependencies = "tjdevries/colorbuddy.nvim",
   },
 
   -- { 'junegunn/fzf',              lazy = true },
@@ -530,41 +541,53 @@ return {
     event = VeryLazy,
     cmd = "Harpoon",
     keys = {
-      { "<leader>Ha", function() require("harpoon.ui").toggle_quick_menu() end, mode = "n", desc = "Harpoon Menu" },
       {
-        "<leader>ad",
-        function() require("harpoon.mark").add_file() end,
+        "<leader>hui",
+        function()
+          require("harpoon.ui").toggle_quick_menu()
+        end,
         mode = "n",
-        desc =
-          "Harpoon Add File"
+        desc = "Harpoon Menu",
       },
       {
-        "<leader>1",
-        function() require("harpoon.ui").nav_file(1) end,
+        "<leader>had",
+        function()
+          require("harpoon.mark").add_file()
+        end,
         mode = "n",
-        desc =
-          "Harpoon Nav File 1"
+        desc = "Harpoon Add File",
       },
       {
-        "<leader>2",
-        function() require("harpoon.ui").nav_file(2) end,
+        "<C-j>",
+        function()
+          require("harpoon.ui").nav_file(1)
+        end,
         mode = "n",
-        desc =
-          "Harpoon Nav File 2"
+        desc = "Harpoon Nav File 1",
       },
       {
-        "<leader>3",
-        function() require("harpoon.ui").nav_file(3) end,
+        "<C-k>",
+        function()
+          require("harpoon.ui").nav_file(2)
+        end,
         mode = "n",
-        desc =
-          "Harpoon Nav File 3"
+        desc = "Harpoon Nav File 2",
       },
       {
-        "<leader>4",
-        function() require("harpoon.ui").nav_file(4) end,
+        "<C-h>",
+        function()
+          require("harpoon.ui").nav_file(3)
+        end,
         mode = "n",
-        desc =
-          "Harpoon Nav File 4"
+        desc = "Harpoon Nav File 3",
+      },
+      {
+        "<C-l>",
+        function()
+          require("harpoon.ui").nav_file(4)
+        end,
+        mode = "n",
+        desc = "Harpoon Nav File 4",
       },
     },
     config = function()
@@ -572,11 +595,11 @@ return {
         pattern = "harpoon",
         callback = function()
           vim.opt.cursorline = true
-          vim.api.nvim_set_hl(0, 'HarpoonWindow', { link = 'Normal' })
-          vim.api.nvim_set_hl(0, 'HarpoonBorder', { link = 'Normal' })
-        end
+          vim.api.nvim_set_hl(0, "HarpoonWindow", { link = "Normal" })
+          vim.api.nvim_set_hl(0, "HarpoonBorder", { link = "Normal" })
+        end,
       })
-    end
+    end,
   },
 
   --- code folding -------------------------------------------------
@@ -633,8 +656,6 @@ return {
   --   end,
   -- },
 
-
-
   -- TODO -----------------------------------------------
   -- use this for some CSS stuff
   -- color highlighter
@@ -658,11 +679,9 @@ return {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "BufEnter",
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
-    end
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
 }
-
-}
-

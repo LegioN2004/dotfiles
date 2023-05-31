@@ -1,38 +1,27 @@
--- wrap certain filestypes
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "gitcommit", "markdown", "org", "gitignore" },
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.spell = true
-	end,
-})
-
--- highlight when yanked with a very fast 
+-- highlight when yanked with a very fast
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup("HighlightYank", {})
 autocmd("TextYankPost", {
-	group = yank_group,
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({
-			higroup = "IncSearch",
-			timeout = 40,
-		})
-	end,
+  group = yank_group,
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "IncSearch",
+      timeout = 40,
+    })
+  end,
 })
-
 
 -- autoformat from lsp
-local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.rs",
-  callback = function()
-    vim.lsp.buf.format({ timeout_ms = 200 })
-  end,
-  group = format_sync_grp,
-})
-
+-- local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*.rs",
+--   callback = function()
+--     vim.lsp.buf.format({ timeout_ms = 200 })
+--   end,
+--   group = format_sync_grp,
+-- })
 
 --vim.cmd([[
 --" Always change the directory to working directory of file in current buffer - http://vim.wikia.com/wiki/VimTip64
@@ -47,15 +36,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- close lazy panel with esc
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = {
-		"lazy",
-	},
-	callback = function(event)
-		vim.bo[event.buf].buflisted = false
-		vim.keymap.set("n", "<Esc>", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-	end,
+  pattern = {
+    "lazy",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "<Esc>", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
 })
-
 
 -- from the LazyVim repo
 -- This file is automatically loaded by plugins.init
@@ -123,11 +111,64 @@ vim.api.nvim_create_autocmd("FileType", {
 --   end,
 -- })
 
-
--- new stuff 
+-- new stuff
 vim.cmd([[
 augroup Telescope
-  autocmd!
-  autocmd FileType TelescopePrompt let g:AutoPairsEnable = 0
+autocmd!
+autocmd FileType TelescopePrompt let g:AutoPairsEnable = 0
 augroup END
 ]])
+
+-- Use relative & absolute line numbers in 'n' & 'i' modes respectively
+autocmd("InsertEnter", {
+  callback = function()
+    vim.opt.relativenumber = false
+  end,
+})
+autocmd("InsertLeave", {
+  callback = function()
+    vim.opt.relativenumber = true
+  end,
+})
+
+-- Open a file from its last left off position
+autocmd("BufReadPost", {
+  callback = function()
+    if
+        not vim.fn.expand("%:p"):match(".git")
+        and vim.fn.line("'\"") > 1
+        and vim.fn.line("'\"") <= vim.fn.line("$")
+    then
+      vim.cmd("normal! g'\"")
+      vim.cmd("normal zz")
+    end
+  end,
+})
+
+-- File extension specific tabbing
+-- autocmd("Filetype", {
+--    pattern = "python",
+--    callback = function()
+--       vim.opt_local.expandtab = true
+--       vim.opt_local.tabstop = 4
+--       vim.opt_local.shiftwidth = 4
+--       vim.opt_local.softtabstop = 4
+--    end,
+-- })
+
+-- Enable spellchecking in markdown, text and gitcommit files
+autocmd("FileType", {
+  pattern = { "gitcommit", "markdown", "text" },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+})
+
+-- wrap certain filestypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "gitcommit", "markdown", "org", "gitignore" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
+})

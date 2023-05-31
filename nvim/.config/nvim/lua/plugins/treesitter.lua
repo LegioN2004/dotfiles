@@ -13,19 +13,20 @@ return {
     config = true,
   },
   {
-    "mrjones2014/nvim-ts-rainbow", -- Rainbow parentheses
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = "nvim-treesitter/nvim-treesitter",
-  },
-  {
     "JoosepAlviste/nvim-ts-context-commentstring",
     name = "ts_context_commentstring",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
+    "mrjones2014/nvim-ts-rainbow", -- Rainbow parentheses
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
+    dependencies = "windwp/nvim-ts-autotag",
     build = function()
       local ts_update = require("nvim-treesitter.install").update({
         with_sync = true,
@@ -94,7 +95,7 @@ return {
         -- },
       })
 
-        -- Must installed zig via scoop in Windows
+      -- Must installed zig via scoop in Windows
       -- if _G.IS_WINDOWS then
       --   require("nvim-treesitter.install").compilers = { "zig" }
       -- else
