@@ -190,7 +190,7 @@ alias myemacs="emacs --with-profile=myemacs"
 alias enw="emacs -nw"
 
 # neovim distro aliases
-alias lazy='NVIM_APPNAME=LazyVim nvim'
+alias pv='NVIM_APPNAME=packer-nvim nvim'
 
 #hyprland screenshot utility
 alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast

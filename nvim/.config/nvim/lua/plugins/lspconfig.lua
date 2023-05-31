@@ -12,32 +12,6 @@ lsp.preset("recommended")
 lsp.ensure_installed({
 })
 
--- require'lspconfig'.clangd.setup {}
--- require'lspconfig'.jdtls.setup {}
-
-lsp.configure("lua_ls", {
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        -- library =
-        library = {
-          vim.api.nvim_get_runtime_file("", true),
-          vim.fn.stdpath("config"),
-        },
-        checkThirdParty = false,
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-})
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -90,6 +64,34 @@ vim.diagnostic.config({
     prefix = " - ",
   },
   severity_sort = true,
+})
+
+------ plugins configurations ------------------------------------------------------------------------------
+-- require'lspconfig'.clangd.setup {}
+-- require'lspconfig'.jdtls.setup {}
+
+lsp.configure("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { "vim" },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        -- library =
+        library = {
+          vim.api.nvim_get_runtime_file("", true),
+          vim.fn.stdpath("config"),
+        },
+        checkThirdParty = false,
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 })
 
 return m
