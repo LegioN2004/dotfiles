@@ -92,6 +92,8 @@ vim.api.nvim_create_autocmd("FileType", {
     "startuptime",
     "tsplayground",
     "checkhealth",
+    "Telescope",
+    "Mason",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

@@ -9,6 +9,18 @@ return {
         "williamboman/mason.nvim",
         priority = 100,
         build = ":MasonUpdate",
+        config = function()
+          require("mason").setup({
+            providers = {
+              "mason.providers.registry-api", -- default
+              "mason.providers.client",
+            },
+            ui = {
+              height = 0.85,
+              border = "rounded",
+            },
+          })
+        end,
       },
       {
         -- bridges mason with the lspconfig
@@ -29,17 +41,5 @@ return {
       { "rafamadriz/friendly-snippets" },
       { "hrsh7th/cmp-vsnip" }, -- Required
     },
-    config = function()
-      require("mason").setup({
-        providers = {
-          "mason.providers.registry-api", -- default
-          "mason.providers.client",
-        },
-        ui = {
-          height = 0.85,
-          border = "rounded",
-        },
-      })
-    end,
   },
 }
