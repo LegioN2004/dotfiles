@@ -1,5 +1,5 @@
 # fortune | cowsay
-sh ~/dotfiles/neofetch/nofetch --flex #nitch #download afetch fastfetch from aur
+# sh ~/dotfiles/neofetch/nofetch --flex #nitch #download afetch fastfetch from aur
 #use sh to run any bash scripts from the fish shell at startup 
 
 # fish stuff -----------------------------------------------------------------
@@ -42,7 +42,6 @@ alias l='exa -lah --color=always --group-directories-first --icons' # tree listi
 if type -q exa
 alias tree "exa --tree -g"
 alias lr='ls -R'
-alias g git
 
 # git
 alias g='git'
@@ -59,6 +58,7 @@ alias gb='git branch'
 alias gba='git branch -a' # list all the branches
 alias gbd='git branch -D -r' # delete a branch
 alias gr='git restore'
+alias rm-index.lock-git=". ~/dotfiles/scripts-laptop/rm-index.lock-git.sh"
 
 #ranger
 alias ran "ranger"
@@ -89,25 +89,25 @@ alias reb  "reboot"
 alias hib  "sudo systemctl hibernate"
 
 # config shortcut aliases
-alias i3config "nvim ~/.config/i3/config"
+alias i3config "nvim ~/dotfiles/i3/.config/i3/config"
 alias sxhkdrc "nvim ~/.config/sxhkd/sxhkdrc"
-alias alacrittyconfig "nvim ~/.config/alacritty/alacritty.yml"
-alias bashconfig "nvim ~/.bashrc"
+alias alacrittyconfig "nvim ~/dotfiles/alacritty/.config/alacritty/alacritty.yml"
+alias bashconfig "nvim ~/dotfiles/.bashrc"
 alias zshconfig "nvim ~/dotfiles/zsh/.config/zsh/.zshrc"
-alias fishconfig "nvim ~/.config/fish/config.fish"
-alias nvimconfig "nvim ~/.config/nvim/init.lua"
-alias picomconfig "nvim ~/.config/picom/picom.conf"
-alias hyprlconfig "nvim ~/.config/hypr/hyprland.conf"
-alias waybarconf "nvim ~/.config/waybar/config"
-alias tmuxconfig "nvim ~/.tmux.conf"
-alias kittyconfig "nvim ~/.config/kitty/kitty.conf"
+alias fishconfig "nvim ~/dotfiles/fish/.config/fish/config.fish"
+alias nvimconfig "nvim ~/dotfiles/nvim/.config/nvim/init.lua"
+alias picomconfig "nvim ~/dotfiles/picom/.config/picom/picom.conf"
+alias hyprlconfig "nvim ~/dotfiles/hyprland/.config/hypr/hyprland.conf"
+alias waybarconf "nvim ~/dotfiles/waybar/.config/waybar/config"
+alias tmuxconfig "nvim ~/dotfiles/.tmux.conf"
+alias kittyconfig "nvim ~/dotfiles/kitty/.config/kitty/kitty.conf"
 alias tlpconfig "sudo nvim /etc/tlp.conf"
 
 # source config files
 alias sourceb "source ~/.bashrc"
 alias sourcez "source ~/dotfiles/zsh/.config/zsh/.zshrc"
-alias sourcef "source ~/.config/fish/config.fish"
-alias sourcet "source ~/.tmux.conf"
+alias sourcef "source ~/dotfiles/fish/.config/fish/config.fish"
+alias sourcet "source ~/dotfiles/.tmux.conf"
 
 # pacman and paru aliases
 #install with fzf  && remove with fzf  & aur fzf
@@ -196,7 +196,7 @@ alias lazy='NVIM_APPNAME=LazyVim nvim'
 alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast
 
 # same like explorer alias
-alias ex="thunar"
+alias ex="thunar &"
 
 #alias to update the browsers automatically
 alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-desktop discord"

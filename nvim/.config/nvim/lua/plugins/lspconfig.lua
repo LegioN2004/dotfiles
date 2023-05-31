@@ -10,7 +10,6 @@ end)
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'lua_language_server',
 })
 
 -- require'lspconfig'.clangd.setup {}
