@@ -55,6 +55,7 @@ alias gs='git status'
 alias grv='git remote -v'
 alias gco='git checkout'
 alias gb='git branch'
+alias gbr='git branch -r'
 alias gba='git branch -a' # list all the branches
 alias gbd='git branch -D -r' # delete a branch
 alias gr='git restore'
