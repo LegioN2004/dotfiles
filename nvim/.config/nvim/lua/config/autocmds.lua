@@ -1,3 +1,12 @@
+-- wrap certain filestypes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "gitcommit", "markdown", "org", "gitignore" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.spell = true
+  end,
+})
+
 -- highlight when yanked with a very fast
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
@@ -164,11 +173,3 @@ autocmd("FileType", {
   end,
 })
 
--- wrap certain filestypes
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gitcommit", "markdown", "org", "gitignore" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
