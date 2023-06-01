@@ -1,17 +1,14 @@
 local m = {}
-local lsp = require("lsp-zero").preset({})
-
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-end)
-
--- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
 lsp.ensure_installed({
 })
 
+require("luasnip/loaders/from_vscode").lazy_load()
+
+lsp.nvim_workspace()
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
