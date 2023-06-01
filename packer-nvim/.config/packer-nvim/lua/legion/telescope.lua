@@ -45,7 +45,7 @@ telescope.setup {
 
 local opts = { noremap = true, silent = true }
 -- keymaps
-vim.keymap.set('n', ';l',
+vim.keymap.set('n', '<leader><space>',
 	function()
 		builtin.find_files({
 			no_ignore = false,

@@ -498,3 +498,31 @@ pwd
 ls
 cd
 exit
+grep -r "lsp" .
+ls
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+v init.lua 
+ in
+v init.lua 
+v
+v init.lua 
+v init.lua 
+exit
