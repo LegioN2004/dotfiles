@@ -12,16 +12,53 @@ lsp.nvim_workspace()
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local cmp = require('cmp_nvim_lsp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local luasnip = require('luasnip')
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ['<C-y>'] = cmp.mapping.confirm({ select = false }),
+  ['<CR>'] = cmp.mapping.confirm({ select = true }),
   ["<C-Space>"] = cmp.mapping.complete(),
+  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+  ['<C-d>'] = cmp.mapping.scroll_docs(4),
+  ['<C-f>'] = cmp.mapping(function(fallback)
+    if luasnip.jumpable(1) then
+      luasnip.jump(1)
+    else
+      fallback()
+    end
+  end, {'i', 's'}),
+
+  ['<C-b>'] = cmp.mapping(function(fallback)
+    if luasnip.jumpable(-1) then
+      luasnip.jump(-1)
+    else
+      fallback()
+    end
+  end, {'i', 's'}),
+
+  ['<Tab>'] = cmp.mapping(function(fallback)
+    local col = vim.fn.col('.') - 1
+
+    if cmp.visible() then
+      cmp.select_next_item(select_opts)
+    elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+      fallback()
+    else
+      cmp.complete()
+    end
+  end, {'i', 's'}),
+
+  ['<S-Tab>'] = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_prev_item(select_opts)
+    else
+      fallback()
+    end
+  end, {'i', 's'}),
 })
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
 
 cmp.setup {
   snippet = {
@@ -62,6 +99,7 @@ cmp.setup {
     native_menu = false,
   },
 }
+
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
@@ -93,7 +131,23 @@ end)
 
 lsp.setup()
 
+local sign = function(opts)
+  vim.fn.sign_define(opts.name, {
+    texthl = opts.name,
+    text = opts.text,
+    numhl = ''
+  })
+end
+
+sign({name = 'DiagnosticSignError', text = '✘'})
+sign({name = 'DiagnosticSignWarn', text = ''})
+sign({name = 'DiagnosticSignHint', text = ''})
+sign({name = 'DiagnosticSignInfo', text = ''})
+
 vim.diagnostic.config({
+  signs = true,
+  update_in_insert = false,
+  underline = true,
   virtual_text = {
     prefix = "●",
     severity_sort = true,
@@ -109,7 +163,6 @@ vim.diagnostic.config({
 -------- plugins configurationsssssssssssssss---------------------------------------------------------------------------------
 -- require'lspconfig'.clangd.setup {}
 -- require'lspconfig'.jdtls.setup {}
-
 lsp.configure("lua_ls", {
   settings = {
     Lua = {
