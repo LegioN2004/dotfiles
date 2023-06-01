@@ -1,3 +1,5 @@
+local P = {}
+keymap = P
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
@@ -182,3 +184,16 @@ vim.keymap.set('n', '<leader>te', ":Telescope<CR>")
 vim.keymap.set('n', '<leader>ps', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
+
+
+-- Java keymaps
+function P.map_java_keys(bufnr)
+		map_lsp_kys()
+
+		local spring_boot_run = 'mvn sping-boot:run -Dspring-boot.run.profiles=local'
+		local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")'
+		keymap('n', '<leader>sr', command)
+		keymap('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
+		keymap('n', '<leader>jc', ':lua require("jdtls").compile("incremental")')
+end
+return P

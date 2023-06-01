@@ -1,8 +1,12 @@
 zsh/.config/zsh/.zcompdump
 zsh/history
 
+# bash/bash_history
+
 fish/.config/fish/fishd.tmp*
 
 fish/.config/fish/fish_variables
 
 nvim/.config/nvim/lazy-lock.json
+
+packer-nvim/.config/packer-nvim/plugin

@@ -82,7 +82,8 @@ return require 'packer'.startup(function()
 		use("theprimeagen/refactoring.nvim")
 		use("mbbill/undotree")
 		use("tpope/vim-fugitive")
-		use("nvim-treesitter/nvim-treesitter-context");
+		use("nvim-treesitter/nvim-treesitter-context")
+		use("mfussenegger/nvim-jdtls")
 
 		use {
 			'VonHeikemen/lsp-zero.nvim',
