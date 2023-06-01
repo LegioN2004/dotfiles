@@ -61,10 +61,6 @@ keymap("n", "<leader><S-tab>", ":bprevious<Return>", opts)
 -- keymap("n", "bd", ":bdelete<Return>", opts)
 
 --better movement between splits
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -147,7 +143,6 @@ let g:session_command_aliases = 1
 "checkout and fix these fzf keybinds
 " PLUGIN: FZF
 "nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-f> :Telescope find_files<CR>
 "nnoremap <silent> <Leader>rg :Rg<CR> "ripgrep grep lines
 "nnoremap <silent> <Leader>ag :Ag<CR> "project finder
 "nnoremap <silent> <Leader>/ :BLines<CR> "line finder

@@ -48,22 +48,23 @@ return require 'packer'.startup(function()
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-	use({
-		'rose-pine/neovim',
-		as = 'rose-pine',
-		config = function()
-			vim.cmd('colorscheme rose-pine')
-						opts = {
-			disable_italics = true,
-						}
-		end
-	})
+		use { 'rose-pine/neovim' }
+	-- use({
+	-- 	'rose-pine/neovim',
+	-- 	as = 'rose-pine',
+	-- 	config = function()
+	-- 		vim.cmd('colorscheme rose-pine')
+	-- 					opts = {
+	-- 		disable_italics = true,
+	-- 					}
+	-- 	end
+	-- })
 
 	use({
 		"folke/trouble.nvim",
 		config = function()
 			require("trouble").setup {
-				icons = false,
+				icons = true,
 				-- your configuration comes here
 				-- or leave it empty to use the default settings
 				-- refer to the configuration section below

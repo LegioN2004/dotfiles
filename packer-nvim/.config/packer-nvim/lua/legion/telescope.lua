@@ -55,30 +55,37 @@ vim.keymap.set('n', '<leader><space>',
 vim.keymap.set('n', ';r', function()
 	builtin.live_grep()
 end)
-vim.keymap.set('n', '\\\\', function()
-	builtin.buffers()
-end)
 vim.keymap.set('n', ';h', function()
 	builtin.help_tags()
 end)
--- vim.keymap.set('n', ';;', function()
---   builtin.resume()
--- end)
+vim.keymap.set('n', '<leader>tr', function()
+ builtin.resume()
+end)
 vim.keymap.set('n', ';d', function()
 	builtin.diagnostics()
 end)
 
-
--- telescope file_browser
--- vim.keymap.set("n", "sf", function()
---   telescope.extensions.file_browser.file_browser({
---     path = "%:p:h",
---     cwd = telescope_buffer_dir(),
---     respect_gitignore = false,
---     hidden = true,
---     grouped = true,
---     previewer = false,
---     initial_mode = "normal",
---     layout_config = { height = 40 }
---   })
--- end)
+vim.keymap.set('n', '<leader>ps', function()
+				require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+end)
+vim.keymap.set('n', '<leader>?', function()
+				require("telescope.builtin").current_buffer_fuzzy_find()
+end)
+vim.keymap.set('n', '<leader>;', function()
+				require("telescope.builtin").command_history()
+end)
+vim.keymap.set('n', '<leader>:', function()
+				require("telescope.builtin").commands()
+end)
+vim.keymap.set('n', '<leader>bb', function()
+				require("telescope.builtin").buffers()
+end)
+vim.keymap.set('n', '<leader>cs', function()
+				require("telescope.builtin").lsp_document_symbols()
+end)
+vim.keymap.set('n', '<leader>fr', function()
+				require("telescope.builtin").oldfiles()
+end)
+vim.keymap.set('n', '<leader>km', function()
+				require("telescope.builtin").keymaps()
+end)
