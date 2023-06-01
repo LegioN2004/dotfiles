@@ -151,3 +151,26 @@ end
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 require("jdtls").start_or_attach(config)
+
+-- all the keymaps added was showing error due to the usage of function instead of direct commands idk why
+local opts = { noremap=true, silent = true }
+vim.api.nvim_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua  vim.lsp.buf.definition()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'K', '<cmd>lua  vim.lsp.buf.hover()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua  vim.lsp.buf.implementation()<CR>', opts)
+vim.api.nvim_set_keymap('i', '<C-h>', '<cmd>lua  vim.lsp.buf.signature_help()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>w', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>w', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>wfl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>D', '<cmd>lua  vim.lsp.buf.type_definition()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>vws', '<cmd>lua  vim.lsp.buf.workspace_symbol()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>vd', '<cmd>lua  vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua  vim.lsp.buf.references()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>sld', '<cmd>lua  vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua  vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua  vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>vca', '<cmd>lua  vim.lsp.buf.code_action()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>vrr', '<cmd>lua  vim.lsp.buf.references()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>vc', '<cmd>lua  function().lsp.buf.formatting() end<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>vrn', '<cmd>lua  vim.lsp.buf.rename()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>jca', '<cmd>lua require(\'jdtls\').code_action()<CR>', {silent = true})
