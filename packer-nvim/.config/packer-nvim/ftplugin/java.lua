@@ -11,7 +11,7 @@ end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local jdtls_dir = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
-local path_to_lsp_server = jdtls_dir .. '/config_win'
+local path_to_lsp_server = jdtls_dir .. '/config_linux'
 local path_to_plugins = jdtls_dir .. '/plugins/'
 local path_to_jar = path_to_plugins .. 'org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar'
 -- local lombok_path = path_to_plugins .. 'lombok.jar'
@@ -33,7 +33,7 @@ local config = {
 		-- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
 		cmd = {
 				-- '/Users/hp/Library/Java/JavaVirtualMachines/temurin-18.0.1/Contents/Home/bin/java',
-				'C:/Users/hp/scoop/apps/openjdk/current/bin/java',
+				'/usr/bin/java',
 				'-Declipse.application=org.eclipse.jdt.ls.core.id1',
 				'-Dosgi.bundles.defaultStartLevel=4',
 				'-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -58,7 +58,7 @@ local config = {
 		-- for a list of options
 		settings = {
 				java = {
-						home = "C:/Users/hp/scoop/apps/openjdk/current/bin/java",
+						home = "/usr/bin/java",
 						eclipse = {
 								downloadSources = true,
 						},
