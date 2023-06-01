@@ -66,7 +66,7 @@ alias ran "ranger"
 
 #neovim
 #alias v "nvim -u ~/dotfiles/nvim/.config/nvim/MyOwn-Config.lua"
-alias v "nvim"
+# alias v "nvim"
 alias nv "neovide"
 alias lv "lvim"
 alias svim "vim -u ~/SpaceVim/vimrc "
@@ -191,7 +191,7 @@ alias myemacs="emacs --with-profile=myemacs"
 alias enw="emacs -nw"
 
 # neovim distro aliases
-alias pv='NVIM_APPNAME=packer-nvim nvim'
+alias v='NVIM_APPNAME=packer-nvim nvim'
 
 #hyprland screenshot utility
 alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast
