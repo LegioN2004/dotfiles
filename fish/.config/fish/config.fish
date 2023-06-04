@@ -131,7 +131,7 @@ alias pr  "paru -R "
 alias ypr  "yes|paru -R "
 alias prns  "paru -Rns "
 alias yprns  "yes|paru -Rns "
-alias clean "yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq)"
+alias clean "zsh && yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) && exit "
 
 # miscellaneous
 alias cat "bat"

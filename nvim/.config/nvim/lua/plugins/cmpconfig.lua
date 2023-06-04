@@ -11,10 +11,10 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local check_backspace = function()
-  local col = vim.fn.col(".") - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
+-- local check_backspace = function()
+--   local col = vim.fn.col(".") - 1
+--   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+-- end
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
@@ -48,28 +48,28 @@ local kind_icons = {
 
 -- The nvim-cmp supports additional LSP's capabilities so we need to
 -- advertise it to LSP servers..
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local config = {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
+-- local config = {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- }
 
 local cmp = require("cmp")
 cmp.setup({
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "path" },
-    { name = "nvim_lsp_signature_help" },
-  },
   snippet = {
     expand = function(args)
       -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
       luasnip.lsp_expand(args.body)
     end,
+  },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
+    -- { name = "nvim_lsp_signature_help" },
   },
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -137,10 +137,10 @@ cmp.setup({
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
   },
-  experimental = {
-    ghost_text = false,
-    native_menu = false,
-  },
+  -- experimental = {
+  --   ghost_text = false,
+  --   native_menu = ture,
+  -- },
 })
 
 return m
