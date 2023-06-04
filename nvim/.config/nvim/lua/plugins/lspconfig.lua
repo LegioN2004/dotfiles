@@ -64,8 +64,8 @@ vim.diagnostic.config({
 })
 
 ------ plugins configurations ------------------------------------------------------------------------------
--- require'lspconfig'.clangd.setup {}
--- require'lspconfig'.jdtls.setup {}
+-- require 'lspconfig'.clangd.setup {}
+-- require 'lspconfig'.jdtls.setup {}
 
 lsp.configure("lua_ls", {
   settings = {
