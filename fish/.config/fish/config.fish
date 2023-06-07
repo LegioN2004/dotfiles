@@ -64,13 +64,16 @@ alias rm-index.lock-git=". ~/dotfiles/scripts-laptop/rm-index.lock-git.sh"
 #ranger
 alias ran "ranger"
 
+
 #neovim
 #alias v "nvim -u ~/dotfiles/nvim/.config/nvim/MyOwn-Config.lua"
-# alias v "nvim"
+alias v "nvim"
 alias nv "neovide"
 alias lv "lvim"
 alias svim "vim -u ~/SpaceVim/vimrc "
 alias lazy='NVIM_APPNAME=LazyVim nvim'
+# neovim distro aliases
+alias pv='NVIM_APPNAME=packer-nvim nvim'
 
 
 #C++ run code alias
@@ -189,10 +192,6 @@ alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate ar
 alias doom="emacs --with-profile=doom"
 alias myemacs="emacs --with-profile=myemacs"
 alias enw="emacs -nw"
-
-# neovim distro aliases
-alias v='NVIM_APPNAME=packer-nvim nvim'
-alias wv='NVIM_APPNAME=lazy-nvim nvim'
 
 #hyprland screenshot utility
 alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast
