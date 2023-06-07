@@ -96,9 +96,11 @@ alias sus= 'systemctl suspend'
 alias pow= 'poweroff'
 alias reb= 'reboot'
 
+# to clean all the deps and junk
+alias clean=' yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) && exit '
 
 # emacs alias
-alias e='emacs -nw'
+alias enw='emacs -nw'
 
 # always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
 #z change directory

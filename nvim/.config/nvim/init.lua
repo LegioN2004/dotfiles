@@ -1,85 +1,87 @@
-require("config.settings")
--- lazy stuff
+require('core.settings')
+require('core.autocmds')
 
+-- lazy stuff start
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+	print("Installing Lazy.nvim close and reopen Neovim...")
 end
 vim.opt.rtp:prepend(lazypath)
 
--- set leader key = space
+-- Use this Autocommand to reload neovim whenever you save the plugins.lua or any file
+-- vim.cmd([[
+-- augroup lazy_user_config
+-- autocmd!
+-- autocmd BufWritePost plugins.lua source <afile> | Lazy sync
+-- augroup end
+-- ]])
+
+-- Use a protected call so we don't error out on first use
+local status_ok, lazy = pcall(require, "lazy")
+if not status_ok then
+	print("Lazy is not installed")
+	return
+end
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
---put plugins here
 require("lazy").setup('plugins', {
-  -- install = { colorscheme = { "gruvbox" } },
-  ui = {
-    border = "rounded",
-  },
-  checker = { enabled = true },
-  debug = false,
-  defaults = { lazy = true },
-  change_detection = {
-    notify = true,
-  },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-        "netrw",
-      },
-    },
-  },
+	ui = {
+		border = "rounded",
+	},
+	checker = {
+		-- automatically check for plugin updates
+		enabled = true,
+		concurrency = nil, ---@type number? set to 1 to check for updates very slowly
+		notify = false, -- get a notification when new updates are found
+		frequency = 86400, -- check for updates every hour
+	},
+	change_detection = {
+		-- automatically check for config file changes and reload the ui
+		enabled = true,
+		notify = false, -- get a notification when changes are found
+	},
+	performance = {
+		cache = {
+			enabled = true,
+		},
+		reset_packpath = true, -- reset the package path to improve startup time
+		defaults = { lazy = true },
+		rtp = {
+			reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+			---@type string[]
+			debug = false,
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+				"netrw",
+			},
+		},
+	},
 })
 
-require("config.keymaps")
-require("config.alpha")
-require("config.macros")
-require("config.functions")
--- lazy stuff
-vim.api.nvim_create_autocmd("User", {
-  callback = function()
-    require("config.autocmds")
-  end,
-})
-
--- local has = function(x)
--- 	return vim.fn.has(x) == 1
--- end
-
--- local is_win = has("win32")
--- local is_mac = has("macunix")
--- -- local is_unix = has "Linux"
-
--- if is_mac then
--- 	require("macos")
--- end
-
--- if is_win then
--- 	require("windows")
--- end
-
--- if is_unix then
---     require('unix')
--- end
+-- core stufff
+require('core.alpha')
+require('core.keymaps')
+-- require('core.macros')
 
 vim.cmd([[
-let g:coc_node_path = '~/.nvm/versions/node/v18.15.0/bin/node'
-let g:coc_npm_path = '~/.nvm/versions/node/v18.15.0/bin/node'
-au! BufWritePost $MYVIMRC source %
+" let g:coc_node_path = '~/.nvm/versions/node/v18.15.0/bin/node'
+" let g:coc_npm_path = '~/.nvm/versions/node/v18.15.0/bin/node'
+" au! BufWritePost $MYVIMRC source %
 ]])

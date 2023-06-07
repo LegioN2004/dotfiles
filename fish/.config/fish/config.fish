@@ -131,7 +131,7 @@ alias pr  "paru -R "
 alias ypr  "yes|paru -R "
 alias prns  "paru -Rns "
 alias yprns  "yes|paru -Rns "
-alias clean "zsh && yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) && exit "
+alias clean " yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) "
 
 # miscellaneous
 alias cat "bat"
@@ -192,6 +192,7 @@ alias enw="emacs -nw"
 
 # neovim distro aliases
 alias v='NVIM_APPNAME=packer-nvim nvim'
+alias wv='NVIM_APPNAME=lazy-nvim nvim'
 
 #hyprland screenshot utility
 alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast

@@ -6,13 +6,13 @@ lua << EOF
 
 if vim.g.GuiLoaded then
   local font_name = "JetBrainsMono NF"
-  local font_size = 11
+  local font_size = 10
   local not_transparent = false
 
   local function toggle_transparency()
     not_transparent = not not_transparent
     if not_transparent then
-      vim.cmd("GuiWindowOpacity " .. (0.9))
+      vim.cmd("GuiWindowOpacity " .. (0.8))
     else
       vim.cmd("GuiWindowOpacity " .. (1.0))
     end

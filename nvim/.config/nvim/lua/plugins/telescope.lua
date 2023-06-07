@@ -1,4 +1,3 @@
--- TODO check the  next tmux window neovim configuration for improvements in my main config and also load the session setup.vim(my one) copy.vim(the one for copying) which hass all the files
 return {
 	"nvim-telescope/telescope.nvim",
 	cmd = "Telescope",
@@ -6,7 +5,7 @@ return {
 	dependencies = {
 		{
 			"nvim-telescope/telescope-fzf-native.nvim", -- FZF algorithm for telescope
-			build = "make",
+			build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 			config = function()
 				require("telescope").load_extension("fzf")
 			end,
@@ -41,6 +40,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			lazy = true,
 		},
+	{ 'nvim-lua/popup.nvim' },
 
 		{
 			"folke/trouble.nvim",
@@ -158,17 +158,17 @@ return {
 	},
 	config = function()
 		local telescope = require("telescope")
-		-- -- local telescope_config = require("telescope.config")
-		-- -- local actions = require("telescope.actions")
+		local telescope_config = require("telescope.config")
+		local actions = require("telescope.actions")
 
 		-- -- Clone the default Telescope configuration
-		-- local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
+		local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
 
 		-- -- I want to search in hidden/dot files.
-		-- -- table.insert(vimgrep_arguments, "--hidden")
+		-- -- table "--hidden")
 		-- -- -- I don't want to search in the `.git` directory.
-		-- -- table.insert(vimgrep_arguments, "--glob")
-		-- -- table.insert(vimgrep_arguments, "!.git/*")
+		table.insert(vimgrep_arguments, "--glob")
+		table.insert(vimgrep_arguments, "!.git/*")
 
 		local trouble = require("trouble.providers.telescope")
 		telescope.setup({
@@ -176,12 +176,12 @@ return {
 				-- `hidden = true` is not supported in text grep commands.
 				-- vimgrep_arguments = vimgrep_arguments,
 				mappings = {
-					-- i = {
-					-- ["<c-n>"] = actions.move_selection_next,
-					-- ["<c-p>"] = actions.move_selection_previous,
-					-- ["<c-t>"] = trouble.open_with_trouble,
-					-- ["<esc>"] = actions.close, -- Close on first press of esc. No "normal" mode.
-					-- },
+					i = {
+						["<c-n>"] = actions.move_selection_next,
+						["<c-p>"] = actions.move_selection_previous,
+						["<c-t>"] = trouble.open_with_trouble,
+						["<esc>"] = actions.close, -- Close on first press of esc. No "normal" mode.
+					},
 					n = { ["<c-t>"] = trouble.open_with_trouble },
 				},
 				-- Themeing

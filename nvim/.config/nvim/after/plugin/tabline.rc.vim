@@ -43,3 +43,4 @@ function MyTabLabel(n)
 endfunction
 
 set tabline=%!MyTabLine()
+

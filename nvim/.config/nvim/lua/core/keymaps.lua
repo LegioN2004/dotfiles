@@ -6,8 +6,8 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 -- local keymap = vim.keymap -- for the keymap vim.keymap.set use keymap and single quotes only for the specifying key
 
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- vim.g.mapleader = " "
+-- vim.g.maplocalleader = " "
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -21,7 +21,7 @@ keymap("", "<Space>", "<Nop>", opts)
 --   command_mode = "c",
 
 --dont yank  with x
---vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('n', 'x', '"_x')
 
 --increment / decrement
 vim.keymap.set('n', '+', '<C-a>')
@@ -68,14 +68,6 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Paste from clipboard.
--- vim.keymap.set({ 'n', 'x' }, 'cp', '"+y')
--- vim.keymap.set({ 'n', 'x' }, 'cv', '"+p')
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Paste from clipboard.
 -- vim.keymap.set({ 'n', 'x' }, 'cp', '"+y')
@@ -83,7 +75,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- from ThePrimeagen ------------------------------------------
 -- greatest remap ever
---[[if there is a need to preserve the current yanked text without storing the next deleted one(as it is stored 
+--[[if there is a need to preserve the current yanked text without storing the next deleted one(as it is stored
 after deletion) since it may be required so use this ]]
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
@@ -110,16 +102,12 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- add new folders as tmux sessions
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
--- replace the word on which the cursor is sitting for the entire file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 ------------------------------------------------------------------
 
 -- shortcuts for commenting
@@ -134,6 +122,7 @@ vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<cr>")
 
 -- open init.lua file
 vim.keymap.set('n', "<leader>my", ":e $MYVIMRC<cr>")
+
 
 vim.cmd([[
 "fzf keybindings
@@ -168,7 +157,7 @@ let g:session_command_aliases = 1
 "let g:netrw_banner=0        " disable annoying banner
 
 " NvimTreeToggle remap
- nnoremap ;f <Esc>:NvimTreeToggle<CR>:vertical resize 30<CR><CR>
+nnoremap ;f <Esc>:NvimTreeToggle<CR>:vertical resize 30<CR><CR>
 
 "checkout and fix these fzf keybinds
 " PLUGIN: FZF
@@ -197,21 +186,14 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 " and remove the upper lines
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-  \   <bang>0)
+\ call fzf#vim#grep(
+\   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+\   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+\           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+\   <bang>0)
 ]])
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>te', ":Telescope<CR>")
-vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") });
-end)
-
-
--- Java keymaps
+-- Java lsp keymaps
 function P.map_java_keys(bufnr)
 		map_lsp_kys()
 
@@ -221,4 +203,5 @@ function P.map_java_keys(bufnr)
 		keymap('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
 		keymap('n', '<leader>jc', ':lua require("jdtls").compile("incremental")')
 end
+
 return P
