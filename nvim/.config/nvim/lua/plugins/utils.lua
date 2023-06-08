@@ -1,49 +1,82 @@
+-- TODO: fix the notifications using nvim-notify & fix the whichkey with correct all the bindings that have been setup & setup debugger for the languages &
+-- fix the nvim tree transparency and in other places necessary
 return {
   "goolord/alpha-nvim",
-	{
-		'rose-pine/neovim',
-		config = function()
-			opts = {
-				disable_italics = true,
-			}
-		end
-	},
-{
-		"folke/which-key.nvim",
-		config = function()
-			vim.o.timeout = true
-			vim.timeoutlen = 300
-			require("which-key").setup({
-				plugins = {
-					presets = {
-						g = false,
-					},
-				},
-				window = {
-					border = "single",
-				},
-			})
-		end,
-	},
+  {
+    'rose-pine/neovim',
+    config = function()
+      opts = {
+        disable_italics = true,
+      }
+    end
+  },
+  -- faster file search alternative to fzf and telescope ; trigger using ctrl + f
+  {
+    "jake-stewart/jfind.nvim",
+    keys = {
+      { "<c-f>" },
+    },
+    config = function()
+      require("jfind").setup({
+        exclude = {
+          ".git",
+          ".idea",
+          ".vscode",
+          ".sass-cache",
+          ".class",
+          "__pycache__",
+          "node_modules",
+          "target",
+          "build",
+          "tmp",
+          "assets",
+          "dist",
+          "public",
+          "*.iml",
+          "*.meta"
+        },
+        border = "rounded",
+        tmux = true,
+        key = "<c-f>"
+      });
+    end
+  },
+  {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.timeoutlen = 300
+      require("which-key").setup({
+        plugins = {
+          presets = {
+            g = false,
+          },
+        },
+        window = {
+          border = "single",
+        },
+      })
+    end,
+  },
 
-	{
-		"szw/vim-maximizer",
-		lazy = true,
-		cmd = { "MaximizerToggle" },
-		keys = {
-			{ "<leader>mt", ":MaximizerToggle<CR>", desc = "Toggle file tree" },
-		},
-		config = function()
-			vim.api.nvim_set_hl(0, "ZenBg", { ctermbg = 0 })
-		end,
-	},
-	{
-  		"xiyaowong/transparent.nvim",
-  		lazy = false,
-  		config = function()
-  		require("transparent").setup {
-  		}
-  		end
+  {
+    "szw/vim-maximizer",
+    lazy = true,
+    cmd = { "MaximizerToggle" },
+    keys = {
+      { "<leader>mt", ":MaximizerToggle<CR>", desc = "Toggle file tree" },
+    },
+    config = function()
+      vim.api.nvim_set_hl(0, "ZenBg", { ctermbg = 0 })
+    end,
+  },
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    config = function()
+      require("transparent").setup {
+      }
+    end
   },
 
   ------ ui for nvim-lsp progress ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -257,7 +290,7 @@ return {
     end,
   },
   -- git wrapper
-    "tpope/vim-rhubarb",
+  "tpope/vim-rhubarb",
   {
     "tpope/vim-fugitive",
     cmd = { "Git", "G" },
@@ -285,18 +318,18 @@ return {
   --------------- previously present stuff ------------------------------------------------------------------------------
   "LazyVim/LazyVim",
   -- { "tpope/vim-surround",       lazy = true },
-	
-	--note taking org stuff
-	-- {'nvim-orgmode/orgmode'},
+
+  --note taking org stuff
+  -- {'nvim-orgmode/orgmode'},
   {
     "iamcco/markdown-preview.nvim",
     lazy = true,
     cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && npm install",
-    setup = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-      ft = { "markdown" }
-    end,
+    ft = { "markdown" },
+    -- setup = function()
+    --   vim.g.mkdp_filetypes = { "markdown" }
+    -- end,
   },
 
   {
@@ -351,16 +384,16 @@ return {
       })
     end,
   },
-	-- screensaver if you want to use
-	{
-		"eandrju/cellular-automaton.nvim",
-		cmd = "CellularAutomaton",
-	},
-	--movement stuff
-	-- use 'justinmk/vim-sneak'
-	-- use 'phaazon/hop.nvim'
-	-- session stuff
-	-- use 'xolox/vim-session'
-	-- use 'xolox/vim-misc'
-	--language specific stuff
+  -- screensaver if you want to use
+  {
+    "eandrju/cellular-automaton.nvim",
+    cmd = "CellularAutomaton",
+  },
+  --movement stuff
+  -- use 'justinmk/vim-sneak'
+  -- use 'phaazon/hop.nvim'
+  -- session stuff
+  -- use 'xolox/vim-session'
+  -- use 'xolox/vim-misc'
+  --language specific stuff
 }

@@ -5,7 +5,8 @@ return {
 	dependencies = {
 		{
 			"nvim-telescope/telescope-fzf-native.nvim", -- FZF algorithm for telescope
-			build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+			build =
+			"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 			config = function()
 				require("telescope").load_extension("fzf")
 			end,
@@ -40,7 +41,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			lazy = true,
 		},
-	{ 'nvim-lua/popup.nvim' },
+		{ 'nvim-lua/popup.nvim' },
 
 		{
 			"folke/trouble.nvim",
@@ -58,33 +59,39 @@ return {
 			lazy = true,
 		},
 	},
+
+	-- BUG: change the find_command i.e the stuff inside the function brackets if there are any performance related issues or stuff breaking or some unusual stuff
+	-- I added fd , rg here to make the find_files and grep_string process faster as they use rust instead of traditional vimscript
 	keys = {
 		{ "<leader>te", ":Telescope<CR>", desc = "Toggle Telescope" },
 		{
 			"<leader>ps",
 			function()
-				require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
+				require("telescope.builtin").grep_string({
+					{ find_command = { 'rg', fname } },
+					search = vim.fn.input("Grep > ")
+				})
 			end,
 			desc = "Toggle Telescope grep",
 		},
 		{
 			"<leader><space>",
 			function()
-				require("telescope.builtin").find_files()
+				require("telescope.builtin").find_files({ find_command = { 'fd', fname } })
 			end,
 			desc = "Find file",
 		},
 		{
 			";r",
 			function()
-				require("telescope.builtin").live_grep()
+				require("telescope.builtin").live_grep({ find_command = { 'rg', fname } })
 			end,
 			desc = "Grep directory",
 		},
 		{
 			"<leader>?",
 			function()
-				require("telescope.builtin").current_buffer_fuzzy_find()
+				require("telescope.builtin").current_buffer_fuzzy_find({ find_command = { 'rg', fname } })
 			end,
 			desc = "Grep current buffer",
 		},
@@ -98,7 +105,7 @@ return {
 		{
 			"<leader>:",
 			function()
-				require("telescope.builtin").commands()
+				require("telescope.builtin").commands({ find_command = { 'rg', fname } })
 			end,
 			desc = "Commands",
 		},
@@ -126,7 +133,7 @@ return {
 		{
 			"<leader>fr",
 			function()
-				require("telescope.builtin").oldfiles()
+				require("telescope.builtin").oldfiles({ find_command = { 'fd', fname } })
 			end,
 			desc = "Find previously opened file",
 		},
@@ -151,7 +158,7 @@ return {
 		{
 			";h",
 			function()
-				require("telescope.builtin").help_tags()
+				require("telescope.builtin").help_tags({ find_command = { 'rg', fname } })
 			end,
 			desc = "NeoVim help tags",
 		},
