@@ -25,18 +25,19 @@ These are my personal dotfiles for mainly my Arch-Linux machine
 
 ![nvim, tmux, i3 screenshot](./assets/images/archrice3rd.png)
 
-<h1 align="center">Neovim configuration 🖐️on🔥</h1>
+<h1 align="center">Neovim configuration 🖐️s on🔥</h1>
 
 ![one nvim pic](./assets/images/20230609_17h56m53s_grimedited.png)
 <!-- ![second nvim pic](./assets/images/nvim-showed2.png) -->
 
 - I use NEOVIM(a better version of vim, more appropiately a better fork) because it is one of the best editor I have ever used. I have configured it to my liking with all the keybinds ready to use so that my hands remain in the keyboard. There are still some extension left.
-- Don't go for the exit vim memes, they're bluff. Use it to its full potential in its vanilla state and you will realise the power of vim, the legendary text editing abilities it provides. Start from here [freecodecamp.org/Vim-tutorial-for-beginners](https://youtu.be/RZ4p-saaQkc), then go for more improvements using channels like [ThePrimeagen][ThePrimeagen], etc.
-- I have already setup formatting and linting(maybe) using the linters and formatters provided by mason from this [repo](https://github.com/leonasdev/.dotfiles).
+- Don't go for the exit vim memes, they're all bluff. Use it to its full potential in its vanilla state and you will realise the power of vim, the legendary text editing abilities it provides, and you can make it more awesome by adding plugins(sky is the limit). Start from here [freecodecamp.org/Vim-tutorial-for-beginners](https://youtu.be/RZ4p-saaQkc), then go for more improvements using channels like [ThePrimeagen][ThePrimeagen], etc.
+- I have already have setup general settings, language stuff, lsp using native nvim-lsp, auto formatting and linting(maybe) using the linters and formatters provided by mason from this [repo](https://github.com/leonasdev/.dotfiles), and more incoming.
 - TODOS:
   - [ ] Configure DAP for java, cpp, and other languages to be used later on.
   - [ ] make the ui better with the transparency and stuff.
   - [ ] setup formatting and linting for more languages.
+  - [ ] keep track of the changes in the readme
 
 ---
 
@@ -57,13 +58,13 @@ They helped me setup nvim like the one you see in the pics
     - Any Nerd Font is required to display the glyph correctly.
     - [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)
     - **[JetBrains Mono NL](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/NoLigatures) is recommended or you can use the [ligature](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/Ligatures) version.**
-3. Node (>=16.20.0) & Npm: Use [nvm]()
+3. Node (>=16.20.0) & Npm. Use [nvm](https://github.com/nvm-sh/nvm) to version control the node as per your liking, better usability than the native package manager.
 4. Python (>=3.9) & pip
 5. Cmake - for building some plugins
 6. GCC (recent versions) - for building some plugins
 7. [fd](https://github.com/sharkdp/fd) - A better version of find(linux util) in rust of course, improves performance in some plugins
 8. [ripgrep(rg)](https://github.com/BurntSushi/ripgrep) - A better version of grep(linux util) in rust of course, improves performance in some plugins
-9. [jfind](https://github.com/jake-stewart/jfind.nvim) - A wayy faster version of fzf written in cpp, req for jfind.nvim
+9. [jfind](https://github.com/jake-stewart/jfind.nvim) - A wayy faster version of fzf written in cpp, required for jfind.nvim
 
 ### 🔧 Plugins used
 <!-- TODO: more plugins to be added -->
@@ -91,8 +92,8 @@ They helped me setup nvim like the one you see in the pics
 #### LSP stuff
 
 - [VonHeikemen/lsp-zero.nvim](https://github.com/VonHeikemen/lsp-zero.nvim#you-might-not-need-lsp-zero) - bundles all the boilerplate code req for lsp
-  - This lsp-zero repo helped me a lot to setup the LSP for every language I needed, I just need to install the right backend if needed (eg: rust, go, etc) and the correct LSP server itself and everything just works right out of the box. Java requires some extra configurations and I have done that too in ftplugin dir.  
-- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - A collection of configurations for Neovim's **built-in LSP**
+  - This lsp-zero repo helped me a lot to setup the LSP for every language I needed, I just need to install the right backend if needed (eg: rust, go, etc) and the correct LSP server itself and everything just works right out of the box. Java requires some extra configurations and I have done that too in ftplugin dir, idk about the other languages that needs that type of extra configurations, all of them does need for professional usecases, but Im in the learning stage.  
+- [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - A collection of configurations for Neovim's **built-in LSP**, required to inject lsp functions in neovim.
 - [onsails/lspkind-nvim](https://github.com/onsails/lspkind-nvim) - VSCode-like **pictograms**
 - [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) - **Snippet Engine** for Neovim written in Lua
 - [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - A **completion engine** plugin for neovim written in Lua
@@ -131,7 +132,7 @@ They helped me setup nvim like the one you see in the pics
 - [nmac427/guess-indent.nvim](https://github.com/nmac427/guess-indent.nvim) - **auto detect indentation**
 - [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) - adds **indentation guides** to all lines (including empty lines)
 - [echasnovski/mini.indentscope](https://github.com/echasnovski/mini.indentscope) - **active indent guide and indent text objects**
-- [ThePrimeagen/vim-be-good](https://github.com/ThePrimeagen/vim-be-good) - A **game** made by [ThePrimeagen][ThePrimeagen]
+- [ThePrimeagen/vim-be-good](https://github.com/ThePrimeagen/vim-be-good) - A **game** made by [ThePrimeagen][ThePrimeagen] to be good at vim in a fun way
 - [mbbill/undotree](https://github.com/mbbill/undotree) - **time travel undo**  for any file
 - [windwp/nvim-spectre](https://github.com/windwp/nvim-spectre) - **search/replace in multiple files** in a dir
 - [NvChad/nvim-colorizer.lua](https://github.com/NvChad/nvim-colorizer.lua) - Better CSS hex(maybe others too) **color code representation**
@@ -146,10 +147,10 @@ They helped me setup nvim like the one you see in the pics
 - [Nerd fonts](https://github.com/ryanoasis/nerd-fonts) - Powerline-patched fonts. I use JetBrainsMono NF.
 - [z](https://github.com/jethrokuan/z) - Directory jumping using `z a-folder-name`
 - [Exa](https://the.exa.website/) - better `ls` replacement
-- [ghq](https://github.com/x-motemen/ghq) - Local Git repository organizer
+- [ghq](https://github.com/x-motemen/ghq) - Local Git repository organizer, for better management of repos according to owner and version control hosting websites
 - [peco](https://github.com/peco/peco) - Interactive filtering
 
-## 🤮 PowerShell setup (Windows), is in another [repo](https://github.com/LegioN2004/some-other-stuff/tree/main/Windows/PowerShell7)
+## 🤮 PowerShell setup (🤮Windows), is in another [repo](https://github.com/LegioN2004/some-other-stuff/tree/main/Windows/PowerShell7)
 
 - Made a lot of unix style commands aliased in powershell.
 - [Scoop](https://scoop.sh/) - A command-line installer
@@ -161,8 +162,6 @@ They helped me setup nvim like the one you see in the pics
 <!-- 2. - [Oh My Posh](https://ohmyposh.dev/) - Prompt theme engine -->
 
 ## ✅ How to use
-
-Watch these video tutorials of [devaslife](https://www.youtube.com/devaslife):
 
 1. highly recommended for [setting up nvim](https://youtu.be/w7i4amO_zaE) from scratch - I also took a lot from this
 2. dev workflow using tmux and vim [ThePrimeagen version](https://youtu.be/bdumjiHabhQ)
