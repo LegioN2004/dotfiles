@@ -62,9 +62,8 @@ return {
   {
     "szw/vim-maximizer",
     lazy = true,
-    cmd = { "MaximizerToggle" },
     keys = {
-      { "<leader>mt", ":MaximizerToggle<CR>", desc = "Toggle file tree" },
+      { "<leader>mt", ":MaximizerToggle<CR>", desc = "maximize a split" },
     },
     config = function()
       vim.api.nvim_set_hl(0, "ZenBg", { ctermbg = 0 })
@@ -290,10 +289,10 @@ return {
     end,
   },
   -- git wrapper
-  "tpope/vim-rhubarb",
   {
     "tpope/vim-fugitive",
     cmd = { "Git", "G" },
+    dependencies = { "tpope/vim-rhubarb" },
     config = function() end,
   },
 
