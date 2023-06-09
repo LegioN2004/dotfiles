@@ -15,7 +15,7 @@
 
 - Waybar is from [s1mpleman](https://github.com/1amSimp1e/dots)
 
-![first Hyprland ss](./assets/images/archrice4thhyprland1st.png)
+![first Hyprland ss](./assets/images/20230609_17h24m26s_grim2.png)
 ![second Hyprland ss](./assets/images/archrice4thhyprland1stkasecond.png)
 
 ### i3wm rice

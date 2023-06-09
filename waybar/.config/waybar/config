@@ -5,9 +5,10 @@
 				"margin-bottom": 0,
 				"margin-right": 5,
 				"spacing": 2, // Gaps between modules (4px)
-				"modules-left": ["custom/launcher", "cpu", "memory"],
+				"modules-left": ["custom/launcher", "cpu", "memory", "pulseaudio", "network"],
 				"modules-center": ["wlr/workspaces"],
-				"modules-right": ["custom/wallpaper", "tray", "pulseaudio", "network", "battery", "clock", "custom/power-menu"],
+				"modules-right": [ "tray", "battery", "clock", "custom/power-menu"],
+				// "modules-right": ["custom/wallpaper", "tray", "pulseaudio", "network", "battery", "clock", "custom/power-menu"], // main line
 				// "modules-left": ["custom/launcher", "cpu", "memory", "custom/weather", "custom/spotify"],
 				//"modules-center": ["custom/spotify"],
 				//"modules-right": [ ,"tray", "backlight", "pulseaudio", "network", "battery", "clock", "custom/power-menu"],
