@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "LegioN"
-      user-mail-address "sunnybaruasins@gmail.com")
+(setq user-full-name "Milinda Barua"
+      user-mail-address "milindabarua04@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 ; (setq doom-font (font-spec :family "JetBrains Mono" :size 14 :weight 'semi-light))
- (setq doom-font (font-spec :family "JetBrainsMono NFM" :size 15 :weight 'semi-light))
+ (setq doom-font (font-spec :family "JetBrainsMono NFM" :size 14 :weight 'semi-light))
       ; doom-variable-pitch-font (font-spec :family "Fira Code" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -38,17 +38,19 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-style 'relative)
 ; (setq doom-line-numbers-style 'relative)
 
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;; set the org directory according to your path
-(setq org-directory "~/programs/org-docs")
-(setq default-directory "C:/Users/hp")
+(setq org-directory "/home/sunny/ghq/github.com/LegioN2004/programs/org-docs")
+(setq default-directory "/home/sunny/")
 ;; (setq load-path "C:/Users/hp/.emacs.d/packages")
 
+;; confirm-kill-emacs is non-nil by default. The doom-quit module only adds silly confirmation messages to it. To disable it completely:
+(setq confirm-kill-emacs nil)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
