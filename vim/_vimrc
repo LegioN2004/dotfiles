@@ -1,5 +1,5 @@
 syntax on                  " Enable syntax highlighting.
-colorscheme NeoSolarized
+colorscheme gruvbox
 set background=dark
 set autoshelldir  
 set updatetime=40
@@ -35,9 +35,9 @@ set smartcase
 set swapfile
 set backup
 set undofile
-set directory=~/vimfiles/swap//
-set backupdir=~/vimfiles/backup//
-set undodir=~/vimfiles/undo//
+set directory=~/.vim/swap//
+set backupdir=~/.vim/backup//
+set undodir=~/.vim/undo//
 set incsearch
 "set hlsearch
 set nohlsearch                    " Highlight search results.
@@ -48,7 +48,7 @@ set wildmenu                    " Enable enhanced tab autocomplete.
 set wildmode=full  " Complete till longest string, then open menu.
 set incsearch                   " Search as you type.
 "set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h12:cANSI "set font for gui version of vim/nvim
-set guifont=CaskaydiaCove\ NFM:h12:cANSI "set font for gui version of vim/nvim
+"set guifont=RobotoMono\ NFM:h12:cANSI "set font for gui version of vim/nvim
 set is
 set si
 " set guioptions-=m  "menu bar
@@ -151,7 +151,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " netrw thing
-nnoremap ;f <Esc>:Lex<CR>:vertical resize 30<CR>
+nnoremap ;f <Esc>:Lex<CR><CR>:vertical resize 30<CR><CR>
 let g:netrw_liststyle = 3
 let g:netrw_banner=0        " disable annoying banner
 let g:netrw_browse_split=4  " open in prior window
