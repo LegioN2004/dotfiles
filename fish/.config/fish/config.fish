@@ -188,7 +188,7 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 #-----------------------------------------------------------------------------------------------------
 
-#spacemacs chemacs2 aliases
+# chemacs2 aliases
 alias doom="emacs --with-profile=doom"
 alias myemacs="emacs --with-profile=myemacs"
 alias enw="emacs -nw"
@@ -202,6 +202,8 @@ alias ex="thunar &"
 #alias to update the browsers automatically
 alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-desktop discord"
 
-
 # nnn stuff
 export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
+
+# TODO: clone all the required git dirs : doom-emacs, chemacs2, rvaiya-keyd
+alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doomemacs ~/doomemacs && mkdir ~/.emacs.d && git clone https://github.com/plexus/chemacs2 ~/.emacs.d"
