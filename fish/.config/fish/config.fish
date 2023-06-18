@@ -123,20 +123,17 @@ alias sps "sudo pacman -S "
 #alias ysps "yes|sudo pacman -S "
 alias spsy "sudo pacman -Sy "
 alias spsyy "sudo pacman -Syy "
-alias spsyyu  "sudo pacman -Syyu "
 alias psyy  "paru -Syy "
 alias psy  "paru -Sy "
-alias ypsyyu  "yes|paru -Syyu "
 
 #remove
 alias pr  "paru -R "
-alias ypr  "yes|paru -R "
 alias prns  "paru -Rns "
 alias yprns  "yes|paru -Rns "
 alias clean " yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) "
 
 # miscellaneous
-alias cat "bat"
+# alias cat "bat"
 # alias idea ". /home/sunny/Downloads/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/idea.sh"
 alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
 alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"

@@ -14,17 +14,21 @@ super + k
 super + f
   thunar
 
+#spawn alacritty
+super + t
+  alacritty
+
 #spawn ranger
-super + r 
-	ranger
+# super + r 
+# 	ranger
 
 #spawn bravebrowser
 super + b
   brave-browser
 
 #spawn min
-super + m
-  min
+super + e
+  emacs
 
 #spawn neovide
  super + s
