@@ -70,8 +70,7 @@ alias ran "ranger"
 alias v "nvim"
 alias nv "neovide"
 alias lv "lvim"
-alias svim "vim -u ~/SpaceVim/vimrc "
-alias lazy='NVIM_APPNAME=LazyVim nvim'
+alias sv="vim -u ~/SpaceVim/vimrc "
 # neovim distro aliases
 alias pv='NVIM_APPNAME=packer-nvim nvim'
 
