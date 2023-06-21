@@ -82,7 +82,7 @@ return {
   {
     "j-hui/fidget.nvim",
     event = "LspAttach",
-				tag = "legacy",
+    tag = "legacy",
     config = function()
       require("fidget").setup({
         window = {
@@ -359,20 +359,20 @@ return {
   -- NOTE: -----------------------------------------------
   -- use this for some CSS stuff
   -- color highlighter
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   event = "BufEnter",
-  --   config = function()
-  --     require("colorizer").setup({
-  --       filetypes = { "*" },
-  --       user_default_options = {
-  --         names = false,
-  --         tailwind = "both",
-  --         mode = "background",
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "NvChad/nvim-colorizer.lua",
+    event = "BufEnter",
+    config = function()
+      require("colorizer").setup({
+        filetypes = { "*.css" },
+        user_default_options = {
+          names = false,
+          tailwind = "both",
+          mode = "background",
+        },
+      })
+    end,
+  },
 
   {
     "kylechui/nvim-surround",
