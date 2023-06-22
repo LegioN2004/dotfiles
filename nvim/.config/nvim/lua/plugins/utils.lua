@@ -326,7 +326,7 @@ return {
     lazy = true,
     cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && npm install",
-    ft = { "markdown" },
+    -- ft = { "markdown" },
     -- setup = function()
     --   vim.g.mkdp_filetypes = { "markdown" }
     -- end,
@@ -362,9 +362,9 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufEnter",
+    ft = { "css" },
     config = function()
       require("colorizer").setup({
-        filetypes = { "*.css" },
         user_default_options = {
           names = false,
           tailwind = "both",

@@ -1,121 +1,136 @@
+# ██╗██████╗░░██╗░░░░░░░██╗███╗░░░███╗
+# ██║╚════██╗░██║░░██╗░░██║████╗░████║
+# ██║░█████╔╝░╚██╗████╗██╔╝██╔████╔██║
+# ██║░╚═══██╗░░████╔═████║░██║╚██╔╝██║
+# ██║██████╔╝░░╚██╔╝░╚██╔╝░██║░╚═╝░██║
+# ╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝░░░░░╚═╝
+
+# ░█████╗░░█████╗░███╗░░██╗███████╗██╗░██████╗░██╗░░░██╗██████╗░░█████╗░████████╗██╗░█████╗░███╗░░██╗
+# ██╔══██╗██╔══██╗████╗░██║██╔════╝██║██╔════╝░██║░░░██║██╔══██╗██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║
+# ██║░░╚═╝██║░░██║██╔██╗██║█████╗░░██║██║░░██╗░██║░░░██║██████╔╝███████║░░░██║░░░██║██║░░██║██╔██╗██║
+# ██║░░██╗██║░░██║██║╚████║██╔══╝░░██║██║░░╚██╗██║░░░██║██╔══██╗██╔══██║░░░██║░░░██║██║░░██║██║╚████║
+# ╚█████╔╝╚█████╔╝██║░╚███║██║░░░░░██║╚██████╔╝╚██████╔╝██║░░██║██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║
+# ░╚════╝░░╚════╝░╚═╝░░╚══╝╚═╝░░░░░╚═╝░╚═════╝░░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝
 # i3 config file (v4)
+
+
+
+
+# █▀▄ █▀▀ █▀▀ █ █▄░█ █ ▀█▀ █ █▀█ █▄░█ █▀
+# █▄▀ ██▄ █▀░ █ █░▀█ █ ░█░ █ █▄█ █░▀█ ▄█
+
 set $mod Mod1
+set $mod2 Mod4
+#Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+#start a terminal
+set $term alacritty
+## start at startup the following
+# NetworkManager is the most popular way to manage wireless networks on Linux, and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+exec --no-startup-id kitty
+exec --no-startup-id brave
+exec --no-startup-id thunar
+# i3 font for all the titles, tabs etc
+font pango:Hack NF 8.7 
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png --nofork
+#polybar launch script
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# exec_always --no-startup-id polybar
+# script for changing wallpapers randomly after 5 mins, from the above directory^
+exec --no-startup-id ~/dotfiles/watch
+# exec_always --no-startup-id feh --bg-scale /home/sunny/Pictures/wallpapers-stuff2/Xero-Plasma60.png
+# master stack layout python script
+exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
+# Install `python-i3ipc`, then either:
+# Clone this repository or install from the [AUR](https://aur.archlinux.org/packages/alternating-layouts-git/).
+# Then, for i3 add: exec_always --no-startup-id ~/path/to/alternating_layouts.py to your `~/.i3/config`.
+## compositor for blurr, rounded-corners, effects, shadows,etc download picom-jonaburg-git fork  
+# exec_always picom --experimental-backends 
+exec_always picom 
+#always run xinput list-props "xinput set-prop "ETPS/2 Elantech Touchpad" and run the following commands to set tap to click and natural scrolling 
+exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
+exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1
+## sxhkd autostart,  probably won't ever need this, since I can set more bindings with more mod keys by defining them at startup
+# exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
+# gnome's authorization agent to mount drives and adding passwords whenever required
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# keyboard repeat delay in ms
+exec_always xset r rate 300 50
+# drop down terminal F12
+# exec --no-startup-id yakuake
+# a certain type of right click menu
+#bindsym $mod+x exec "jgmenu --center"
+#batteery notifier
+exec --no-startup-id ~/dotfiles/scripts-laptop/scripts/batterynotify
+## TODO: setup this thing: swallow for i3wm
+# exec --no-startup-id ~/.config/i3/scripts/i3-swallow.py
+
+
+
+
+
+
+# █▄▄ █ █▄░█ █▀▄ █ █▄░█ █▀▀ █▀
+# █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
 
 # mode "passthrough" {
 #     bindsym Mod1+Alt_R mode "default"
 # }
 # bindsym Mod1+Alt_L mode "passthrough"
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:Hack NF 8.7 
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-exec --no-startup-id kitty
-exec --no-startup-id brave
-exec --no-startup-id thunar
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# start a terminal
-set $term alacritty
-bindsym $mod+Return exec $term
-
+## open terimal with this $term is kitty for now defined in defintions above
+bindsym $mod+Return exec $term 
 # kill focused window
 bindsym $mod+q kill
-
 # app launcher
-# bindsym $mod+d exec rofi -show drun -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
-# bindsym $mod+p exec --no-startup-id rofi -show drun -show-icons -lines 8 -columns 3 -eh 2 -width 74 -padding 200 -opacity "40"
 bindsym $mod+d exec  rofi -show drun -columns 2
 bindsym $mod+p exec  dmenu_run -i
-
-# change focus
+## change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-# alternatively, you can use the arrow keys:
+## shift fullscreen focus using the mod4
+bindsym $mod2+h fullscreen disable, focus right, fullscreen enable
+bindsym $mod2+j fullscreen disable, focus down, fullscreen enable
+bindsym $mod2+k fullscreen disable, focus up, fullscreen enable
+bindsym $mod2+l fullscreen disable, focus left, fullscreen enable
+# TODO: make better use of the mod+arrow key bindings here, for now it is used as an alternative to change focus.
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
-
-# move focused window
+# shift focused window left/right/up/down
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the arrow keys:
+# TODO: make better use of the mod+shift+arrow key bindings here, for now it is used as an alternative to shift focused window.
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
+## orientation bindings
 # split in horizontal orientation
 bindsym $mod+b split h
-
 # split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
+## enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
+## change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
+## toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
+## change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
+## focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
+## focus the child container
 # bindsym $mod+d focus child
-
-# workspace no with icons and sht
-# set $ws1 "1." 
-# set $ws2 "2."
-# set $ws3 "3."
-# set $ws4 "4."
-# set $ws5 "5."
-# set $ws6 "6."
-# set $ws7 "7.﬏"
-# set $ws8 "8."
-# set $ws9 "9"
-# set $ws10 "10"
-
-# set workspace layout as tabbed
-# workspace_layout tabbed
-
-# workspace with no
-set $ws1 "1" 
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# switch to workspace
+## switch to workspace
 bindsym $mod+1 workspace  $ws1 
 bindsym $mod+2 workspace  $ws2
 bindsym $mod+3 workspace  $ws3
@@ -126,7 +141,6 @@ bindsym $mod+7 workspace  $ws7
 bindsym $mod+8 workspace  $ws8
 bindsym $mod+9 workspace  $ws9
 bindsym $mod+0 workspace  $ws10
-
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace  $ws1
 bindsym $mod+Shift+2 move container to workspace  $ws2
@@ -139,39 +153,79 @@ bindsym $mod+Shift+8 move container to workspace  $ws8
 bindsym $mod+Shift+9 move container to workspace  $ws9
 bindsym $mod+Shift+0 move container to workspace  $ws10
 
-# assining apps to individual workspaces
-#following 3 lines are custom
-#assign [class="~/.cargo/bin/alacritty"] $ws3
-assign [class="kitty"] $ws1
-# assign [class="xfce4-terminal"] $ws3
-assign [class="Brave-browser"] $ws2
-# assign [class="Min"] $ws3
-assign [class="Thunar"] $ws4
-assign [class="nautilus"] $ws4
-assign [class="firefox"] $ws5
-assign [class="Google-chrome"] $ws5
-assign [class="Github-desktop"] $ws5
-assign [class="sysmontask"] $ws5
-assign [class="gnome-system-monitor"] $ws5
-assign [class="vlc"] $ws6
-assign [class="obs"] $ws6
-# assign [class="neovide"] $ws7
-assign [class="Emacs"] $ws7
-assign [class="code"] $ws8
-# assign [class="Subl"] $ws8
-assign [class="idea"] $ws8
-assign [class="TelegramDesktop"] $ws9
-assign [class="discord"] $ws9
-assign [class="kdenlive"] $ws9
-assign [class="gimp"] $ws0
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+## lock screen i3lock
+bindsym $mod+shift+x exec i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png
+# and another script to do stuff
+# bindsym $mod+shift+x exec ~/dotfiles/i3/.config/i3/scripts/betteri3lock
+## custom commnads for laptops like brightness and battery 
+# after installing light do these: sudo apt install light && sudo chmod +s /usr/bin/light
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp  exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown  exec light -U 5 # decrease screen brightness
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /.i3/toggletouchpad.sh # toggle touchpad
+# Media player controls
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+## wallpapers stuff
+bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff2/
+bindsym $mod+n exec redshift -P -O 2500
+bindsym $mod+shift+n exec redshift -x
+## Screenshots
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date)"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date)"
+## Clipboard Screenshots
+bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+## alt tab switcher for i3
+# bindsym $mod+Tab exec  ~/ghq/github.com/yoshimoto/i3-alt-tab.py next all
+# bindsym $mod+Shift+Tab exec ~/ghq/github.com/yoshimoto/i3-alt-tab.py all
+## move workspace with mouse scroll next/prev
+bindsym $mod+Tab workspace $ws2
+# bindsym $mod+Shift+Tab workspace prev
+bindsym --whole-window --border $mod+button4 workspace prev
+bindsym --whole-window --border $mod+button5 workspace next
+## remap for keyboard via xmodmap
+# exec_always --no-startup-id xmodmap ~/.Xmodmap
+# exec --no-startup-id setxkbmap -option "shift:both_capslock,ctrl:swapcaps"
+# exec_always --no-startup-id setxkbmap -layout us -variant colemak -option ctrl:swapcaps
+#scratchpads
+# default i3wm binds
+bindsym $mod+shift+minus move scratchpad
+bindsym $mod+minus scratchpad show; move position center
+## mode_system for these following power options using a binding
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3lock, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym p exec --no-startup-id systemctl poweroff , mode "default"
 
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# shutdown / restart / suspend... power optinos stuff
+bindsym $mod+shift+q mode "$mode_system"
+## binding for the resize setup here
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -198,8 +252,78 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+## sxhkd stuff added here spawn stuff with keybinds using mod4 as the launcher mod
+bindsym $mod2+g exec google-chrome
+bindsym $mod2+t exec kitty
+bindsym $mod2+f exec thunar
+bindsym $mod2+r exec ranger
+bindsym $mod2+b exec brave
+bindsym $mod2+m exec firefox
+bindsym $mod2+e exec emacs
 
-#colors are a little customized like that of nord theme
+
+
+
+
+# ░██████╗███████╗████████╗████████╗██╗███╗░░██╗░██████╗░░██████╗
+# ██╔════╝██╔════╝╚══██╔══╝╚══██╔══╝██║████╗░██║██╔════╝░██╔════╝
+# ╚█████╗░█████╗░░░░░██║░░░░░░██║░░░██║██╔██╗██║██║░░██╗░╚█████╗░
+# ░╚═══██╗██╔══╝░░░░░██║░░░░░░██║░░░██║██║╚████║██║░░╚██╗░╚═══██╗
+# ██████╔╝███████╗░░░██║░░░░░░██║░░░██║██║░╚███║╚██████╔╝██████╔╝
+# ╚═════╝░╚══════╝░░░╚═╝░░░░░░╚═╝░░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═════╝░
+
+## workspace no with icons and sht, unnecessary
+# set $ws1 "1." 
+# set $ws2 "2."
+# set $ws3 "3."
+# set $ws4 "4."
+# set $ws5 "5."
+# set $ws6 "6."
+# set $ws7 "7.﬏"
+# set $ws8 "8."
+# set $ws9 "9"
+# set $ws10 "10"
+# TODO: set workspace layout as tabbed set this when there is no catching distractions
+# workspace_layout tabbed
+
+## workspace with no only
+set $ws1 "1" 
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# assining apps to individual workspaces
+#following 3 lines are custom
+assign [class="kitty"] $ws1
+assign [class="Brave-browser"] $ws2
+# assign [class="Min"] $ws3
+# assign [class="xfce4-terminal"] $ws3
+assign [class="Thunar"] $ws4
+assign [class="nautilus"] $ws4
+assign [class="firefox"] $ws5
+assign [class="Google-chrome"] $ws5
+assign [class="Github-desktop"] $ws5
+assign [class="sysmontask"] $ws5
+assign [class="gnome-system-monitor"] $ws5
+assign [class="vlc"] $ws6
+assign [class="obs"] $ws6
+# assign [class="neovide"] $ws7
+assign [class="Emacs"] $ws7
+assign [class="code"] $ws8
+# assign [class="Subl"] $ws8
+assign [class="idea"] $ws8
+assign [class="TelegramDesktop"] $ws9
+assign [class="discord"] $ws9
+assign [class="kdenlive"] $ws9
+assign [class="gimp"] $ws0
+
+## colors are a little customized like that of nord theme
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
@@ -212,10 +336,6 @@ client.focused          $bg-color           $bg-color          $text-color      
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-
-#polybar launch script
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-# exec_always --no-startup-id polybar
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -251,73 +371,12 @@ height 20
    position top 
 }
 
-# lock screen i3lock
-bindsym $mod+shift+x exec i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png
-# and another script to do stuff
-# bindsym $mod+shift+x exec ~/dotfiles/i3/.config/i3/scripts/betteri3lock
-
-
-#custom commnads for laptops like brightness and battery 
-# after installing light do these: sudo apt install light && sudo chmod +s /usr/bin/light
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp  exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown  exec light -U 5 # decrease screen brightness
-
-# Touchpad controls
-bindsym XF86TouchpadToggle exec /.i3/toggletouchpad.sh # toggle touchpad
-
-# Media player controls
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-#wallpapers stuff
-# exec_always nitrogen --set-auto ~/Pictures/wallpapers-stuff/nord_scenary.png
-bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff/
-# script for changing wallpapers randomly after 5 mins
-exec --no-startup-id ~/dotfiles/watch
-# exec_always --no-startup-id feh --bg-scale /home/sunny/Pictures/wallpapers-stuff2/Xero-Plasma60.png
-
-# master stack layout python script
-exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
-# Install `python-i3ipc`, then either:
-# Clone this repository or install from the [AUR](https://aur.archlinux.org/packages/alternating-layouts-git/).
-# Then, for i3 add: exec_always --no-startup-id ~/path/to/alternating_layouts.py to your `~/.i3/config`.
-
-# compositor stuff blurr, rounded-corners, effects, shadows,etc download picom-jonaburg-git fork  
-# exec_always picom --experimental-backends 
-exec_always picom 
-
-bindsym $mod+n exec redshift -P -O 2500
-bindsym $mod+shift+n exec pkill redshift
-
-# Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/Screenshots/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/Screenshots/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Screenshots/$(date)"
-
-## Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-
-#always run xinput list-props "xinput set-prop "ETPS/2 Elantech Touchpad" and run the following commands to set tap to click and natural scrolling 
-exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
-exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1
-
-#hide title bar 
+## hide title bar 
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
 
-# gaps
+## gaps
 # Activate smart borders (always)
 # smart_borders on
 # gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle  10
@@ -327,81 +386,10 @@ for_window [class="^.*"] border pixel 1
 # gaps horizontal current plus 40
 # gaps outer current toggle 60
 
-
-#sxhkd autostart
-exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
-
-#alt tab switcher for i3
-# bindsym $mod+Tab exec  ~/ghq/github.com/yoshimoto/i3-alt-tab.py next all
-# bindsym $mod+Shift+Tab exec ~/ghq/github.com/yoshimoto/i3-alt-tab.py all
-
-# move workspace with mouse scroll next/prev
-bindsym $mod+Tab workspace $ws2
-# bindsym $mod+Shift+Tab workspace prev
-bindsym --whole-window --border $mod+button4 workspace prev
-bindsym --whole-window --border $mod+button5 workspace next
-
-#dont know if this works but set up for colemak
-# exec --no-startup-id setxkbmap -model pc104 -layout us,de -variant colemak, -option "grp:alt_shift_toggle,shift:both_capslock,ctrl:swapcaps"
-
-#remap for keyboard via xmodmap
-# exec_always --no-startup-id xmodmap ~/.Xmodmap
-# exec --no-startup-id setxkbmap -option "shift:both_capslock,ctrl:swapcaps"
-# exec_always --no-startup-id setxkbmap -layout us -variant colemak -option ctrl:swapcaps
-
-# gnome's authorization agent to mount drives and adding passwords whenever required
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# keyboard repeat delay in ms
-exec_always xset r rate 300 50
-
-# shutdown / restart / suspend... power optinos stuff
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) poweroff
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3lock, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $i3lockwall && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $i3lockwall && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym p exec --no-startup-id systemctl poweroff , mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+shift+q mode "$mode_system"
-
-# drop down terminal F12
-# exec --no-startup-id yakuake
-
-#bindsym $mod+x exec "jgmenu --center"
-
-#batteery notifier
-exec --no-startup-id ~/dotfiles/scripts-laptop/scripts/batterynotify
-
-#swallow for i3wm
-# exec --no-startup-id ~/.config/i3/scripts/i3-swallow.py
-
-#scratchpads
-# default i3wm binds
-bindsym $mod+shift+minus move scratchpad
-bindsym $mod+minus scratchpad show; move position center
-
-# binds custom from lukesmith
+## binds custom from lukesmith for creating scratchpad with tmux as an addition
 for_window [instance="ttrm"] floating enable
 for_window [instance="ttrm"] resize set 825 408
 for_window [instance="ttrm"] move scratchpad
 for_window [instance="ttrm"] border pixel 5
 exec --no-startup-id st -n ttrm -e tmux
 bindsym $mod+t [instance="ttrm"] scratchpad show; [instance="ttrm"] move position center
-
-# sxhkd stuff added here spawn stuff with keybinds
-#spawn firefox
-bindsym Mod4+w exec Google-chrome
-# bindsym Mod4 + k exec konsole
-bindsym Mod4+f exec thunar #spawn filemanager
-bindsym Mod4+r  exec ranger
-bindsym Mod4+b exec Brave-browser
-bindsym Mod4+m exec min
-bindsym Mod4+s exec jgmenu
-
