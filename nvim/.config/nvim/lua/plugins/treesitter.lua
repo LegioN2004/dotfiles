@@ -34,6 +34,9 @@ return {
       ts_update()
     end,
     config = function()
+      local status, autotag = pcall(require, 'nvim-ts-autotag')
+      if (not status) then return end
+      autotag.setup {}
       require("nvim-treesitter.configs").setup({
         -- A list of parser names, or "all"
         ensure_installed = {
@@ -41,6 +44,8 @@ return {
           "markdown",
           "java",
           "cpp",
+          "html",
+          "css",
         },
         sync_install = false,
         -- auto_install = true,
@@ -66,7 +71,8 @@ return {
           enable = true,
         },
 
-        context_commentstring = { -- For nvim-ts-context-commentstring plugin
+        context_commentstring = {
+          -- For nvim-ts-context-commentstring plugin
           enable = true,
           enable_autocmd = false, -- Disabled when used with Comment.nvim
         },

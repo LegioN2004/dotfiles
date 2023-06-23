@@ -60,10 +60,10 @@ require("lazy").setup('plugins', {
 			reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
 			debug = false,
 			disabled_plugins = {
-				"netrw",
-				"netrwPlugin",
-				"netrwSettings",
-				"netrwFileHandlers",
+				-- "netrw",
+				-- "netrwPlugin",
+				-- "netrwSettings",
+				-- "netrwFileHandlers",
 				"gzip",
 				"zip",
 				"zipPlugin",

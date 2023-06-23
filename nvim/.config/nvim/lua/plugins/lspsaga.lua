@@ -13,14 +13,14 @@ return {
       code_action = {
         num_shortcut = true,
         keys = {
-          quit = ";",
+          quit = "q",
           exec = "<CR>",
         },
       },
 
       scroll_preview = {
-        scroll_down = "<C-f>",
-        scroll_up = "<C-b>",
+        scroll_down = "<C-n>",
+        scroll_up = "<C-p>",
       },
       request_timeout = 2000,
 
@@ -33,7 +33,7 @@ return {
       },
 
       rename = {
-        quit = ";",
+        quit = "q",
         exec = "<CR>",
         in_select = false,
       },
@@ -43,11 +43,11 @@ return {
         vsplit = "s",
         split = "i",
         tabe = "t",
-        quit = { ";", "<ESC>" },
+        quit = { "q", "<ESC>" },
       },
 
       diagnostic = {
-        insert_winblend = 0,
+        insert_winblend = 10,
         jump_num_shortcut = true,
         on_insert = false,
         on_insert_follow = false,
@@ -59,7 +59,7 @@ return {
         border_follow = true,
         keys = {
           exec_action = "o",
-          quit = ";",
+          quit = "q",
         },
       },
 
@@ -76,7 +76,7 @@ return {
         vsplit = "<C-c>v",
         split = "<C-c>i",
         tabe = "<C-c>t",
-        quit = ";",
+        quit = "q",
         close = "<Esc>",
       },
 
@@ -96,7 +96,7 @@ return {
       outline = {
         win_position = "right",
         win_with = "",
-        win_width = 30,
+        win_width = 50,
         show_detail = true,
         auto_preview = true,
         auto_refresh = true,
@@ -105,7 +105,7 @@ return {
         keys = {
           jump = "o",
           expand_collaspe = "u",
-          quit = ";",
+          quit = "q",
         },
       },
 
@@ -117,7 +117,7 @@ return {
           split = "i",
           tabe = "t",
           jump = "o",
-          quit = ";",
+          quit = "q",
           expand_collaspe = "u",
         },
       },

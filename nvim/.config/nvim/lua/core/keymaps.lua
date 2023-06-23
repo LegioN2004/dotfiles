@@ -123,6 +123,11 @@ vim.keymap.set('n', "<leader>mt", ":MaximizerToggle<cr>")
 -- open init.lua file
 vim.keymap.set('n', "<leader>my", ":e $MYVIMRC<cr>")
 
+-- using ctrl+backspace for deleting words.
+-- vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', { noremap = true })
+-- vim.keymap.set('i', "<C-BS>", "<C-w>")
+vim.keymap.set('i', "<C-Del>", " <cmd>norm! dw<CR>")
+
 
 vim.cmd([[
 "fzf keybindings
@@ -146,15 +151,14 @@ nnoremap <leader>mk :mksession ~/nvimfiles/sessions/
 nnoremap <leader>so :so ~/nvimfiles/sessions/
 
 "xolox-vim-sessions management
-let g:session_directory = "~/nvimfiles/xolox-vim-sessions"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
+" let g:session_directory = "~/nvimfiles/xolox-vim-sessions"
+" let g:session_autoload = "no"
+" let g:session_autosave = "no"
+" let g:session_command_aliases = 1
 
-"nnoremap ;f <Esc>:Lex<CR>:vertical resize 30<CR><CR>
+"nnoremap <leader>sf <Esc>:Lex<CR>:vertical resize 30<CR><CR>
 "nnoremap <leader>ex <Esc>:Ex<CR>
-""let g:netrw_liststyle = 3
-"let g:netrw_banner=0        " disable annoying banner
+let g:netrw_liststyle = 3
 
 " NvimTreeToggle remap
 nnoremap ;f <Esc>:NvimTreeToggle<CR>:vertical resize 30<CR><CR>
@@ -195,13 +199,13 @@ command! -bang -nargs=* Rg
 
 -- Java lsp keymaps
 function P.map_java_keys(bufnr)
-		map_lsp_kys()
+	map_lsp_kys()
 
-		local spring_boot_run = 'mvn sping-boot:run -Dspring-boot.run.profiles=local'
-		local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")'
-		keymap('n', '<leader>sr', command)
-		keymap('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
-		keymap('n', '<leader>jc', ':lua require("jdtls").compile("incremental")')
+	local spring_boot_run = 'mvn sping-boot:run -Dspring-boot.run.profiles=local'
+	local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")'
+	keymap('n', '<leader>sr', command)
+	keymap('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
+	keymap('n', '<leader>jc', ':lua require("jdtls").compile("incremental")')
 end
 
 return P

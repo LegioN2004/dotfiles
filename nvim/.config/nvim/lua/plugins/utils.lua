@@ -148,6 +148,11 @@ return {
       check_ts = true,
     },
     config = function(_, opts)
+      local status, autopairs = pcall(require, 'nvim-autopairs')
+      if (not status) then return end
+      autopairs.setup {
+        disable_filetypes = { 'TelescopePrompt', 'vim' }
+      }
       require("nvim-autopairs").setup(opts)
 
       --- setup for cmp
@@ -326,7 +331,7 @@ return {
     lazy = true,
     cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && npm install",
-    -- ft = { "markdown" },
+    ft = { "markdown" },
     -- setup = function()
     --   vim.g.mkdp_filetypes = { "markdown" }
     -- end,

@@ -18,7 +18,7 @@ return {
     disabled = false,
     to_register_wrap = function()
       return require("null-ls").builtins.formatting.prettier.with({
-        filetypes = { "html", "css", "scss" },
+        filetypes = { "html", "css", "scss", "js", "ts", "jsx", "tsx", "xml" },
         extra_args = { "--print-width", "120" },
       })
     end,

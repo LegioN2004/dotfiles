@@ -1,5 +1,5 @@
 return {
-{
+	{
 		"nvim-tree/nvim-tree.lua", -- File browser
 		event = "BufEnter",
 		dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -28,7 +28,7 @@ return {
 						},
 					},
 				},
-				hijack_netrw = true,
+				hijack_netrw = false,
 				filters = {
 					dotfiles = false,
 					git_clean = false,

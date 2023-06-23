@@ -29,6 +29,7 @@ return {
       local lsp = require("lsp-zero")
       -- And you can configure cmp even more, if you want to.
       local cmp = require('cmp')
+      local lspkind = require('lspkind')
       -- local cmp_action = require('lsp-zero.cmp').action()
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -79,52 +80,11 @@ return {
           { name = "path" },
           -- { name = "orgmode" },
         },
-        -- formatting = {
-        --   fields = { "kind", "abbr", "menu" },
-        --   format = function(entry, vim_item)
-        --     vim_item.menu = string.format("%s", icons[vim_item.menu])
-        --     vim_item.menu = ({
-        --       luasnip = icons.kind.Snippet,
-        --       nvim_lsp = "[LSP]",
-        --       path = icons.kind.File,
-        --       buffer = icons.kind.Key,
-        --     })[entry.source.name]
-        --     return vim_item
-        --   end,
-        -- },
         formatting = {
-          format = require('lspkind').cmp_format({
-            mode = 'symbol',
-            preset = 'codicons',
-            symbol_map = {
-              Array = "󰅪",
-              Boolean = "◩",
-              Class = "",
-              Color = "",
-              Constant = "",
-              Constructor = "",
-              Enum = "",
-              EnumMember = "",
-              Event = "",
-              Field = "ﰠ",
-              Text = "",
-              Method = "",
-              Function = "",
-              Variable = "",
-              Interface = "",
-              Module = "",
-              Property = "ﰠ",
-              Unit = "塞",
-              Value = "",
-              Keyword = "",
-              Snippet = "",
-              File = "",
-              Reference = "",
-              Folder = "",
-              Struct = "פּ",
-              Operator = "",
-              TypeParameter = "",
-            },
+          format = lspkind.cmp_format({
+            --  mode = 'symbol',       -- show only symbol annotations
+            maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             before = function(entry, vim_item)
               return vim_item
             end
@@ -207,6 +167,7 @@ return {
         -- It also supports tagstack
         -- Use <C-t> to jump back
         keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
+        -- keymap("n", "<leader>gr", "<cmd>Lspsaga rename<CR>")
         keymap("n", "<leader>pt", "<cmd>Lspsaga peek_type_definition<CR>")
         keymap("n", "<leader>gpt", "<cmd>Lspsaga goto_type_definition<CR>")
         keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics ++unfocus<CR>")
@@ -226,8 +187,8 @@ return {
         keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
         keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
         -- Call hierarchy
-        keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-        keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+        keymap("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+        keymap("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
         -- Floating terminal
         keymap({ "n", "t" }, "<leader>tt", "<cmd>Lspsaga term_toggle<CR>")
         -- lspsaga stuff ------------------------------------------------------------------
@@ -235,6 +196,7 @@ return {
 
       -- (Optional) Configure lua language server for neovim
       require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+      -- require 'lspconfig'.tailwindcss.setup {}
 
       lsp.setup()
     end
