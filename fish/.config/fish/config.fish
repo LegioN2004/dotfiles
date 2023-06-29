@@ -203,3 +203,6 @@ export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
 
 # TODO: clone all the required git dirs : doom-emacs, chemacs2, rvaiya-keyd
 alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doomemacs ~/doomemacs && mkdir ~/.emacs.d && git clone https://github.com/plexus/chemacs2 ~/.emacs.d"
+
+# go path setup
+export GOPATH=$HOME/ghq/github.com/LegioN2004/programs/GO
