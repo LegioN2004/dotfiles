@@ -113,10 +113,10 @@ $_Z_NO_RESOLVE_SYMLINKS
 
 # from ellah majnor nvim switcher -------------------------------------------------------------------------------
 # alias default="NVIM_APPNAME="
-alias lazy='NVIM_APPNAME=LazyVim nvim'
+# alias lazy='NVIM_APPNAME=LazyVim nvim'
 alias astro='NVIM_APPNAME=AstroNvim nvim'
 alias pv='NVIM_APPNAME=packer-nvim nvim'
-
+alias av='NVIM_APPNAME=alexis-nvim nvim'
 # fzf menu to load the above mentioned nvim distros
 # function nvims() {
 # 		items=("LazyVim")
