@@ -5,6 +5,7 @@
 # fish stuff -----------------------------------------------------------------
 set fish_greeting ""
 set -gx EDITOR nvim
+set -gx TERMINAL alacritty
 # set -g theme_color_scheme terminal-dark
 
 set TLP_ENABLE 1
@@ -25,10 +26,16 @@ set -gx PATH /home/sunny/.nvm/versions/node/v18.15.0/bin $PATH
 # HISTFILESIZE=100000
 # IntelliJ IdeaIC2022 path
 
-set -gx PATH ~/Downloads/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/ $PATH
-set -gx PATH /home/sunny/Downloads/jdk-17.0.6/bin/ $PATH
-set -gx PATH /home/sunny/Downloads/clangd_15.0.6/bin/ $PATH
+set -gx PATH ~/Downloads/softwares/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/ $PATH
 
+# all the exports
+export TERMINAL=/usr/bin/alacritty
+# nnn stuff
+export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
+# go path setup
+export GOPATH=$HOME/ghq/github.com/LegioN2004/programs/GO
+# set CC and CXX envars to inform emacs files of the gcc location
+export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc 
 # fish stuff -----------------------------------------------------------------
 
 
@@ -196,13 +203,7 @@ alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast
 alias ex="thunar &"
 
 #alias to update the browsers automatically
-alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-desktop discord"
-
-# nnn stuff
-export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
+alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-desktop kitty alacritty neovim kitty emacs"
 
 # TODO: clone all the required git dirs : doom-emacs, chemacs2, rvaiya-keyd
 alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doomemacs ~/doomemacs && mkdir ~/.emacs.d && git clone https://github.com/plexus/chemacs2 ~/.emacs.d"
-
-# go path setup
-export GOPATH=$HOME/ghq/github.com/LegioN2004/programs/GO
