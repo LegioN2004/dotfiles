@@ -97,7 +97,7 @@ alias pow= 'poweroff'
 alias reb= 'reboot'
 
 # to clean all the deps and junk
-alias clean=' yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) && exit '
+alias clean=' yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) '
 
 # emacs alias
 alias enw='emacs -nw'

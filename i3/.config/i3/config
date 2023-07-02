@@ -260,6 +260,7 @@ bindsym $mod2+r exec ranger
 bindsym $mod2+b exec brave
 bindsym $mod2+m exec firefox
 bindsym $mod2+e exec emacs
+bindsym $mod2+c exec code
 
 
 

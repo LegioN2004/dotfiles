@@ -74,7 +74,7 @@ tabspaces: 4
 # Font configuration
 font:
   normal:
-     family: JetBrains Mono
+     family: Hack NF
     # style: Regular
 
   bold:
@@ -91,7 +91,7 @@ font:
 
   # font size
   #size: 11.5
-  size: 10.8
+  size: 10.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

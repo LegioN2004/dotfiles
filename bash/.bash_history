@@ -526,3 +526,13 @@ v
 v init.lua 
 v init.lua 
 exit
+ls
+cd ..
+cd assignments/
+ls
+fish
+ls
+live-server
+npm start live-server
+ls
+exit

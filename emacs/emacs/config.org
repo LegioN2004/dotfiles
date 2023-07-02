@@ -5,9 +5,29 @@
 #+OPTIONS: toc:2
 
 
+
+* TABLE OF CONTENTS :toc:
+- [[#this-configuration-is-done-from-the-configuring-emacs-playlist-of-distrotube--for-any-errors-refer-to-his-gitlab-repo-dwt1configuring-emacs][This configuration is done from the Configuring Emacs playlist of DistroTube . For any errors refer to his gitlab repo: dwt1/Configuring-emacs]]
+- [[#important-programs-to-load-first][IMPORTANT programs to load first]]
+  - [[#a-package-manager--elpaca][A PACKAGE MANAGER = Elpaca]]
+  - [[#load-evil-mode][Load EVIL mode]]
+- [[#settings][SETTINGS]]
+  - [[#gui-settings-and-tweaks][GUI Settings and tweaks]]
+  - [[#fonts][Fonts]]
+  - [[#keybinds][KEYBINDS]]
+- [[#org-mode-the-god][ORG MODE (The GOD)]]
+  - [[#enabling-table-of-contents][Enabling Table of Contents]]
+  - [[#enabling-org-bullets][Enabling Org Bullets]]
+  - [[#disable-electric-indent][Disable Electric Indent]]
+- [[#which-key][WHICH-KEY]]
+
+* This configuration is done from the Configuring Emacs playlist of [[https://www.youtube.com/watch?v=d1fgypEiQkE&list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX&pp=iAQB][DistroTube]] . For any errors refer to his gitlab repo: [[https://gitlab.com/dwt1/Configuring-emacs][dwt1/Configuring-emacs]]
+
+
+
 * IMPORTANT programs to load first
 
-** A Package manager = Elpaca
+** A PACKAGE MANAGER = Elpaca
 #+BEGIN_SRC emacs-lisp :tangle yes
 
   (defvar elpaca-installer-version 0.5)
@@ -15,31 +35,31 @@
   (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
   (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
   (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
-				:ref nil
-				:files (:defaults (:exclude "extensions"))
-				:build (:not elpaca--activate-package)))
+                                :ref nil
+                                :files (:defaults (:exclude "extensions"))
+                                :build (:not elpaca--activate-package)))
   (let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
-	 (build (expand-file-name "elpaca/" elpaca-builds-directory))
-	 (order (cdr elpaca-order))
-	 (default-directory repo))
+         (build (expand-file-name "elpaca/" elpaca-builds-directory))
+         (order (cdr elpaca-order))
+         (default-directory repo))
     (add-to-list 'load-path (if (file-exists-p build) build repo))
     (unless (file-exists-p repo)
       (make-directory repo t)
       (when (< emacs-major-version 28) (require 'subr-x))
       (condition-case-unless-debug err
-	  (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
-		   ((zerop (call-process "git" nil buffer t "clone"
-					 (plist-get order :repo) repo)))
-		   ((zerop (call-process "git" nil buffer t "checkout"
-					 (or (plist-get order :ref) "--"))))
-		   (emacs (concat invocation-directory invocation-name))
-		   ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
-					 "--eval" "(byte-recompile-directory \".\" 0 'force)")))
-		   ((require 'elpaca))
-		   ((elpaca-generate-autoloads "elpaca" repo)))
-	      (progn (message "%s" (buffer-string)) (kill-buffer buffer))
-	    (error "%s" (with-current-buffer buffer (buffer-string))))
-	((error) (warn "%s" err) (delete-directory repo 'recursive))))
+          (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                   ((zerop (call-process "git" nil buffer t "clone"
+                                         (plist-get order :repo) repo)))
+                   ((zerop (call-process "git" nil buffer t "checkout"
+                                         (or (plist-get order :ref) "--"))))
+                   (emacs (concat invocation-directory invocation-name))
+                   ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                         "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+                   ((require 'elpaca))
+                   ((elpaca-generate-autoloads "elpaca" repo)))
+              (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+            (error "%s" (with-current-buffer buffer (buffer-string))))
+        ((error) (warn "%s" err) (delete-directory repo 'recursive))))
     (unless (require 'elpaca-autoloads nil t)
       (require 'elpaca)
       (elpaca-generate-autoloads "elpaca" repo)
@@ -50,8 +70,8 @@
 #+END_SRC
 
 
-** Load Evil mode
-#+BEGIN_SRC emacs-lisp :tangle yes
+** Load EVIL mode
+#+BEGIN_SRC emacs-lisp  :tangle yes
 
   ;; Install use-package support
   (elpaca elpaca-use-package
@@ -63,29 +83,22 @@
   ;; Block until current queue processed.
   (elpaca-wait)
 
-  ;;When installing a package which modifies a form used at the top-level
-  ;;(e.g. a package which adds a use-package key word),
-  ;;use `elpaca-wait' to block until that package has been installed/configured.
-  ;;For example:
-  ;;(use-package general :demand t)
-  ;;(elpaca-wait)
-
   ;; Expands to: (elpaca evil (use-package evil :demand t))
   ;; (use-package evil :demand t)
   (use-package evil
-   :init ;; tweak evil's configuration before loading it
-   (setq evil-want-integration t)
-   (setq evil-want-keybinding nil)
-   (setq evil-vsplit-window-right t)
-   (setq evil-split-window-below t)
-   (evil-mode))
+    :init ;; tweak evil's configuration before loading it
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-vsplit-window-right t)
+    (setq evil-split-window-below t)
+    (evil-mode))
 
- (use-package evil-collection  ;; installing evil-collection
-   :after evil
-   :config
-   (setq evil-collection-mode-list '(dashboard dired ibuffer))
-   (evil-collection-init))
- (use-package evil-tutor) ;; installing evil-tutor
+  (use-package evil-collection  ;; installing evil-collection
+    :after evil
+    :config
+    (setq evil-collection-mode-list '(dashboard dired ibuffer))
+    (evil-collection-init))
+  (use-package evil-tutor) ;; installing evil-tutor
 
   ;;Turns off elpaca-use-package-mode current declartion
   ;;Note this will cause the declaration to be interpreted immediately (not deferred).
@@ -93,57 +106,187 @@
   (use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
 
   ;; Don't install anything. Defer execution of BODY
-  (elpaca nil (message "deferred"))
+  ;;(elpaca nil (message "deferred"))
 
 #+END_SRC
 
 
-** some settings
-#+BEGIN_SRC emacs-lisp :tangle yes
 
-(setq inhibit-startup-message t)
+* SETTINGS
 
-(scroll-bar-mode -1)        ; Disable visible scrollbar
-(tool-bar-mode -1)          ; Disable the toolbar
-(tooltip-mode -1)           ; Disable tooltips
-(set-fringe-mode 10)        ; Give some breathing room
+** GUI Settings and tweaks
+#+BEGIN_SRC emacs-lisp  :tangle yes
 
-(menu-bar-mode -1)            ; Disable the menu bar
+  ;; (setq inhibit-startup-message t)
 
-;; Set up the visible bell
-(setq visible-bell t)
+  (scroll-bar-mode -1)        ; Disable visible scrollbar
+  (tool-bar-mode -1)          ; Disable the toolbar
+  (tooltip-mode -1)           ; Disable tooltips
+  (set-fringe-mode 10)        ; Give some breathing room
+  ;; (menu-bar-mode -1)            ; Disable the menu bar
 
-(set-face-attribute 'default nil :font "Hack NF" :height 120)
+  ;; Set up the visible bell
+  (setq visible-bell t)
+  (load-theme 'wombat)
 
-(load-theme 'wombat)
+  ;; Make ESC quit prompts
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-;; Make ESC quit prompts
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+  ;; show line numbers
+  (global-display-line-numbers-mode 1)
+  ;; (setq display-line-numbers-style 'relative)
+  (global-visual-line-mode t)
+
 #+END_SRC
 
-** General keybindings
-#+BEGIN_SRC emacs-lisp :tangle yes
+
+** Fonts
+Defining the various fonts that emacs will use 
+#+BEGIN_SRC emacs-lisp  :tangle yes
+
+  (set-face-attribute 'default nil
+                      :font "JetBrains Mono"
+                      :height 110
+                      :weight 'medium)
+  (set-face-attribute 'variable-pitch nil
+                      ;; :font "JetBrains Mono"
+                      :font "Ubuntu"
+                      :height 120
+                      :weight 'medium)
+  (set-face-attribute 'fixed-pitch nil
+                      ;; :font "JetBrains Mono"
+                      :font "SF Mono"
+                      :height 110
+                      :weight 'medium)
+
+  ;; makes commented text and keywords italic
+  ;; this works in emacsclient but not emacs, must have an italic font style
+  (set-face-attribute 'font-lock-comment-face nil
+                      :slant 'italic)
+  (set-face-attribute 'font-lock-keyword-face nil
+                      :slant 'italic)
+
+  ;; This sets the default font on all graphical frames created after restarting Emacs.
+  ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
+  ;; are not right unless I also add this method of setting the default font.
+  (add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
+
+  ;; Uncomment the following line if line spacing needs adjusting.
+  (setq-default line-spacing 0.12)
+
+#+END_SRC
+
+
+** KEYBINDS
+#+BEGIN_SRC emacs-lisp  :tangle yes
+
   ;; setup SPC as the global leader key
- (use-package general
-  :config
-  (general-evil-setup)
+  (use-package general
+    :config
+    (general-evil-setup)
 
-  ;; set up 'SPC' as the global leader key
-  (general-create-definer mili/leader-keys
-    :states '(normal insert visual emacs)
-    :keymaps 'override
-    :prefix "SPC" ;; set leader
-    :global-prefix "M-SPC") ;; access leader in insert mode
+    ;; set up 'SPC' as the global leader key
+    (general-create-definer mili/leader-keys
+      :states '(normal insert visual emacs)
+      :keymaps 'override
+      :prefix "SPC" ;; set leader
+      :global-prefix "M-SPC") ;; access leader in insert mode
 
-  (mili/leader-keys
-    "b" '(:ignore t :wk "buffer")
-    "bb" '(switch-to-buffer :wk "Switch buffer")
-    "bk" '(kill-this-buffer :wk "Kill this buffer")
-    "bn" '(next-buffer :wk "Next buffer")
-    "bp" '(previous-buffer :wk "Previous buffer")
-    "br" '(revert-buffer :wk "Reload buffer"))
+    (mili/leader-keys
+      "." '(find-file :wk "Find file")
+      "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs/emacs/config.org")) :wk "Edit emacs config")
+      "/" '(comment-line :wk "Comment lines"))
 
-)
+    (mili/leader-keys
+      "h" '(:ignore t :wk "Help")
+      "h f" '(describe-function :wk "Describe function")
+      "h v" '(describe-variable :wk "Describe variable")
+      ;; done properly using the following function
+      ;; "h r r" '(reload-init-file :wk "Reload emacs config")
+      "h r r" '((lambda () (interactive) (load-file "~/emacs/init.el")) :wk "Reload emacs config"))
+
+    (mili/leader-keys
+      "b" '(:ignore t :wk "buffer")
+      "b b" '(switch-to-buffer :wk "Switch buffer")
+      "b k" '(kill-this-buffer :wk "Kill this buffer")
+      "b i" '(ibuffer :wk "Ibuffer")
+      "b n" '(next-buffer :wk "Next buffer")
+      "b p" '(previous-buffer :wk "Previous buffer")
+      "b r" '(revert-buffer :wk "Reload buffer"))
+
+    (mili/leader-keys
+      "e" '(:ignore t :wk "Evaluate")    
+      "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
+      "e d" '(eval-defun :wk "Evaluate defun containing or after point")
+      "e e" '(eval-expression :wk "Evaluate and elisp expression")
+      "e l" '(eval-last-sexp :wk "Evaluate elisp expression before point")
+      "e r" '(eval-region :wk "Evaluate elisp in region")) 
+
+    (mili/leader-keys
+      "t" '(:ignore t :wk "Toggle")
+      "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
+      "t t" '(visual-line-mode :wk "Toggle truncated lines"))
+    )
+
+#+END_SRC
+
+*** RELOAD EMACS
+This is just an example of how to create a simple function in Emacs.  Use this function to reload Emacs after adding changes to the config.  Yes, I am loading the user-init-file twice in this function, which is a hack because for some reason, just loading the user-init-file once does not work properly.
+
+#+BEGIN_SRC emacs-lisp  :tangle yes
+  (defun reload-init-file ()
+    (interactive)
+    (load-file user-init-file)
+    (load-file user-init-file))
 #+END_SRC
 
 
+
+* ORG MODE (The GOD)
+
+** Enabling Table of Contents
+#+BEGIN_SRC emacs-lisp  :tangle yes
+  (use-package toc-org
+    :commands toc-org-enable
+    :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+END_SRC
+
+
+** Enabling Org Bullets
+Org-bullets gives us attractive bullets rather than asterisks.
+#+BEGIN_SRC emacs-lisp  :tangle yes
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (use-package org-bullets)
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+END_SRC
+
+** Disable Electric Indent
+Org mode source blocks have some really weird and annoying default indentation behavior.  I think this has to do with electric-indent-mode, which is turned on by default in Emacs.  So let's turn it OFF!
+#+begin_src emacs-lisp
+  (electric-indent-mode -1)
+#+end_src
+
+
+
+* WHICH-KEY
+Which-key shows all the keybindings, in a popup window to which they are related
+#+BEGIN_SRC emacs-lisp :tangle yes
+
+  (use-package which-key
+    :init
+    (which-key-mode 1)
+    :config
+    (setq which-key-side-window-location 'bottom
+          which-key-sort-order #'which-key-key-order-alpha
+          which-key-sort-uppercase-first nil
+          which-key-add-column-padding 0.5
+          which-key-max-display-columns nil
+          which-key-min-display-lines 6
+          which-key-side-window-slot -10
+          which-key-side-window-max-height 0.33
+          which-key-idle-delay 0.7
+          which-key-max-description-length 25
+          which-key-allow-imprecise-window-fit t
+          which-key-separator " → " ))
+
+#+END_SRC

@@ -37,8 +37,6 @@ export GOPATH=$HOME/ghq/github.com/LegioN2004/programs/GO
 # set CC and CXX envars to inform emacs files of the gcc location
 export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc 
 # fish stuff -----------------------------------------------------------------
-
-
 # Replace ls with exa
 alias ll='exa -al --color=always --group-directories-first --icons' # preferred listing
 alias ls='exa -a --color=always --group-directories-first --icons'  # all files and dirs
