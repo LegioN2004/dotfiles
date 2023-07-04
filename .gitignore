@@ -14,3 +14,4 @@ packer-nvim/.config/packer-nvim/plugin
 emacs/emacs/elpa
 emacs/emacs/elpaca
 emacs/emacs/eln-cache
+emacs/emacs/tramp

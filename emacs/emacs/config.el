@@ -164,19 +164,19 @@
 ;; (menu-bar-mode -1)            ; Disable the menu bar
 (tool-bar-mode -1)          ; Disable the toolbar
 (scroll-bar-mode -1)        ; Disable visible scrollbar
-;; (tooltip-mode -1)           ; Disable tooltips
+(tooltip-mode -1)           ; Disable tooltips
 ;; (set-fringe-mode 10)        ; Give some breathing room
 
 ;; Set up the visible bell
-;; (setq visible-bell t)
-;; (load-theme 'wombat)
+ (setq visible-bell t)
+ (load-theme 'wombat)
 
 ;; Make ESC quit prompts
-;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; show line numbers
 (global-display-line-numbers-mode 1)
-;; (setq display-line-numbers-style 'relative)
+(setq display-line-numbers-style 'relative)
 (global-visual-line-mode t)
 
 (use-package toc-org
@@ -199,8 +199,9 @@
 (use-package sudo-edit
   :config
     (mili/leader-keys
-      "fu" '(sudo-edit-find-file :wk "Sudo find file")
-      "fU" '(sudo-edit :wk "Sudo edit file")))
+      "s" '(:ignore t :wk "sudo find/edit file")
+      "s f" '(sudo-edit-find-file :wk "Sudo find file")
+      "s e" '(sudo-edit :wk "Sudo edit file")))
 
 (use-package which-key
   :init
@@ -213,8 +214,40 @@
         which-key-max-display-columns nil
         which-key-min-display-lines 6
         which-key-side-window-slot -10
-        which-key-side-window-max-height 0.25
+        which-key-side-window-max-height 0.35
         which-key-idle-delay 0.7
         which-key-max-description-length 25
         which-key-allow-imprecise-window-fit t
         which-key-separator " → " ))
+
+(use-package counsel
+  :after ivy
+  :config (counsel-mode))
+
+(use-package ivy
+  :bind
+  ;; ivy-resume resumes the last Ivy-based completion.
+  (("C-c C-r" . ivy-resume)
+   ("C-x B" . ivy-switch-buffer-other-window))
+  :custom
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq enable-recursive-minibuffers t)
+  :config
+  (ivy-mode))
+
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode 1))
+
+(use-package ivy-rich
+  :after ivy
+  :ensure t
+  :init (ivy-rich-mode 1) ;; this gets us descriptions in M-x.
+  :custom
+  (ivy-virtual-abbreviate 'full
+   ivy-rich-switch-buffer-align-virtual-buffer t
+   ivy-rich-path-style 'abbrev)
+  :config
+  (ivy-set-display-transformer 'ivy-switch-buffer
+                               'ivy-rich-switch-buffer-transformer))

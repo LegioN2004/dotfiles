@@ -20,8 +20,10 @@
   - [[#enabling-org-bullets][Enabling Org Bullets]]
   - [[#disable-electric-indent][Disable Electric Indent]]
   - [[#source-code-block-tag-expansion][Source Code Block Tag Expansion]]
+  - [[#reload-emacs][RELOAD EMACS]]
 - [[#sudo-edit][SUDO EDIT]]
 - [[#which-key][WHICH-KEY]]
+- [[#ivy-counsel][IVY (COUNSEL)]]
 
 * This configuration is done from the Configuring Emacs playlist of [[https://www.youtube.com/watch?v=d1fgypEiQkE&list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX&pp=iAQB][DistroTube]] . For any errors refer to his gitlab repo: [[https://gitlab.com/dwt1/Configuring-emacs][dwt1/Configuring-emacs]]
 
@@ -221,19 +223,19 @@ You can use the bindings CTRL plus =/- for zooming in/out.  You can also use CTR
   ;; (menu-bar-mode -1)            ; Disable the menu bar
   (tool-bar-mode -1)          ; Disable the toolbar
   (scroll-bar-mode -1)        ; Disable visible scrollbar
-  ;; (tooltip-mode -1)           ; Disable tooltips
+  (tooltip-mode -1)           ; Disable tooltips
   ;; (set-fringe-mode 10)        ; Give some breathing room
 
   ;; Set up the visible bell
-  ;; (setq visible-bell t)
-  ;; (load-theme 'wombat)
+   (setq visible-bell t)
+   (load-theme 'wombat)
 
   ;; Make ESC quit prompts
-  ;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
   ;; show line numbers
   (global-display-line-numbers-mode 1)
-  ;; (setq display-line-numbers-style 'relative)
+  (setq display-line-numbers-style 'relative)
   (global-visual-line-mode t)
 #+END_SRC
 
@@ -281,7 +283,7 @@ Org-tempo is not a separate package but a module within org that can be enabled.
 #+END_SRC
 
 
-*** RELOAD EMACS
+** RELOAD EMACS
 This is just an example of how to create a simple function in Emacs.  Use this function to reload Emacs after adding changes to the config.  Yes, I am loading the user-init-file twice in this function, which is a hack because for some reason, just loading the user-init-file once does not work properly.
 #+BEGIN_SRC emacs-lisp  :tangle yes
   (defun reload-init-file ()
@@ -291,15 +293,15 @@ This is just an example of how to create a simple function in Emacs.  Use this f
 #+END_SRC
 
 
-
 * SUDO EDIT
 [[https://github.com/nflath/sudo-edit][sudo-edit]] gives us the ability to open files with sudo privileges or switch over to editing with sudo privileges if we initially opened the file without such privileges.
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package sudo-edit
   :config
     (mili/leader-keys
-      "fu" '(sudo-edit-find-file :wk "Sudo find file")
-      "fU" '(sudo-edit :wk "Sudo edit file")))
+      "s" '(:ignore t :wk "sudo find/edit file")
+      "s f" '(sudo-edit-find-file :wk "Sudo find file")
+      "s e" '(sudo-edit :wk "Sudo edit file")))
 #+END_SRC
 
 
@@ -318,9 +320,49 @@ Which-key shows all the keybindings, in a popup window to which they are related
           which-key-max-display-columns nil
           which-key-min-display-lines 6
           which-key-side-window-slot -10
-          which-key-side-window-max-height 0.25
+          which-key-side-window-max-height 0.35
           which-key-idle-delay 0.7
           which-key-max-description-length 25
           which-key-allow-imprecise-window-fit t
           which-key-separator " → " ))
 #+END_SRC
+
+* IVY (COUNSEL)
++ Ivy, a generic completion mechanism for Emacs.
++ Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
++ Ivy-rich allows us to add descriptions alongside the commands in M-x.
+
+#+begin_src emacs-lisp :tangle yes
+  (use-package counsel
+    :after ivy
+    :config (counsel-mode))
+  
+  (use-package ivy
+    :bind
+    ;; ivy-resume resumes the last Ivy-based completion.
+    (("C-c C-r" . ivy-resume)
+     ("C-x B" . ivy-switch-buffer-other-window))
+    :custom
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "(%d/%d) ")
+    (setq enable-recursive-minibuffers t)
+    :config
+    (ivy-mode))
+
+  (use-package all-the-icons-ivy-rich
+    :ensure t
+    :init (all-the-icons-ivy-rich-mode 1))
+
+  (use-package ivy-rich
+    :after ivy
+    :ensure t
+    :init (ivy-rich-mode 1) ;; this gets us descriptions in M-x.
+    :custom
+    (ivy-virtual-abbreviate 'full
+     ivy-rich-switch-buffer-align-virtual-buffer t
+     ivy-rich-path-style 'abbrev)
+    :config
+    (ivy-set-display-transformer 'ivy-switch-buffer
+                                 'ivy-rich-switch-buffer-transformer))
+
+#+end_src
