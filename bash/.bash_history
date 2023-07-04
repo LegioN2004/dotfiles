@@ -1,43 +1,3 @@
-v
-ide
-cd dotfiles/
-gs
-git rm -rf synth-shell 
-gs
-exit
-exit
-exit
-exit
-ls
-./ide 
-n
-n
-v ide 
-ide
-./ide 
-ran
-nvm ls
-nvm use v18.12.1
-v .bashrc 
-exit
-ls
-exit
-exit
-ls
-source .bashrc 
-ls
-source .bashrc 
-ls
-Downloads/
-ls
-cd
-cd dotfiles/nvim/.config/nvim/
-ls
-gs
-exit
-ls
-cd Downloads/
-nvim
 exit
 yay -R ghostscript imagemagick libdvdread netpbm pulseaudio-alsa pulseaudio-bluetooth python-jinja python-pyxdg python-setuptools webkit2gtk xdg-desktop-portal xorg-xdpyinfo
 yay -R ghostscript imagemagick libdvdread netpbm pulseaudio-alsa  python-jinja python-pyxdg python-setuptools webkit2gtk xdg-desktop-portal xorg-xdpyinfo
@@ -535,4 +495,6 @@ ls
 live-server
 npm start live-server
 ls
+exit
+rustc --version
 exit

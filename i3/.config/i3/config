@@ -311,6 +311,7 @@ assign [class="firefox"] $ws5
 assign [class="Google-chrome"] $ws5
 assign [class="Github-desktop"] $ws5
 assign [class="sysmontask"] $ws5
+assign [class="pamac-manager"] $ws5
 assign [class="gnome-system-monitor"] $ws5
 assign [class="vlc"] $ws6
 assign [class="obs"] $ws6
@@ -322,6 +323,7 @@ assign [class="idea"] $ws8
 assign [class="TelegramDesktop"] $ws9
 assign [class="discord"] $ws9
 assign [class="kdenlive"] $ws9
+assign [class="libreoffice"] $ws9
 assign [class="gimp"] $ws0
 
 ## colors are a little customized like that of nord theme

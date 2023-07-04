@@ -5,31 +5,31 @@
 #+OPTIONS: toc:2
 
 
-
 * TABLE OF CONTENTS :toc:
 - [[#this-configuration-is-done-from-the-configuring-emacs-playlist-of-distrotube--for-any-errors-refer-to-his-gitlab-repo-dwt1configuring-emacs][This configuration is done from the Configuring Emacs playlist of DistroTube . For any errors refer to his gitlab repo: dwt1/Configuring-emacs]]
 - [[#important-programs-to-load-first][IMPORTANT programs to load first]]
   - [[#a-package-manager--elpaca][A PACKAGE MANAGER = Elpaca]]
   - [[#load-evil-mode][Load EVIL mode]]
 - [[#settings][SETTINGS]]
-  - [[#gui-settings-and-tweaks][GUI Settings and tweaks]]
-  - [[#fonts][Fonts]]
   - [[#keybinds][KEYBINDS]]
+  - [[#fonts][Fonts]]
+  - [[#zooming-inout-binds][Zooming In/Out binds]]
+  - [[#gui-settings-and-tweaks][GUI Settings and tweaks]]
 - [[#org-mode-the-god][ORG MODE (The GOD)]]
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
   - [[#disable-electric-indent][Disable Electric Indent]]
+  - [[#source-code-block-tag-expansion][Source Code Block Tag Expansion]]
+- [[#sudo-edit][SUDO EDIT]]
 - [[#which-key][WHICH-KEY]]
 
 * This configuration is done from the Configuring Emacs playlist of [[https://www.youtube.com/watch?v=d1fgypEiQkE&list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX&pp=iAQB][DistroTube]] . For any errors refer to his gitlab repo: [[https://gitlab.com/dwt1/Configuring-emacs][dwt1/Configuring-emacs]]
-
 
 
 * IMPORTANT programs to load first
 
 ** A PACKAGE MANAGER = Elpaca
 #+BEGIN_SRC emacs-lisp :tangle yes
-
   (defvar elpaca-installer-version 0.5)
   (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
   (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
@@ -67,12 +67,6 @@
   (add-hook 'after-init-hook #'elpaca-process-queues)
   (elpaca `(,@elpaca-order))
 
-#+END_SRC
-
-
-** Load EVIL mode
-#+BEGIN_SRC emacs-lisp  :tangle yes
-
   ;; Install use-package support
   (elpaca elpaca-use-package
     ;; Enable :elpaca use-package keyword.
@@ -83,6 +77,25 @@
   ;; Block until current queue processed.
   (elpaca-wait)
 
+;;When installing a package which modifies a form used at the top-level
+;;(e.g. a package which adds a use-package key word),
+;;use `elpaca-wait' to block until that package has been installed/configured.
+;;For example:
+;;(use-package general :demand t)
+;;(elpaca-wait)
+
+  ;;Turns off elpaca-use-package-mode current declartion
+  ;;Note this will cause the declaration to be interpreted immediately (not deferred).
+  ;;Useful for configuring built-in emacs features.
+  (use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
+
+  ;; Don't install anything. Defer execution of BODY
+  ;;(elpaca nil (message "deferred"))
+#+END_SRC
+
+
+** Load EVIL mode
+#+BEGIN_SRC emacs-lisp :tangle yes
   ;; Expands to: (elpaca evil (use-package evil :demand t))
   ;; (use-package evil :demand t)
   (use-package evil
@@ -99,87 +112,14 @@
     (setq evil-collection-mode-list '(dashboard dired ibuffer))
     (evil-collection-init))
   (use-package evil-tutor) ;; installing evil-tutor
-
-  ;;Turns off elpaca-use-package-mode current declartion
-  ;;Note this will cause the declaration to be interpreted immediately (not deferred).
-  ;;Useful for configuring built-in emacs features.
-  (use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
-
-  ;; Don't install anything. Defer execution of BODY
-  ;;(elpaca nil (message "deferred"))
-
 #+END_SRC
 
 
 
 * SETTINGS
 
-** GUI Settings and tweaks
-#+BEGIN_SRC emacs-lisp  :tangle yes
-
-  ;; (setq inhibit-startup-message t)
-
-  (scroll-bar-mode -1)        ; Disable visible scrollbar
-  (tool-bar-mode -1)          ; Disable the toolbar
-  (tooltip-mode -1)           ; Disable tooltips
-  (set-fringe-mode 10)        ; Give some breathing room
-  ;; (menu-bar-mode -1)            ; Disable the menu bar
-
-  ;; Set up the visible bell
-  (setq visible-bell t)
-  (load-theme 'wombat)
-
-  ;; Make ESC quit prompts
-  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-  ;; show line numbers
-  (global-display-line-numbers-mode 1)
-  ;; (setq display-line-numbers-style 'relative)
-  (global-visual-line-mode t)
-
-#+END_SRC
-
-
-** Fonts
-Defining the various fonts that emacs will use 
-#+BEGIN_SRC emacs-lisp  :tangle yes
-
-  (set-face-attribute 'default nil
-                      :font "JetBrains Mono"
-                      :height 110
-                      :weight 'medium)
-  (set-face-attribute 'variable-pitch nil
-                      ;; :font "JetBrains Mono"
-                      :font "Ubuntu"
-                      :height 120
-                      :weight 'medium)
-  (set-face-attribute 'fixed-pitch nil
-                      ;; :font "JetBrains Mono"
-                      :font "SF Mono"
-                      :height 110
-                      :weight 'medium)
-
-  ;; makes commented text and keywords italic
-  ;; this works in emacsclient but not emacs, must have an italic font style
-  (set-face-attribute 'font-lock-comment-face nil
-                      :slant 'italic)
-  (set-face-attribute 'font-lock-keyword-face nil
-                      :slant 'italic)
-
-  ;; This sets the default font on all graphical frames created after restarting Emacs.
-  ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
-  ;; are not right unless I also add this method of setting the default font.
-  (add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
-
-  ;; Uncomment the following line if line spacing needs adjusting.
-  (setq-default line-spacing 0.12)
-
-#+END_SRC
-
-
 ** KEYBINDS
-#+BEGIN_SRC emacs-lisp  :tangle yes
-
+#+BEGIN_SRC emacs-lisp :tangle yes
   ;; setup SPC as the global leader key
   (use-package general
     :config
@@ -227,17 +167,74 @@ Defining the various fonts that emacs will use
       "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
       "t t" '(visual-line-mode :wk "Toggle truncated lines"))
     )
-
 #+END_SRC
 
-*** RELOAD EMACS
-This is just an example of how to create a simple function in Emacs.  Use this function to reload Emacs after adding changes to the config.  Yes, I am loading the user-init-file twice in this function, which is a hack because for some reason, just loading the user-init-file once does not work properly.
 
-#+BEGIN_SRC emacs-lisp  :tangle yes
-  (defun reload-init-file ()
-    (interactive)
-    (load-file user-init-file)
-    (load-file user-init-file))
+** Fonts
+Defining the various fonts that emacs will use 
+#+BEGIN_SRC emacs-lisp :tangle yes
+  (set-face-attribute 'default nil
+                      :font "JetBrains Mono"
+                      :height 110
+                      :weight 'medium)
+  (set-face-attribute 'variable-pitch nil
+                      ;; :font "JetBrains Mono"
+                      :font "Ubuntu"
+                      :height 120
+                      :weight 'medium)
+  (set-face-attribute 'fixed-pitch nil
+                      ;; :font "JetBrains Mono"
+                      :font "SF Mono"
+                      :height 110
+                      :weight 'medium)
+
+  ;; makes commented text and keywords italic
+  ;; this works in emacsclient but not emacs, must have an italic font style
+  (set-face-attribute 'font-lock-comment-face nil
+                      :slant 'italic)
+  (set-face-attribute 'font-lock-keyword-face nil
+                      :slant 'italic)
+
+  ;; This sets the default font on all graphical frames created after restarting Emacs.
+  ;; Does the same thing as 'set-face-attribute default' above, but emacsclient fonts
+  ;; are not right unless I also add this method of setting the default font.
+  (add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
+
+  ;; Uncomment the following line if line spacing needs adjusting.
+  (setq-default line-spacing 0.12)
+#+END_SRC
+
+
+** Zooming In/Out binds
+You can use the bindings CTRL plus =/- for zooming in/out.  You can also use CTRL plus the mouse wheel for zooming in/out.
+#+BEGIN_SRC emacs-lisp :tangle yes
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "<C-wheel-up>") 'text-scale-increase)
+(global-set-key (kbd "<C-wheel-down>") 'text-scale-decrease)
+#+END_SRC
+
+
+** GUI Settings and tweaks
+#+BEGIN_SRC emacs-lisp :tangle yes
+  ;; (setq inhibit-startup-message t)
+  ;; (menu-bar-mode -1)            ; Disable the menu bar
+  (tool-bar-mode -1)          ; Disable the toolbar
+  (scroll-bar-mode -1)        ; Disable visible scrollbar
+  ;; (tooltip-mode -1)           ; Disable tooltips
+  ;; (set-fringe-mode 10)        ; Give some breathing room
+
+  ;; Set up the visible bell
+  ;; (setq visible-bell t)
+  ;; (load-theme 'wombat)
+
+  ;; Make ESC quit prompts
+  ;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+  ;; show line numbers
+  (global-display-line-numbers-mode 1)
+  ;; (setq display-line-numbers-style 'relative)
+  (global-visual-line-mode t)
 #+END_SRC
 
 
@@ -245,16 +242,15 @@ This is just an example of how to create a simple function in Emacs.  Use this f
 * ORG MODE (The GOD)
 
 ** Enabling Table of Contents
-#+BEGIN_SRC emacs-lisp  :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
   (use-package toc-org
     :commands toc-org-enable
     :init (add-hook 'org-mode-hook 'toc-org-enable))
 #+END_SRC
 
-
 ** Enabling Org Bullets
 Org-bullets gives us attractive bullets rather than asterisks.
-#+BEGIN_SRC emacs-lisp  :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle yes
   (add-hook 'org-mode-hook 'org-indent-mode)
   (use-package org-bullets)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -262,16 +258,55 @@ Org-bullets gives us attractive bullets rather than asterisks.
 
 ** Disable Electric Indent
 Org mode source blocks have some really weird and annoying default indentation behavior.  I think this has to do with electric-indent-mode, which is turned on by default in Emacs.  So let's turn it OFF!
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle yes
   (electric-indent-mode -1)
 #+end_src
+
+** Source Code Block Tag Expansion
+Org-tempo is not a separate package but a module within org that can be enabled.  Org-tempo allows for '<s' followed by TAB to expand to a begin_src tag.  Other expansions available include:
+| Typing the below + TAB | Expands to ...                          |
+|------------------------+-----------------------------------------|
+| <a                     | '#+BEGIN_EXPORT ascii' … '#+END_EXPORT  |
+| <c                     | '#+BEGIN_CENTER' … '#+END_CENTER'       |
+| <C                     | '#+BEGIN_COMMENT' … '#+END_COMMENT'     |
+| <e                     | '#+BEGIN_EXAMPLE' … '#+END_EXAMPLE'     |
+| <E                     | '#+BEGIN_EXPORT' … '#+END_EXPORT'       |
+| <h                     | '#+BEGIN_EXPORT html' … '#+END_EXPORT'  |
+| <l                     | '#+BEGIN_EXPORT latex' … '#+END_EXPORT' |
+| <q                     | '#+BEGIN_QUOTE' … '#+END_QUOTE'         |
+| <s                     | '#+BEGIN_SRC' … '#+END_SRC'             |
+| <v                     | '#+BEGIN_VERSE' … '#+END_VERSE'         |
+#+BEGIN_SRC emacs-lisp :tangle yes
+(require 'org-tempo)
+#+END_SRC
+
+
+*** RELOAD EMACS
+This is just an example of how to create a simple function in Emacs.  Use this function to reload Emacs after adding changes to the config.  Yes, I am loading the user-init-file twice in this function, which is a hack because for some reason, just loading the user-init-file once does not work properly.
+#+BEGIN_SRC emacs-lisp  :tangle yes
+  (defun reload-init-file ()
+   (interactive)
+   (load-file user-init-file)
+   (load-file user-init-file))
+#+END_SRC
+
+
+
+* SUDO EDIT
+[[https://github.com/nflath/sudo-edit][sudo-edit]] gives us the ability to open files with sudo privileges or switch over to editing with sudo privileges if we initially opened the file without such privileges.
+#+BEGIN_SRC emacs-lisp :tangle yes
+(use-package sudo-edit
+  :config
+    (mili/leader-keys
+      "fu" '(sudo-edit-find-file :wk "Sudo find file")
+      "fU" '(sudo-edit :wk "Sudo edit file")))
+#+END_SRC
 
 
 
 * WHICH-KEY
 Which-key shows all the keybindings, in a popup window to which they are related
 #+BEGIN_SRC emacs-lisp :tangle yes
-
   (use-package which-key
     :init
     (which-key-mode 1)
@@ -279,14 +314,13 @@ Which-key shows all the keybindings, in a popup window to which they are related
     (setq which-key-side-window-location 'bottom
           which-key-sort-order #'which-key-key-order-alpha
           which-key-sort-uppercase-first nil
-          which-key-add-column-padding 0.5
+          which-key-add-column-padding 1
           which-key-max-display-columns nil
           which-key-min-display-lines 6
           which-key-side-window-slot -10
-          which-key-side-window-max-height 0.33
+          which-key-side-window-max-height 0.25
           which-key-idle-delay 0.7
           which-key-max-description-length 25
           which-key-allow-imprecise-window-fit t
           which-key-separator " → " ))
-
 #+END_SRC

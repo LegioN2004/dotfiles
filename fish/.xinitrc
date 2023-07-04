@@ -1,7 +1,8 @@
 #!/bin/bash
 
-#for dwm
- exec dwm
+# for dwm
+exec dwm
+# exec i3
 
 # this is for qtile and watch script maybe
 # while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
