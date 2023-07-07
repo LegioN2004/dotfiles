@@ -7,20 +7,26 @@
 
 * TABLE OF CONTENTS :toc:
 - [[#this-configuration-is-done-from-the-configuring-emacs-playlist-of-distrotube--for-any-errors-refer-to-his-gitlab-repo-dwt1configuring-emacs][This configuration is done from the Configuring Emacs playlist of DistroTube . For any errors refer to his gitlab repo: dwt1/Configuring-emacs]]
-- [[#important-programs-to-load-first][IMPORTANT programs to load first]]
+- [[#important-programs-to-load-first][IMPORTANT PROGRAMS TO LOAD FIRST]]
   - [[#a-package-manager--elpaca][A PACKAGE MANAGER = Elpaca]]
-  - [[#load-evil-mode][Load EVIL mode]]
+  - [[#load-evil-mode][LOAD EVIL MODE]]
 - [[#settings][SETTINGS]]
   - [[#keybinds][KEYBINDS]]
-  - [[#fonts][Fonts]]
-  - [[#zooming-inout-binds][Zooming In/Out binds]]
-  - [[#gui-settings-and-tweaks][GUI Settings and tweaks]]
+- [[#all-the-icons][ALL THE ICONS]]
+- [[#buffer-move][BUFFER-MOVE]]
+  - [[#fonts][FONTS]]
+  - [[#zooming-inout-binds][ZOOMING IN/OUT BINDS]]
+  - [[#gui-settings-and-tweaks][GUI SETTINGS AND TWEAKS]]
 - [[#org-mode-the-god][ORG MODE (The GOD)]]
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
   - [[#disable-electric-indent][Disable Electric Indent]]
   - [[#source-code-block-tag-expansion][Source Code Block Tag Expansion]]
   - [[#reload-emacs][RELOAD EMACS]]
+- [[#shells-and-terminals][SHELLS AND TERMINALS]]
+  - [[#eshell][Eshell]]
+  - [[#vterm][Vterm]]
+  - [[#vterm-toggle][Vterm-Toggle]]
 - [[#sudo-edit][SUDO EDIT]]
 - [[#which-key][WHICH-KEY]]
 - [[#ivy-counsel][IVY (COUNSEL)]]
@@ -28,7 +34,7 @@
 * This configuration is done from the Configuring Emacs playlist of [[https://www.youtube.com/watch?v=d1fgypEiQkE&list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX&pp=iAQB][DistroTube]] . For any errors refer to his gitlab repo: [[https://gitlab.com/dwt1/Configuring-emacs][dwt1/Configuring-emacs]]
 
 
-* IMPORTANT programs to load first
+* IMPORTANT PROGRAMS TO LOAD FIRST
 
 ** A PACKAGE MANAGER = Elpaca
 #+BEGIN_SRC emacs-lisp :tangle yes
@@ -96,7 +102,7 @@
 #+END_SRC
 
 
-** Load EVIL mode
+** LOAD EVIL MODE
 #+BEGIN_SRC emacs-lisp :tangle yes
   ;; Expands to: (elpaca evil (use-package evil :demand t))
   ;; (use-package evil :demand t)
@@ -137,6 +143,7 @@
     (mili/leader-keys
       "." '(find-file :wk "Find file")
       "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs/emacs/config.org")) :wk "Edit emacs config")
+      "f r" '(counsel-recentf :wk "Find recently used files")
       "/" '(comment-line :wk "Comment lines"))
 
     (mili/leader-keys
@@ -167,12 +174,120 @@
     (mili/leader-keys
       "t" '(:ignore t :wk "Toggle")
       "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
-      "t t" '(visual-line-mode :wk "Toggle truncated lines"))
+      "t t" '(visual-line-mode :wk "Toggle truncated/wrap lines"))
+  
+(mili/leader-keys
+    "w" '(:ignore t :wk "Windows/buffers")
+    ;; Window splits
+    "w c" '(evil-window-delete :wk "Close window")
+    "w n" '(evil-window-new :wk "New window")
+    "w s" '(evil-window-split :wk "Horizontal split window")
+    "w v" '(evil-window-vsplit :wk "Vertical split window")
+    ;; Window motions
+    "w h" '(evil-window-left :wk "Window left")
+    "w j" '(evil-window-down :wk "Window down")
+    "w k" '(evil-window-up :wk "Window up")
+    "w l" '(evil-window-right :wk "Window right")
+    "w w" '(evil-window-next :wk "Goto next window")
+    ;; Move Windows
+    "w H" '(buf-move-left :wk "Buffer move left")
+    "w J" '(buf-move-down :wk "Buffer move down")
+    "w K" '(buf-move-up :wk "Buffer move up")
+    "w L" '(buf-move-right :wk "Buffer move right"))
+
     )
 #+END_SRC
 
 
-** Fonts
+* ALL THE ICONS
+This is an icon set that can be used with dashboard, dired, ibuffer and other Emacs programs.
+#+begin_src emacs-lisp :tangle yes
+(use-package all-the-icons
+  :ensure t
+  :if (display-graphic-p))
+
+(use-package all-the-icons-dired
+  :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
+#+end_src
+
+
+
+* BUFFER-MOVE
+Creating some functions to allow us to easily move windows (splits) around.  The following block of code was taken from buffer-move.el found on the [[https://www.emacswiki.org/emacs/buffer-move.el][EmacsWiki]]:
+#+begin_src emacs-lisp :tangle yes
+(require 'windmove)
+
+;;;###autoload
+(defun buf-move-up ()
+  "Swap the current buffer and the buffer above the split.
+If there is no split, ie now window above the current one, an
+error is signaled."
+;;  "Switches between the current buffer, and the buffer above the
+;;  split, if possible."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'up))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No window above this one")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-down ()
+"Swap the current buffer and the buffer under the split.
+If there is no split, ie now window under the current one, an
+error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'down))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (or (null other-win) 
+            (string-match "^ \\*Minibuf" (buffer-name (window-buffer other-win))))
+        (error "No window under this one")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-left ()
+"Swap the current buffer and the buffer on the left of the split.
+If there is no split, ie now window on the left of the current
+one, an error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'left))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No left split")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-right ()
+"Swap the current buffer and the buffer on the right of the split.
+If there is no split, ie now window on the right of the current
+one, an error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'right))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No right split")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+#+end_src
+
+
+
+** FONTS
 Defining the various fonts that emacs will use 
 #+BEGIN_SRC emacs-lisp :tangle yes
   (set-face-attribute 'default nil
@@ -207,7 +322,7 @@ Defining the various fonts that emacs will use
 #+END_SRC
 
 
-** Zooming In/Out binds
+** ZOOMING IN/OUT BINDS
 You can use the bindings CTRL plus =/- for zooming in/out.  You can also use CTRL plus the mouse wheel for zooming in/out.
 #+BEGIN_SRC emacs-lisp :tangle yes
 (global-set-key (kbd "C-=") 'text-scale-increase)
@@ -217,7 +332,7 @@ You can use the bindings CTRL plus =/- for zooming in/out.  You can also use CTR
 #+END_SRC
 
 
-** GUI Settings and tweaks
+** GUI SETTINGS AND TWEAKS
 #+BEGIN_SRC emacs-lisp :tangle yes
   ;; (setq inhibit-startup-message t)
   ;; (menu-bar-mode -1)            ; Disable the menu bar
@@ -293,6 +408,66 @@ This is just an example of how to create a simple function in Emacs.  Use this f
 #+END_SRC
 
 
+
+* SHELLS AND TERMINALS
+In my configs, all of my shells (bash, fish, zsh and the ESHELL) require my shell-color-scripts-git package to be installed.  On Arch Linux, you can install it from the AUR.  Otherwise, go to my shell-color-scripts repository on GitLab to get it.
+
+** Eshell
+Eshell is an Emacs 'shell' that is written in Elisp.
+#+begin_src emacs-lisp :tangle yes
+(use-package eshell-syntax-highlighting
+  :after esh-mode
+  :config
+  (eshell-syntax-highlighting-global-mode +1))
+
+;; eshell-syntax-highlighting -- adds fish/zsh-like syntax highlighting.
+;; eshell-rc-script -- your profile for eshell; like a bashrc for eshell.
+;; eshell-aliases-file -- sets an aliases file for the eshell.
+  
+(setq eshell-rc-script (concat user-emacs-directory "eshell/profile")
+      eshell-aliases-file (concat user-emacs-directory "eshell/aliases")
+      eshell-history-size 5000
+      eshell-buffer-maximum-lines 5000
+      eshell-hist-ignoredups t
+      eshell-scroll-to-bottom-on-input t
+      eshell-destroy-buffer-when-process-dies t
+      eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
+#+end_src
+
+** Vterm
+Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets the shell to be used in M-x shell, M-x term, M-x ansi-term and M-x vterm.  By default, the shell is set to 'fish' but could change it to 'bash' or 'zsh' if you prefer.
+#+begin_src emacs-lisp :tangle yes
+(use-package vterm
+:config
+(setq shell-file-name "/bin/zsh"
+      vterm-max-scrollback 10000))
+#+end_src
+
+** Vterm-Toggle 
+[[https://github.com/jixiuf/vterm-toggle][vterm-toggle]] toggles between the vterm buffer and whatever buffer you are editing.
+#+begin_src emacs-lisp :tangle yes
+(use-package vterm-toggle
+  :after vterm
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (setq vterm-toggle-scope 'project)
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                     (let ((buffer (get-buffer buffer-or-name)))
+                       (with-current-buffer buffer
+                         (or (equal major-mode 'vterm-mode)
+                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                  (display-buffer-reuse-window display-buffer-at-bottom)
+                  ;;(display-buffer-reuse-window display-buffer-in-direction)
+                  ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                  ;;(direction . bottom)
+                  ;;(dedicated . t) ;dedicated is supported in emacs27
+                  (reusable-frames . visible)
+                  (window-height . 0.3))))
+#+end_src
+
+
+
 * SUDO EDIT
 [[https://github.com/nflath/sudo-edit][sudo-edit]] gives us the ability to open files with sudo privileges or switch over to editing with sudo privileges if we initially opened the file without such privileges.
 #+BEGIN_SRC emacs-lisp :tangle yes
@@ -327,11 +502,12 @@ Which-key shows all the keybindings, in a popup window to which they are related
           which-key-separator " → " ))
 #+END_SRC
 
+
+
 * IVY (COUNSEL)
 + Ivy, a generic completion mechanism for Emacs.
 + Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
 + Ivy-rich allows us to add descriptions alongside the commands in M-x.
-
 #+begin_src emacs-lisp :tangle yes
   (use-package counsel
     :after ivy
