@@ -11,7 +11,9 @@ nvim/.config/nvim/lazy-lock.json
 
 packer-nvim/.config/packer-nvim/plugin
 
+# emacs stuff
 emacs/emacs/elpa
 emacs/emacs/elpaca
 emacs/emacs/eln-cache
 emacs/emacs/tramp
+emacs/emacs/recentf

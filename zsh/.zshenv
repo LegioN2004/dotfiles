@@ -7,4 +7,4 @@ export NVM_DIR="$HOME/.nvm"
 # nnn
 export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

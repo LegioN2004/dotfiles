@@ -26,7 +26,6 @@
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
   - [[#disable-electric-indent][Disable Electric Indent]]
-  - [[#diminish-org-indent-mode][Diminish Org Indent Mode]]
   - [[#source-code-block-tag-expansion][Source Code Block Tag Expansion]]
   - [[#reload-emacs][RELOAD EMACS]]
 - [[#projectile][PROJECTILE]]
@@ -183,25 +182,25 @@
       "e r" '(eval-region :wk "Evaluate elisp in region")
       "e s" '(eshell :which-key "Eshell"))
 
-    (mili/leader-keys
-      "m" '(:ignore t :wk "Org")
-      "m a" '(org-agenda :wk "Org agenda")
-      "m e" '(org-export-dispatch :wk "Org export dispatch")
-      "m i" '(org-toggle-item :wk "Org toggle item")
-      "m t" '(org-todo :wk "Org todo")
-      "m B" '(org-babel-tangle :wk "Org babel tangle")
-      "m T" '(org-todo-list :wk "Org todo list"))
+     (mili/leader-keys
+       "m" '(:ignore t :wk "Org")
+       "m a" '(org-agenda :wk "Org agenda")
+       "m e" '(org-export-dispatch :wk "Org export dispatch")
+       "m i" '(org-toggle-item :wk "Org toggle item")
+       "m t" '(org-todo :wk "Org todo")
+       "m B" '(org-babel-tangle :wk "Org babel tangle")
+       "m T" '(org-todo-list :wk "Org todo list"))
 
-    (mili/leader-keys
+     (mili/leader-keys
       "m b" '(:ignore t :wk "Tables")
       "m b -" '(org-table-insert-hline :wk "Insert hline in table"))
 
-    (mili/leader-keys
-      "m d" '(:ignore t :wk "Date/deadline")
-      "m d t" '(org-time-stamp :wk "Org time stamp"))
+     (mili/leader-keys
+       "m d" '(:ignore t :wk "Date/deadline")
+       "m d t" '(org-time-stamp :wk "Org time stamp"))
 
-    (mili/leader-keys
-      "p" '(projectile-command-map :wk "Projectile"))
+     (mili/leader-keys
+        "p" '(projectile-command-map :wk "Projectile"))
 
     (mili/leader-keys
       "t" '(:ignore t :wk "Toggle")
@@ -276,21 +275,21 @@ You can use the bindings CTRL plus =/- for zooming in/out.  You can also use CTR
 
 ** GUI SETTINGS AND TWEAKS
 #+BEGIN_SRC emacs-lisp :tangle yes
-  ;; (setq inhibit-startup-message t)
-  (menu-bar-mode -1)            ; Disable the menu bar
-  (tool-bar-mode -1)          ; Disable the toolbar
-  (scroll-bar-mode -1)        ; Disable visible scrollbar
-  (tooltip-mode -1)           ; Disable tooltips
-  ;; (set-fringe-mode 10)        ; Give some breathing room
+    ;; (setq inhibit-startup-message t)
+    (menu-bar-mode -1)            ; Disable the menu bar
+    (tool-bar-mode -1)          ; Disable the toolbar
+    (scroll-bar-mode -1)        ; Disable visible scrollbar
+    (tooltip-mode -1)           ; Disable tooltips
+    ;; (set-fringe-mode 10)        ; Give some breathing room
 
-  ;; Set up the visible bell
-  (setq visible-bell t)
-  (load-theme 'wombat)
+    ;; Set up the visible bell
+    (setq visible-bell t)
+    (load-theme 'wombat)
 
-  ;; Make ESC quit prompts
-  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+    ;; Make ESC quit prompts
+    (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-  ;; show line numbers
+    ;; show line numbers
   (setq display-line-numbers-type 'relative) 
   (global-display-line-numbers-mode)
 
@@ -392,21 +391,21 @@ Creating some functions to allow us to easily move windows (splits) around.  The
 [[https://company-mode.github.io/][Company]] is a text completion framework for Emacs. The name stands for "complete anything".  Completion will start automatically after you type a few letters. Use M-n and M-p to select, <return> to complete or <tab> to complete the common part.
 
 #+begin_src emacs-lisp :tangle yes
-  (use-package company
-    :defer 2
-    :diminish
-    :custom
-    (company-begin-commands '(self-insert-command))
-    (company-idle-delay .1)
-    (company-minimum-prefix-length 2)
-    (company-show-numbers t)
-    (company-tooltip-align-annotations 't)
-    (global-company-mode t))
+(use-package company
+  :defer 2
+  :custom
+  :diminish
+  (company-begin-commands '(self-insert-command))
+  (company-idle-delay .1)
+  (company-minimum-prefix-length 2)
+  (company-show-numbers t)
+  (company-tooltip-align-annotations 't)
+  (global-company-mode t))
 
-  (use-package company-box
-    :after company
-    :diminish
-    :hook (company-mode . company-box-mode))
+(use-package company-box
+  :after company
+  :diminish
+  :hook (company-mode . company-box-mode))
 #+end_src
 
 
@@ -430,8 +429,8 @@ Emacs Dashboard is an extensible startup screen showing you recent files, bookma
                             (bookmarks . 3)
                             (projects . 3)
                             (registers . 3)))
-    ;; (dashboard-modify-heading-icons '((recents . "file-text")
-    ;;                            (bookmarks . "book")))
+    (dashboard-modify-heading-icons '((recents . "file-text")
+                                (bookmarks . "book")))
     :config
     (dashboard-setup-startup-hook))
 #+end_src
@@ -442,7 +441,7 @@ Emacs Dashboard is an extensible startup screen showing you recent files, bookma
 This package implements hiding or abbreviation of the modeline displays (lighters) of minor-modes.  With this package installed, you can add ':diminish' to any use-package block to hide that particular mode in the modeline.
 
 #+begin_src emacs-lisp :tangle yes
-  (use-package diminish)
+(use-package diminish)
 #+end_src
 
 
@@ -451,9 +450,10 @@ This package implements hiding or abbreviation of the modeline displays (lighter
 Emacs has built-in programming language modes for Lisp, Scheme, DSSSL, Ada, ASM, AWK, C, C++, Fortran, Icon, IDL (CORBA), IDLWAVE, Java, Javascript, M4, Makefiles, Metafont, Modula2, Object Pascal, Objective-C, Octave, Pascal, Perl, Pike, PostScript, Prolog, Python, Ruby, Simula, SQL, Tcl, Verilog, and VHDL.  Other languages will require you to install additional modes.
 
 #+begin_src emacs-lisp :tangle yes
-  ;; (use-package haskell-mode)
-  ;; (use-package lua-mode)
+;; (use-package haskell-mode)
+;; (use-package lua-mode)
 #+end_src
+
 
 
 * IVY (COUNSEL)
@@ -463,7 +463,7 @@ Emacs has built-in programming language modes for Lisp, Scheme, DSSSL, Ada, ASM,
 #+begin_src emacs-lisp :tangle yes
   (use-package counsel
     :after ivy
-    :diminish
+    ;; :diminish
     :config (counsel-mode))
 
   (use-package ivy
@@ -471,7 +471,7 @@ Emacs has built-in programming language modes for Lisp, Scheme, DSSSL, Ada, ASM,
     ;; ivy-resume resumes the last Ivy-based completion.
     (("C-c C-r" . ivy-resume)
      ("C-x B" . ivy-switch-buffer-other-window))
-    :diminish
+    ;; :diminish
     :custom
     (setq ivy-use-virtual-buffers t)
     (setq ivy-count-format "(%d/%d) ")
@@ -485,7 +485,7 @@ Emacs has built-in programming language modes for Lisp, Scheme, DSSSL, Ada, ASM,
 
   (use-package ivy-rich
     :after ivy
-    :diminish
+    ;; :diminish
     :ensure t
     :init (ivy-rich-mode 1) ;; this gets us descriptions in M-x.
     :custom
@@ -521,14 +521,14 @@ Org-bullets gives us attractive bullets rather than asterisks.
 Org mode source blocks have some really weird and annoying default indentation behavior.  I think this has to do with electric-indent-mode, which is turned on by default in Emacs.  So let's turn it OFF!
 #+begin_src emacs-lisp :tangle yes
   (electric-indent-mode -1)
-  ;; to make the indentation when opening a source block as one lined
-  ;; (setq-org-edit-source-content-indentation 0)
+ ;; to make the indentation when opening a source block as one lined
+ ;; (setq-org-edit-source-content-indentation 0)
 #+end_src
 
 ** Diminish Org Indent Mode
 Removes "Ind" from showing in the modeline.
-#+begin_src emacs-lisp :tangle yes
-  (eval-after-load 'org-indent '(diminish 'org-indent-mode))
+#+begin_src emacs-lisp
+;; (eval-after-load 'org-indent '(diminish 'org-indent-mode))
 #+end_src
 
 ** Source Code Block Tag Expansion
@@ -564,10 +564,10 @@ This is just an example of how to create a simple function in Emacs.  Use this f
 [[https://github.com/bbatsov/projectile][Projectile]] is a project interaction library for Emacs.  It should be noted that many projectile commands do not work if you have set "fish" as the "shell-file-name" for Emacs.  I had initially set "fish" as the "shell-file-name" in the Vterm section of this config, but oddly enough I changed it to "bin/sh" and projectile now works as expected, and Vterm still uses "fish" because my default user "sh" on my Linux system is "fish".
 
 #+begin_src emacs-lisp :tangle yes
-  (use-package projectile
-    :diminish
-    :config
-    (projectile-mode 1))
+(use-package projectile
+  :config
+  ;; :diminish
+  (projectile-mode 1))
 #+end_src
 
 
@@ -576,9 +576,9 @@ This is just an example of how to create a simple function in Emacs.  Use this f
 Display the actual color as a background for any hex color value (ex. #ffffff).  The code block below enables rainbow-mode in all programming modes (prog-mode) as well as org-mode, which is why rainbow works in this document.  
 
 #+begin_src emacs-lisp :tangle yes
-  (use-package rainbow-mode
-    :diminish
-    :hook org-mode prog-mode)
+(use-package rainbow-mode
+  ;; :diminish
+  :hook org-mode prog-mode)
 #+end_src
 
 
@@ -590,12 +590,12 @@ In my configs, all of my shells (bash, fish, zsh and the ESHELL) require my shel
 Eshell is an Emacs 'shell' that is written in Elisp.
 
 #+begin_src emacs-lisp :tangle yes
-  (use-package eshell-toggle
-    :custom
-    (eshell-toggle-size-fraction 3)
-    (eshell-toggle-use-projectile-root t)
-    (eshell-toggle-run-command nil)
-    (eshell-toggle-init-function #'eshell-toggle-init-ansi-term))
+(use-package eshell-toggle
+  :custom
+  (eshell-toggle-size-fraction 3)
+  (eshell-toggle-use-projectile-root t)
+  (eshell-toggle-run-command nil)
+  (eshell-toggle-init-function #'eshell-toggle-init-ansi-term))
 
   (use-package eshell-syntax-highlighting
     :after esh-mode
@@ -664,43 +664,39 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 
 
 * THEME
-The first of the two lines below designates the directory where will place all of our themes.  The second line loads our chosen theme which is *dtmacs*, a theme that I created with the help of the [[https://emacsfodder.github.io/emacs-theme-editor/][Emacs Theme Editor]].
 #+begin_src emacs-lisp :tangle yes
   (use-package solarized-theme 
     :ensure t
     :config
-    ;;(load-theme 'solarized-dark t)
-  )
-  ;; make the fringe stand out from the background
-  (setq solarized-distinct-fringe-background t)
-  ;; Don't change the font for some headings and titles
-  (setq solarized-use-variable-pitch nil)
-  ;; make the modeline high contrast
-  (setq solarized-high-contrast-mode-line t)
-  ;; Use less bolding
-  ;; (setq solarized-use-less-bold t)
-  ;; Use more italics
-  (setq solarized-use-more-italic t)
-  ;; Use less colors for indicators such as git:gutter, flycheck and similar
-  ;; (setq solarized-emphasize-indicators nil)
-  ;; Don't change size of org-mode headlines (but keep other size-changes)
-  ;; (setq solarized-scale-org-headlines nil)
-  ;; Change the size of markdown-mode headlines (off by default)
-  (setq solarized-scale-markdown-headlines t)
-  ;; Avoid all font-size changes
-  ;; (setq solarized-height-minus-1 1.0)
-  ;; (setq solarized-height-plus-1 1.0)
-  ;; (setq solarized-height-plus-2 1.0)
-  ;; (setq solarized-height-plus-3 1.0)
-  ;; (setq solarized-height-plus-4 1.0)
+    (load-theme 'solarized-dark t))
+   ;; make the fringe stand out from the background
+   (setq solarized-distinct-fringe-background t)
+   ;; Don't change the font for some headings and titles
+   (setq solarized-use-variable-pitch nil)
+   ;; make the modeline high contrast
+   (setq solarized-high-contrast-mode-line t)
+   ;; Use less bolding
+   ;; (setq solarized-use-less-bold t)
+   ;; Use more italics
+   (setq solarized-use-more-italic t)
+   ;; Use less colors for indicators such as git:gutter, flycheck and similar
+   ;; (setq solarized-emphasize-indicators nil)
+   ;; Don't change size of org-mode headlines (but keep other size-changes)
+   ;; (setq solarized-scale-org-headlines nil)
+   ;; Change the size of markdown-mode headlines (off by default)
+   (setq solarized-scale-markdown-headlines t)
+   ;; Avoid all font-size changes
+   ;; (setq solarized-height-minus-1 1.0)
+   ;; (setq solarized-height-plus-1 1.0)
+   ;; (setq solarized-height-plus-2 1.0)
+   ;; (setq solarized-height-plus-3 1.0)
+   ;; (setq solarized-height-plus-4 1.0)
 
-(add-to-list 'custom-theme-load-path "~/dotfiles/emacs/emacs/themes/")
-(load-theme 'dtmacs t)
 
-  ;; transparency settings
-  ;; (add-to-list 'default-frame-alist '(alpha-background . 60))
-  ;; (add-to-list 'initial-frame-alist '(fullscreen maximized))
-  ;; (add-to-list 'default-frame-alist '(fullscreen maximized))
+   ;; transparency settings
+   ;; (add-to-list 'default-frame-alist '(alpha-background . 60))
+   ;; (add-to-list 'initial-frame-alist '(fullscreen maximized))
+   ;; (add-to-list 'default-frame-alist '(fullscreen maximized))
 #+end_src
 
 
@@ -710,8 +706,8 @@ Which-key shows all the keybindings, in a popup window to which they are related
 #+BEGIN_SRC emacs-lisp :tangle yes
   (use-package which-key
     :init
-    (which-key-mode 1)
-    :diminish
+      (which-key-mode 1)
+    ;; :diminish
     :config
     (setq which-key-side-window-location 'bottom
           which-key-sort-order #'which-key-key-order

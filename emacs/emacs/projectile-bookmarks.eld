@@ -1,0 +1,1 @@
+("~/ghq/github.com/LegioN2004/programs/" "~/dotfiles/")
