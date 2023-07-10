@@ -30,7 +30,6 @@ set $term alacritty
 exec --no-startup-id nm-applet
 exec --no-startup-id kitty
 exec --no-startup-id brave
-exec --no-startup-id thunar
 # i3 font for all the titles, tabs etc
 font pango:Hack NF 8.7 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.

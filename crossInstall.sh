@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Check if Script is Run as Root
 if [[ $EUID -ne 0 ]]; then
   echo "You must be a root user to run this script, please run sudo ./install.sh" 2>&1
@@ -9,17 +10,24 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
-# Update packages list and update system
-apt update
-apt upgrade -y
+echo "Update packages list and update system "
 
-# Install nala
-apt install nala git stow neovim tmux -y
+if command -v pacman &> /dev/null
+then
+	pacman -Syyu alacritty rofi feh base-devel python fish
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+  git clone https://aur.archlinux.org/paru.git
+  cd && cd paru || exit 
+  makepkg -si && paru -S nerd-fonts-hack brave-bin
+elif command -v apt-get &> /dev/null
+then
+ apt update && apt upgrade -y && apt-get install nala git stow neovim tmux kitty rofi build-essential libx11-dev lm-sensors libxinerama-dev sharutils suckless-tools libxft-dev libc6 feh && wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip && unzip Hack.zip && mkdir -p $HOME/.local/share/fonts/nerdfonts/Hack && mv *.ttf $HOME/.local/share/fonts/nerdfonts/Hack && fc-cache -f -v
+fi
 
 # Making .config and Moving config files and background to Pictures
 cd $builddir
-mkdir -p /home/$username/.config
-mkdir -p /home/$username/.fonts
+mkdir -p "/home/$username/.config"
+mkdir -p "/home/$username/.fonts"
 mkdir -p /home/$username/Pictures
 mkdir -p /home/$username/Pictures/backgrounds
 
@@ -86,3 +94,5 @@ cd $builddir
 
 # Use nala
 bash scripts/usenala
+
+
