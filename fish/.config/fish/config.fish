@@ -1,5 +1,5 @@
 # fortune | cowsay
-# sh ~/dotfiles/neofetch/nofetch --flex #nitch #download afetch fastfetch from aur
+# sh ~/dotfiles/neofetch/nofetch --flex nitch afetch fastfetch etc download from aur
 #use sh to run any bash scripts from the fish shell at startup 
 
 # fish stuff -----------------------------------------------------------------
@@ -205,3 +205,8 @@ alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-deskto
 
 # TODO: clone all the required git dirs : doom-emacs, chemacs2, rvaiya-keyd
 alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doomemacs ~/doomemacs && mkdir ~/.emacs.d && git clone https://github.com/plexus/chemacs2 ~/.emacs.d"
+
+# Fidn projects
+alias projects="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -mindepth 1 -maxdepth 2 -type d | fzf)"
+# alias projects="cd ~/ghq && cd (fd --type directory | fzf)"
+

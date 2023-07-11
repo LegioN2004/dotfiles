@@ -2,7 +2,7 @@
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
-plug "zap-zsh/zap-prompt"
+# plug "zap-zsh/zap-prompt"
 plug "zap-zsh/completions"
 plug "zap-zsh/fzf"
 plug "zsh-users/zsh-syntax-highlighting"
@@ -17,11 +17,12 @@ HISTSIZE=100000
 HISTFILE=~/dotfiles/zsh/history
 
 #setup version control system as well as PROMPT
-# autoload -Uz vcs_info
-# precmd() { vcs_info }
-# zstyle ':vcs_info:git:*' formats '%b '
-# setopt PROMPT_SUBST
-# PROMPT='%F{green}%f %F{blue}%0~ ❯❯❯ %f%F{red}${vcs_info_msg_0_}%f'
+bindkey -v
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats '%b '
+setopt PROMPT_SUBST
+PROMPT='%F{green}%f %F{blue}%0~ ❯❯❯ %f%F{red}${vcs_info_msg_0_}%f'
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/bin:$PATH"
@@ -33,7 +34,6 @@ export BROWSER='brave'
 export MANPAGER='nvim +MAN!'
 export TERM='xterm-256color'
 
-bindkey -v
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
