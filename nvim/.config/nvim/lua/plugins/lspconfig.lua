@@ -130,6 +130,35 @@ return {
       {
         'williamboman/mason.nvim',
         build = ":MasonUpdate",
+        opts = {
+          ensure_installed = {
+            --bash
+            "bash-language-server",
+            -- c/cpp
+            "clangd",
+            "clang-format",
+            "codelldb",
+            -- java
+            "jdtls",
+            -- lua
+            "lua-language-server",
+            "stylua",
+            -- md
+            "markdownlint",
+            -- html, css, js/ts
+            "prettier",
+            "emmet-ls",
+            "html-lsp",
+            "tailwindcss-language-server",
+            -- also add stuff for JS and TS when needed
+            -- python
+            "black",
+            "mypy",
+            "ruff",
+            "pyright",
+            "debugpy",
+          }
+        },
       },
     },
     config = function()

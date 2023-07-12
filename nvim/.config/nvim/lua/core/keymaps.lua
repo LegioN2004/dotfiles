@@ -42,9 +42,9 @@ keymap("n", "twq", ":wq!<CR>", opts)
 keymap("n", "ts", ":so<CR>", opts)
 
 --splitting windows
-vim.keymap.set('n', 'sv', '<c-w>v', { silent = true })
-vim.keymap.set('n', 'sh', '<c-w>s', { silent = true })
-vim.keymap.set('n', 'sx', ':close<cr>', { silent = true })
+-- vim.keymap.set('n', 'sv', '<c-w>v', { silent = true })
+-- vim.keymap.set('n', 'sh', '<c-w>s', { silent = true })
+-- vim.keymap.set('n', 'sx', ':close<cr>', { silent = true })
 
 --(window keybinds) new tab
 keymap("n", "tn", ":tabnew<Return><C-w>w", opts)

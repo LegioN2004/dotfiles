@@ -17,5 +17,10 @@ return {
 
 	-- lsp servers
 	{ 'williamboman/mason-lspconfig.nvim' },
-	{ 'williamboman/mason.nvim',}
+	{ 'williamboman/mason.nvim' },
+	-- {
+	-- 	'jose-elias-alvarez/null-ls.nvim',
+	-- 	event = "VeryLazy",
+	-- },
 }
+

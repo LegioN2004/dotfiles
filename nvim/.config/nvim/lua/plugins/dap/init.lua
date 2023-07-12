@@ -1,4 +1,16 @@
 return {
+
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    opts = {
+      handlers = {},
+    },
+  },
   -- Debug Adapter Protocol client implementation for Neovim
   {
     "mfussenegger/nvim-dap",
@@ -6,6 +18,7 @@ return {
       -- A UI for nvim-dap
       {
         "rcarriga/nvim-dap-ui",
+        event = "VeryLazy",
         -- stylua: ignore
         keys = {
           { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI", },
@@ -171,6 +184,12 @@ return {
         function() require("dap").clear_breakpoints() end,
         desc =
         "Removes all breakpoints"
+      },
+      {
+        "<leader>dpr",
+        function() require('dap-python').test_method() end,
+        desc =
+        "loads the dap-python plugins and calls the test method function"
       },
     },
   },

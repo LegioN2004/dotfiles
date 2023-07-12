@@ -16,14 +16,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Use this Autocommand to reload neovim whenever you save the plugins.lua or any file
--- vim.cmd([[
--- augroup lazy_user_config
--- autocmd!
--- autocmd BufWritePost plugins.lua source <afile> | Lazy sync
--- augroup end
--- ]])
-
 -- Use a protected call so we don't error out on first use
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then

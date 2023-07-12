@@ -49,7 +49,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local formatters = require("plugins.formatting.formatters")
-local sources = {} -- a list of to_register_wrap
+local sources = {
+} -- a list of to_register_wrap
 for formatter, setting in pairs(formatters) do
   if not setting.disabled then
     sources[formatter] = setting.to_register_wrap
@@ -59,4 +60,5 @@ end
 return {
   "jose-elias-alvarez/null-ls.nvim",
   opts = sources, -- passed to the parent spec's config()
+  event = "VeryLazy",
 }
