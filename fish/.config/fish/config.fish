@@ -208,5 +208,5 @@ alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doo
 
 # Fidn projects
 alias projects="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -mindepth 1 -maxdepth 2 -type d | fzf)"
-# alias projects="cd ~/ghq && cd (fd --type directory | fzf)"
+alias files="cd (fd --type directory | fzf)"
 

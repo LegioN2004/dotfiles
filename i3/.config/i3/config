@@ -24,7 +24,7 @@ set $mod2 Mod4
 #Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 #start a terminal
-set $term alacritty
+set $term st
 ## start at startup the following
 # NetworkManager is the most popular way to manage wireless networks on Linux, and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -65,7 +65,6 @@ exec_always xset r rate 300 50
 exec --no-startup-id ~/dotfiles/scripts-laptop/scripts/batterynotify
 ## TODO: setup this thing: swallow for i3wm
 # exec --no-startup-id ~/.config/i3/scripts/i3-swallow.py
-
 
 
 

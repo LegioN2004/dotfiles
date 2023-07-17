@@ -69,6 +69,7 @@
   (setq evil-want-keybinding nil)
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-below t)
+  (setq evil-want-C-u-scroll t)
   (evil-mode))
 
 (use-package evil-collection  ;; installing evil-collection

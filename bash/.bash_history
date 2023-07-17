@@ -1,4 +1,3 @@
-exit
 yay -R ghostscript imagemagick libdvdread netpbm pulseaudio-alsa pulseaudio-bluetooth python-jinja python-pyxdg python-setuptools webkit2gtk xdg-desktop-portal xorg-xdpyinfo
 yay -R ghostscript imagemagick libdvdread netpbm pulseaudio-alsa  python-jinja python-pyxdg python-setuptools webkit2gtk xdg-desktop-portal xorg-xdpyinfo
 exit
@@ -498,3 +497,4 @@ ls
 exit
 rustc --version
 exit
+ls

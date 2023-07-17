@@ -1,9 +1,16 @@
- -- Getting you where you want with the fewest keystrokes
-  return {
-	{ 'ThePrimeagen/vim-be-good' }, --Vim be good is a plugin designed to make you better at vim by creating a game to practice basic movements in
-	{ "theprimeagen/refactoring.nvim" },
+-- Getting you where you want with the fewest keystrokes
+return {
+  {
+    'ThePrimeagen/vim-be-good',
+    cmd = "VimBeGood",
+  }, --Vim be good is a plugin designed to make you better at vim by creating a game to practice basic movements in
+  {
+    "ThePrimeagen/refactoring.nvim",
+    event = "VeryLazy",
+  },
+  {
     "ThePrimeagen/harpoon",
-    event = VeryLazy,
+    event = "VeryLazy",
     cmd = "Harpoon",
     keys = {
       {
@@ -66,3 +73,4 @@
       })
     end,
   }
+}

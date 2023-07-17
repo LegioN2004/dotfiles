@@ -394,6 +394,7 @@ return {
     "eandrju/cellular-automaton.nvim",
     cmd = "CellularAutomaton",
   },
+  --movement stuff
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -443,7 +444,6 @@ return {
       },
     },
   },
-  --movement stuff
   -- use 'justinmk/vim-sneak'
   -- use 'phaazon/hop.nvim'
   -- session stuff

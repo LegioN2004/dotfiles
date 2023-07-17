@@ -1,1 +1,1 @@
-("~/dotfiles/" "~/Downloads/softwares/mu-1.10.5/" "~/ghq/github.com/LegioN2004/programs/")
+("~/dotfiles/" "~/ghq/github.com/LegioN2004/Programs/" "~/Downloads/softwares/mu-1.10.5/")
