@@ -13,7 +13,7 @@ echo "Update packages list and update system "
 
 if command -v pacman &> /dev/null
 then
- yes|pacman -Syyu amd-ucode grub fish curl wget alacritty dmenu base-devel python-pip python xorg i3 i3-wm i3blocks i3lock i3status xinput git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11 lm_sensors libxinerama libxft
+ yes|pacman -Syyu amd-ucode fish curl wget alacritty dmenu base-devel python-pip python xorg i3 i3-wm i3blocks i3lock i3status xinput git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11 lm_sensors libxinerama libxft
 
  echo "get node version manager"
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
@@ -30,7 +30,7 @@ then
 
 elif command -v apt-get &> /dev/null
 then
-  apt update -y && apt upgrade -y && apt-get install amd-microcode grub nala fish alacritty dmenu build-essential python3-pip xorg i3 i3-wm i3blocks i3lock i3pystatus i3status xinput git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11-dev lm-sensors libxinerama-dev libxft-dev 
+  apt update -y && apt upgrade -y && apt-get install amd-microcode nala fish alacritty dmenu build-essential python3-pip xorg i3 i3-wm i3blocks i3lock i3pystatus i3status xinput git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11-dev lm-sensors libxinerama-dev libxft-dev 
   chmod +s /usr/bin/light
   wget http://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip && unzip Hack.zip && mkdir -p $HOME/.local/share/fonts/nerdfonts/Hack && mv *.ttf $HOME/.local/share/fonts/nerdfonts/Hack && fc-cache -f -v
 fi
