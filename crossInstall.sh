@@ -172,6 +172,7 @@ sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw enable
 # All configuration files are in /etc/fail2ban Configuration file examples and defaults are in two main files /etc/fail2ban/fail2ban.conf and /etc/fail2ban/jail.conf
+mkdir -p /etc/fail2ban
 cp -r "/home/$username/dotfiles/scripts-laptop/fail2ban/jail.conf" /etc/fail2ban/jail.local
 echo "Enabling Fail2Ban"
 sudo systemctl enable fail2ban
