@@ -13,7 +13,7 @@ echo "Update packages list and update system "
 
 if command -v pacman &> /dev/null
 then
- yes|pacman -Syyu amd-ucode grub fish curl wget alacritty dmenu base-devel python-pip python i3 i3-wm i3blocks i3lock i3status git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11 lm_sensors libxinerama libxft
+ yes|pacman -Syyu amd-ucode grub fish curl wget alacritty dmenu base-devel python-pip python xorg i3 i3-wm i3blocks i3lock i3status xinput git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11 lm_sensors libxinerama libxft
 
  echo "get node version manager"
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
@@ -30,7 +30,7 @@ then
 
 elif command -v apt-get &> /dev/null
 then
-  apt update -y && apt upgrade -y && apt-get install amd-microcode grub nala fish alacritty dmenu build-essential python3-pip i3 i3-wm i3blocks i3lock i3pystatus i3status git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11-dev lm-sensors libxinerama-dev libxft-dev 
+  apt update -y && apt upgrade -y && apt-get install amd-microcode grub nala fish alacritty dmenu build-essential python3-pip xorg i3 i3-wm i3blocks i3lock i3pystatus i3status xinput git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11-dev lm-sensors libxinerama-dev libxft-dev 
   chmod +s /usr/bin/light
   wget http://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip && unzip Hack.zip && mkdir -p $HOME/.local/share/fonts/nerdfonts/Hack && mv *.ttf $HOME/.local/share/fonts/nerdfonts/Hack && fc-cache -f -v
 fi
@@ -66,7 +66,7 @@ then
 # Installing Essential Programs 
 yes|pacman -Syyu rofi feh dunst libnotify thunar xfce4-settings networkmanager gnome-authentication-agent gnome-keyring gnome-polkit xorg-server unzip pulseaudio pavucontrol alsa-utils volumeicon libx11-dev libxft-dev libxinerama-dev ristretto zathura zathura-pdf-mupdf ghq peco github-cli
 # Installing Other less important Programs
-yes|pacman -Syyu neofetch htop flameshot vim lxappearance ranger papirus-icon-theme noto-fonts-emoji ttf-font-awesome jdk-openjdk exa ttf-ubuntu-mono-nerd bluez blueman
+yes|pacman -Syyu neofetch htop flameshot redshift xclip maim vim lxappearance ranger papirus-icon-theme noto-fonts-emoji ttf-font-awesome jdk-openjdk exa ttf-ubuntu-mono-nerd bluez blueman
 sudo systemctl enable bluetooth
 
 elif command -v apt-get &> /dev/null
@@ -78,7 +78,7 @@ git clone https://github.com/x-motemen/ghq /home/$username/Downloads/softwares/
 cd ghq
 make install
 # Installing Other less important Programs
-nala install neofetch htop flameshot vim lxappearance ranger papirus-icon-theme fonts-noto-color-emoji fonts-font-awesome openjdk-17-jdk exa fonts-ubuntu bluez blueman -y
+nala install neofetch htop flameshot redshift xclip maim vim lxappearance ranger papirus-icon-theme fonts-noto-color-emoji fonts-font-awesome openjdk-17-jdk exa fonts-ubuntu bluez blueman -y
 sudo systemctl enable bluetooth
 # Install brave-browser
 nala install apt-transport-https curl -y
@@ -210,7 +210,7 @@ sudo cp ./temp /usr/share/xsessions/i3.desktop;rm ./temp
 # End of script for default config
 #
 
-
+apt autoremove
 exit
 
 # now goes all the normal user settings script
