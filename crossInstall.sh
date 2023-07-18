@@ -33,6 +33,7 @@ then
   apt update -y && apt upgrade -y && apt-get install amd-microcode nala fish alacritty dmenu build-essential python3-pip xorg i3 i3-wm i3blocks i3lock i3pystatus i3status xinput git light lightdm lightdm-gtk-greeter gcc pactl playerctl stow neovim tmux libx11-dev lm-sensors libxinerama-dev libxft-dev 
   chmod +s /usr/bin/light
   wget http://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip && unzip Hack.zip && mkdir -p $HOME/.local/share/fonts/nerdfonts/Hack && mv *.ttf $HOME/.local/share/fonts/nerdfonts/Hack && fc-cache -f -v
+  cd
 fi
 
 
@@ -45,14 +46,13 @@ mkdir -p "/home/$username/Documents"
 mkdir -p "/home/$username/Pictures/wallpapers"
 mkdir -p "/home/$username/dotfiles"
 mkdir -p "/home/$username/Downloads/softwares"
-
-
 cd
 
 echo "Cloning all the dotfiles required for the minimal functioning of nvim, tmux, etc"
 # clone https://github.com/LegioN2004/dotfiles.git
-mkdir /home/$username/dotfiles
-git clone https://github.com/LegioN2004/dotfiles.git ~/dotfiles
+
+cd
+git clone https://github.com/LegioN2004/dotfiles.git
 cd dotfiles || return
 git checkout Minimalist
 rm -rf ~/.bahrc ~/.bash_history ~/.bash_profile ~/.zshrc ~/.zprofile ~/.config/fish ~/.config/zsh
@@ -60,10 +60,11 @@ echo "do a good stow to symlink everything"
 stow .
 
 cd 
-mv user-dirs.dirs /home/$username/.config
+mv user-dirs.dirs "/home/$username/.config"
 chown -R $username:$username /home/$username
 
 
+cd
 if command -v pacman &> /dev/null
 then
 echo "Installing Essential Programs"
@@ -80,6 +81,7 @@ echo "ghq stuff"
 git clone https://github.com/x-motemen/ghq /home/$username/Downloads/softwares/
 cd ghq
 make install
+cd
 echo "Installing other less important Programs"
 nala install neofetch htop flameshot redshift xclip maim vim lxappearance ranger papirus-icon-theme fonts-noto-color-emoji fonts-font-awesome openjdk-17-jdk exa fonts-ubuntu bluez blueman -y
 sudo systemctl enable bluetooth
@@ -90,11 +92,13 @@ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=
 nala update
 nala install brave-browser -y
 fi
+cd
 
 
 echo "Download Nordic Theme"
 cd /usr/share/themes/
 git clone https://github.com/EliverLara/Nordic.git
+cd
 
 # clone https://github.com/LegioN2004/dotfiles.git
 # git clone https://github.com/LegioN2004/some-other-stuff.git
