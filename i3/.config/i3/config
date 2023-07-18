@@ -25,47 +25,25 @@ set $mod2 Mod4
 floating_modifier $mod
 #start a terminal
 set $term st
-## start at startup the following
-# NetworkManager is the most popular way to manage wireless networks on Linux, and nm-applet is a desktop environment-independent system tray GUI for it.
+# stuff to auto start at startup
 exec --no-startup-id nm-applet
-exec --no-startup-id kitty
+exec --no-startup-id alacritty
 exec --no-startup-id brave
 # i3 font for all the titles, tabs etc
-font pango:Hack NF 8.7 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png --nofork
+font pango:Hack NF 8.5 
 #polybar launch script
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-# exec_always --no-startup-id polybar
-# script for changing wallpapers randomly after 5 mins, from the above directory^
-exec --no-startup-id ~/dotfiles/watch
-# exec_always --no-startup-id feh --bg-scale /home/sunny/Pictures/wallpapers-stuff2/Xero-Plasma60.png
-# master stack layout python script
-exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layouts.py
-# Install `python-i3ipc`, then either:
-# Clone this repository or install from the [AUR](https://aur.archlinux.org/packages/alternating-layouts-git/).
-# Then, for i3 add: exec_always --no-startup-id ~/path/to/alternating_layouts.py to your `~/.i3/config`.
-## compositor for blurr, rounded-corners, effects, shadows,etc download picom-jonaburg-git fork  
-# exec_always picom --experimental-backends 
-exec_always picom 
-#always run xinput list-props "xinput set-prop "ETPS/2 Elantech Touchpad" and run the following commands to set tap to click and natural scrolling 
+# TODO: set this properly
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/wall_editied.jpg
+# always run xinput list-props "xinput set-prop "ETPS/2 Elantech Touchpad" and run the following commands to set tap to click and natural scrolling 
 exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
 exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1
-## sxhkd autostart,  probably won't ever need this, since I can set more bindings with more mod keys by defining them at startup
-# exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
 # gnome's authorization agent to mount drives and adding passwords whenever required
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # keyboard repeat delay in ms
 exec_always xset r rate 300 50
-# drop down terminal F12
-# exec --no-startup-id yakuake
-# a certain type of right click menu
-#bindsym $mod+x exec "jgmenu --center"
 #batteery notifier
 exec --no-startup-id ~/dotfiles/scripts-laptop/scripts/batterynotify
-## TODO: setup this thing: swallow for i3wm
-# exec --no-startup-id ~/.config/i3/scripts/i3-swallow.py
-
 
 
 
@@ -158,10 +136,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 ## lock screen i3lock
+# TODO: set this properly
 bindsym $mod+shift+x exec i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png
-# and another script to do stuff
-# bindsym $mod+shift+x exec ~/dotfiles/i3/.config/i3/scripts/betteri3lock
-## custom commnads for laptops like brightness and battery 
 # after installing light do these: sudo apt install light && sudo chmod +s /usr/bin/light
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp  exec light -A 5 # increase screen brightness
@@ -191,9 +167,6 @@ bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/Scr
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-## alt tab switcher for i3
-# bindsym $mod+Tab exec  ~/ghq/github.com/yoshimoto/i3-alt-tab.py next all
-# bindsym $mod+Shift+Tab exec ~/ghq/github.com/yoshimoto/i3-alt-tab.py all
 ## move workspace with mouse scroll next/prev
 bindsym $mod+Tab workspace $ws2
 # bindsym $mod+Shift+Tab workspace prev
@@ -223,15 +196,7 @@ mode "$mode_system" {
 }
 # shutdown / restart / suspend... power optinos stuff
 bindsym $mod+shift+q mode "$mode_system"
-## binding for the resize setup here
-# resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        #changed the size from 10 px or 10 ppt to 5
         bindsym h resize shrink width 2 px or 2 ppt 
         bindsym j resize grow height 2 px or 2 ppt
         bindsym k resize shrink height 2 px or 2 ppt
@@ -276,17 +241,6 @@ bindsym $mod2+2 exec xrandr --output HDMI-1 --auto --output eDP-1 --off
 # ██████╔╝███████╗░░░██║░░░░░░██║░░░██║██║░╚███║╚██████╔╝██████╔╝
 # ╚═════╝░╚══════╝░░░╚═╝░░░░░░╚═╝░░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═════╝░
 
-## workspace no with icons and sht, unnecessary
-# set $ws1 "1." 
-# set $ws2 "2."
-# set $ws3 "3."
-# set $ws4 "4."
-# set $ws5 "5."
-# set $ws6 "6."
-# set $ws7 "7.﬏"
-# set $ws8 "8."
-# set $ws9 "9"
-# set $ws10 "10"
 # TODO: set workspace layout as tabbed set this when there is no catching distractions
 # workspace_layout tabbed
 
@@ -305,6 +259,8 @@ set $ws10 "10"
 # assining apps to individual workspaces
 #following 3 lines are custom
 assign [class="kitty"] $ws1
+assign [class="alacritty"] $ws1
+assign [class="Alacritty"] $ws1
 assign [class="Brave-browser"] $ws2
 # assign [class="Min"] $ws3
 # assign [class="xfce4-terminal"] $ws3
@@ -349,23 +305,16 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 for_window [title=".*"] title_format | %title
 bar {
 # i3status sht
-# status_command i3status
-# position top
-# output primary
-# tray_output none
-# font pango:FiraCode Nerd Font Mono 9 
-# separator_symbol ⁞
+status_command i3status
+position top
+output primary
+tray_output none
+font pango:Hack NF 8 
+separator_symbol ⁞
 
-#  status_command i3blocks -c ~/.i3/i3blocks.conf
+status_command i3blocks -c ~/.i3/i3blocks.conf
 
-# to use i3blocks install it explicitly otherwise dependencies don't get fulfilled
-# for bumblebee status bar u will need extra psutil from pip to show cpu meter (you can install bumblebee status from pip also)
-# dependencies bluez bluez-utils pasink pactl  blueman xkb-switch dbus-send bt-dualboot
 height 20
-  status_command ~/.local/bin/bumblebee-status \
-   -t  dracula-powerline \
-   -m  cpu memory disk pasink battery datetime -p cpu.interval=3s memory.interval=10s pasink.interval=1s datetime.interval=1s  \
-	 -p  disk.format={used} memory.format={used} cpu.format={:.1f}% 
 
    colors {
      background $bg-color
@@ -382,16 +331,6 @@ height 20
 default_border pixel 1
 default_floating_border pixel 1
 for_window [class="^.*"] border pixel 1
-
-## gaps
-# Activate smart borders (always)
-# smart_borders on
-# gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle  10
-# Examples
-# gaps inner  4
-# gaps outer current plus 5
-# gaps horizontal current plus 40
-# gaps outer current toggle 60
 
 ## binds custom from lukesmith for creating scratchpad with tmux as an addition
 for_window [instance="ttrm"] floating enable

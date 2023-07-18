@@ -1,9 +1,0 @@
-local null-ls = require("null-ls")
-
-local opts = {
-sources = {
-
-}
-}
-	
-return opts

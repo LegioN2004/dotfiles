@@ -41,24 +41,8 @@ return {
       });
     end
   },
-  {
-    "folke/which-key.nvim",
-    config = function()
-      vim.o.timeout = true
-      vim.timeoutlen = 300
-      require("which-key").setup({
-        plugins = {
-          presets = {
-            g = false,
-          },
-        },
-        window = {
-          border = "single",
-        },
-      })
-    end,
-  },
 
+  -- maximizes splits or buffers whenever needed
   {
     "szw/vim-maximizer",
     lazy = true,
@@ -76,20 +60,6 @@ return {
       require("transparent").setup {
       }
     end
-  },
-
-  ------ ui for nvim-lsp progress ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  {
-    "j-hui/fidget.nvim",
-    event = "LspAttach",
-    tag = "legacy",
-    config = function()
-      require("fidget").setup({
-        window = {
-          blend = 0, -- set 0 if using transparent background, otherwise set 100
-        },
-      })
-    end,
   },
 
   -- easy dressing config
