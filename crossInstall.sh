@@ -35,7 +35,8 @@ then
   wget http://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip && unzip Hack.zip && mkdir -p $HOME/.local/share/fonts/nerdfonts/Hack && mv *.ttf $HOME/.local/share/fonts/nerdfonts/Hack && fc-cache -f -v
 fi
 
-# Making .config and Moving config files and background to Pictures
+
+echo "Making .config and Moving config files and background to Pictures"
 cd $builddir || cd
 mkdir -p "/home/$username/.config"
 mkdir -p "/home/$username/.local/share/fonts"
@@ -47,13 +48,14 @@ mkdir -p "/home/$username/dotfiles"
 
 cd
 
-rm -rf ~/.config/fish
-
+echo "Cloning all the dotfiles required for the minimal functioning of nvim, tmux, etc"
 # clone https://github.com/LegioN2004/dotfiles.git
+mkdir /home/$username/dotfiles
 git clone https://github.com/LegioN2004/dotfiles.git ~/dotfiles
 cd dotfiles || return
 git checkout Minimalist
-# do a good stow to symlink everything
+rm -rf ~/.bahrc ~/.bash_history ~/.bash_profile ~/.zshrc ~/.zprofile ~/.config/fish ~/.config/zsh
+echo "do a good stow to symlink everything"
 stow .
 
 cd 
@@ -63,24 +65,24 @@ chown -R $username:$username /home/$username
 
 if command -v pacman &> /dev/null
 then
-# Installing Essential Programs 
+echo "Installing Essential Programs"
 yes|pacman -Syyu rofi feh dunst libnotify thunar xfce4-settings networkmanager gnome-authentication-agent gnome-keyring gnome-polkit xorg-server unzip pulseaudio pavucontrol alsa-utils volumeicon libx11-dev libxft-dev libxinerama-dev ristretto zathura zathura-pdf-mupdf ghq peco github-cli
-# Installing Other less important Programs
+echo "Installing other less important Programs"
 yes|pacman -Syyu neofetch htop flameshot redshift xclip maim vim lxappearance ranger papirus-icon-theme noto-fonts-emoji ttf-font-awesome jdk-openjdk exa ttf-ubuntu-mono-nerd bluez blueman
 sudo systemctl enable bluetooth
 
 elif command -v apt-get &> /dev/null
 then
-# Installing Essential Programs 
+echo "Installing Essential Programs"
 nala install rofi feh dunst libnotify-bin thunar xfce4-settings network-manager-gnome gnome-authentication-agent gnome-keyring gnome-polkit x11-xserver-utils unzip pulseaudio pavucontrol alsa-utils volumeicon-alsa libx11-dev libxft-dev libxinerama-dev ristretto zathura zathura-pdf-poppler peco gh -y
-# for ghq
+echo "ghq stuff"
 git clone https://github.com/x-motemen/ghq /home/$username/Downloads/softwares/
 cd ghq
 make install
-# Installing Other less important Programs
+echo "Installing other less important Programs"
 nala install neofetch htop flameshot redshift xclip maim vim lxappearance ranger papirus-icon-theme fonts-noto-color-emoji fonts-font-awesome openjdk-17-jdk exa fonts-ubuntu bluez blueman -y
 sudo systemctl enable bluetooth
-# Install brave-browser
+echo "Install brave-browser"
 nala install apt-transport-https curl -y
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
@@ -89,7 +91,7 @@ nala install brave-browser -y
 fi
 
 
-# Download Nordic Theme
+echo "Download Nordic Theme"
 cd /usr/share/themes/
 git clone https://github.com/EliverLara/Nordic.git
 
@@ -100,23 +102,23 @@ git clone https://github.com/EliverLara/Nordic.git
 # mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
 # chown $username:$username /home/$username/.fonts/*
 
-# Reloading Font
+echo "Reloading Font"
 fc-cache -vf
 
-# Install cursors: 
-# 1.Nordzy cursor
+echo "installing cursors:" 
+echo "1. Nordzy cursor"
 cd /home/$username/Downloads/softwares
-git clone https://github.com/alvatip/Nordzy-cursors .
+git clone https://github.com/alvatip/Nordzy-cursors
 cd Nordzy-cursors
 ./install.sh
 rm -rf Nordzy-cursors
-# 2. macOS cursors
+echo "2. macOS cursor"
 cd /home/$username/Downloads/softwares
 wget https://github.com/ful1e5/apple_cursor/releases/download/v2.0.0/macOS-BigSur.tar.gz
 # for install the cursors
 tar -xvf macOS-Bigsur.tar.gz                # extract `.tar.gz`
 mv macOS-* ~/.icons/                        # Install to local users
-sudo mv macOS-* /usr/share/icons/           # Install to all users
+mv macOS-* /usr/share/icons/           # Install to all users
 cd
 # Uninstallation of the cursors
 # rm ~/.icons/macOS-*                         # Remove from local users
@@ -126,63 +128,63 @@ cd
 # systemctl enable lightdm
 # systemctl set-default graphical.target
 
-# ^ instead of that I am using the ly console display manager
+echo" ^ instead of that I am using the ly console display manager"
 cd /home/$username/Downloads/softwares
-git clone --recurse-submodules https://github.com/nullgem/ly.git .
+git clone --recurse-submodules https://github.com/nullgem/ly.git
 cd ly
-make && sudo make install
+make && make install
 cd
 
 
 
 # TODO: setup power saving properly in linux
-# powersave and firewall settings
+echo "# powersave and firewall settings"
 # firewall stuff is from this website https://christitus.com/linux-security-mistakes/
 if command -v pacman &> /dev/null
 then
 yes|pacman -Syyu ufw powertop tlp tlp-rdw fail2ban
 echo "ufw rules"
-sudo ufw limit 22/tcp
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw enable
+ufw limit 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw default deny incoming
+ufw default allow outgoing
+ufw enable
 # All configuration files are in /etc/fail2ban Configuration file examples and defaults are in two main files /etc/fail2ban/fail2ban.conf and /etc/fail2ban/jail.conf
 cp -r "/home/$username/dotfiles/scripts-laptop/fail2ban/jail.conf" /etc/fail2ban/jail.local
 echo "Enabling Fail2Ban"
-sudo systemctl enable fail2ban
-sudo systemctl start fail2ban
+systemctl enable fail2ban
+systemctl start fail2ban
 
 # again trying the auto-cpu freq to do this
 cd /home/$username/Downloads/softwares
-git clone https://github.com/AdnanHodzic/auto-cpufreq.git .
-cd auto-cpufreq && sudo ./auto-cpufreq-installer
-sudo auto-cpufreq --install
+git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+cd auto-cpufreq && ./auto-cpufreq-installer
+auto-cpufreq --install
 cd
 
 elif command -v apt-get &> /dev/null
 then
 nala install ufw powertop tlp tlp-rdw fail2ban -y
 echo "ufw rules"
-sudo ufw limit 22/tcp
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw enable
+ufw limit 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw default deny incoming
+ufw default allow outgoing
+ufw enable
 # All configuration files are in /etc/fail2ban Configuration file examples and defaults are in two main files /etc/fail2ban/fail2ban.conf and /etc/fail2ban/jail.conf
 mkdir -p /etc/fail2ban
 cp -r "/home/$username/dotfiles/scripts-laptop/fail2ban/jail.conf" /etc/fail2ban/jail.local
 echo "Enabling Fail2Ban"
-sudo systemctl enable fail2ban
-sudo systemctl start fail2ban
+systemctl enable fail2ban
+systemctl start fail2ban
 
 # again trying the auto-cpu freq to do this
 cd /home/$username/Downloads/softwares
-git clone https://github.com/AdnanHodzic/auto-cpufreq.git .
-cd auto-cpufreq && sudo ./auto-cpufreq-installer
-sudo auto-cpufreq --install
+git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+cd auto-cpufreq && ./auto-cpufreq-installer
+auto-cpufreq --install
 
 cd
 cd
@@ -192,7 +194,7 @@ cp -r "/home/$username/dotfiles/scripts-laptop/auto-cpufreq config/auto-cpufreq.
 
 # XSessions and i3.desktop
 if [[ ! -d /usr/share/xsessions ]]; then
-        sudo mkdir /usr/share/xsessions
+       mkdir /usr/share/xsessions
 fi
 
 cat > ./temp << "EOF"
@@ -204,7 +206,7 @@ Exec=i3
 Icon=i3
 Type=XSession
 EOF
-sudo cp ./temp /usr/share/xsessions/i3.desktop;rm ./temp
+cp ./temp /usr/share/xsessions/i3.desktop;rm ./temp
 
 ########################################################
 # End of script for default config
