@@ -44,6 +44,7 @@ mkdir -p "/home/$username/Pictures"
 mkdir -p "/home/$username/Documents"
 mkdir -p "/home/$username/Pictures/wallpapers"
 mkdir -p "/home/$username/dotfiles"
+mkdir -p "/home/$username/Downloads/softwares"
 
 
 cd
@@ -74,7 +75,7 @@ sudo systemctl enable bluetooth
 elif command -v apt-get &> /dev/null
 then
 echo "Installing Essential Programs"
-nala install rofi feh dunst libnotify-bin thunar xfce4-settings network-manager-gnome gnome-authentication-agent gnome-keyring gnome-polkit x11-xserver-utils unzip pulseaudio pavucontrol alsa-utils volumeicon-alsa libx11-dev libxft-dev libxinerama-dev ristretto zathura zathura-pdf-poppler peco gh -y
+nala install rofi feh dunst libnotify-bin thunar xfce4-settings network-manager-gnome policykit1-1-gnome gnome-keyring x11-xserver-utils unzip pulseaudio pavucontrol alsa-utils volumeicon-alsa libx11-dev libxft-dev libxinerama-dev ristretto zathura zathura-pdf-poppler peco gh -y
 echo "ghq stuff"
 git clone https://github.com/x-motemen/ghq /home/$username/Downloads/softwares/
 cd ghq
