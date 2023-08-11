@@ -20,8 +20,10 @@
 - [[#company][COMPANY]]
 - [[#dashboard][DASHBOARD]]
 - [[#diminish][DIMINISH]]
+- [[#dired][DIRED]]
 - [[#language-support][LANGUAGE SUPPORT]]
 - [[#ivy-counsel][IVY (COUNSEL)]]
+- [[#neotree][NEOTREE]]
 - [[#org-mode-the-god][ORG MODE (The GOD)]]
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
@@ -37,6 +39,7 @@
   - [[#vterm-toggle][Vterm-Toggle]]
 - [[#sudo-edit][SUDO EDIT]]
 - [[#theme][THEME]]
+  - [[#transparency][Transparency]]
 - [[#which-key][WHICH-KEY]]
 
 * This configuration is done from the Configuring Emacs playlist of [[https://www.youtube.com/watch?v=d1fgypEiQkE&list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX&pp=iAQB][DistroTube]] . For any errors refer to his gitlab repo: [[https://gitlab.com/dwt1/Configuring-emacs][dwt1/Configuring-emacs]]
@@ -160,10 +163,11 @@
     (mili/leader-keys
       "h" '(:ignore t :wk "Help")
       "h f" '(describe-function :wk "Describe function")
+      "h t" '(load-theme :wk "Load theme")
       "h v" '(describe-variable :wk "Describe variable")
       ;; done properly using the following function
-      ;; "h r r" '(reload-init-file :wk "Reload emacs config")
-      "h r r" '((lambda () (interactive) (load-file "~/emacs/init.el")) :wk "Reload emacs config"))
+      "h r r" '(reload-init-file :wk "Reload emacs config"))
+    ;; "h r r" '((lambda () (interactive) (load-file "~/emacs/init.el")) :wk "Reload emacs config"))
 
     (mili/leader-keys
       "b" '(:ignore t :wk "buffer")
@@ -173,6 +177,14 @@
       "b n" '(next-buffer :wk "Next buffer")
       "b p" '(previous-buffer :wk "Previous buffer")
       "b r" '(revert-buffer :wk "Reload buffer"))
+
+    (mili/leader-keys
+      "d" '(:ignore t :wk "Dired")
+      "d d" '(dired :wk "Open dired")
+      "d j" '(dired-jump :wk "Dired jump to current")
+      "d n" '(neotree-dir :wk "Open directory in neotree")
+      "d p" '(peep-dired :wk "Peep-dired"))
+
 
     (mili/leader-keys
       "e" '(:ignore t :wk "Eshell/Evaluate")    
@@ -206,7 +218,9 @@
 
     (mili/leader-keys
       "t" '(:ignore t :wk "Toggle")
+      "t e" '(eshell-toggle :wk "Toggle eshell")
       "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
+      "t n" '(neotree-toggle :wk "Toggle neotree file viewer")
       "t t" '(visual-line-mode :wk "Toggle truncated/wrap lines")
       "t v" '(vterm-toggle :wk "Toggle Vterm"))
 
@@ -286,7 +300,6 @@ You can use the bindings CTRL plus =/- for zooming in/out.  You can also use CTR
 
   ;; Set up the visible bell
   (setq visible-bell t)
-  (load-theme 'wombat)
 
   ;; Make ESC quit prompts
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -448,6 +461,31 @@ This package implements hiding or abbreviation of the modeline displays (lighter
 
 
 
+* DIRED
+
+#+begin_src emacs-lisp :tangle yes
+(use-package dired-open
+  :config
+  (setq dired-open-extensions '(("gif" . "sxiv")
+                                ("jpg" . "sxiv")
+                                ("png" . "sxiv")
+                                ("mkv" . "mpv")
+                                ("mp4" . "mpv"))))
+
+(use-package peep-dired
+  :after dired
+  :hook (evil-normalize-keymaps . peep-dired-hook)
+  :config
+    (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
+    (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+    (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+)
+;;(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+#+end_src
+
+
+
 * LANGUAGE SUPPORT
 Emacs has built-in programming language modes for Lisp, Scheme, DSSSL, Ada, ASM, AWK, C, C++, Fortran, Icon, IDL (CORBA), IDLWAVE, Java, Javascript, M4, Makefiles, Metafont, Modula2, Object Pascal, Objective-C, Octave, Pascal, Perl, Pike, PostScript, Prolog, Python, Ruby, Simula, SQL, Tcl, Verilog, and VHDL.  Other languages will require you to install additional modes.
 
@@ -497,6 +535,37 @@ Emacs has built-in programming language modes for Lisp, Scheme, DSSSL, Ada, ASM,
     (ivy-set-display-transformer 'ivy-switch-buffer
                                  'ivy-rich-switch-buffer-transformer))
 
+#+end_src
+
+
+
+* NEOTREE
+Neotree is a file tree viewer.  When you open neotree, it jumps to the current file thanks to neo-smart-open.  The neo-window-fixed-size setting makes the neotree width be adjustable.  NeoTree provides following themes: classic, ascii, arrow, icons, and nerd.  Theme can be configed by setting "two" themes for neo-theme: one for the GUI and one for the terminal.  I like to use 'SPC t' for 'toggle' keybindings, so I have used 'SPC t n' for toggle-neotree.
+
+| COMMAND        | DESCRIPTION               | KEYBINDING |
+|----------------+---------------------------+------------|
+| neotree-toggle | /Toggle neotree/            | SPC t n    |
+| neotree- dir   | /Open directory in neotree/ | SPC d n    |
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(use-package neotree
+  :config
+  (setq neo-smart-open t
+        neo-show-hidden-files t
+        neo-window-width 40
+        neo-window-fixed-size nil
+        inhibit-compacting-font-caches t
+        projectile-switch-project-action 'neotree-projectile-action) 
+        ;; truncate long file names in neotree
+        (add-hook 'neo-after-create-hook
+           #'(lambda (_)
+               (with-current-buffer (get-buffer neo-buffer-name)
+                 (setq truncate-lines t)
+                 (setq word-wrap nil)
+                 (make-local-variable 'auto-hscroll-mode)
+                 (setq auto-hscroll-mode nil)))))
+
+;; show hidden files
 #+end_src
 
 
@@ -670,8 +739,8 @@ The first of the two lines below designates the directory where will place all o
   (use-package solarized-theme 
     :ensure t
     :config
-    ;;(load-theme 'solarized-dark t)
-  )
+    (load-theme 'solarized-gruvbox-dark t)
+    )
   ;; make the fringe stand out from the background
   (setq solarized-distinct-fringe-background t)
   ;; Don't change the font for some headings and titles
@@ -695,13 +764,21 @@ The first of the two lines below designates the directory where will place all o
   ;; (setq solarized-height-plus-3 1.0)
   ;; (setq solarized-height-plus-4 1.0)
 
-(add-to-list 'custom-theme-load-path "~/dotfiles/emacs/emacs/themes/")
-(load-theme 'dtmacs t)
+  (add-to-list 'custom-theme-load-path "~/dotfiles/emacs/emacs/themes/")
+  ;; (load-theme 'dtmacs t)
 
-  ;; transparency settings
-  ;; (add-to-list 'default-frame-alist '(alpha-background . 60))
-  ;; (add-to-list 'initial-frame-alist '(fullscreen maximized))
-  ;; (add-to-list 'default-frame-alist '(fullscreen maximized))
+  ;; using the doomemacs themes
+  (use-package doom-themes
+    :config
+    (setq doom-themes-enable-bold t ;; if nil, bold is universally disabled
+          doom-themes-enable-italic t) ;; if nil, italic is universally disabled
+    )
+#+end_src
+
+** Transparency
+emacs 29 added transparency by default
+#+begin_src emacs-lisp :tangle yes
+ (add-to-list 'default-frame-alist '(alpha-background . 80))
 #+end_src
 
 

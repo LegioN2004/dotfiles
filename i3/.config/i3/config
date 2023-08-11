@@ -288,7 +288,7 @@ bindsym $mod2+2 exec xrandr --output HDMI-1 --auto --output eDP-1 --off
 # set $ws9 "9"
 # set $ws10 "10"
 # TODO: set workspace layout as tabbed set this when there is no catching distractions
-# workspace_layout tabbed
+workspace_layout tabbed
 
 ## workspace with no only
 set $ws1 "1" 
@@ -311,9 +311,10 @@ assign [class="Brave-browser"] $ws2
 assign [class="Thunar"] $ws4
 assign [class="nautilus"] $ws4
 assign [class="pcmanfm"] $ws4
-assign [class="firefox"] $ws5
-assign [class="Google-chrome"] $ws5
+assign [class="firefox"] $ws3
+assign [class="Google-chrome"] $ws3
 assign [class="Github-desktop"] $ws5
+assign [class="Protonvpn"] $ws5
 assign [class="Sysmontask"] $ws5
 assign [class="pamac-manager"] $ws5
 assign [class="gnome-system-monitor"] $ws5

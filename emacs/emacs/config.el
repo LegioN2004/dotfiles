@@ -101,10 +101,11 @@
   (mili/leader-keys
     "h" '(:ignore t :wk "Help")
     "h f" '(describe-function :wk "Describe function")
+    "h t" '(load-theme :wk "Load theme")
     "h v" '(describe-variable :wk "Describe variable")
     ;; done properly using the following function
-    ;; "h r r" '(reload-init-file :wk "Reload emacs config")
-    "h r r" '((lambda () (interactive) (load-file "~/emacs/init.el")) :wk "Reload emacs config"))
+    "h r r" '(reload-init-file :wk "Reload emacs config"))
+  ;; "h r r" '((lambda () (interactive) (load-file "~/emacs/init.el")) :wk "Reload emacs config"))
 
   (mili/leader-keys
     "b" '(:ignore t :wk "buffer")
@@ -114,6 +115,14 @@
     "b n" '(next-buffer :wk "Next buffer")
     "b p" '(previous-buffer :wk "Previous buffer")
     "b r" '(revert-buffer :wk "Reload buffer"))
+
+  (mili/leader-keys
+    "d" '(:ignore t :wk "Dired")
+    "d d" '(dired :wk "Open dired")
+    "d j" '(dired-jump :wk "Dired jump to current")
+    "d n" '(neotree-dir :wk "Open directory in neotree")
+    "d p" '(peep-dired :wk "Peep-dired"))
+
 
   (mili/leader-keys
     "e" '(:ignore t :wk "Eshell/Evaluate")    
@@ -147,7 +156,9 @@
 
   (mili/leader-keys
     "t" '(:ignore t :wk "Toggle")
+    "t e" '(eshell-toggle :wk "Toggle eshell")
     "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
+    "t n" '(neotree-toggle :wk "Toggle neotree file viewer")
     "t t" '(visual-line-mode :wk "Toggle truncated/wrap lines")
     "t v" '(vterm-toggle :wk "Toggle Vterm"))
 
@@ -216,7 +227,6 @@
 
 ;; Set up the visible bell
 (setq visible-bell t)
-(load-theme 'wombat)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -339,6 +349,25 @@ one, an error is signaled."
 
 (use-package diminish)
 
+(use-package dired-open
+  :config
+  (setq dired-open-extensions '(("gif" . "sxiv")
+                                ("jpg" . "sxiv")
+                                ("png" . "sxiv")
+                                ("mkv" . "mpv")
+                                ("mp4" . "mpv"))))
+
+(use-package peep-dired
+  :after dired
+  :hook (evil-normalize-keymaps . peep-dired-hook)
+  :config
+    (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+    (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-open-file) ; use dired-find-file instead if not using dired-open package
+    (evil-define-key 'normal peep-dired-mode-map (kbd "j") 'peep-dired-next-file)
+    (evil-define-key 'normal peep-dired-mode-map (kbd "k") 'peep-dired-prev-file)
+)
+;;(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+
 ;; (use-package haskell-mode)
 ;; (use-package lua-mode)
 
@@ -376,6 +405,25 @@ one, an error is signaled."
   :config
   (ivy-set-display-transformer 'ivy-switch-buffer
                                'ivy-rich-switch-buffer-transformer))
+
+(use-package neotree
+  :config
+  (setq neo-smart-open t
+        neo-show-hidden-files t
+        neo-window-width 40
+        neo-window-fixed-size nil
+        inhibit-compacting-font-caches t
+        projectile-switch-project-action 'neotree-projectile-action) 
+        ;; truncate long file names in neotree
+        (add-hook 'neo-after-create-hook
+           #'(lambda (_)
+               (with-current-buffer (get-buffer neo-buffer-name)
+                 (setq truncate-lines t)
+                 (setq word-wrap nil)
+                 (make-local-variable 'auto-hscroll-mode)
+                 (setq auto-hscroll-mode nil)))))
+
+;; show hidden files
 
 (use-package toc-org
   :commands toc-org-enable
@@ -464,40 +512,44 @@ one, an error is signaled."
     "s e" '(sudo-edit :wk "Sudo edit file")))
 
 (use-package solarized-theme 
-    :ensure t
-    :config
-    ;;(load-theme 'solarized-dark t)
+  :ensure t
+  :config
+  (load-theme 'solarized-gruvbox-dark t)
   )
-  ;; make the fringe stand out from the background
-  (setq solarized-distinct-fringe-background t)
-  ;; Don't change the font for some headings and titles
-  (setq solarized-use-variable-pitch nil)
-  ;; make the modeline high contrast
-  (setq solarized-high-contrast-mode-line t)
-  ;; Use less bolding
-  ;; (setq solarized-use-less-bold t)
-  ;; Use more italics
-  (setq solarized-use-more-italic t)
-  ;; Use less colors for indicators such as git:gutter, flycheck and similar
-  ;; (setq solarized-emphasize-indicators nil)
-  ;; Don't change size of org-mode headlines (but keep other size-changes)
-  ;; (setq solarized-scale-org-headlines nil)
-  ;; Change the size of markdown-mode headlines (off by default)
-  (setq solarized-scale-markdown-headlines t)
-  ;; Avoid all font-size changes
-  ;; (setq solarized-height-minus-1 1.0)
-  ;; (setq solarized-height-plus-1 1.0)
-  ;; (setq solarized-height-plus-2 1.0)
-  ;; (setq solarized-height-plus-3 1.0)
-  ;; (setq solarized-height-plus-4 1.0)
+;; make the fringe stand out from the background
+(setq solarized-distinct-fringe-background t)
+;; Don't change the font for some headings and titles
+(setq solarized-use-variable-pitch nil)
+;; make the modeline high contrast
+(setq solarized-high-contrast-mode-line t)
+;; Use less bolding
+;; (setq solarized-use-less-bold t)
+;; Use more italics
+(setq solarized-use-more-italic t)
+;; Use less colors for indicators such as git:gutter, flycheck and similar
+;; (setq solarized-emphasize-indicators nil)
+;; Don't change size of org-mode headlines (but keep other size-changes)
+;; (setq solarized-scale-org-headlines nil)
+;; Change the size of markdown-mode headlines (off by default)
+(setq solarized-scale-markdown-headlines t)
+;; Avoid all font-size changes
+;; (setq solarized-height-minus-1 1.0)
+;; (setq solarized-height-plus-1 1.0)
+;; (setq solarized-height-plus-2 1.0)
+;; (setq solarized-height-plus-3 1.0)
+;; (setq solarized-height-plus-4 1.0)
 
 (add-to-list 'custom-theme-load-path "~/dotfiles/emacs/emacs/themes/")
-(load-theme 'dtmacs t)
+;; (load-theme 'dtmacs t)
 
-  ;; transparency settings
-  ;; (add-to-list 'default-frame-alist '(alpha-background . 60))
-  ;; (add-to-list 'initial-frame-alist '(fullscreen maximized))
-  ;; (add-to-list 'default-frame-alist '(fullscreen maximized))
+;; using the doomemacs themes
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t ;; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ;; if nil, italic is universally disabled
+  )
+
+(add-to-list 'default-frame-alist '(alpha-background . 80))
 
 (use-package which-key
   :init
