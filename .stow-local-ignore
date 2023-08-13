@@ -17,3 +17,4 @@ assets/images
 .stow-local-ignore
 pip-packages-toinstall
 README.md
+emacs

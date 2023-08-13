@@ -1,202 +1,3 @@
-yay -R ghostscript imagemagick libdvdread netpbm pulseaudio-alsa pulseaudio-bluetooth python-jinja python-pyxdg python-setuptools webkit2gtk xdg-desktop-portal xorg-xdpyinfo
-yay -R ghostscript imagemagick libdvdread netpbm pulseaudio-alsa  python-jinja python-pyxdg python-setuptools webkit2gtk xdg-desktop-portal xorg-xdpyinfo
-exit
-ls
-live-server
-npm install -g live-server
-npm install -g npm@9.2.0
-npm audit fix -f
-live-server
-exit
-exit
-yay -R dwm st
-ls
-dotfiles/
-ls
-cd ..
-ls
-cd dotfiles/
-cd
-dotfiles/
-ls
-s
-gs
-gs
-cd
-clear
-exit
-ls
-v .xinitrc 
-which dwm
-grep config.def.h ~/
-grep config.def.h 
-v
-grep -i MODKEY|ShiftMask
-find config.def.h
-find -config.def.h
-find ~/ -config.def.h
-find ~/ config.def.h
-find . -type f -name config.def.h*
-clear
-dotfiles/
-cd
-dotfiles/nvim/
-exit
-auto-cpufreq --stats
-pkill tlp
-auto-cpufreq --stats
-systemctl status tlp.service 
-systemctl stop tlp.service 
-systemctl status tlp.service 
-systemctl disable tlp.service 
-auto-cpufreq --stats
-pkill tlp.service
-auto-cpufreq --stats
-exit
-cp -r .bashrc dotfiles/bash/.bashrc 
-cp -r .bashrc dotfiles/bash/
-vim dotfiles/bash/.bashrc 
-exit
-sudo cd /boot/efi
-sudo 
-sudo su
-exit
-ghq get LunarVim/Neovim-from-scratch
-exit
-ls
-gs
-rm -rf fish/.config/fish/fishd.tmp.8xjF5c 
-ls
-gs
-exit
-exit
-ls
-la
-ls
-ll
-lt
-exit
-sudo ufw enable
-sudo systemctl status ufw.service
-sudo ufw enable
-sudo ufw allow 22
-sudo ufw enable
-yay -R ufw
-yay -S firewalld ufw
-sudo systemctl enable ufw.service --now
-sudo ufw enable
-install firewalld
-yay -S firewalld
-firewalld
-sudo firewalld
-sudo systemctl enable --now ufw.service
-sudo ufw enable
-pow
-exit
-cat
-cat .bashrc 
-cd .config/nvim
-ls
-v coc-settings.json 
-z tut9
-ls
-z tut9
-ls
-gs
-cd
-z tut9
-ls
-nvim /etc/pacman.d/mirrorlist
-v .bashrc 
-timer 0
-yay notion
-sus
-exit
-bash
-exit
-xeit
-exit
-v .bashrc 
-source .bashrc 
-exit
-ls
-clear
-ash
-eix
-exit
-xit
-exit
-ls
-gs
-exit
-ls
-ll
-ls
-ls
-Downloads/
-ls
-cd
-Downloads/
-ls
-cd 
-cd dotfiles/nvim/.config/nvim/lua/
-ls
-gs
-exit
-cd "/home/sunny/ghq/github.com/legion2004/programs/PW-skills/cpp-dsa/" && g++ 1.cpp -o 1 && "/home/sunny/ghq/github.com/legion2004/programs/PW-skills/cpp-dsa/"1
-cd "/home/sunny/ghq/github.com/legion2004/programs/PW-skills/cpp-dsa/" && g++ 1.cpp -o 1 && "/home/sunny/ghq/github.com/legion2004/programs/PW-skills/cpp-dsa/"1
-ls
-ls
-ll
-v .bashrc 
-bashconfig 
-cd dotfiles/
-stow zsh
-gs
-exit
-htop
-ls
-sudo nvim /etc/pacman.conf
-sudo nvim /etc/pacman.d/
-ls
-sudo nvim /etc/pacman.conf
-ghq get git clone https://github.com/arcolinux/arcolinux-spices
-fish
-last_upgrade=$(grep -m 1 'full system upgrade' /var/log/pacman.log | cut -d ' ' -f 1 | tr -d '[]')
-less /var/log/pacman.log 
-less /var/log/pacman.log | grep pacman -Syyu
-less /var/log/pacman.log | grep -Syu
-less /var/log/pacman.log | grep "-Syu"
-cat /var/log/pacman.log | grep "-Syu"
-bat /var/log/pacman.log 
-yay -Syyu
-yay -Syyu
-yes|yay -Syyu
-exit
-fish
-cd
-cd -
-fish
-g pull
-v userChrome.css 
-exit
-cd
-fish
-exit
-cd ..
-ls
-ls ../legion2004/
-code .
-cd "/home/sunny/ghq/github.com/LegioN2004/programs/book-practice/" && g++ pg145prog7-2.cpp -o pg145prog7-2 && "/home/sunny/ghq/github.com/LegioN2004/programs/book-practice/"pg145prog7-2
- pwd
-ls
-cp after/plugin/lsp.lua ~/ghq/github.com/LegioN2004/some-other-stuff/Main-Neovim-Config/
-ls
-gs
-ls
-pwd
-remove gnome-photos && yes|install nomacs eog
-sudo pacman -R gnome-photos && yes|sudo pacman -s nomacs eog
 sudo pacman -R gnome-photos && yes|sudo pacman -S nomacs eog
 legion
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
@@ -497,4 +298,203 @@ ls
 exit
 rustc --version
 exit
+ls
+cd dotfiles/
+ls
+stow */
+cd feh/
+ls
+rm watch*
+ls
+cd ..
+stow */
+cd
+rm *.bash
+ls -a
+rm -r .bashrc .bash_history .bash_logout 
+cd dotfiles/
+stow */
+cd
+cd;2;13~
+shutdown
+fish
+ls
+ls
+fish
+v .config/alacritty/alacritty.yml 
+ls
+ls
+cd .local/share/fonts/
+ls
+ls
+sudo apt install exa
+cd
+cd dotfiles/
+ls
+gs
+ls
+ls
+ls -a
+ls -au
+ls -al
+setxkbmap us -variant colemak
+ls
+ls
+cd
+i3con
+sudo apt install exa 
+ls
+clear
+v .config/i3/config 
+ls
+ls
+ls
+cd dotfiles/
+ls
+stow -D */
+ls
+cd
+ls
+cd dotfiles/
+stow -D alacritty/ assets/ bin/ bleachbit/ dunst/ emacs/ feh/ fish/ i3/ kitty/ lazygit/ neofetch/ nvim/ pip-packages-toInstall polybar/ ranger/ rofi/ tmux/ vim/ watch zsh/
+stow */
+cd
+ls
+cd .local/share/fonts/
+ls
+fc-cache -fw
+fc-cache -fv
+cd Downloads/softwares/
+ls
+ghq get LegioN2004/dtfiles
+ghq
+ls
+cd ..
+ls
+rm -rf macOS-BigSur.tar.gz 
+htop
+htop
+clear
+ls
+cd .icons/
+ls
+ls
+tmux
+ls
+tmux ls
+ls
+ls
+cd
+cd dotfiles/
+gco main
+ls
+git checkout main
+ls
+ls
+gs
+xterm
+st
+dwm
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.tar.xz
+ls
+tar -xvf Hack.tar.xz 
+ls
+cp -r Hack* ~/.local/share/fonts/
+fc-cache -fv
+nvim --versino
+nvim --version
+i3status
+ls
+ls /usr/bin/ | wc -l
+neofetch
+cd
+neofetch
+neofetch --confi
+neofetch --config
+export LC_ALL=C
+ls
+clear
+ls
+cd dotfiles/
+ls
+ls
+ls
+clear
+ls
+sudo apt install thunar-archive-plugin
+cd
+v .config/i3/config 
+v .bashrc 
+sourceb
+source .bashrc 
+vi /etc/environment
+sudo nvim /etc/environment
+source .bashrc
+source /etc/environment
+v .bashrc 
+source /etc/environment
+source .bashrc
+ls
+locale-gen en_US.UTF-8
+sudo locale-gen en_US.UTF-8
+dpkg-reconfigure locales
+sudo dpkg-reconfigure locales
+clear
+ls
+ls
+clear
+ls
+v .config/alacritty/alacritty.yml 
+ls
+v .config/alacritty/alacritty.yml 
+ls
+ls
+ls
+v
+ls
+clear
+ls dotfiles/i3/.config/i3/
+ls
+v .config/i3/config 
+ls
+sudo systemctl reboot
+ls
+ls
+clear
+v
+nala update neovim
+setxkbmap us -variant colemak
+ls
+i3con
+v .config/i3/config 
+ls
+ls
+sudo apt remove fish
+ls
+fish
+zsh
+cd
+ls
+zsh
+ls
+ll
+cd
+sudo apt install zsh
+zsh
+ls
+zsh
+ls
+v readme.md 
+cd nvimfiles/
+ls
+cd
+gh
+gh auth 
+gh auth login
+cd dotfiles/
+ls
+gs
+cd
+zsh
+ls
 ls

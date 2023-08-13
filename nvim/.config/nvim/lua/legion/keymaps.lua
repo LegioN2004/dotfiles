@@ -1,16 +1,9 @@
-local P = {}
-keymap = P
-local opts = { noremap = true, silent = true }
+-- set leader keys
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
--- local keymap = vim.keymap -- for the keymap vim.keymap.set use keymap and single quotes only for the specifying key
-
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
-
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+local keymap = vim.keymap.set -- for the keymap vim.keymap.set use keymap and single quotes only for the specifying key
 
 -- Modes
 --   normal_mode = "n",
@@ -128,6 +121,9 @@ vim.keymap.set('n', "<leader>my", ":e $MYVIMRC<cr>")
 -- vim.keymap.set('i', "<C-BS>", "<C-w>")
 vim.keymap.set('i', "<C-Del>", " <cmd>norm! dw<CR>")
 
+-- set remap for the file manager
+vim.keymap.set("n", ";f", ":Ex<CR>")
+
 
 vim.cmd([[
 "fzf keybindings
@@ -138,6 +134,23 @@ nnoremap <silent> <leader>fi :FZF /home/sunny/ghq/github.com/legion2004/programs
 nnoremap <silent> <leader>dot :FZF /home/sunny/dotfiles/ <cr>
 "open files from the home folder
 "nnoremap <silent> <leader>hot :FZF~ <cr>
+"------------ checkout and fix these fzf keybinds
+"nnoremap <silent> <Leader>b :Buffers<CR>
+"nnoremap <silent> <Leader>rg :Rg<CR> "ripgrep grep lines
+"nnoremap <silent> <Leader>ag :Ag<CR> "project finder
+"nnoremap <silent> <Leader>/ :BLines<CR> "line finder
+"nnoremap <silent> <Leader>/ :Lines<CR> "line finder
+"nnoremap <silent> <Leader>' :Marks<CR> "marked files find
+"nmap <Leader>t :BTags<CR>  "tag finder
+"nmap <Leader>T :Tags<CR>   "search for tags across project
+"nnoremap <silent> <Leader>g :Commits<CR>
+"nnoremap <silent> <Leader>H :Helptags<CR> "help finder
+"nnoremap <silent> <Leader>hh :History<CR> "history finder
+"nnoremap <silent> <Leader>h: :History:<CR> "history finder
+"nnoremap <silent> <Leader>h/ :History/<CR> "history finder
+"nnoremap <silent> <Leader>h/ :Maps<CR> "mappings finder
+"nnoremap <silent> <Leader>h/ :Commands<CR> "commands finder
+"nnoremap <silent> <Leader>h/ :Filetypes<CR> "Filetypes finder
 
 "better tabbing
 vnoremap < <gv
@@ -156,32 +169,6 @@ nnoremap <leader>so :so ~/nvimfiles/sessions/
 " let g:session_autosave = "no"
 " let g:session_command_aliases = 1
 
-"nnoremap <leader>sf <Esc>:Lex<CR>:vertical resize 30<CR><CR>
-"nnoremap <leader>ex <Esc>:Ex<CR>
-let g:netrw_liststyle = 3
-
-" NvimTreeToggle remap
-nnoremap ;f <Esc>:NvimTreeToggle<CR>:vertical resize 30<CR><CR>
-
-"checkout and fix these fzf keybinds
-" PLUGIN: FZF
-"nnoremap <silent> <Leader>b :Buffers<CR>
-"nnoremap <silent> <Leader>rg :Rg<CR> "ripgrep grep lines
-"nnoremap <silent> <Leader>ag :Ag<CR> "project finder
-"nnoremap <silent> <Leader>/ :BLines<CR> "line finder
-"nnoremap <silent> <Leader>/ :Lines<CR> "line finder
-"nnoremap <silent> <Leader>' :Marks<CR> "marked files find
-"nmap <Leader>t :BTags<CR>  "tag finder
-"nmap <Leader>T :Tags<CR>   "search for tags across project
-"nnoremap <silent> <Leader>g :Commits<CR>
-"nnoremap <silent> <Leader>H :Helptags<CR> "help finder
-"nnoremap <silent> <Leader>hh :History<CR> "history finder
-"nnoremap <silent> <Leader>h: :History:<CR> "history finder
-"nnoremap <silent> <Leader>h/ :History/<CR> "history finder
-"nnoremap <silent> <Leader>h/ :Maps<CR> "mappings finder
-"nnoremap <silent> <Leader>h/ :Commands<CR> "commands finder
-"nnoremap <silent> <Leader>h/ :Filetypes<CR> "Filetypes finder
-
 "set grep to ripgrep
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
@@ -197,15 +184,3 @@ command! -bang -nargs=* Rg
 \   <bang>0)
 ]])
 
--- Java lsp keymaps
-function P.map_java_keys(bufnr)
-	map_lsp_kys()
-
-	local spring_boot_run = 'mvn sping-boot:run -Dspring-boot.run.profiles=local'
-	local command = ':lua require("toggleterm").exec("' .. spring_boot_run .. '")'
-	keymap('n', '<leader>sr', command)
-	keymap('n', '<leader>oi', ':lua require("jdtls").organize_imports()<CR>')
-	keymap('n', '<leader>jc', ':lua require("jdtls").compile("incremental")')
-end
-
-return P

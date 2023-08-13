@@ -15,7 +15,7 @@ vim.opt.cmdheight = 1
 vim.opt.laststatus = 2
 -- vim.opt.expandtab = true
 -- vim.opt.scrolloff = 10
-vim.opt.shell = 'fish'
+-- vim.opt.shell = 'fish'
 vim.opt.smarttab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -47,7 +47,7 @@ vim.opt.ruler = true
 -- vim.opt.clipboard=unnamed,unnamedplus -- set clipboard to universal for easy copy/paste to diff apps
 vim.opt.completeopt = menuone, noinsert, noselect --as required by nvim-cmp
 vim.opt.hidden = true                             --This option allows you to switch between multiple buffers without saving a changed buffer
-vim.opt.mousehide = true                          --Hide the mouse pointer while typing.
+-- vim.opt.mousehide = true                          --Hide the mouse pointer while typing.
 vim.opt.updatetime = 50                           --updatetime
 -- vim.opt.timeoutlen = 300
 
@@ -69,18 +69,11 @@ vim.opt.formatoptions:append { 'r' }
 
 -- Always change the directory to working directory of file in current buffer
 vim.cmd([[
+syntax on
+
 let g:session_autosave = 'no'
 "set listchars=eol:⏎,tab:\ \ ┊,trail:●,extends:…,precedes:…,space:·
 " set listchars=tab:\ \ ┊,trail:,extends:…,precedes:…,space:
-
-" Always change the directory to working directory of file in current buffer - http://vim.wikia.com/wiki/VimTip64
-" set autochdir
-"autocmd BufEnter * call CHANGE_CURR_DIR()
-"function! CHANGE_CURR_DIR()
-"   let _dir = expand("%:p:h")
-"   exec "cd " . _dir
-"   unlet _dir
-"endfunction
 
 if (exists('+colorcolumn'))
     set colorcolumn=80
@@ -90,37 +83,21 @@ endif
 " format on save with coc-prettier
 "" command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
-"let s:coc_extensions = [
-"\   'coc-css',
-"\  'coc-sumneko-lua',
-"\  'coc-lightbulb',
-"\  'coc-clangd',
-"\  'coc-html',
-"\  'coc-htmlhint',
-"\  'coc-emmet',
-"\  'coc-eslint',
-"\  'coc-prettier'
-"]
-
 "just to make those backup files in another directory so as to not make a mess
-set swapfile
-set backup
+set noswapfile
+set nobackup
 set undofile
-set directory=~/nvimfiles/swap//
-set backupdir=~/nvimfiles/backup//
 set undodir=~/nvimfiles/undo//
 
 set mouse=a
 
 let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=4  " open in prior window
-let g:netrw_altv=1          " open splits to the right
-let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-
-" limelight stuff
-let g:limelight_conceal_ctermfg=244
+" let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro' "get line numbers in netrw
+" let g:netrw_browse_split=4  " open in prior window
+" let g:netrw_altv=1          " open splits to the right
+" let g:netrw_liststyle=3     " tree view
+" let g:netrw_list_hide=netrw_gitignore#Hide()
+" let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 "markdown stuff
 let g:mkdp_refresh_slow=1

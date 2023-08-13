@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# export LC_ALL=C
+
 #z directory jumper
 . ~/dotfiles/fish/z.sh
 

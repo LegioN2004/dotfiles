@@ -2,50 +2,73 @@
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
-# plug "zap-zsh/zap-prompt"
+plug "zap-zsh/zap-prompt"
 plug "zap-zsh/completions"
 plug "zap-zsh/fzf"
 plug "zsh-users/zsh-syntax-highlighting"
 
 
+# SETTINGS
+#
 # source ~/dotfiles/zsh/.config/zsh/custom/spaceship-prompt/spaceship.zsh
 # source ~/dotfiles/zsh/.config/zsh/custom/archcraft.zsh-theme
-fortune | cowsay
+# fortune | cowsay
 HISTSIZE=100000
 SAVEHIST=100000
 HISTSIZE=100000
 HISTFILE=~/dotfiles/zsh/history
+setopt autocd extendedglob nomatch menucomplete 
+setopt interactive_comments
+stty stop undef
+zle_highlight=( 'paste:none' )
+unsetopt BEEP
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
-#setup version control system as well as PROMPT
-bindkey -v
-autoload -Uz vcs_info
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats '%b '
-setopt PROMPT_SUBST
-PROMPT='%F{green}%f %F{blue}%0~ ❯❯❯ %f%F{red}${vcs_info_msg_0_}%f'
 
+# PROMPT
+#
+# prompt setup with vcs
+# bindkey -v
+# autoload -Uz vcs_info
+# precmd() { vcs_info }
+# zstyle ':vcs_info:git:*' formats '%b '
+# setopt PROMPT_SUBST
+# PROMPT='%F{green}%f %F{blue}%0~ ❯❯❯ %f%F{red}${vcs_info_msg_0_}%f'
+
+
+# EXPORTS
+#
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/bin:$PATH"
 # export PATH="~/.cargo/env:$PATH"
-
 export EDITOR='nvim'
 export TERMINAL='alacritty'
 export BROWSER='brave'
 export MANPAGER='nvim +MAN!'
 export TERM='xterm-256color'
-
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
+#path for lunarvim
+export PATH=$PATH:~/.local/bin/
+export PATH=$PATH:~/Downloads/softwares/ghq_linux_amd64/
+#for wsl2 in win 10 display gui apps using vcxsrv
+#export DISPLAY=172.22.144.1:0.0
+#export LIBGL_ALWAYS_INDIRECT=1
 
+
+# BINDS
+#
+bindkey -s '^f' 'cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ ~/Downloads/softwares -mindepth 1 -maxdepth 2 -type d | fzf)'
+
+
+
+# ALIASES
+#
+alias i3config="nvim ~/dotfiles/i3/.config/i3/config"
 alias zshconfig="nvim  ~/dotfiles/zsh/.config/zsh/.zshrc"
 alias sourcez="source  ~/dotfiles/zsh/.config/zsh/.zshrc"
 alias fishconfig="nvim  ~/dotfiles/fish/.config/fish/config.fish"
-
-#path for lunarvim
-export PATH=$PATH:~/.local/bin/
 
 #lunarvim alias
 # alias -g [lvim]=”cd ~/.local/bin/ && ./lvim”
@@ -72,7 +95,6 @@ alias gb='git branch'
 alias gbd='git branch -D -r'
 alias gr='git restore'
 
-
 #ranger
 alias ran='ranger'
 
@@ -93,8 +115,8 @@ alias ide='./ide'
 
 #laptop power management aliases
 alias sus= 'systemctl suspend'
-alias pow= 'poweroff'
-alias reb= 'reboot'
+alias pow= 'systemctl poweroff'
+alias reb= 'systemctl reboot'
 
 # to clean all the deps and junk
 alias clean=' yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) '
@@ -102,36 +124,8 @@ alias clean=' yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo 
 # emacs alias
 alias enw='emacs -nw'
 
-# always clone this repo in Downloads dotfiles https://github.com/rupa/z.git and start using z directory jumper
-#z change directory
-. ~/dotfiles/fish/z.sh
-$_Z_NO_RESOLVE_SYMLINKS
-
-#for wsl2 in win 10 display gui apps using vcxsrv
-#export DISPLAY=172.22.144.1:0.0
-#export LIBGL_ALWAYS_INDIRECT=1
+# better cd and z.sh alternative
+eval "$(zoxide init zsh)"
 
 # from ellah majnor nvim switcher -------------------------------------------------------------------------------
-# alias default="NVIM_APPNAME="
-# alias lazy='NVIM_APPNAME=LazyVim nvim'
-alias astro='NVIM_APPNAME=AstroNvim nvim'
 alias pv='NVIM_APPNAME=packer-nvim nvim'
-alias av='NVIM_APPNAME=alexis-nvim nvim'
-# fzf menu to load the above mentioned nvim distros
-# function nvims() {
-# 		items=("LazyVim")
-# 		config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config » " --height=~50% --layout=reverse --border --exit-0)
-# 		if [[ -z $config ]]; then
-# 				echo "Nothing selected" 
-# 				return 0
-# 		elif [[ $config = "default" ]]; then
-# 				config=""
-# 		fi
-# 		NVIM_APPNAME=$config nvim $@
-# }
-
-# bindkey -s ^s "nvims\n"
-# -------------------------------------------------------------------------------
-
-# for fixing keyb layout in gui programs from wsl
-# setxkbmap us -variant colemak
