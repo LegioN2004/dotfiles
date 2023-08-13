@@ -1,1 +1,1 @@
-("~/dotfiles/" "~/Pictures/wallpapers-stuff2/" "~/ghq/github.com/LegioN2004/Programs/")
+("~/dotfiles/" "~/ghq/github.com/LegioN2004/Programs/" "~/Pictures/wallpapers-stuff2/")
