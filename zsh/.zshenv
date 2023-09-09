@@ -7,4 +7,13 @@ export NVM_DIR="$HOME/.nvm"
 # nnn
 export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
 
-# . "$HOME/.cargo/env"
+# rust
+. "$HOME/.cargo/env"
+
+#bun envars
+ export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun completions
+[ -s "/home/sunnyarch/.bun/_bun" ] && source "/home/sunnyarch/.bun/_bun"
+
