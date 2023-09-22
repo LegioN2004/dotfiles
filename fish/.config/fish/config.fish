@@ -38,14 +38,14 @@ export GOPATH=$HOME/ghq/github.com/LegioN2004/programs/GO
 export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc 
 # fish stuff -----------------------------------------------------------------
 # Replace ls with exa
-alias ll='exa -al --color=always --group-directories-first --icons' # preferred listing
-alias ls='exa -a --color=always --group-directories-first --icons'  # all files and dirs
-alias la='exa -l --color=always --group-directories-first --icons'  # long format
-alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
-alias l='exa -lah --color=always --group-directories-first --icons' # tree listing
+alias ll='eza -al --color=always --group-directories-first --icons' # preferred listing
+alias ls='eza -a --color=always --group-directories-first --icons'  # all files and dirs
+alias la='eza -l --color=always --group-directories-first --icons'  # long format
+alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
+alias l='eza -lah --color=always --group-directories-first --icons' # tree listing
 
-if type -q exa
-		alias tree "exa --tree -g"
+if type -q eza
+		alias tree "eza --tree -g"
 		alias lr='ls -R'
 
 		# git

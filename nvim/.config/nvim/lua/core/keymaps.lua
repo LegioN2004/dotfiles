@@ -128,6 +128,8 @@ vim.keymap.set('n', "<leader>my", ":e $MYVIMRC<cr>")
 -- vim.keymap.set('i', "<C-BS>", "<C-w>")
 vim.keymap.set('i', "<C-Del>", " <cmd>norm! dw<CR>")
 
+-- auto save keymap
+vim.api.nvim_set_keymap("n", "<leader>ast", ":ASToggle<CR>", {})
 
 vim.cmd([[
 "fzf keybindings
