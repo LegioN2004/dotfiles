@@ -10,9 +10,9 @@ return {
       options = {
         globalstatus = true,
         disabled_filetypes = {
-          { statusline = { "dashboard", "Alpha" } },
-          -- "dashboard",
-          -- "alpha",
+          -- { statusline = { "dashboard", "Alpha" } },
+          "dashboard",
+          "alpha",
           "lspinfo",
           "mason",
           "startuptime",

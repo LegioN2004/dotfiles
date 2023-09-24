@@ -1,0 +1,13 @@
+{
+    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "Lua.workspace.checkThirdParty": false,
+    "workspace.library": [
+        "/usr/share/nvim/runtime",
+        "/home/sunny/.local/share/lunarvim/lvim",
+        "/home/sunny/.local/share/lunarvim/site/pack/lazy/opt/neodev.nvim/types/stable",
+        "${3rd}/busted/library",
+        "${3rd}/luassert/library",
+        "${3rd}/luv/library",
+        "/home/sunny/.local/share/lvim/mason/packages/lua-language-server/libexec/meta/26c67144"
+    ]
+}
