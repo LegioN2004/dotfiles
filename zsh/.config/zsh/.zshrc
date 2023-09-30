@@ -46,16 +46,21 @@ alias fishconfig="nvim  ~/dotfiles/fish/.config/fish/config.fish"
 
 #path for lunarvim
 export PATH=$PATH:~/.local/bin/
+export PATH=$PATH:/home/sunnyarch/Downloads/VSCode-linux-x64/bin/
+
+#path for java
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+# export PATH=$JAVA_HOME/jre/bin:$PATH
 
 #lunarvim alias
 # alias -g [lvim]=”cd ~/.local/bin/ && ./lvim”
 
-# Replace ls with exa
-alias ll='exa -al --color=always --group-directories-first --icons' # preferred listing
-alias ls='exa -a --color=always --group-directories-first --icons'  # all files and dirs
-alias la='exa -l --color=always --group-directories-first --icons'  # long format
-alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
-alias l='exa -lah --color=always --group-directories-first --icons' # tree listing
+# Replace ls with eza
+# alias ll='eza -al --color=always --group-directories-first --icons' # preferred listing
+# alias ls='eza -a --color=always --group-directories-first --icons'  # all files and dirs
+# alias la='eza -l --color=always --group-directories-first --icons'  # long format
+# alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
+# alias l='eza -lah --color=always --group-directories-first --icons' # tree listing
  
 # git
 alias g='git'
