@@ -72,12 +72,12 @@ if type -q eza
 
 		#neovim
 		#alias v "nvim -u ~/dotfiles/nvim/.config/nvim/MyOwn-Config.lua"
-		alias v "nvim"
+		# alias v "nvim"
 		alias nv "neovide"
 		alias lv "lvim"
 		alias sv="vim -u ~/SpaceVim/vimrc "
 		# neovim distro aliases
-		alias pv='NVIM_APPNAME=packer-nvim nvim'
+		alias v='NVIM_APPNAME=packer-nvim nvim'
 
 
 		#C++ run code alias
@@ -210,3 +210,10 @@ alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doo
 alias projects="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -mindepth 1 -maxdepth 2 -type d | fzf)"
 alias files="cd (fd --type directory | fzf)"
 
+
+# pnpm
+set -gx PNPM_HOME "/home/sunny/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

@@ -80,7 +80,7 @@ require("lazy").setup('plugins', {
 -- core stufff
 require('core.alpha')
 require('core.keymaps')
--- require('core.macros')
+require('core.macros')
 
 vim.cmd([[
 " let g:coc_node_path = '~/.nvm/versions/node/v18.15.0/bin/node'
