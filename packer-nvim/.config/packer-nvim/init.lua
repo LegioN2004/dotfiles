@@ -10,6 +10,10 @@ require('legion.telescope')
 require('legion.toggleterm')
 require('legion.treesitter')
 require('legion.gitsigns')
+require('legion.indent-blankline')
+require('legion.illuminate')
+require('legion.fidget')
+-- require('legion.dap')
 
 vim.cmd([[
 let g:coc_node_path = '~/.nvm/versions/node/v18.15.0/bin/node'

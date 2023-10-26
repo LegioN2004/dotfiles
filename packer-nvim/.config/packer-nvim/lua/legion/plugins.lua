@@ -43,12 +43,11 @@ packer.init({
 return require 'packer'.startup(function()
 	use 'wbthomason/packer.nvim' --main packer neovim plugin manager
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.0',
-		-- or                            , branch = '0.1.x',
+		'nvim-telescope/telescope.nvim', branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-		use { 'rose-pine/neovim' }
+	-- use { 'rose-pine/neovim' }
 	-- use({
 	-- 	'rose-pine/neovim',
 	-- 	as = 'rose-pine',
@@ -84,8 +83,9 @@ return require 'packer'.startup(function()
 		use("mbbill/undotree")
 		use("tpope/vim-fugitive")
 		use("nvim-treesitter/nvim-treesitter-context")
-		use("mfussenegger/nvim-jdtls")
 
+		-- lsp stuff
+		use("mfussenegger/nvim-jdtls")
 		use {
 			'VonHeikemen/lsp-zero.nvim',
 			branch = 'v1.x',
@@ -109,9 +109,30 @@ return require 'packer'.startup(function()
 			}
 		}
 
-		use("eandrju/cellular-automaton.nvim")
-		use("laytan/cloak.nvim")
+		-- use("eandrju/cellular-automaton.nvim")
+		-- use("laytan/cloak.nvim")
 		use 'lewis6991/impatient.nvim' --load fast
+		use 'lukas-reineke/indent-blankline.nvim'
+		use {
+				'j-hui/fidget.nvim',
+				tag = 'legacy',
+				config = function()
+						require("fidget").setup {
+								window = {
+										blend = 0, -- set 0 if using transparent background, otherwise set 100
+								},
+						}
+				end,
+		}
+		use ({
+				'luukvbaal/statuscol.nvim',
+				config = function ()
+						require("statuscol").setup({})
+				end
+		})
+		use { 'RRethy/vim-illuminate' }
+
+
 		--movement stuff
 		-- use 'justinmk/vim-sneak'
 		-- use 'phaazon/hop.nvim'
@@ -125,10 +146,10 @@ return require 'packer'.startup(function()
 		use 'nvim-orgmode/orgmode'
 		-- markdown preview
 		use({
-			"iamcco/markdown-preview.nvim",
-			run = "cd app && npm install",
-			setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
-			ft = { "markdown" },
+				"iamcco/markdown-preview.nvim",
+				run = "cd app && npm install",
+				setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+				ft = { "markdown" },
 		})
 
 		-- use 'windwp/nvim-ts-autotag'
@@ -138,7 +159,7 @@ return require 'packer'.startup(function()
 		--use 'akinsho/bufferline.nvim'
 		use 'folke/zen-mode.nvim'
 		use { "akinsho/toggleterm.nvim", tag = '*', config = function()
-			require("toggleterm").setup()
+				require("toggleterm").setup()
 		end }
 		use 'ThePrimeagen/vim-be-good' --Vim be good is a plugin designed to make you better at vim by creating a game to practice basic movements in
 		use 'nvim-lualine/lualine.nvim'
@@ -148,31 +169,31 @@ return require 'packer'.startup(function()
 		--colorscheme
 		use 'gruvbox-community/gruvbox'
 		use {
-			'svrana/neosolarized.nvim',
-			requires = { 'tjdevries/colorbuddy.nvim' }
+				'svrana/neosolarized.nvim',
+				requires = { 'tjdevries/colorbuddy.nvim' }
 		}
 		-- not using the telescope file explorer doesn't show files like ide's i need to see them without entering the folder everytime
 		-- instead this
 		use {
-			'nvim-tree/nvim-tree.lua',
-			requires = {
-				'nvim-tree/nvim-web-devicons', -- optional, for file icons
-			},
-			tag = 'nightly'           -- optional, updated every week. (see issue #1193)
+				'nvim-tree/nvim-tree.lua',
+				requires = {
+						'nvim-tree/nvim-web-devicons', -- optional, for file icons
+				},
+				tag = 'nightly'           -- optional, updated every week. (see issue #1193)
 		}
 		-- use 'junegunn/fzf'
 		-- use 'junegunn/fzf.vim'
 		use {
-			'goolord/alpha-nvim',
-			requires = { 'kyazdani42/nvim-web-devicons' },
-			config = function()
-				require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
-			end
+				'goolord/alpha-nvim',
+				requires = { 'kyazdani42/nvim-web-devicons' },
+				config = function()
+						require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+				end
 		}
 
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins
 		if PACKER_BOOTSTRAP then
-			require("packer").sync()
+				require("packer").sync()
 		end
-	end)
+end)
