@@ -1,7 +1,3 @@
-sudo pacman -R gnome-photos && yes|sudo pacman -S nomacs eog
-legion
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
 lv
 lvim
 exit
@@ -498,3 +494,7 @@ cd
 zsh
 ls
 ls
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+sudo nvim /etc/hosts
+sourceb
+exit
