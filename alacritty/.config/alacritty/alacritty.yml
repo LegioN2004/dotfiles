@@ -75,19 +75,19 @@ tabspaces: 4
 font:
   normal:
      # family: Hack NF
-    family: FiraCode Nerd Font Mono
+    family: JetBrains Nerd Font Mono
     # style: Regular
 
   bold:
-    family: FiraCode Nerd Font Mono
+    family: JetBrains Nerd Font Mono
     style: Bold
 
   italic:
-    family: FiraCode Nerd Font Mono
+    family: JetBrains Nerd Font Mono
     style: Italic
 
   bold_italic:
-    family: FiraCode Nerd Font Mono
+    family: JetBrains Nerd Font Mono
     style: Bold Italic
 
   # font size

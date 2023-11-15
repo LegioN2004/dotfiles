@@ -1,4 +1,4 @@
-# fortune | cowsay
+#FiraCode fortune | cowsay
 # sh ~/dotfiles/neofetch/nofetch --flex nitch afetch fastfetch etc download from aur
 #use sh to run any bash scripts from the fish shell at startup 
 
@@ -79,6 +79,7 @@ if type -q eza
 		# neovim distro aliases
 		alias v='NVIM_APPNAME=packer-nvim nvim'
 		alias nvc='NVIM_APPNAME=nvchad nvim'
+		alias lz='NVIM_APPNAME=lazyvim nvim'
 
 
 		#C++ run code alias

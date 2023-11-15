@@ -7,8 +7,8 @@ super + w
   google-chrome
 
 #spawn terminal
-super + k
-  konsole
+# super + k
+  # konsole
 
 #spawn filemanager
 super + f
@@ -32,6 +32,6 @@ super + e
 
 #spawn neovide
  super + s
-  jgmenu
+	flameshot
 #	subl
 

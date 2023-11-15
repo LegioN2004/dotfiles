@@ -28,7 +28,7 @@ set $term st
 ## start at startup the following
 # NetworkManager is the most popular way to manage wireless networks on Linux, and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-exec --no-startup-id kitty
+exec --no-startup-id xfce4-terminal
 exec --no-startup-id brave
 # i3 font for all the titles, tabs etc
 font pango:Hack NF 8.7 
@@ -46,8 +46,8 @@ exec_always --no-startup-id ~/Downloads/i3-alternating-layout/alternating_layout
 # Clone this repository or install from the [AUR](https://aur.archlinux.org/packages/alternating-layouts-git/).
 # Then, for i3 add: exec_always --no-startup-id ~/path/to/alternating_layouts.py to your `~/.i3/config`.
 ## compositor for blurr, rounded-corners, effects, shadows,etc download picom-jonaburg-git fork  
-# exec_always picom --experimental-backends 
-exec_always picom 
+exec_always picom --experimental-backends --config ~/.config/picom/picom.conf.main
+# exec_always picom 
 #always run xinput list-props "xinput set-prop "ETPS/2 Elantech Touchpad" and run the following commands to set tap to click and natural scrolling 
 exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
 exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Natural Scrolling Enabled" 1

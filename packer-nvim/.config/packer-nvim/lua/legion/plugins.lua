@@ -152,7 +152,7 @@ return require 'packer'.startup(function()
 				ft = { "markdown" },
 		})
 
-		-- use 'windwp/nvim-ts-autotag'
+		use 'windwp/nvim-ts-autotag'
 		use 'jiangmiao/auto-pairs'
 		use 'kyazdani42/nvim-web-devicons'
 		-- nvim ui stuff

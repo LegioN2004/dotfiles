@@ -7,7 +7,7 @@ set pumblend=5
 set termguicolors
 set cursorline
 set background=dark
-colorscheme gruvbox
+colorscheme neosolarized
 hi Normal ctermbg=NONE guibg=NONE
 hi NormalNC ctermbg=NONE guibg=NONE
 ]]
