@@ -24,11 +24,11 @@ set $mod2 Mod4
 #Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 #start a terminal
-set $term st
+set $term alacritty
 ## start at startup the following
 # NetworkManager is the most popular way to manage wireless networks on Linux, and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-terminal
+exec --no-startup-id alacritty
 exec --no-startup-id brave
 # i3 font for all the titles, tabs etc
 font pango:Hack NF 8.7 
@@ -328,7 +328,12 @@ assign [class="idea"] $ws8
 assign [class="TelegramDesktop"] $ws9
 assign [class="discord"] $ws9
 assign [class="kdenlive"] $ws9
-assign [class="libreoffice"] $ws9
+assign [class="libreoffice-writer"] $ws9
+assign [class="libreoffice-base"] $ws9
+assign [class="libreoffice-calc"] $ws9
+assign [class="libreoffice-draw"] $ws9
+assign [class="libreoffice-math"] $ws9
+assign [class="libreoffice-impress"] $ws9
 assign [class="gimp"] $ws0
 
 ## colors are a little customized like that of nord theme
@@ -362,10 +367,11 @@ bar {
 # to use i3blocks install it explicitly otherwise dependencies don't get fulfilled
 # for bumblebee status bar u will need extra psutil from pip to show cpu meter (you can install bumblebee status from pip also)
 # dependencies bluez bluez-utils pasink pactl  blueman xkb-switch dbus-send bt-dualboot
-height 20
+# add the following stuff in the -m line when needed: arch_update xrandr sensors vpn gitlab todo todo_org
+height 19
   status_command ~/.local/bin/bumblebee-status \
    -t  dracula-powerline \
-   -m  cpu memory disk pasink battery datetime -p cpu.interval=3s memory.interval=10s pasink.interval=1s datetime.interval=1s  \
+   -m  cpu memory disk git amixer bluetooth battery datetime arandr dunstctl -p cpu.interval=3s memory.interval=10s amixer.interval=1s datetime.interval=5m  \
 	 -p  disk.format={used} memory.format={used} cpu.format={:.1f}% 
 
    colors {

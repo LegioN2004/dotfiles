@@ -72,12 +72,12 @@ if type -q eza
 
 
 		#neovim
-		# alias v "nvim"
-		alias nv "neovide"
+		alias v "nvim"
+		# alias nv "neovide"
 		# alias lv "lvim"
 		# alias sv="vim -u ~/SpaceVim/vimrc "
 		# neovim distro aliases
-		alias v='NVIM_APPNAME=packer-nvim nvim'
+		alias pv='NVIM_APPNAME=packer-nvim nvim'
 		alias nvc='NVIM_APPNAME=nvchad nvim'
 		alias lz='NVIM_APPNAME=lazyvim nvim'
 
@@ -99,19 +99,19 @@ if type -q eza
 		alias hib  "sudo systemctl hibernate"
 
 		# config shortcut aliases
-		alias i3config "v ~/dotfiles/i3/.config/i3/config"
-		alias sxhkdrc "v ~/.config/sxhkd/sxhkdrc"
-		alias alacrittyconfig "v ~/dotfiles/alacritty/.config/alacritty/alacritty.yml"
-		alias bashconfig "v ~/dotfiles/.bashrc"
-		alias zshconfig "v ~/dotfiles/zsh/.config/zsh/.zshrc"
-		alias fishconfig "v ~/dotfiles/fish/.config/fish/config.fish"
-		alias nvimconfig "v ~/dotfiles/nvim/.config/nvim/init.lua"
-		alias picomconfig "v ~/dotfiles/picom/.config/picom/picom.conf"
-		alias hyprlconfig "v ~/dotfiles/hyprland/.config/hypr/hyprland.conf"
-		alias waybarconf "v ~/dotfiles/waybar/.config/waybar/config"
-		alias tmuxconfig "v ~/dotfiles/.tmux.conf"
-		alias kittyconfig "v ~/dotfiles/kitty/.config/kitty/kitty.conf"
-		alias tlpconfig "sudo v /etc/tlp.conf"
+		alias i3config "lz ~/dotfiles/i3/.config/i3/config"
+		alias sxhkdrc "lz ~/.config/sxhkd/sxhkdrc"
+		alias alacrittyconfig "lz ~/dotfiles/alacritty/.config/alacritty/alacritty.yml"
+		alias bashconfig "lz ~/dotfiles/.bashrc"
+		alias zshconfig "lz ~/dotfiles/zsh/.config/zsh/.zshrc"
+		alias fishconfig "lz ~/dotfiles/fish/.config/fish/config.fish"
+		alias nvimconfig "lz ~/dotfiles/nvim/.config/nvim/init.lua"
+		alias picomconfig "lz ~/dotfiles/picom/.config/picom/picom.conf"
+		alias hyprlconfig "lz ~/dotfiles/hyprland/.config/hypr/hyprland.conf"
+		alias waybarconf "lz ~/dotfiles/waybar/.config/waybar/config"
+		alias tmuxconfig "lz ~/dotfiles/.tmux.conf"
+		alias kittyconfig "lz ~/dotfiles/kitty/.config/kitty/kitty.conf"
+		alias tlpconfig "sudo nvim /etc/tlp.conf"
 
 		# source config files
 		alias sourceb "source ~/.bashrc"
