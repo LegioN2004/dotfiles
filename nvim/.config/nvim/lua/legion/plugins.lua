@@ -79,6 +79,8 @@ return require 'packer'.startup(function()
 		end,}
 		use("nvim-treesitter/playground")
 		use("theprimeagen/harpoon")
+		-- colorizer plugin, for showing the colors in hex,words, etc
+		use("norcalli/nvim-colorizer.lua") 
 		use("theprimeagen/refactoring.nvim")
 		use("mbbill/undotree")
 		use("tpope/vim-fugitive")

@@ -1,7 +1,3 @@
-yay -R ghostscript imagemagick libdvdread netpbm pulseaudio-alsa pulseaudio-bluetooth python-jinja python-pyxdg python-setuptools webkit2gtk xdg-desktop-portal xorg-xdpyinfo
-yay -R ghostscript imagemagick libdvdread netpbm pulseaudio-alsa  python-jinja python-pyxdg python-setuptools webkit2gtk xdg-desktop-portal xorg-xdpyinfo
-exit
-ls
 live-server
 npm install -g live-server
 npm install -g npm@9.2.0
@@ -498,3 +494,7 @@ exit
 rustc --version
 exit
 ls
+sudo nvim
+exit
+sudo nvim
+exit

@@ -36,119 +36,121 @@ export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
 # go path setup
 export GOPATH=$HOME/ghq/github.com/LegioN2004/Programs/GO
 # set CC and CXX envars to inform emacs files of the gcc location
-export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc 
+export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc
 # fish stuff -----------------------------------------------------------------
-# Replace ls with exa
-alias ll='eza -al --color=always --group-directories-first --icons' # preferred listing
-alias ls='eza -a --color=always --group-directories-first --icons'  # all files and dirs
-alias la='eza -l --color=always --group-directories-first --icons'  # long format
-alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
-alias l='eza -lah --color=always --group-directories-first --icons' # tree listing
 
 if type -q eza
-		alias tree "eza --tree -g"
-		alias lr='ls -R'
-
-		# git
-		alias g='git'
-		alias gcl='git clone'
-		alias gl='git log'
-		alias gi='git init'
-		alias ga='git add'
-		alias gc='git commit -m'
-		alias gp='git push'
-		alias gs='git status'
-		alias grv='git remote -v'
-		alias gco='git checkout'
-		alias gb='git branch'
-		alias gbr='git branch -r'
-		alias gba='git branch -a' # list all the branches
-		alias gbd='git branch -D -r' # delete a branch
-		alias gr='git restore'
-		alias rm-index.lock-git=". ~/dotfiles/scripts-laptop/rm-index.lock-git.sh"
-
-		#ranger
-		alias ran "ranger"
-
-
-		#neovim
-		alias v "nvim"
-		# alias nv "neovide"
-		# alias lv "lvim"
-		# alias sv="vim -u ~/SpaceVim/vimrc "
-		# neovim distro aliases
-		alias pv='NVIM_APPNAME=packer-nvim nvim'
-		alias nvc='NVIM_APPNAME=nvchad nvim'
-		alias lz='NVIM_APPNAME=lazyvim nvim'
-
-
-		#C++ run code alias
-		alias compile "g++"
-		alias run "./a.out"
-
-		#iso details
-		alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
-
-		#tmux
-		alias ide "./ide"
-
-		#laptop power management aliases
-		alias sus  "systemctl suspend"
-		alias pow  "poweroff"
-		alias reb  "reboot"
-		alias hib  "sudo systemctl hibernate"
-
-		# config shortcut aliases
-		alias i3config "lz ~/dotfiles/i3/.config/i3/config"
-		alias sxhkdrc "lz ~/.config/sxhkd/sxhkdrc"
-		alias alacrittyconfig "lz ~/dotfiles/alacritty/.config/alacritty/alacritty.yml"
-		alias bashconfig "lz ~/dotfiles/.bashrc"
-		alias zshconfig "lz ~/dotfiles/zsh/.config/zsh/.zshrc"
-		alias fishconfig "lz ~/dotfiles/fish/.config/fish/config.fish"
-		alias nvimconfig "lz ~/dotfiles/nvim/.config/nvim/init.lua"
-		alias picomconfig "lz ~/dotfiles/picom/.config/picom/picom.conf"
-		alias hyprlconfig "lz ~/dotfiles/hyprland/.config/hypr/hyprland.conf"
-		alias waybarconf "lz ~/dotfiles/waybar/.config/waybar/config"
-		alias tmuxconfig "lz ~/dotfiles/.tmux.conf"
-		alias kittyconfig "lz ~/dotfiles/kitty/.config/kitty/kitty.conf"
-		alias tlpconfig "sudo nvim /etc/tlp.conf"
-
-		# source config files
-		alias sourceb "source ~/.bashrc"
-		alias sourcez "source ~/dotfiles/zsh/.config/zsh/.zshrc"
-		alias sourcef "source ~/dotfiles/fish/.config/fish/config.fish"
-		alias sourcet "source ~/dotfiles/.tmux.conf"
-
-		# pacman and paru aliases
-		#install with fzf  && remove with fzf  & aur fzf
-		alias psfzf "pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
-		alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rnsc"
-		alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S" 
-
-		#install
-		alias sps "sudo pacman -S "
-		#alias ysps "yes|sudo pacman -S "
-		alias spsy "sudo pacman -Sy "
-		alias spsyy "sudo pacman -Syy "
-		alias psyy  "paru -Syy "
-		alias psy  "paru -Sy "
-
-		#remove
-		alias pr  "paru -R "
-		alias prns  "paru -Rns "
-		alias yprns  "yes|paru -Rns "
-		alias clean " yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) "
-
-		# miscellaneous
-		# alias cat "bat"
-		# alias idea ". /home/sunny/Downloads/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/idea.sh"
-		alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
-		alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"
-		alias update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"
-		alias install-grub-efi "sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi"
+    # Replace ls with exa
+    alias ll='eza -al --color=always --group-directories-first --icons' # preferred listing
+    alias ls='eza -a --color=always --group-directories-first --icons' # all files and dirs
+    alias la='eza -l --color=always --group-directories-first --icons' # long format
+    alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
+    alias l='eza -lah --color=always --group-directories-first --icons' # tree listing
+    alias tree "eza --tree -g"
 end
 alias xev-keyb "xev -event keyboard  | egrep -o 'keycode.*)'"
+alias lr='ls -R'
 
+# git
+alias g='git'
+alias gcl='git clone'
+alias gl='git log'
+alias gi='git init'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+alias gs='git status'
+alias grv='git remote -v'
+alias gco='git checkout'
+alias gb='git branch'
+alias gbr='git branch -r'
+alias gba='git branch -a' # list all the branches
+alias gbd='git branch -D -r' # delete a branch
+alias gr='git restore'
+alias rm-index.lock-git=". ~/dotfiles/scripts-laptop/rm-index.lock-git.sh"
+
+#ranger
+alias ran ranger
+
+
+#neovim
+alias v nvim
+# alias nv "neovide"
+# alias lv "lvim"
+# alias sv="vim -u ~/SpaceVim/vimrc "
+# neovim distro aliases
+alias pv='NVIM_APPNAME=packer-nvim nvim'
+alias nvc='NVIM_APPNAME=nvchad nvim'
+alias lz='NVIM_APPNAME=lazyvim nvim'
+
+# cursor vscode stuff
+alias cursor='cd ~/Downloads/ && ./cursor-0.17.0-build-231127p7iyxn8rg.AppImage && cd'
+
+
+#C++ run code alias
+alias compile "g++"
+alias run "./a.out"
+
+#iso details
+alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
+
+#tmux
+alias ide "./ide"
+
+#laptop power management aliases
+alias sus "systemctl suspend"
+alias pow poweroff
+alias reb reboot
+alias hib "sudo systemctl hibernate"
+
+# config shortcut aliases
+alias i3config "lz ~/dotfiles/i3/.config/i3/config"
+alias sxhkdrc "lz ~/.config/sxhkd/sxhkdrc"
+alias alacrittyconfig "lz ~/dotfiles/alacritty/.config/alacritty/alacritty.yml"
+alias bashconfig "lz ~/dotfiles/.bashrc"
+alias zshconfig "lz ~/dotfiles/zsh/.config/zsh/.zshrc"
+alias fishconfig "lz ~/dotfiles/fish/.config/fish/config.fish"
+alias nvimconfig "lz ~/dotfiles/nvim/.config/nvim/init.lua"
+alias picomconfig "lz ~/dotfiles/picom/.config/picom/picom.conf"
+alias hyprlconfig "lz ~/dotfiles/hyprland/.config/hypr/hyprland.conf"
+alias waybarconf "lz ~/dotfiles/waybar/.config/waybar/config"
+alias tmuxconfig "lz ~/dotfiles/.tmux.conf"
+alias kittyconfig "lz ~/dotfiles/kitty/.config/kitty/kitty.conf"
+alias tlpconfig "sudo nvim /etc/tlp.conf"
+
+# source config files
+alias sourceb "source ~/.bashrc"
+alias sourcez "source ~/dotfiles/zsh/.config/zsh/.zshrc"
+alias sourcef "source ~/dotfiles/fish/.config/fish/config.fish"
+alias sourcet "source ~/dotfiles/.tmux.conf"
+
+# pacman and paru aliases
+#install with fzf  && remove with fzf  & aur fzf
+alias psfzf "pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rnsc"
+alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"
+
+#install
+alias sps "sudo pacman -S "
+#alias ysps "yes|sudo pacman -S "
+alias spsy "sudo pacman -Sy "
+alias spsyy "sudo pacman -Syy "
+alias psyy "paru -Syy "
+alias psy "paru -Sy "
+
+#remove
+alias pr "paru -R "
+alias prns "paru -Rns "
+alias yprns "yes|paru -Rns "
+alias clean " yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) "
+
+# miscellaneous
+# alias cat "bat"
+# alias idea ". /home/sunny/Downloads/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/idea.sh"
+alias emoji "rofi -modi emoji -show emoji -kb-custom-1 Ctrl+C"
+alias gpg-check "gpg2 --keyserver-options auto-key-retrieve --verify"
+alias update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias install-grub-efi "sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi"
 
 #from chris@machine zsh aliases -----------------------------------------------------------------
 # get fastest mirrors
@@ -172,7 +174,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 # easier to read disk
-alias df='df -h'     # human-readable sizes
+alias df='df -h' # human-readable sizes
 alias free='free -m' # show sizes in MB
 
 # get top process eating memory
@@ -216,6 +218,6 @@ alias files="cd (fd --type directory | fzf)"
 # pnpm
 set -gx PNPM_HOME "/home/sunny/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
