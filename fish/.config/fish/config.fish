@@ -80,8 +80,8 @@ alias v nvim
 # alias sv="vim -u ~/SpaceVim/vimrc "
 # neovim distro aliases
 alias pv='NVIM_APPNAME=packer-nvim nvim'
-alias nvc='NVIM_APPNAME=nvchad nvim'
-alias lz='NVIM_APPNAME=lazyvim nvim'
+alias m='NVIM_APPNAME=minimalist nvim'
+# alias nvc='NVIM_APPNAME=nvchad nvim'
 
 # cursor vscode stuff
 alias cursor='cd ~/Downloads/ && ./cursor-0.17.0-build-231127p7iyxn8rg.AppImage && cd'
