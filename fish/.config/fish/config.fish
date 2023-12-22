@@ -42,7 +42,7 @@ export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc
 if type -q eza
     # Replace ls with exa
     alias ll='eza -al --color=always --group-directories-first --icons' # preferred listing
-    alias ls='eza -a --color=always --group-directories-first --icons' # all files and dirs
+    alias ls='eza -aG --color=always --group-directories-first --icons' # all files and dirs
     alias la='eza -l --color=always --group-directories-first --icons' # long format
     alias lt='eza -aT --color=always --group-directories-first --icons' # tree listing
     alias l='eza -lah --color=always --group-directories-first --icons' # tree listing
@@ -79,8 +79,8 @@ alias v nvim
 # alias lv "lvim"
 # alias sv="vim -u ~/SpaceVim/vimrc "
 # neovim distro aliases
-alias pv='NVIM_APPNAME=packer-nvim nvim'
-alias m='NVIM_APPNAME=minimalist nvim'
+alias m='NVIM_APPNAME=packer-nvim nvim'
+# alias m='NVIM_APPNAME=minimalist nvim'
 # alias nvc='NVIM_APPNAME=nvchad nvim'
 
 # cursor vscode stuff
@@ -104,19 +104,23 @@ alias reb reboot
 alias hib "sudo systemctl hibernate"
 
 # config shortcut aliases
-alias i3config "lz ~/dotfiles/i3/.config/i3/config"
-alias sxhkdrc "lz ~/.config/sxhkd/sxhkdrc"
-alias alacrittyconfig "lz ~/dotfiles/alacritty/.config/alacritty/alacritty.yml"
-alias bashconfig "lz ~/dotfiles/.bashrc"
-alias zshconfig "lz ~/dotfiles/zsh/.config/zsh/.zshrc"
-alias fishconfig "lz ~/dotfiles/fish/.config/fish/config.fish"
-alias nvimconfig "lz ~/dotfiles/nvim/.config/nvim/init.lua"
-alias picomconfig "lz ~/dotfiles/picom/.config/picom/picom.conf"
-alias hyprlconfig "lz ~/dotfiles/hyprland/.config/hypr/hyprland.conf"
-alias waybarconf "lz ~/dotfiles/waybar/.config/waybar/config"
-alias tmuxconfig "lz ~/dotfiles/.tmux.conf"
-alias kittyconfig "lz ~/dotfiles/kitty/.config/kitty/kitty.conf"
-alias tlpconfig "sudo nvim /etc/tlp.conf"
+alias zshconfig="nvim  ~/dotfiles/zsh/.config/zsh/.zshrc"
+alias sourcez="source  ~/dotfiles/zsh/.config/zsh/.zshrc"
+alias fishconfig="nvim  ~/dotfiles/fish/.config/fish/config.fish"
+alias i3config="nvim ~/dotfiles/i3/.config/i3/config"
+alias sxhkdrc="nvim ~/.config/sxhkd/sxhkdrc"
+alias alacrittyconfig="nvim ~/dotfiles/alacritty/.config/alacritty/alacritty.yml"
+alias bashconfig="nvim ~/dotfiles/.bashrc"
+alias fishconfig="nvim ~/dotfiles/fish/.config/fish/config.fish"
+alias nvimconfig="v ~/dotfiles/nvim/.config/nvim/init.lua"
+alias picomconfig="nvim ~/dotfiles/picom/.config/picom/picom.conf"
+alias hyprlconfig="nvim ~/dotfiles/hyprland/.config/hypr/hyprland.conf"
+alias waybarconf="nvim ~/dotfiles/waybar/.config/waybar/config"
+alias tmuxconfig="nvim ~/dotfiles/.tmux.conf"
+alias kittyconfig="nvim ~/dotfiles/kitty/.config/kitty/kitty.conf"
+alias polybarconfig="nvim ~/dotfiles/polybar/.config/polybar/config"
+alias tlpconfig="sudo nvim /etc/tlp.conf"
+
 
 # source config files
 alias sourceb "source ~/.bashrc"

@@ -77,12 +77,12 @@ return require 'packer'.startup(function()
 			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
 			ts_update()
 		end,}
-		use("nvim-treesitter/playground")
-		use("theprimeagen/harpoon")
-		use("theprimeagen/refactoring.nvim")
+		-- use("nvim-treesitter/playground")
+		-- use("theprimeagen/harpoon")
+		-- use("theprimeagen/refactoring.nvim")
 		use("mbbill/undotree")
-		use("tpope/vim-fugitive")
-		use("nvim-treesitter/nvim-treesitter-context")
+		-- use("tpope/vim-fugitive")
+		-- use("nvim-treesitter/nvim-treesitter-context")
 
 		-- lsp stuff
 		use("mfussenegger/nvim-jdtls")
@@ -112,25 +112,25 @@ return require 'packer'.startup(function()
 		-- use("eandrju/cellular-automaton.nvim")
 		-- use("laytan/cloak.nvim")
 		use 'lewis6991/impatient.nvim' --load fast
-		use 'lukas-reineke/indent-blankline.nvim'
-		use {
-				'j-hui/fidget.nvim',
-				tag = 'legacy',
-				config = function()
-						require("fidget").setup {
-								window = {
-										blend = 0, -- set 0 if using transparent background, otherwise set 100
-								},
-						}
-				end,
-		}
-		use ({
-				'luukvbaal/statuscol.nvim',
-				config = function ()
-						require("statuscol").setup({})
-				end
-		})
-		use { 'RRethy/vim-illuminate' }
+		-- use 'lukas-reineke/indent-blankline.nvim'
+		-- use {
+		-- 		'j-hui/fidget.nvim',
+		-- 		tag = 'legacy',
+		-- 		config = function()
+		-- 				require("fidget").setup {
+		-- 						window = {
+		-- 								blend = 0, -- set 0 if using transparent background, otherwise set 100
+		-- 						},
+		-- 				}
+		-- 		end,
+		-- }
+		-- use ({
+		-- 		'luukvbaal/statuscol.nvim',
+		-- 		config = function ()
+		-- 				require("statuscol").setup({})
+		-- 		end
+		-- })
+		-- use { 'RRethy/vim-illuminate' }
 
 
 		--movement stuff
@@ -143,7 +143,7 @@ return require 'packer'.startup(function()
 		use 'tpope/vim-commentary'
 		use 'tpope/vim-surround'
 		--note taking org stuff
-		use 'nvim-orgmode/orgmode'
+		-- use 'nvim-orgmode/orgmode'
 		-- markdown preview
 		use({
 				"iamcco/markdown-preview.nvim",
@@ -154,20 +154,20 @@ return require 'packer'.startup(function()
 
 		use 'windwp/nvim-ts-autotag'
 		use 'jiangmiao/auto-pairs'
-		use 'kyazdani42/nvim-web-devicons'
+		-- use 'kyazdani42/nvim-web-devicons'
 		-- nvim ui stuff
 		--use 'akinsho/bufferline.nvim'
-		use 'folke/zen-mode.nvim'
+		-- use 'folke/zen-mode.nvim'
 		use { "akinsho/toggleterm.nvim", tag = '*', config = function()
 				require("toggleterm").setup()
 		end }
-		use 'ThePrimeagen/vim-be-good' --Vim be good is a plugin designed to make you better at vim by creating a game to practice basic movements in
-		use 'nvim-lualine/lualine.nvim'
+		-- use 'ThePrimeagen/vim-be-good' --Vim be good is a plugin designed to make you better at vim by creating a game to practice basic movements in
+		-- use 'nvim-lualine/lualine.nvim'
 		use 'lewis6991/gitsigns.nvim'
 		use 'szw/vim-maximizer'
-		use 'nvim-lua/popup.nvim'
+		-- use 'nvim-lua/popup.nvim'
 		--colorscheme
-		use 'gruvbox-community/gruvbox'
+		-- use 'gruvbox-community/gruvbox'
 		use {
 				'svrana/neosolarized.nvim',
 				requires = { 'tjdevries/colorbuddy.nvim' }

@@ -62,7 +62,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Replace ls with eza
 alias ll="eza -al --color=always --group-directories-first --icons" # preferred listing
-alias ls="eza -a --color=always --group-directories-first --icons"  # all files and dirs
+alias ls="eza -G --color=always --group-directories-first --icons"  # all files and dirs
 alias la="eza -l --color=always --group-directories-first --icons"  # long format
 alias lt="eza -aT --color=always --group-directories-first --icons" # tree listing
 alias l="eza -lah --color=always --group-directories-first --icons" # tree listing
