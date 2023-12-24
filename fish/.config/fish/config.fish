@@ -15,9 +15,6 @@ set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.cargo/bin $PATH
 
-#fzf
-set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
-
 # NodeJS
 set -gx PATH node_modules/.bin $PATH
 set -gx PATH /home/sunny/.nvm/versions/node/v18.15.0/bin $PATH
@@ -37,7 +34,19 @@ export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
 export GOPATH=$HOME/ghq/github.com/LegioN2004/Programs/GO
 # set CC and CXX envars to inform emacs files of the gcc location
 export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc
-# fish stuff -----------------------------------------------------------------
+
+
+# FZF stuff
+# Feed the output of fd into fzf
+set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
+# Setting fd as the default source for fzf
+# set -gx FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+# To apply the command to CTRL-T as well
+# set -gx FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+
+# ALIASES -----------------------------------------------------------------
 
 if type -q eza
     # Replace ls with exa

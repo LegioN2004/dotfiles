@@ -1,16 +1,3 @@
-live-server
-npm install -g live-server
-npm install -g npm@9.2.0
-npm audit fix -f
-live-server
-exit
-exit
-yay -R dwm st
-ls
-dotfiles/
-ls
-cd ..
-ls
 cd dotfiles/
 cd
 dotfiles/
@@ -497,4 +484,17 @@ ls
 sudo nvim
 exit
 sudo nvim
+exit
+fzf --preview='
+  if file --mime-type {} | grep -qF image/; then
+    kitty icat --clear --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 {} | sed \$d
+  else
+    bat --color=always {}
+  fi
+'
+exit
+ls
+ll
+cd dotfiles/**
+cd
 exit
