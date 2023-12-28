@@ -87,6 +87,26 @@ return {
     },
   },
 
+  -- commentary
+  {
+    "tpope/vim-commentary",
+    keys = { { "<leader>/", "<cmd>Commentary<cr>", desc = "Comment out stuff" } },
+    lazy = false,
+    cmd = "Commentary",
+  },
+
+  -- better pairing for ones that are done voluntarily
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
+
   {
     "nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji" },

@@ -115,8 +115,8 @@ vim.keymap.set("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 ------------------------------------------------------------------
 
 -- shortcuts for commenting
-vim.keymap.set("n", "<leader>/", ":Commentary<cr>")
-vim.keymap.set("v", "<leader>/", ":Commentary<cr>")
+-- vim.keymap.set("n", "<leader>/", ":Commentary<cr>")
+-- vim.keymap.set("v", "<leader>/", ":Commentary<cr>")
 
 -- undotree keymaps
 vim.keymap.set("n", "<leader>un", ":UndotreeToggle<cr>")
@@ -167,7 +167,7 @@ nnoremap <leader>so :so ~/nvimfiles/sessions/
 let g:netrw_liststyle = 3
 
 " NvimTreeToggle remap
-" nnoremap ;f <Esc>:Neotree<CR>:vertical resize 30<CR><CR>
+nnoremap ;f <Esc>:Ex<CR>:vertical resize 30<CR><CR>
 
 "checkout and fix these fzf keybinds
 " PLUGIN: FZF

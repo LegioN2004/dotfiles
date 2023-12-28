@@ -43,12 +43,13 @@ return {
   -- BUG: change the find_command i.e the stuff inside the function brackets if there are any performance related issues or stuff breaking or some unusual stuff
   -- I added fd , rg here to make the find_files and grep_string process faster as they use rust instead of traditional vimscript
   keys = {
+    { "<leader>/", vim.NIL },
     { "<leader>te", ":Telescope<CR>", desc = "Toggle Telescope" },
     {
       "<leader>ps",
       function()
         require("telescope.builtin").grep_string({
-          { find_command = { "rg", fname } },
+          -- custom command to use rg/fd, need to add this to the function call or in the api call itself `{ find_command = { "rg", fname } }`,
           search = vim.fn.input("Grep > "),
         })
       end,
@@ -57,21 +58,22 @@ return {
     {
       "<leader><space>",
       function()
-        require("telescope.builtin").find_files({ find_command = { "fd", fname } })
+        require("telescope.builtin").find_files()
       end,
       desc = "Find file",
     },
     {
       ";r",
       function()
-        require("telescope.builtin").live_grep({ find_command = { "rg", fname } })
+        -- require("telescope.builtin").live_grep({ find_command = { "rg", fname } })
+        require("telescope.builtin").live_grep()
       end,
       desc = "Grep directory",
     },
     {
       "<leader>?",
       function()
-        require("telescope.builtin").current_buffer_fuzzy_find({ find_command = { "rg", fname } })
+        require("telescope.builtin").current_buffer_fuzzy_find()
       end,
       desc = "Grep current buffer",
     },
@@ -85,7 +87,7 @@ return {
     {
       "<leader>:",
       function()
-        require("telescope.builtin").commands({ find_command = { "rg", fname } })
+        require("telescope.builtin").commands()
       end,
       desc = "Commands",
     },
@@ -113,7 +115,7 @@ return {
     {
       "<leader>fr",
       function()
-        require("telescope.builtin").oldfiles({ find_command = { "fd", fname } })
+        require("telescope.builtin").oldfiles()
       end,
       desc = "Find previously opened file",
     },
@@ -127,7 +129,7 @@ return {
     {
       ";h",
       function()
-        require("telescope.builtin").help_tags({ find_command = { "rg", fname } })
+        require("telescope.builtin").help_tags()
       end,
       desc = "NeoVim help tags",
     },
@@ -151,7 +153,7 @@ return {
       ";e",
       function()
         local builtin = require("telescope.builtin")
-        builtin.diagnostics()
+        builtin.diagnostis()
       end,
       desc = "Lists Diagnostics for all open buffers or a specific buffer",
     },
