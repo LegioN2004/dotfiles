@@ -45,8 +45,10 @@ set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
 # set -gx FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
-
 # ALIASES -----------------------------------------------------------------
+
+
+alias rm='trash'
 
 if type -q eza
     # Replace ls with exa
@@ -84,11 +86,12 @@ alias ran ranger
 
 #neovim
 alias v nvim
-# alias nv "neovide"
+alias nv neovide
 # alias lv "lvim"
 # alias sv="vim -u ~/SpaceVim/vimrc "
 # neovim distro aliases
 alias m='NVIM_APPNAME=packer-nvim nvim'
+alias o='NVIM_APPNAME=oneDirNvim nvim'
 # alias m='NVIM_APPNAME=minimalist nvim'
 # alias nvc='NVIM_APPNAME=nvchad nvim'
 
@@ -118,7 +121,7 @@ alias sourcez="source  ~/dotfiles/zsh/.config/zsh/.zshrc"
 alias fishconfig="nvim  ~/dotfiles/fish/.config/fish/config.fish"
 alias i3config="m ~/dotfiles/i3/.config/i3/config"
 alias sxhkdrc="nvim ~/.config/sxhkd/sxhkdrc"
-alias alacrittyconfig="nvim ~/dotfiles/alacritty/.config/alacritty/alacritty.yml"
+alias alacrittyconfig="nvim ~/dotfiles/alacritty/.config/alacritty/alacritty.toml"
 alias bashconfig="nvim ~/dotfiles/.bashrc"
 alias fishconfig="nvim ~/dotfiles/fish/.config/fish/config.fish"
 alias nvimconfig="v ~/dotfiles/nvim/.config/nvim/init.lua"

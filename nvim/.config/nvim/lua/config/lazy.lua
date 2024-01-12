@@ -43,9 +43,10 @@ require("lazy").setup({
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
-        -- "matchit",
-        -- "matchparen",
-        -- "netrwPlugin",
+        "netrw",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
@@ -54,3 +55,7 @@ require("lazy").setup({
     },
   },
 })
+
+if vim.g.neovide then
+  require("legion.neovide")
+end
