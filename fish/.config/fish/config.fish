@@ -4,8 +4,8 @@
 
 # fish stuff -----------------------------------------------------------------
 set fish_greeting ""
-set -gx EDITOR nvim
-set -gx TERMINAL alacritty
+set -gx $EDITOR nvim
+# set -gx $TERMINAL alacritty
 # set -g theme_color_scheme terminal-dark
 
 set TLP_ENABLE 1
@@ -39,6 +39,7 @@ export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc
 # FZF stuff
 # Feed the output of fd into fzf
 set -gx FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
+set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 # Setting fd as the default source for fzf
 # set -gx FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 # To apply the command to CTRL-T as well

@@ -1,3 +1,4 @@
+ls
 #!/bin/bash
 
 #z directory jumper
