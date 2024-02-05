@@ -1,5 +1,0 @@
-function nvm
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
-end
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
