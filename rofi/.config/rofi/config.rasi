@@ -4,7 +4,7 @@ configuration {
   drun-display-format: "{name}";
   font: "System San Francisco Display 10";
   modi: "drun";
-  show-icons: false;
+  show-icons: true;
   icon-theme: "tela-dark";
 }
 

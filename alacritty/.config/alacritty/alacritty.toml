@@ -22,7 +22,7 @@ multiplier = 5
 
 [font]
 # AppleFontSmoothing = true
-size = 10.5
+size = 10
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
