@@ -74,6 +74,7 @@ alias gp='git push'
 alias gs='git status'
 alias grv='git remote -v'
 alias gco='git checkout'
+alias gcob='git checkout -b'
 alias gb='git branch'
 alias gbr='git branch -r'
 alias gba='git branch -a' # list all the branches
