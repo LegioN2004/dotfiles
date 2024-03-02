@@ -229,7 +229,12 @@ alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-deskto
 alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doomemacs ~/doomemacs && mkdir ~/.emacs.d && git clone https://github.com/plexus/chemacs2 ~/.emacs.d"
 
 # Fidn projects
-alias projs="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -mindepth 1 -maxdepth 2 -type d | fzf)"
+alias projs="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -mindepth 2 -maxdepth 8 -type d  \
+    -not \( -path '*/.git/*' -prune \) \
+    -not \( -path '*/node_modules/*' -prune \) \
+ | fzf)"
+
+# alias projs="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -type d -mindepth 2 -maxdepth 8 -not -path '*/.git/*' -not -path '*/node_modules/*') | fzf "
 alias files="cd (fd --type directory | fzf)"
 
 
