@@ -1,5 +1,3 @@
-cd dotfiles/
-cd
 dotfiles/
 ls
 s
@@ -498,3 +496,5 @@ ll
 cd dotfiles/**
 cd
 exit
+v
+nvim

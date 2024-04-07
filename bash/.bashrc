@@ -8,7 +8,7 @@ ls
 set -o vi
 
 #aliases
-alias ls='exa -l -g --icons'
+alias ls='eza -aG --color=always --group-directories-first --icons'
 alias ll='ls -a'
 alias lr='ls -R'
  
@@ -105,3 +105,7 @@ function parse_git_dirty {
 # PS1='\[\e[0;91m\][\[\e[0;38;5;220m\]\u\[\e[0;38;5;70m\]@\[\e[0;38;5;38m\]\h \[\e[0;38;5;175m\]\w\[\e[0;91m\]]\[\e[0;93m\](\[\e[0;1;38;5;130m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0;93m\])\[\e[0m\]'
 PS1='\[\e[0;91m\][\[\e[0;38;5;220m\]\u\[\e[0;38;5;70m\]@\[\e[0;38;5;38m\]\h \[\e[0;1;38;5;130m\]$(git branch 2>/dev/null | grep '"'"'^*'"'"' | colrm 1 2)\[\e[0;91m\]]\[\e[0;38;5;108m\](\[\e[0;2;38;5;175m\]\w\[\e[0;38;5;150m\]) \[\e[0m\]'
 . "$HOME/.cargo/env"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
