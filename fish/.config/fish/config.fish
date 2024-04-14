@@ -101,9 +101,8 @@ alias o='NVIM_APPNAME=oneDirNvim nvim'
 alias cursor='cd ~/Downloads/ && ./cursor-0.17.0-build-231127p7iyxn8rg.AppImage && cd'
 
 
-#C++ run code alias
-alias compile "g++"
-alias run "./a.out"
+# run files
+alias runfile='. ~/dotfiles/scripts-laptop/lang-scripts/runCppfile.sh'
 
 #iso details
 alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
@@ -128,7 +127,7 @@ alias bashconfig="nvim ~/dotfiles/.bashrc"
 alias fishconfig="nvim ~/dotfiles/fish/.config/fish/config.fish"
 alias nvimconfig="v ~/dotfiles/nvim/.config/nvim/init.lua"
 alias picomconfig="nvim ~/dotfiles/picom/.config/picom/picom.conf"
-alias hyprlconfig="nvim ~/dotfiles/hyprland/.config/hypr/hyprland.conf"
+alias hyprlconfig="nvim ~/.config/hypr/hyprland.conf"
 alias waybarconf="nvim ~/dotfiles/waybar/.config/waybar/config"
 alias tmuxconfig="nvim ~/dotfiles/.tmux.conf"
 alias kittyconfig="nvim ~/dotfiles/kitty/.config/kitty/kitty.conf"
@@ -244,3 +243,7 @@ if not string match -q -- $PNPM_HOME $PATH
     set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
