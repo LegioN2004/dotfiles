@@ -279,3 +279,6 @@ bindkey -s "^N" "nvims\n"
 
 # for fixing keyb layout in gui programs from wsl
 # setxkbmap us -variant colemak
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

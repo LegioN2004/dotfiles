@@ -16,8 +16,8 @@ set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.cargo/bin $PATH
 
 # NodeJS
-set -gx PATH node_modules/.bin $PATH
-set -gx PATH /home/sunny/.nvm/versions/node/v18.15.0/bin $PATH
+# set -gx PATH node_modules/.bin $PATH
+set -gx PATH /home/sunny/.nvm/versions/node/v20.12.2/bin $PATH
 
 # set fish_history $XDG_DATA_HOME/fish/fish_history
 # HISTSIZE=100000
@@ -123,7 +123,7 @@ alias hib "sudo systemctl hibernate"
 alias zshconfig="nvim  ~/dotfiles/zsh/.config/zsh/.zshrc"
 alias sourcez="source  ~/dotfiles/zsh/.config/zsh/.zshrc"
 alias fishconfig="nvim  ~/dotfiles/fish/.config/fish/config.fish"
-alias i3config="m ~/dotfiles/i3/.config/i3/config"
+alias i3config="nvim ~/dotfiles/i3/.config/i3/config"
 alias sxhkdrc="nvim ~/.config/sxhkd/sxhkdrc"
 alias alacrittyconfig="nvim ~/dotfiles/alacritty/.config/alacritty/alacritty.toml"
 alias bashconfig="nvim ~/dotfiles/.bashrc"

@@ -1,7 +1,3 @@
-dotfiles/
-ls
-s
-gs
 gs
 cd
 clear
@@ -498,3 +494,7 @@ cd
 exit
 v
 nvim
+nvm
+npm
+node
+exit
