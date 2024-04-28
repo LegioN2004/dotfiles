@@ -11,7 +11,7 @@ set -o vi
 alias ls='eza -aG --color=always --group-directories-first --icons'
 alias ll='ls -a'
 alias lr='ls -R'
- 
+
 # git
 alias g='git'
 alias gcl='git clone'
@@ -42,13 +42,9 @@ alias bashconfig="nvim ~/.bashrc"
 alias fishconfig="nvim ~/dotfiles/fish/.config/fish/config.fish"
 alias sourceb="source ~/.bashrc"
 
-
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export TERM="xterm-256color"
 
@@ -56,10 +52,9 @@ shopt -s autocd #Allows you to cd into directory merely by typing the directory 
 
 # get current branch in git repo
 function parse_git_branch() {
-	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ ! "${BRANCH}" == "" ]
-	then
-		STAT=`parse_git_dirty`
+	BRANCH=$(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+	if [ ! "${BRANCH}" == "" ]; then
+		STAT=$(parse_git_dirty)
 		echo "[${BRANCH}${STAT}]"
 	else
 		echo ""
@@ -68,13 +63,31 @@ function parse_git_branch() {
 
 # get current status of git repo
 function parse_git_dirty {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	status=$(git status 2>&1 | tee)
+	dirty=$(
+		echo -n "${status}" 2>/dev/null | grep "modified:" &>/dev/null
+		echo "$?"
+	)
+	untracked=$(
+		echo -n "${status}" 2>/dev/null | grep "Untracked files" &>/dev/null
+		echo "$?"
+	)
+	ahead=$(
+		echo -n "${status}" 2>/dev/null | grep "Your branch is ahead of" &>/dev/null
+		echo "$?"
+	)
+	newfile=$(
+		echo -n "${status}" 2>/dev/null | grep "new file:" &>/dev/null
+		echo "$?"
+	)
+	renamed=$(
+		echo -n "${status}" 2>/dev/null | grep "renamed:" &>/dev/null
+		echo "$?"
+	)
+	deleted=$(
+		echo -n "${status}" 2>/dev/null | grep "deleted:" &>/dev/null
+		echo "$?"
+	)
 	bits=''
 	if [ "${renamed}" == "0" ]; then
 		bits=">${bits}"
@@ -109,3 +122,7 @@ PS1='\[\e[0;91m\][\[\e[0;38;5;220m\]\u\[\e[0;38;5;70m\]@\[\e[0;38;5;38m\]\h \[\e
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
+
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

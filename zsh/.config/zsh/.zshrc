@@ -1,3 +1,4 @@
+nitch
 # Created by Zap installer
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"

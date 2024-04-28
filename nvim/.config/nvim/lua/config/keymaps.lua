@@ -119,7 +119,7 @@ vim.keymap.set("n", "<leader>/", ":Commentary<cr>")
 vim.keymap.set("v", "<leader>/", ":Commentary<cr>")
 
 -- undotree keymaps
-vim.keymap.set("n", "<leader>un", ":UndotreeToggle<cr>")
+vim.keymap.set("n", "<leader>un", vim.cmd.UndotreeToggle)
 
 -- maximizer keymap
 vim.keymap.set("n", "<leader>mt", ":MaximizerToggle<cr>")
@@ -204,7 +204,7 @@ command! -bang -nargs=* Rg
 ]])
 
 vim.keymap.set("n", "<leader>y", '"+y') -- yank to the system clipboard
-vim.keymap.set("n", "<leader>tu", ":Telescope undo<CR>")
+-- vim.keymap.set("n", "<leader>tu", ":Telescope undo<CR>")
 vim.keymap.set("n", "<leader>tu", "<cmd>Telescope undo<cr>")
 vim.keymap.set("n", "<leader>/", "vim.NIL")
 vim.keymap.set("n", "<leader>te", ":Telescope<CR>")

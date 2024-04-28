@@ -6,18 +6,18 @@ TERM = "xterm-256color"
 
 [window]
 dynamic_padding = true
-opacity = 0.7
+opacity = 1.0
 blur = true
 title = "Alacritty"
-dynamic_title = false
+dynamic_title = true
 
 [window.padding]
-x = 3
-y = 3
+x = 1
+y = 1
 
 [scrolling]
 # auto_scroll = false
-history = 19000
+history = 10000
 multiplier = 5
 
 [font]
@@ -26,6 +26,7 @@ size = 10
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
+style = "Normal"
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"

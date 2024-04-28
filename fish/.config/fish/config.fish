@@ -25,6 +25,7 @@ set -gx PATH /home/sunny/.nvm/versions/node/v20.12.2/bin $PATH
 # IntelliJ IdeaIC2022 path
 
 set -gx PATH ~/Downloads/softwares/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/ $PATH
+set -gx PATH ~/Downloads/softwares/clion-2024.1/bin/ $PATH
 
 # all the exports
 export TERMINAL=/usr/bin/alacritty
@@ -34,6 +35,7 @@ export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
 export GOPATH=$HOME/ghq/github.com/LegioN2004/Programs/GO
 # set CC and CXX envars to inform emacs files of the gcc location
 export CC=/usr/bin/gcc && export CXX=/usr/bin/gcc
+export GIT_PAGER=delta
 
 
 # FZF stuff
@@ -231,13 +233,16 @@ alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-deskto
 alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doomemacs ~/doomemacs && mkdir ~/.emacs.d && git clone https://github.com/plexus/chemacs2 ~/.emacs.d"
 
 # Fidn projects
-alias projs="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -mindepth 2 -maxdepth 8 -type d  \
-    -not \( -path '*/.git/*' -prune \) \
-    -not \( -path '*/node_modules/*' -prune \) \
- | fzf)"
+# alias projs="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -mindepth 2 -maxdepth 8 -type d  \
+#     -not \( -path '*/.git/*' -prune \) \
+#     -not \( -path '*/node_modules/*' -prune \) \
+#  | fzf)"
 
+alias projs="cd (fd . --type directory ~/ghq/ ~/Downloads/softwares/ ~/Downloads/dotfiles-others/ | fzf)"
+alias allFolders="cd (fd . --type directory ~ | fzf)"
 # alias projs="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -type d -mindepth 2 -maxdepth 8 -not -path '*/.git/*' -not -path '*/node_modules/*') | fzf "
-alias files="cd (fd --type directory | fzf)"
+alias folders="cd (fd --type directory | fzf)"
+alias ff="nvim (fzf)"
 
 
 # pnpm
