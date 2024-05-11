@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 gs
 cd
 clear
@@ -106,6 +107,8 @@ exit
 ls
 gs
 exit
+=======
+>>>>>>> Stashed changes
 ls
 ll
 ls
@@ -494,7 +497,121 @@ cd
 exit
 v
 nvim
+<<<<<<< Updated upstream
 nvm
 npm
 node
+=======
+gh repo clone 
+gh repo clone git@github.com:LegioN2004/dotfiles.git
+gh repo clone git@github.com:LegioN2004/dotfiles.git
+gh repo clone git@github.com:LegioN2004/dotfiles.git
+gh auth status
+gh auth 
+gh auth refresh
+gh repo clone git@github.com:LegioN2004/dotfiles.git
+git clone https://github.com/LegioN2004/dotfiles.git
+git clone https://github.com/LegioN2004/dotfiles.git
+cd dott
+cd dotfiles/
+gs
+git status
+cp -r ~/random/bash .
+cp -r ~/random/backup/bash .
+ls
+git status
+source .bashrc
+stow bash
+source .bashrc
+source ~/.bashrc
+ls
+gs
+g add . && gc "nothing much" && g push
+gh auth logoug
+gh auth setup-git
+g add . && gc "nothing much" && g push
+g push
+stow fish
+fish
+fish
+cd nvim/.config/nvim/lua/
+rg "find_files"
+v config/keymaps.lua 
+cd
+exit
+ls
+source .bashrc
+ls
+cd dot
+cd
+ls
+source .bashrc
+ls
+v .bash_profile 
+v .bash_logout 
+rg "/home/legion/.cargo/env"
+sourceb
+v .bashrc 
+exit
+ls
+cd
+sourceb
+source ~/.bashrc 
+ls
+ls
+v .bashrc 
+ls
+v
+v
+v .config/nvim/lua/legion/lazy.lua 
+v
+exit
+source .bashrc
+ls
+fish
+source .bashrc
+ls
+z nvim
+ls
+cd lua/el
+source .bashrc 
+v .bashrc 
+exit
+source .bashrc 
+ls
+v .bashrc 
+hyperfine "nvim --headless +qa" --warmup 5
+v
+v
+z nvim
+ls
+cd lua/legion/
+ls
+v plugins/alpha.lua 
+v
+v
+bun
+cd
+bun
+ls
+cd pro
+cd PR
+cd Pr
+ls
+ghq
+projs
+projects
+cd ghq/github.com/LegioN2004/
+ls
+cd Programs/
+ls
+g pull --rebase
+shutdown
+exit
+sudo chsh
+exit
+zsh
+exit
+ls
+>>>>>>> Stashed changes
 exit
