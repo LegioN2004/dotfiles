@@ -72,15 +72,15 @@ return {
     },
   },
   -- animations
-  {
-    "echasnovski/mini.animate",
-    event = "VeryLazy",
-    opts = function(_, opts)
-      opts.scroll = {
-        enable = false,
-      }
-    end,
-  },
+  -- {
+  --   "echasnovski/mini.animate",
+  --   event = "VeryLazy",
+  --   opts = function(_, opts)
+  --     opts.scroll = {
+  --       enable = false,
+  --     }
+  --   end,
+  -- },
 
   -- buffer line
   {
@@ -103,7 +103,8 @@ return {
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- event = "VeryLazy",
     opts = {
       options = {
         -- globalstatus = false,
@@ -235,7 +236,6 @@ return {
           end,
         })
       end
-
       return opts
     end,
   },

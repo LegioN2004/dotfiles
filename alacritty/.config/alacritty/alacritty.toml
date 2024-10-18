@@ -25,19 +25,19 @@ multiplier = 5
 size = 10
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono NF"
 style = "Normal"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono NF"
 style = "Bold Italic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono NF"
 style = "Italic"
 
 

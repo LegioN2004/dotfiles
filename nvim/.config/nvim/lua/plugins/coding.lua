@@ -1,17 +1,13 @@
 return {
   -- Create annotations with one keybind, and jump your cursor in the inserted annotation
   {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
+  },
+  {
     "rafamadriz/friendly-snippets",
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
-    end,
-  },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({})
     end,
   },
   {

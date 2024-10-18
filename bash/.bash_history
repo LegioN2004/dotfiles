@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 gs
 cd
 clear
@@ -615,3 +614,11 @@ exit
 ls
 >>>>>>> Stashed changes
 exit
+ls
+cd dotfiles/
+ls
+gs
+stow fish
+psfzf
+exit
+fc-list

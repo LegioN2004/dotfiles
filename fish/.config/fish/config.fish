@@ -238,7 +238,7 @@ alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doo
 #     -not \( -path '*/node_modules/*' -prune \) \
 #  | fzf)"
 
-alias projs="cd (fd . --type directory ~/ghq/ ~/Downloads/softwares/ ~/Downloads/dotfiles-others/ | fzf)"
+alias projs="cd (fd . --type directory ~/ghq/ | fzf)"
 alias allFolders="cd (fd . --type directory ~ | fzf)"
 # alias projs="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -type d -mindepth 2 -maxdepth 8 -not -path '*/.git/*' -not -path '*/node_modules/*') | fzf "
 alias folders="cd (fd --type directory | fzf)"
