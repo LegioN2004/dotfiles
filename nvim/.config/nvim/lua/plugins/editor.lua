@@ -208,10 +208,10 @@ return {
             i = {
               ["<c-n>"] = actions.move_selection_next,
               ["<c-p>"] = actions.move_selection_previous,
-              ["<c-t>"] = trouble.open_with_trouble,
+              ["<c-t>"] = require("trouble.sources.telescope").open(),
               -- ["<esc>"] = actions.close, -- Close on first press of esc. No "normal" mode.
             },
-            n = { ["<c-t>"] = trouble.open_with_trouble },
+            n = { ["<c-t>"] = require("trouble.sources.telescope").open() },
           },
           -- Themeing
           sorting_strategy = "ascending",
