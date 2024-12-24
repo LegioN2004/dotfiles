@@ -1,144 +1,3 @@
-gs
-cd
-clear
-exit
-ls
-v .xinitrc 
-which dwm
-grep config.def.h ~/
-grep config.def.h 
-v
-grep -i MODKEY|ShiftMask
-find config.def.h
-find -config.def.h
-find ~/ -config.def.h
-find ~/ config.def.h
-find . -type f -name config.def.h*
-clear
-dotfiles/
-cd
-dotfiles/nvim/
-exit
-auto-cpufreq --stats
-pkill tlp
-auto-cpufreq --stats
-systemctl status tlp.service 
-systemctl stop tlp.service 
-systemctl status tlp.service 
-systemctl disable tlp.service 
-auto-cpufreq --stats
-pkill tlp.service
-auto-cpufreq --stats
-exit
-cp -r .bashrc dotfiles/bash/.bashrc 
-cp -r .bashrc dotfiles/bash/
-vim dotfiles/bash/.bashrc 
-exit
-sudo cd /boot/efi
-sudo 
-sudo su
-exit
-ghq get LunarVim/Neovim-from-scratch
-exit
-ls
-gs
-rm -rf fish/.config/fish/fishd.tmp.8xjF5c 
-ls
-gs
-exit
-exit
-ls
-la
-ls
-ll
-lt
-exit
-sudo ufw enable
-sudo systemctl status ufw.service
-sudo ufw enable
-sudo ufw allow 22
-sudo ufw enable
-yay -R ufw
-yay -S firewalld ufw
-sudo systemctl enable ufw.service --now
-sudo ufw enable
-install firewalld
-yay -S firewalld
-firewalld
-sudo firewalld
-sudo systemctl enable --now ufw.service
-sudo ufw enable
-pow
-exit
-cat
-cat .bashrc 
-cd .config/nvim
-ls
-v coc-settings.json 
-z tut9
-ls
-z tut9
-ls
-gs
-cd
-z tut9
-ls
-nvim /etc/pacman.d/mirrorlist
-v .bashrc 
-timer 0
-yay notion
-sus
-exit
-bash
-exit
-xeit
-exit
-v .bashrc 
-source .bashrc 
-exit
-ls
-clear
-ash
-eix
-exit
-xit
-exit
-ls
-gs
-exit
-=======
->>>>>>> Stashed changes
-ls
-ll
-ls
-ls
-Downloads/
-ls
-cd
-Downloads/
-ls
-cd 
-cd dotfiles/nvim/.config/nvim/lua/
-ls
-gs
-exit
-cd "/home/sunny/ghq/github.com/legion2004/programs/PW-skills/cpp-dsa/" && g++ 1.cpp -o 1 && "/home/sunny/ghq/github.com/legion2004/programs/PW-skills/cpp-dsa/"1
-cd "/home/sunny/ghq/github.com/legion2004/programs/PW-skills/cpp-dsa/" && g++ 1.cpp -o 1 && "/home/sunny/ghq/github.com/legion2004/programs/PW-skills/cpp-dsa/"1
-ls
-ls
-ll
-v .bashrc 
-bashconfig 
-cd dotfiles/
-stow zsh
-gs
-exit
-htop
-ls
-sudo nvim /etc/pacman.conf
-sudo nvim /etc/pacman.d/
-ls
-sudo nvim /etc/pacman.conf
 ghq get git clone https://github.com/arcolinux/arcolinux-spices
 fish
 last_upgrade=$(grep -m 1 'full system upgrade' /var/log/pacman.log | cut -d ' ' -f 1 | tr -d '[]')
@@ -622,3 +481,20 @@ stow fish
 psfzf
 exit
 fc-list
+ls
+v
+hyperfine "nvim --headless +qa" --warmup 5
+ls
+nvim
+z RUST
+ls
+zig
+go
+java
+gcc
+rustc
+cargo
+zsh
+exit
+pow
+fish

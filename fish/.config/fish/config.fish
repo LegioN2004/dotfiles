@@ -26,6 +26,7 @@ set -gx PATH /home/sunny/.nvm/versions/node/v20.12.2/bin $PATH
 
 set -gx PATH ~/Downloads/softwares/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/ $PATH
 set -gx PATH ~/Downloads/softwares/clion-2024.1/bin/ $PATH
+set -gx PATH ~/Downloads/softwares/WebStorm-242.23726.96/bin/ $PATH
 
 # all the exports
 export TERMINAL=/usr/bin/alacritty
@@ -148,9 +149,9 @@ alias sourcet "source ~/dotfiles/.tmux.conf"
 
 # pacman and paru aliases
 #install with fzf  && remove with fzf  & aur fzf
-alias psfzf "pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S"
+alias psfzf "pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -Syy"
 alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rnsc"
-alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"
+alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -Syy"
 
 #install
 alias sps "sudo pacman -S "
@@ -224,7 +225,7 @@ alias enw="emacs -nw"
 alias grimblast=~/dotfiles/hyprland/.config/hypr/scripts/grimblast
 
 # same like explorer alias
-alias ex="thunar &"
+alias ex="nautilus &"
 
 #alias to update the browsers automatically
 alias up-browsers="yes|paru -Syy firefox brave-bin google-chrome telegram-desktop kitty alacritty neovim kitty emacs"
@@ -238,10 +239,10 @@ alias clone-all="mkdir ~/doomemacs && git clone https://github.com/doomemacs/doo
 #     -not \( -path '*/node_modules/*' -prune \) \
 #  | fzf)"
 
-alias projs="cd (fd . --type directory ~/ghq/ | fzf)"
-alias allFolders="cd (fd . --type directory ~ | fzf)"
+alias projs="cd (fd . --type directory -d=5  ~/ghq/ | fzf)"
+alias allFolders="cd (fd . --type directory -d=3 ~ | fzf)"
 # alias projs="cd (find ~/ghq/github.com/ ~/ghq/gitlab.com/ ~/Downloads ~/Downloads/dotfiles-others/ -type d -mindepth 2 -maxdepth 8 -not -path '*/.git/*' -not -path '*/node_modules/*') | fzf "
-alias folders="cd (fd --type directory | fzf)"
+alias folders="cd (fd --type directory -d=3 | fzf)"
 alias ff="nvim (fzf)"
 
 
