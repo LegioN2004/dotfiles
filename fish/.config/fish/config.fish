@@ -52,7 +52,7 @@ set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 # ALIASES -----------------------------------------------------------------
 
 
-alias rm='trash'
+# alias rm='trash'
 
 if type -q eza
     # Replace ls with exa
@@ -192,9 +192,9 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # confirm before overwriting something
-alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
+# alias cp="cp -i"
+# alias mv='mv -i'
+# alias rm='rm -i'
 
 # easier to read disk
 alias df='df -h' # human-readable sizes
@@ -245,6 +245,8 @@ alias allFolders="cd (fd . --type directory -d=3 ~ | fzf)"
 alias folders="cd (fd --type directory -d=3 | fzf)"
 alias ff="nvim (fzf)"
 
+## code stuff
+alias formatC="find . -iname '*.h' -o -iname '*.cpp' | xargs clang-format -i"
 
 # pnpm
 set -gx PNPM_HOME "/home/sunny/.local/share/pnpm"

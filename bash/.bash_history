@@ -1,106 +1,3 @@
-ghq get git clone https://github.com/arcolinux/arcolinux-spices
-fish
-last_upgrade=$(grep -m 1 'full system upgrade' /var/log/pacman.log | cut -d ' ' -f 1 | tr -d '[]')
-less /var/log/pacman.log 
-less /var/log/pacman.log | grep pacman -Syyu
-less /var/log/pacman.log | grep -Syu
-less /var/log/pacman.log | grep "-Syu"
-cat /var/log/pacman.log | grep "-Syu"
-bat /var/log/pacman.log 
-yay -Syyu
-yay -Syyu
-yes|yay -Syyu
-exit
-fish
-cd
-cd -
-fish
-g pull
-v userChrome.css 
-exit
-cd
-fish
-exit
-cd ..
-ls
-ls ../legion2004/
-code .
-cd "/home/sunny/ghq/github.com/LegioN2004/programs/book-practice/" && g++ pg145prog7-2.cpp -o pg145prog7-2 && "/home/sunny/ghq/github.com/LegioN2004/programs/book-practice/"pg145prog7-2
- pwd
-ls
-cp after/plugin/lsp.lua ~/ghq/github.com/LegioN2004/some-other-stuff/Main-Neovim-Config/
-ls
-gs
-ls
-pwd
-remove gnome-photos && yes|install nomacs eog
-sudo pacman -R gnome-photos && yes|sudo pacman -s nomacs eog
-sudo pacman -R gnome-photos && yes|sudo pacman -S nomacs eog
-legion
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
-lv
-lvim
-exit
-ls
-yay linux | grep "(Installed)"
-exit
-v .bashrc 
-v .bashrc 
-source .bashrc 
-ls
-v .bashrc 
-source .bashrc 
-ls
-cd dotfiles/nvim/.config/nvim/
-ls
-cd
-v .bashrc 
-source .bashrc 
-ls
-cd dotfiles/nvim/.config/nvim/
-cd
-v .bashrc 
-source .bashrc 
-ls
-cd dotfiles/nvim/.config/nvim/
-gs
-v .bashrc 
-cd
-v .bashrc 
-source .bashrc 
-ls
-cd dotfiles/nvim/
-ls
-gs
-cd
-exit
-v .bashrc 
-source .bashrc 
-cd dotfiles/
-v .bashrc 
-cd
-v .bashrc 
-source .bashrc 
-ls
-cd dotfiles/
-ls
-yay wezterm
-remove yakuake
-ls
-ls
-ll
-polybar
-cd .config/polybar/
-ls
-v config.ini 
-polybar
-v launch.sh 
-cd ..
-rm -rf polybar/
-ls
-cd
-cd dotfiles/scripts-laptop/scripts/
 ls
 v chargingnotify 
 ls
@@ -498,3 +395,106 @@ zsh
 exit
 pow
 fish
+ncspot
+ncspot
+ls
+ls
+ls
+touch filename.c
+so
+clear
+code .
+clear
+let's say you do everything in the terminal only and touch nothing else, then do the following
+ls
+mkdir cse-23-21
+cd cse-23-21/
+ls
+touch to create files
+ls
+touch cse-23.c
+rm -r create files to 
+ls
+touch 1.c 2.c 3.c
+ls
+vim .
+vim e nai one sec
+paru -S vim
+vim .
+ls
+vim cse-23.c
+vim cse-23.c
+gcc cse-23.c 
+ls
+./a.out
+clear
+my vim looks different again due to customizations I did from my side
+exit
+gedit
+not in mine, let me install it haa
+paru -S gedit
+clear
+ls
+rm -r cse-23-21/
+now
+nautilus .
+mkdir cse-23-21
+cd cse-23-21/
+cd ..
+cd cse-23-21/
+ls
+touch 1.c 2.c 3.c cse-23.c ll.c
+ls
+cat to see contents of files
+cat cse-23.c 
+vim cse-23.c 
+cat cse-23.c 
+gcc cse-23.c 
+./a.out
+cd ..
+ls
+nautilus .
+cd cse-23-21
+ls
+cd ..
+cd cse-23-21/
+ls
+mkdir new-directory
+cd new-directory/
+ls
+cd ..
+cd ..
+cd cse-23-21/new-directory/
+ls
+clear
+ls
+cd ../
+ls
+cd
+clear
+how to navigate
+cd ~/Documents/cse-23-21-guggi/
+ls
+gedit filename.c 
+code filename.c 
+cd
+we are in home
+ls
+cd ~/Documents/cse-23-21-guggi/
+ls
+or
+cd
+cd ~/cse-23-21/
+ls
+cd
+cd docu
+cd Documents/cse-23-21-guggi/
+ls
+cd cse-23-2
+cd cse-23-21
+cd ~/cse-23-21
+ls
+here we are
+cd
+exit
+exit
