@@ -1,5 +1,5 @@
 sudo pacman -S github-cli tmux stow gimp kdenlive i3 base-devel ffmpeg yt-dlp freedownloadmanager fzf gcc python lf
-paru -S ghq ripgrep fd ag jq nvm gh brave-bin google-chrome-bin github-cli github-desktop-bin visual-studio-code-bin vlc gparted imagemagick alacritty meld neovim-nightly obs-studio okular pace spotify spotify-adblock sublime-text telegram-desktop tlpui tlp-rdw tlp timeshift ventoy-bin zsh zsh-autosuggestions-git zsh-completions zsh-fast-syntax-highlighting zsh-history-substring-search-git zsh-syntax-highlighting-git zsh-theme-powerlevel10k-git zoom
+paru -S ghq nomacs-qt6-git bitwarden sushi ripgrep fd ag jq nvm gh brave-bin google-chrome-bin github-cli github-desktop-bin visual-studio-code-bin vlc gparted imagemagick alacritty meld neovim-nightly obs-studio okular pace spotify spotify-adblock sublime-text-4 telegram-desktop tlpui tlp-rdw tlp timeshift ventoy-bin zsh zsh-autosuggestions-git zsh-completions zsh-fast-syntax-highlighting zsh-history-substring-search-git zsh-syntax-highlighting-git zsh-theme-powerlevel10k-git zoom
 gh auth
 gh auth login
 gh clone legion2004/dotfiles
