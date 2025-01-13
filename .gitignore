@@ -6,6 +6,9 @@ zsh/history
 fish/.config/fish/fishd.tmp*
 
 fish/.config/fish/fish_variables
+fish/.config/fish/functions
+fish/.config/fish/completions
+fish/.config/fish/conf.d
 
 nvim/.config/nvim/lazy-lock.json
 

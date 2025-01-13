@@ -17,7 +17,7 @@ set -gx PATH ~/.cargo/bin $PATH
 
 # NodeJS
 # set -gx PATH node_modules/.bin $PATH
-set -gx PATH /home/sunny/.nvm/versions/node/v20.12.2/bin $PATH
+set -gx PATH /home/sunny/.nvm/versions/node/v22.13.0/bin $PATH
 
 # set fish_history $XDG_DATA_HOME/fish/fish_history
 # HISTSIZE=100000
@@ -52,7 +52,7 @@ set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 # ALIASES -----------------------------------------------------------------
 
 
-# alias rm='trash'
+alias rm='trash'
 
 if type -q eza
     # Replace ls with exa
