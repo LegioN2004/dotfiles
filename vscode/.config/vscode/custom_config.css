@@ -1,0 +1,8 @@
+/* .menubar-menu-title .monaco-icon-label-container .monaco-icon-label .monaco-icon-label-name .monaco-icon-label-description .monaco-icon-label-name-container .monaco-icon-label-description-container .monaco-icon-name-container .monaco-icon-description-container .monaco-icon-name .monaco-icon-description .monaco-icon-label-container .monaco-icon-label .monaco-icon-name-container .monaco-icon-name .monaco-icon-description-container .monaco-icon-label-name .monaco-icon-label-description .monaco-icon-label-name-container {
+  font-family: 'Geist Mono', monospace !important;
+} */
+
+.windows .monaco-workbench {
+  font-family: 'Geist Mono', monospace !important;
+  -webkit-text-stroke-width: 0.3px;
+}

@@ -14,6 +14,15 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH ~/.cargo/bin $PATH
+set -gx PATH /home/mili/Downloads/softwares/android-studio-2024.2.2.13-linux/android-studio/bin $PATH
+set -gx PATH /home/mili/Downloads/softwares/CLion-2024.3.2/clion-2024.3.2/bin/ $PATH
+# set -gx PATH /home/mili/Downloads/softwares/ghq_linux_amd64/ $PATH
+set -gx PATH /home/mili/Downloads/softwares/idea-IU-243.22562.218/bin $PATH
+set -gx PATH /home/mili/Downloads/softwares/zen.linux-x86_64/zen/ $PATH
+set -gx PATH /home/mili/Downloads/softwares/postman-linux-x64/Postman/app/ $PATH
+set -gx PATH /home/mili/Downloads/softwares/LM-Studio-0.3.9-6-x64.AppImage $PATH
+set -gx PATH /home/mili/Downloads/softwares/Telegram/ $PATH
+set -gx PATH /home/mili/Downloads/softwares/ $PATH
 
 # NodeJS
 # set -gx PATH node_modules/.bin $PATH
@@ -149,8 +158,9 @@ alias sourcet "source ~/dotfiles/.tmux.conf"
 
 # pacman and paru aliases
 #install with fzf  && remove with fzf  & aur fzf
-alias psfzf "pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -Syy"
-alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rnsc"
+# alias psfzf "pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -Syy"
+
+# alias prfzf "pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rnsc"
 alias ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -Syy"
 
 #install
@@ -165,8 +175,7 @@ alias psy "paru -Sy "
 alias pr "paru -R "
 alias prns "paru -Rns "
 alias yprns "yes|paru -Rns "
-alias clean " yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq) "
-
+# alias clean "yes|sudo pacman -Scc && yes|yay -Scc && yes|paru -Scc && yes|sudo pacman -Rns $(pacman -Qtdq)"
 # miscellaneous
 # alias cat "bat"
 # alias idea ". /home/sunny/Downloads/IntellijIdea-2023.1/idea-IC-231.8109.175/bin/idea.sh"
@@ -258,3 +267,4 @@ end
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+

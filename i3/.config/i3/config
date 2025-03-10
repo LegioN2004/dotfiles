@@ -33,7 +33,7 @@ exec --no-startup-id brave
 ## polybar launch
 # exec_always --no-startup-id ~/.config/polybar/launch.sh
 # i3 font for all the titles, tabs etc
-font pango:Hack NF 8.7 
+font pango:Geist Mono 8.7 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock i3lock -i ~/Pictures/wallpapers-stuff2/Xero-Plasma1.png --nofork
 #polybar launch script
@@ -56,7 +56,7 @@ exec_always --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput
 ## sxhkd autostart,  probably won't ever need this, since I can set more bindings with more mod keys by defining them at startup
 # exec_always sxhkd -c ~/.config/sxhkd/sxhkdrc
 # gnome's authorization agent to mount drives and adding passwords whenever required
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # keyboard repeat delay in ms
 exec_always xset r rate 300 50
 # drop down terminal F12
@@ -182,7 +182,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 #bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 ## wallpapers stuff
-bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff2/
+# bindsym $mod+shift+w exec nitrogen --set-scaled --random ~/Pictures/wallpapers-stuff2/
 bindsym $mod+n exec redshift -P -O 2500
 bindsym $mod+shift+n exec redshift -x
 ## Screenshots
@@ -361,7 +361,7 @@ bar {
 # position top
 # output primary
 # tray_output none
-# font pango:FiraCode Nerd Font Mono 9 
+font pango:Geist Mono 9 
 # separator_symbol ⁞
 
 #  status_command i3blocks -c ~/.i3/i3blocks.conf
@@ -370,11 +370,13 @@ bar {
 # for bumblebee status bar u will need extra psutil from pip to show cpu meter (you can install bumblebee status from pip also)
 # dependencies bluez bluez-utils pasink pactl  blueman xkb-switch dbus-send bt-dualboot
 # add the following stuff in the -m line when needed: arch_update xrandr sensors vpn gitlab todo todo_org
+# -m  cpu sensors memory disk amixer battery datetime arandr dunstctl -p cpu.interval=3s memory.interval=10s amixer.interval=1s datetime.interval=1m  \
 
-height 19
+# height 18
   status_command ~/.local/bin/bumblebee-status \
    -t  dracula-powerline \
-   -m  cpu sensors memory disk amixer battery datetime arandr dunstctl -p cpu.interval=3s memory.interval=10s amixer.interval=1s datetime.interval=1m  \
+   -m  sensors memory disk battery datetime dunstctl -p cpu.interval=3s memory.interval=10s datetime.interval=1m  \
+# -m  cpu sensors memory disk amixer battery datetime arandr dunstctl -p cpu.interval=3s memory.interval=10s amixer.interval=1s datetime.interval=1m  \
 	 -p  disk.format={used} memory.format={used} cpu.format={:.1f}% sensors2.showfan={false} sensors2.showtemp={true} 
    # cpu2.layout={'cpu2.temp cpu2.fanspeed'}
 
@@ -396,7 +398,7 @@ for_window [class="^.*"] border pixel 1
 
 ## gaps
 # Activate smart borders (always)
-smart_borders on
+# smart_borders on
 # gaps inner|outer|horizontal|vertical|top|right|bottom|left current|all set|plus|minus|toggle  10
 # Examples
 # gaps inner  4
