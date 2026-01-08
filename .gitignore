@@ -24,3 +24,7 @@ emacs/emacs/url
 
 **.lock
 *.lock
+
+.DS_Store
+*.DS_Store
+**.DS_Store
