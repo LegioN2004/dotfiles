@@ -143,6 +143,9 @@ alias ff="nvim (fzf)"
 ## code stuff
 alias formatC="find . -iname '*.h' -o -iname '*.cpp' | xargs clang-format -i"
 
+# alias for the venv activation
+alias srcvenv="source .venv/bin/activate"
+
 # pnpm
 set -gx PNPM_HOME "/home/sunny/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
