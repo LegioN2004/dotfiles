@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Battery_barChart_position</key>
+	<integer>4</integer>
+	<key>Battery_batteryDetails_position</key>
+	<integer>0</integer>
+	<key>Battery_battery_position</key>
+	<integer>1</integer>
+	<key>Battery_label_position</key>
+	<integer>2</integer>
+	<key>Battery_mini_position</key>
+	<integer>3</integer>
+	<key>Battery_notifications_high</key>
+	<string></string>
+	<key>Battery_notifications_low</key>
+	<string>low</string>
+	<key>Battery_state</key>
+	<false/>
+	<key>Battery_widget</key>
+	<string>battery_details</string>
+	<key>Bluetooth_label_position</key>
+	<integer>1</integer>
+	<key>Bluetooth_stack_position</key>
+	<integer>0</integer>
+	<key>Bluetooth_state</key>
+	<false/>
+	<key>Bluetooth_widget</key>
+	<string></string>
+	<key>CPU_barChart_position</key>
+	<integer>4</integer>
+	<key>CPU_label_position</key>
+	<integer>2</integer>
+	<key>CPU_lineChart_position</key>
+	<integer>3</integer>
+	<key>CPU_mini_position</key>
+	<integer>0</integer>
+	<key>CPU_pieChart_position</key>
+	<integer>1</integer>
+	<key>CPU_state</key>
+	<true/>
+	<key>CPU_tachometer_position</key>
+	<integer>5</integer>
+	<key>CPU_updateInterval</key>
+	<integer>5</integer>
+	<key>CPU_widget</key>
+	<string></string>
+	<key>Disk_barChart_position</key>
+	<integer>5</integer>
+	<key>Disk_label_position</key>
+	<integer>4</integer>
+	<key>Disk_memory_position</key>
+	<integer>0</integer>
+	<key>Disk_mini_position</key>
+	<integer>3</integer>
+	<key>Disk_networkChart_position</key>
+	<integer>7</integer>
+	<key>Disk_pieChart_position</key>
+	<integer>6</integer>
+	<key>Disk_speed_position</key>
+	<integer>2</integer>
+	<key>Disk_state</key>
+	<true/>
+	<key>Disk_text_position</key>
+	<integer>1</integer>
+	<key>Disk_updateInterval</key>
+	<integer>60</integer>
+	<key>Disk_widget</key>
+	<string></string>
+	<key>GPU_barChart_position</key>
+	<integer>3</integer>
+	<key>GPU_label_position</key>
+	<integer>1</integer>
+	<key>GPU_lineChart_position</key>
+	<integer>2</integer>
+	<key>GPU_mini_position</key>
+	<integer>0</integer>
+	<key>GPU_state</key>
+	<true/>
+	<key>GPU_tachometer_position</key>
+	<integer>4</integer>
+	<key>GPU_updateInterval</key>
+	<integer>5</integer>
+	<key>GPU_widget</key>
+	<string></string>
+	<key>LaunchAtLoginNext</key>
+	<true/>
+	<key>NSStatusItem Preferred Position Sensors_sensors</key>
+	<real>451</real>
+	<key>NSStatusItem Restore Position Bluetooth_sensors</key>
+	<integer>5800</integer>
+	<key>NSStatusItem Restore Position CPU_mini</key>
+	<integer>5675</integer>
+	<key>NSStatusItem Restore Position Disk_memory</key>
+	<integer>5722</integer>
+	<key>NSStatusItem Restore Position GPU_mini</key>
+	<integer>5550</integer>
+	<key>NSStatusItem Restore Position Network_speed</key>
+	<integer>5851</integer>
+	<key>NSStatusItem Restore Position RAM_memory</key>
+	<integer>5597</integer>
+	<key>NSToolbar Configuration eu.exelban.Stats.Settings.Toolbar</key>
+	<dict>
+		<key>TB Display Mode</key>
+		<integer>1</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<true/>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>541 585 430 163 0 0 1512 944 </string>
+	<key>NSWindow Frame eu.exelban.Stats.Settings.WindowFrame</key>
+	<string>540 393 723 480 0 0 1800 1125 </string>
+	<key>Network_label_position</key>
+	<integer>1</integer>
+	<key>Network_networkChart_position</key>
+	<integer>2</integer>
+	<key>Network_speed_position</key>
+	<integer>0</integer>
+	<key>Network_state</key>
+	<false/>
+	<key>Network_state_position</key>
+	<integer>3</integer>
+	<key>Network_text_position</key>
+	<integer>4</integer>
+	<key>Network_widget</key>
+	<string></string>
+	<key>RAM_barChart_position</key>
+	<integer>4</integer>
+	<key>RAM_label_position</key>
+	<integer>2</integer>
+	<key>RAM_lineChart_position</key>
+	<integer>3</integer>
+	<key>RAM_memory_position</key>
+	<integer>0</integer>
+	<key>RAM_mini_position</key>
+	<integer>1</integer>
+	<key>RAM_pieChart_position</key>
+	<integer>5</integer>
+	<key>RAM_state</key>
+	<true/>
+	<key>RAM_tachometer_position</key>
+	<integer>6</integer>
+	<key>RAM_text_position</key>
+	<integer>7</integer>
+	<key>RAM_updateInterval</key>
+	<integer>5</integer>
+	<key>RAM_widget</key>
+	<string></string>
+	<key>Sensors_barChart_position</key>
+	<integer>3</integer>
+	<key>Sensors_fanControl</key>
+	<false/>
+	<key>Sensors_fanValue</key>
+	<string>rpm</string>
+	<key>Sensors_fansSync</key>
+	<false/>
+	<key>Sensors_label_position</key>
+	<integer>2</integer>
+	<key>Sensors_mini_position</key>
+	<integer>1</integer>
+	<key>Sensors_sensor</key>
+	<string>TB1T</string>
+	<key>Sensors_speed</key>
+	<false/>
+	<key>Sensors_stack_position</key>
+	<integer>0</integer>
+	<key>Sensors_state</key>
+	<true/>
+	<key>Sensors_widget</key>
+	<string>sensors</string>
+	<key>ble_38-09-fb-01-c1-46</key>
+	<true/>
+	<key>ble_38-09-fb-01-c1-46_notification</key>
+	<string>0.25</string>
+	<key>dockIcon</key>
+	<true/>
+	<key>fan_0_mode</key>
+	<integer>0</integer>
+	<key>fan_0_speed</key>
+	<integer>6550</integer>
+	<key>runAtLoginInitialized</key>
+	<true/>
+	<key>sensor_Average CPU</key>
+	<true/>
+	<key>sensor_Average GPU</key>
+	<false/>
+	<key>sensor_F0Ac</key>
+	<false/>
+	<key>sensor_Hottest CPU</key>
+	<false/>
+	<key>sensor_PPBR</key>
+	<false/>
+	<key>sensor_TB1T</key>
+	<true/>
+	<key>sensor_TB2T</key>
+	<true/>
+	<key>sensor_TH0A</key>
+	<false/>
+	<key>sensor_TH0B</key>
+	<false/>
+	<key>sensor_TH0x</key>
+	<false/>
+	<key>sensor_TW0P</key>
+	<false/>
+	<key>setupProcess</key>
+	<true/>
+	<key>support_ts</key>
+	<integer>1776069169</integer>
+	<key>telemetry</key>
+	<false/>
+	<key>temperature_units</key>
+	<string>celsius</string>
+	<key>update-interval</key>
+	<string>Once per month</string>
+	<key>updater_check_ts</key>
+	<integer>1776398483</integer>
+	<key>version</key>
+	<string>2.12.8</string>
+</dict>
+</plist>
