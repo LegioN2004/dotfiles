@@ -4,6 +4,10 @@
 -- Disable netrw banner
 vim.cmd("let g:netrw_banner = 0")
 
+vim.opt.termguicolors = true
+
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- line numbers
 vim.opt.nu = true
 vim.opt.relativenumber = true
