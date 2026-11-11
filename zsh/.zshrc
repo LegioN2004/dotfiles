@@ -3,6 +3,7 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -25,9 +26,9 @@ CASE_SENSITIVE="true"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
+zstyle ':omz:update' mode disabled  # disable automatic updates for fast startup
 # zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -102,6 +103,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
+alias sshconfig="nvim ~/.ssh/config"
 alias sourcez="source ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias v="nvim"
@@ -131,11 +133,12 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 if [[ ":$PATH:" != *":$PNPM_HOME:"* ]]; then
   export PATH="$PNPM_HOME:$PATH"
 fi
+[ -d "$HOME/.local/share/pnpm/bin" ] && export PATH="$HOME/.local/share/pnpm/bin:$PATH"
 # pnpm end
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[ -d "$BUN_INSTALL/bin" ] && export PATH="$BUN_INSTALL/bin:$PATH"
 
 # select fzf to work in zsh
 source <(fzf --zsh)
@@ -147,33 +150,53 @@ prompt pure
 # initialize zoxide
 eval "$(zoxide init zsh)"
 
-# initialize homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# initialize homebrew (fast check without spawning brew)
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
+# Lazy-load NVM for instantaneous shell startup
 export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh" # This loads nvm
-[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm" # This loads nvm bash_completion
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+_load_nvm() {
+  unset -f nvm node npm npx yarn 2>/dev/null
+  local nvm_prefix="/opt/homebrew/opt/nvm"
+  [ -d "$nvm_prefix" ] || nvm_prefix="/usr/local/opt/nvm"
+  [ -d "/home/linuxbrew/.linuxbrew/opt/nvm" ] && nvm_prefix="/home/linuxbrew/.linuxbrew/opt/nvm"
+  [ -s "$nvm_prefix/nvm.sh" ] && \. "$nvm_prefix/nvm.sh"
+  [ -s "$nvm_prefix/etc/bash_completion.d/nvm" ] && \. "$nvm_prefix/etc/bash_completion.d/nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+}
+nvm() { _load_nvm; nvm "$@"; }
+node() { _load_nvm; node "$@"; }
+npm() { _load_nvm; npm "$@"; }
+npx() { _load_nvm; npx "$@"; }
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/milinda/.lmstudio/bin"
-export PATH="$PATH:/Users/milinda/ghq/chromium.googlesource.com/chromium/tools/depot_tools"
-# End of LM Studio CLI section
+[ -d "/opt/homebrew/opt/openjdk/bin" ] && export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# LM Studio CLI (lms)
+[ -d "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
+[ -d "$HOME/ghq/chromium.googlesource.com/chromium/tools/depot_tools" ] && export PATH="$PATH:$HOME/ghq/chromium.googlesource.com/chromium/tools/depot_tools"
+
+# SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# Added by Antigravity
-export PATH="/Users/milinda/.antigravity/antigravity/bin:$PATH"
+# Antigravity CLI
+[ -d "$HOME/.antigravity/antigravity/bin" ] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+if [ -d "$PYENV_ROOT/bin" ]; then
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+fi
+
+[ -d "/opt/homebrew/opt/libpq/bin" ] && export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # local bin
-export PATH="$PATH:/Users/milinda/.local/bin"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 # tmux-sessionizer stuff
 bindkey -s ^f "tmux-sessionizer\n"
@@ -181,16 +204,24 @@ bindkey -s '\eh' "tmux-sessionizer -s 0\n"
 bindkey -s '\et' "tmux-sessionizer -s 1\n"
 bindkey -s '\en' "tmux-sessionizer -s 2\n"
 bindkey -s '\es' "tmux-sessionizer -s 3\n"
+# tmux alias
+alias cleartmux="tmux clearhist"
 
 # claude code nvidia nim 
 export ANTHROPIC_AUTH_TOKEN="freecc"
 export ANTHROPIC_BASE_URL="http://localhost:8082"
 
-# go path
+# go path (fast static check instead of slow $(brew --prefix golang))
 export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
+if [ -d "/opt/homebrew/opt/golang/libexec" ]; then
+  export GOROOT="/opt/homebrew/opt/golang/libexec"
+elif [ -d "/usr/local/opt/golang/libexec" ]; then
+  export GOROOT="/usr/local/opt/golang/libexec"
+fi
 export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
-# Added by Antigravity IDE
-export PATH="/Users/milinda/.antigravity-ide/antigravity-ide/bin:$PATH"
+# Antigravity IDE
+[ -d "$HOME/.antigravity-ide/antigravity-ide/bin" ] && export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"

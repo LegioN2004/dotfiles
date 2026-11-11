@@ -81,19 +81,18 @@ return {
 			update_in_insert = false, -- Keep diagnostics active in insert mode
 		})
 
-		-- NOTE :
-		-- Moved back from mason_lspconfig.setup_handlers from mason.lua file
-		-- as mason setup_handlers is deprecated & its causing issues with lsp settings
-		--
-		-- Setup servers
-		local lspconfig = require("lspconfig")
+		-- Setup servers using Neovim 0.11+ vim.lsp.config API
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
+		-- Set default capabilities for all LSP servers
+		vim.lsp.config("*", {
+			capabilities = capabilities,
+		})
+
 		-- Config lsp servers here
 		-- lua_ls
-		lspconfig.lua_ls.setup({
-			capabilities = capabilities,
+		vim.lsp.config("lua_ls", {
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -111,9 +110,9 @@ return {
 				},
 			},
 		})
+
 		-- emmet_ls
-		lspconfig.emmet_ls.setup({
-			capabilities = capabilities,
+		vim.lsp.config("emmet_ls", {
 			filetypes = {
 				"html",
 				"typescriptreact",
@@ -127,8 +126,7 @@ return {
 		})
 
 		-- emmet_language_server
-		lspconfig.emmet_language_server.setup({
-			capabilities = capabilities,
+		vim.lsp.config("emmet_language_server", {
 			filetypes = {
 				"css",
 				"eruby",
@@ -155,57 +153,30 @@ return {
 		})
 
 		-- denols
-		lspconfig.denols.setup({
-			capabilities = capabilities,
-			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+		vim.lsp.config("denols", {
+			root_markers = { "deno.json", "deno.jsonc" },
 		})
 
-		-- ts_ls (replaces tsserver)
-		-- lspconfig.ts_ls.setup({
-		--     capabilities = capabilities,
-		--     root_dir = function(fname)
-		--         local util = lspconfig.util
-		--         return not util.root_pattern("deno.json", "deno.jsonc")(fname)
-		--             and util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git")(fname)
-		--     end,
-		--     single_file_support = false,
-		--     init_options = {
-		--         preferences = {
-		--             includeCompletionsWithSnippetText = true,
-		--             includeCompletionsForImportStatements = true,
-		--         },
-		--     },
-		-- })
-
-		lspconfig.rust_analyzer.setup({
-			capabilities = capabilities,
-			root_dir = function(fname)
-				local util = lspconfig.util
-				return not util.root_pattern("Cargo.toml", "Cargo.lock")(fname)
-			end,
-			single_file_support = true,
-			init_options = {
-				preferences = {
-					includeCompletionsWithSnippetText = true,
-					includeCompletionsForImportStatements = true,
+		-- rust_analyzer
+		vim.lsp.config("rust_analyzer", {
+			settings = {
+				["rust-analyzer"] = {
+					completion = {
+						snippets = "custom",
+					},
 				},
 			},
 		})
 
-		lspconfig.ts_ls.setup({
-			capabilities = capabilities,
+		-- ts_ls (replaces tsserver)
+		vim.lsp.config("ts_ls", {
 			filetypes = {
 				"javascript",
 				"javascriptreact",
 				"typescript",
 				"typescriptreact",
 			},
-			root_dir = function(fname)
-				local util = lspconfig.util
-				return not util.root_pattern("deno.json", "deno.jsonc")(fname)
-					and util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git")(fname)
-			end,
-			single_file_support = false,
+			workspace_required = true,
 			init_options = {
 				preferences = {
 					includeCompletionsForModuleExports = true,
@@ -215,8 +186,7 @@ return {
 		})
 
 		-- gopls
-		lspconfig.gopls.setup({
-			capabilities = capabilities,
+		vim.lsp.config("gopls", {
 			settings = {
 				gopls = {
 					analyses = {
@@ -229,8 +199,7 @@ return {
 		})
 
 		-- pyright for Python (completions, diagnostics, type checking)
-		lspconfig.pyright.setup({
-			capabilities = capabilities,
+		vim.lsp.config("pyright", {
 			settings = {
 				python = {
 					analysis = {
@@ -238,31 +207,13 @@ return {
 						autoSearchPaths = true,
 						useLibraryCodeForTypes = true,
 						diagnosticMode = "workspace",
-						-- You can add extraPaths if your project uses non-standard layout
-						-- extraPaths = { "./src" },
 					},
 				},
 			},
-			root_dir = lspconfig.util.root_pattern(
-				"pyproject.toml",
-				"setup.cfg",
-				"setup.py",
-				"requirements.txt",
-				".git"
-			),
-			single_file_support = true,
 		})
 
-		-- HACK: If using Blink.cmp Configure all LSPs here
-
-		-- ( comment the ones in mason )
-		-- local lspconfig = require("lspconfig")
-		-- local capabilities = require("blink.cmp").get_lsp_capabilities() -- Import capabilities from blink.cmp
-
-		-- Add other LSP servers as needed, e.g., gopls, eslint, html, etc.
-		lspconfig.jdtls.setup({
-			capabilities = capabilities,
-			single_file_support = true,
+		-- jdtls
+		vim.lsp.config("jdtls", {
 			init_options = {
 				preferences = {
 					includeCompletionsWithSnippetText = true,
@@ -275,10 +226,10 @@ return {
 		-- Notes:
 		-- - offsetEncoding utf-16 avoids position mismatches with completion plugins
 		-- - background-index and clang-tidy provide better diagnostics and xref
-		-- - root_dir looks for compile_commands.json/compile_flags.txt or a git repo
+		-- - root_dir/root_markers looks for compile_commands.json/compile_flags.txt or a git repo
 		-- - compilationDatabasePath allows using build/compile_commands.json without symlink
 		local clangd_capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = { "utf-16" } })
-		lspconfig.clangd.setup({
+		vim.lsp.config("clangd", {
 			capabilities = clangd_capabilities,
 			cmd = {
 				"clangd",
@@ -289,11 +240,29 @@ return {
 				"--query-driver=/usr/bin/clang*,/usr/bin/clang++*,/opt/homebrew/opt/llvm/bin/clang*",
 			},
 			filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-			root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+			root_markers = { "compile_commands.json", "compile_flags.txt", ".git" },
 			init_options = {
 				clangdFileStatus = true,
 				compilationDatabasePath = "build",
 			},
+		})
+
+		-- Enable LSP servers
+		vim.lsp.enable({
+			"lua_ls",
+			"html",
+			"cssls",
+			"tailwindcss",
+			"emmet_ls",
+			"emmet_language_server",
+			"denols",
+			"rust_analyzer",
+			"ts_ls",
+			"gopls",
+			"pyright",
+			"marksman",
+			"jdtls",
+			"clangd",
 		})
 	end,
 }

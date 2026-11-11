@@ -36,7 +36,7 @@ return {
             -- servers for mason to install
             ensure_installed = {
                 "lua_ls",
-                -- "ts_ls", currently using a ts plugin
+                "ts_ls",
                 "html",
                 "cssls",
                 "tailwindcss",
@@ -55,8 +55,7 @@ return {
                 "stylua",   -- lua formatter
                 "isort",    -- python formatter
                 "pylint",
-                "denols",
-                -- { 'eslint_d', version = '13.1.2' },
+                "eslint_d",
             },
 
             -- NOTE: mason BREAKING Change! Removed setup_handlers

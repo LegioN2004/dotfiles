@@ -1,7 +1,0 @@
-#!/bin/bash
-while true
-do
-		 feh --randomize --bg-scale ~/Pictures/wallpapers-stuff2/*
-		 sleep 300
-done
-

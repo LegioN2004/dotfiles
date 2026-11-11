@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=EXWM
-Comment=Emacs X Window manager
-exec=emacs
-Type=Application

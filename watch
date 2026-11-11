@@ -1,7 +1,0 @@
-#!/bin/bash
-while true
-do
-		 feh --randomize --bg-scale /home/sunny/Pictures/wallpapers-stuff2/*
-		 sleep 60
-done
-
