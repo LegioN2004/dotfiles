@@ -1,7 +1,13 @@
-if test -x /opt/homebrew/bin/brew
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-else if test -x /home/linuxbrew/.linuxbrew/bin/brew
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if test -d /opt/homebrew
+    set -gx HOMEBREW_PREFIX "/opt/homebrew"
+    set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar"
+    set -gx HOMEBREW_REPOSITORY "/opt/homebrew"
+    ! contains "/opt/homebrew/bin" $PATH; and set -gx PATH "/opt/homebrew/bin" "/opt/homebrew/sbin" $PATH
+else if test -d /home/linuxbrew/.linuxbrew
+    set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
+    set -gx HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar"
+    set -gx HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew"
+    ! contains "/home/linuxbrew/.linuxbrew/bin" $PATH; and set -gx PATH "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" $PATH
 end
 #FiraCode fortune | cowsay
 # sh ~/dotfiles/neofetch/nofetch --flex nitch afetch fastfetch etc download from aur
@@ -43,7 +49,7 @@ set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
 
 alias rm='trash'
 
-if type -q eza
+if test -x /opt/homebrew/bin/eza; or test -x /usr/bin/eza; or test -x /usr/local/bin/eza
     # Replace ls with exa
     alias ll='eza -al --color=always --group-directories-first --icons' # preferred listing
     alias ls='eza -aG --color=always --group-directories-first --icons' # all files and dirs
