@@ -1,6 +1,13 @@
 <div align="center">
 <h1>💻 DOTFILES</h1>
-These are my personal dotfiles for mainly my Arch-Linux machine
+Personal dotfiles managed with <b>GNU Stow</b>.
+<br><br>
+
+### 🌿 Platform Branches
+| 🍎 [**macOS Branch**](https://github.com/LegioN2004/dotfiles/tree/macos) | 🐧 [**Linux Branch**](https://github.com/LegioN2004/dotfiles/tree/linux) |
+| :--- | :--- |
+| • Ghostty GPU Terminal<br>• Sub-80ms pure Zsh (Option A)<br>• 8ms Fish with native `abbr`<br>• Raycast sleep/wake automation | • Hyprland & i3wm rices<br>• Kitty GPU Terminal<br>• Waybar, Polybar, Dunst, Rofi<br>• Arch / Pacman / systemd shortcuts |
+
 </div>
 
 ---
