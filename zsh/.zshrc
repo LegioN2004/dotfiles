@@ -31,6 +31,7 @@ fi
 # User Aliases
 alias zshconfig="nvim ~/.zshrc"
 alias sshconfig="nvim ~/.ssh/config"
+alias ghosttyconfig="nvim ~/dotfiles/ghostty/.config/ghostty/config"
 alias sourcez="source ~/.zshrc"
 alias v="nvim"
 alias icogni-zsh="fc -p"

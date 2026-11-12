@@ -1,14 +1,9 @@
-# Fast static Homebrew environment
+# Fast static Homebrew environment (macOS)
 if test -d /opt/homebrew
     set -gx HOMEBREW_PREFIX "/opt/homebrew"
     set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar"
     set -gx HOMEBREW_REPOSITORY "/opt/homebrew"
     ! contains "/opt/homebrew/bin" $PATH; and set -gx PATH "/opt/homebrew/bin" "/opt/homebrew/sbin" $PATH
-else if test -d /home/linuxbrew/.linuxbrew
-    set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
-    set -gx HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar"
-    set -gx HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew"
-    ! contains "/home/linuxbrew/.linuxbrew/bin" $PATH; and set -gx PATH "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" $PATH
 end
 
 # Fish defaults
@@ -41,9 +36,18 @@ abbr -a lg 'lazygit'
 abbr -a cat 'bat'
 abbr -a cr 'cargo run'
 abbr -a srcvenv 'source venv/bin/activate.fish'
+abbr -a ide './ide'
+abbr -a lr 'ls -R'
+abbr -a df 'df -h'
+abbr -a free 'top -l 1 -s 0 | grep PhysMem'
+abbr -a psmem 'ps aux | sort -nr -k 4 | head -5'
+abbr -a pscpu 'ps aux | sort -nr -k 3 | head -5'
+abbr -a grep 'grep --color=auto'
+abbr -a egrep 'egrep --color=auto'
+abbr -a fgrep 'fgrep --color=auto'
 
 # eza (modern ls)
-if test -x /opt/homebrew/bin/eza; or test -x /usr/bin/eza; or test -x /usr/local/bin/eza
+if test -x /opt/homebrew/bin/eza; or test -x /usr/local/bin/eza
     abbr -a ll 'eza -al --color=always --group-directories-first --icons'
     abbr -a ls 'eza -aG --color=always --group-directories-first --icons'
     abbr -a la 'eza -l --color=always --group-directories-first --icons'
@@ -52,7 +56,7 @@ if test -x /opt/homebrew/bin/eza; or test -x /usr/bin/eza; or test -x /usr/local
     abbr -a tree 'eza --tree -g'
 end
 
-# Git abbreviations
+# Git abbreviations (complete set)
 abbr -a g 'git'
 abbr -a ga 'git add'
 abbr -a gaa 'git add --all'
@@ -63,23 +67,28 @@ abbr -a gpf 'git push --force-with-lease'
 abbr -a gl 'git pull'
 abbr -a gs 'git status'
 abbr -a gd 'git diff'
+abbr -a gdf 'git diff'
+abbr -a gcl 'git clone'
+abbr -a gi 'git init'
 abbr -a gco 'git checkout'
 abbr -a gcob 'git checkout -b'
 abbr -a gb 'git branch'
 abbr -a gba 'git branch -a'
 abbr -a gbd 'git branch -d'
 abbr -a gbD 'git branch -D'
+abbr -a gbr 'git branch -r'
 abbr -a glg 'git log --oneline --graph --decorate'
 abbr -a gsp 'git stash pop'
 abbr -a gsc 'git stash clear'
 abbr -a gr 'git restore'
 abbr -a grv 'git remote -v'
 
-# Config shortcuts
+# Config shortcuts (macOS / Ghostty)
 abbr -a zshconfig 'nvim ~/dotfiles/zsh/.zshrc'
 abbr -a fishconfig 'nvim ~/dotfiles/fish/.config/fish/config.fish'
 abbr -a nvimconfig 'nvim ~/dotfiles/nvim/.config/nvim/init.lua'
 abbr -a tmuxconfig 'nvim ~/dotfiles/tmux/.tmux.conf'
+abbr -a ghosttyconfig 'nvim ~/dotfiles/ghostty/.config/ghostty/config'
 abbr -a sourcef 'source ~/.config/fish/config.fish'
 abbr -a sourcez 'source ~/.zshrc'
 
@@ -99,29 +108,6 @@ end
 function ff --description 'Fuzzy search and open in Neovim'
     set -l target (fzf)
     test -n "$target"; and nvim "$target"
-end
-
-# -----------------------------------------------------------------------------
-# Linux-only abbreviations
-# -----------------------------------------------------------------------------
-if test (uname) = "Linux"
-    abbr -a sus "systemctl suspend"
-    abbr -a pow "poweroff"
-    abbr -a reb "reboot"
-    abbr -a hib "sudo systemctl hibernate"
-    abbr -a tlpconfig "sudo nvim /etc/tlp.conf"
-
-    # Arch / pacman / paru
-    abbr -a sps "sudo pacman -S "
-    abbr -a spsy "sudo pacman -Sy "
-    abbr -a spsyy "sudo pacman -Syy "
-    abbr -a psyy "paru -Syy "
-    abbr -a psy "paru -Sy "
-    abbr -a pr "paru -R "
-    abbr -a prns "paru -Rns "
-    abbr -a yprns "yes|paru -Rns "
-    abbr -a ysfzf "paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -Syy"
-    abbr -a update-grub "sudo grub-mkconfig -o /boot/grub/grub.cfg"
 end
 
 # -----------------------------------------------------------------------------
