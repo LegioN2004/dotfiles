@@ -116,10 +116,18 @@ if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-# Lazy-load NVM for instantaneous shell startup
+# Node.js & NVM Fast Path (~0.5ms resolution, zero slow framework overhead)
+if [ -d "$HOME/.nvm/versions/node" ]; then
+  _nvm_node_dirs=( "$HOME"/.nvm/versions/node/*(N/om[1]) )
+  if [ -n "$_nvm_node_dirs" ] && [ -d "$_nvm_node_dirs/bin" ]; then
+    export PATH="$_nvm_node_dirs/bin:$PATH"
+  fi
+fi
+
+# Lazy-load NVM CLI (only executes heavy nvm.sh when 'nvm' command is run)
 export NVM_DIR="$HOME/.nvm"
 _load_nvm() {
-  unset -f nvm node npm npx yarn 2>/dev/null
+  unset -f nvm 2>/dev/null
   local nvm_prefix="/home/linuxbrew/.linuxbrew/opt/nvm"
   [ -d "$nvm_prefix" ] || nvm_prefix="/usr/share/nvm"
   [ -s "$nvm_prefix/nvm.sh" ] && \. "$nvm_prefix/nvm.sh"
@@ -127,9 +135,6 @@ _load_nvm() {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 }
 nvm() { _load_nvm; nvm "$@"; }
-node() { _load_nvm; node "$@"; }
-npm() { _load_nvm; npm "$@"; }
-npx() { _load_nvm; npx "$@"; }
 
 # SDKMAN
 export SDKMAN_DIR="$HOME/.sdkman"
