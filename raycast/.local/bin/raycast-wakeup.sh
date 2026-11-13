@@ -22,9 +22,8 @@ fi
 echo "Bluetooth enabled."
 
 # Restore applications
-open -a "Zen"
 open -a "Brave Browser"
-open -a "Antigravity IDE"
 open -a "Time Out"
+open -a "Herdr"
 
 echo "Workspace restored."

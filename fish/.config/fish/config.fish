@@ -111,11 +111,25 @@ function ff --description 'Fuzzy search and open in Neovim'
 end
 
 # -----------------------------------------------------------------------------
+# Node.js & NVM Path Setup (<1ms startup, zero framework overhead)
+# -----------------------------------------------------------------------------
+if test -d "$HOME/.nvm/versions/node"
+    set -l node_dirs $HOME/.nvm/versions/node/*
+    if test -n "$node_dirs[-1]"; and test -d "$node_dirs[-1]/bin"
+        if not contains "$node_dirs[-1]/bin" $PATH
+            set -gx PATH "$node_dirs[-1]/bin" $PATH
+        end
+    end
+end
+
+# -----------------------------------------------------------------------------
 # Runtime Environments (pnpm, bun)
 # -----------------------------------------------------------------------------
 set -gx PNPM_HOME "$HOME/.local/share/pnpm"
-if test -d "$PNPM_HOME"; and not contains "$PNPM_HOME" $PATH
-    set -gx PATH "$PNPM_HOME" $PATH
+for p in "$PNPM_HOME" "$PNPM_HOME/bin"
+    if test -d "$p"; and not contains "$p" $PATH
+        set -gx PATH "$p" $PATH
+    end
 end
 
 set -gx BUN_INSTALL "$HOME/.bun"
