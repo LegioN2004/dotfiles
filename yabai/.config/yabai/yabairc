@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# by default, tile all windows
+yabai -m config layout bsp
+
+# New window spawns to the right if vertical split, or bottom if horizontal split
+yabai -m config window_placement second_child
+
+# Set the default global layout (e.g., tiling/bsp)
+yabai -m config layout bsp
+
+# Specifically force Workspace 2 to use the stack layout
+yabai -m space 2 --layout stack
+yabai -m space 5 --layout stack
+yabai -m space 3 --layout stack
+yabai -m space 4 --layout stack
+
+# (Optional) Automatically route your browser(s) to Workspace 2
+yabai -m rule --add app="^Ghostty$" space=^1
+yabai -m rule --add app="^Iterm2$" space=^1
+yabai -m rule --add app="^Terminal$" space=^1
+yabai -m rule --add app="Antigravity IDE" space=3
+yabai -m rule --add app="Antigravity" space=3
+yabai -m rule --add app="^(Code|Visual Studio Code|VSCodium)$" space=3
+yabai -m rule --add app="Zed" space=3
+yabai -m rule --add app="Time Out" space=6
+yabai -m rule --add app="Spotify" space=5
+
+yabai -m rule --add app="Safari" space=2
+yabai -m rule --add app="brave" space=2
+yabai -m rule --add app="Brave Browser" space=2
+yabai -m rule --add app="Helium" space=2
+yabai -m rule --add app="Google Chrome" space=2
+
+
+# padding
+
+# yabai -m config top_padding 12
+# yabai -m config bottom_padding 12
+# yabai -m config left_padding 12
+# yabai -m config right_padding 12
+# yabai -m config window_gap 12
+
+# mouse settings
+yabai -m config mouse_follows_focus on
+
+yabai -m config mouse_modifier ctrl
+# set modifier + left-click drag to move window (default: move)
+yabai -m config mouse_action1 move
+# set modifier + right-click drag to resize window (default: resize)
+yabai -m config mouse_action2 resize
+
+yabai -m config mouse_drop_action swap
+
+yabai -m rule --add app="^System Settings$" sub-layer=above manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+
+# yabai -m config external_bar all:32:0
+
+# Automatically focus the first window when switching to a space
+yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+
+# Clean up ghost splits created when macOS merges native tabs into a window
+yabai -m signal --add event=window_destroyed action="yabai -m space --balance"
+yabai -m rule --add subrole="^AXStandardWindow$" manage=on
