@@ -19,6 +19,7 @@ yabai -m space 4 --layout stack
 yabai -m rule --add app="^Ghostty$" space=^1
 yabai -m rule --add app="^Iterm2$" space=^1
 yabai -m rule --add app="^Terminal$" space=^1
+yabai -m rule --add app="^Herdr$" space=^1
 yabai -m rule --add app="Antigravity IDE" space=3
 yabai -m rule --add app="Antigravity" space=3
 yabai -m rule --add app="^(Code|Visual Studio Code|VSCodium)$" space=3
@@ -58,8 +59,8 @@ yabai -m rule --add app="^Karabiner-Elements$" manage=off
 
 # yabai -m config external_bar all:32:0
 
-# Automatically focus the first window when switching to a space
-yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+# Automatically focus the first window when switching to a space (with fallback for apps like Herdr)
+yabai -m signal --add event=space_changed action="target_app=\$(yabai -m query --windows --space \$YABAI_SPACE_INDEX | jq -r '.[0].app // empty'); target_id=\$(yabai -m query --spaces --space \$YABAI_SPACE_INDEX | jq -r '.\"first-window\" // empty'); [ -n \"\$target_id\" ] && [ \"\$target_id\" -gt 0 ] && yabai -m window --focus \"\$target_id\" 2>/dev/null || ([ -n \"\$target_app\" ] && osascript -e \"tell application \\\"\$target_app\\\" to activate\" 2>/dev/null)"
 
 # Clean up ghost splits created when macOS merges native tabs into a window
 yabai -m signal --add event=window_destroyed action="yabai -m space --balance"
