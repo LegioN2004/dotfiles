@@ -9,11 +9,12 @@ yabai -m config window_placement second_child
 # Set the default global layout (e.g., tiling/bsp)
 yabai -m config layout bsp
 
-# Specifically force Workspace 2 to use the stack layout
+# Workspaces 1-5 use stack layout
+yabai -m space 1 --layout stack
 yabai -m space 2 --layout stack
-yabai -m space 5 --layout stack
 yabai -m space 3 --layout stack
 yabai -m space 4 --layout stack
+yabai -m space 5 --layout stack
 
 # (Optional) Automatically route your browser(s) to Workspace 2
 yabai -m rule --add app="^Ghostty$" space=^1
@@ -56,12 +57,14 @@ yabai -m config mouse_drop_action swap
 yabai -m rule --add app="^System Settings$" sub-layer=above manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Stats$" manage=off
+yabai -m rule --add app="^universalAccessAuthWarn$" manage=off
 
 # yabai -m config external_bar all:32:0
 
-# Automatically focus the first window when switching to a space (with fallback for apps like Herdr)
-yabai -m signal --add event=space_changed action="target_app=\$(yabai -m query --windows --space \$YABAI_SPACE_INDEX | jq -r '.[0].app // empty'); target_id=\$(yabai -m query --spaces --space \$YABAI_SPACE_INDEX | jq -r '.\"first-window\" // empty'); [ -n \"\$target_id\" ] && [ \"\$target_id\" -gt 0 ] && yabai -m window --focus \"\$target_id\" 2>/dev/null || ([ -n \"\$target_app\" ] && osascript -e \"tell application \\\"\$target_app\\\" to activate\" 2>/dev/null)"
+# Automatically focus the active window when switching to a space without launching closed apps
+yabai -m signal --add event=space_changed action="~/.config/yabai/focus_space.sh \"\$YABAI_SPACE_INDEX\""
 
 # Clean up ghost splits created when macOS merges native tabs into a window
-yabai -m signal --add event=window_destroyed action="yabai -m space --balance"
+yabai -m signal --add event=window_destroyed action="yabai -m space --balance 2>/dev/null"
 yabai -m rule --add subrole="^AXStandardWindow$" manage=on
