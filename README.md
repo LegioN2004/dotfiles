@@ -13,10 +13,11 @@ Clean, blazing-fast dotfiles tailored for macOS (Apple Silicon), managed with [G
 | Component | Description |
 | :--- | :--- |
 | **Terminal** | [Ghostty](https://ghostty.org/) — GPU-accelerated, native macOS tabs/splits, clean typography (`ghostty/.config/ghostty/config`). |
+| **Window Manager** | [Yabai](https://github.com/koekeishiya/yabai) & [skhd](https://github.com/koekeishiya/skhd) — Multi-workspace tiling & stack layouts, centered floating mode (`Cmd+Shift+Space`), and auto-focusing space scripts (`yabai/`, `skhd/`). |
 | **Fish Shell** | **~8ms startup**. Zero heavy frameworks. All aliases converted to native Fish abbreviations (`abbr`) for instant space/enter expansion and zero function wrapper overhead. |
 | **Zsh Shell** | **Sub-80ms startup**. Pure DIY setup (Option A) with zero plugin managers. Daily-cached `compinit`, lazy-loaded NVM, and standalone Git aliases (`~/.zsh_git_aliases`). |
 | **Raycast Automation** | Custom sleep and wake scripts in `raycast/.local/bin/`: <br>• `raycast-sleep.sh`: Quits heavy apps (Zen, Brave, IDEs), turns off Bluetooth via `blueutil`, and puts Mac to sleep.<br>• `raycast-wakeup.sh`: Restores Bluetooth and relaunches your workspace. |
-| **Editor & Multiplexer** | [Neovim](https://neovim.io/) and [Tmux](https://github.com/tmux/tmux) with custom sessionizer. |
+| **Editor & Multiplexer** | [Neovim](https://neovim.io/) and [Tmux](https://github.com/tmux/tmux) with TPM, auto-saving & session restore (`tmux-resurrect`), and custom sessionizer. |
 | **CLI Utilities** | [Lazygit](https://github.com/jesseduffield/lazygit), [Btop](https://github.com/aristocratos/btop), [Eza](https://github.com/eza-community/eza), [Zoxide](https://github.com/ajeetdsouza/zoxide). |
 
 ---
@@ -98,3 +99,16 @@ stow raycast
   # Zsh (should be ~70-80ms)
   time zsh -i -c exit
   ```
+
+---
+
+## 📋 System Tweaks & Revert Guide
+
+Looking for system-level configurations, power management settings (stopping overnight DarkWake battery drain), window manager fixes, and instructions on how to revert commands?
+
+👉 **See [docs/SYSTEM_CHANGES.md](docs/SYSTEM_CHANGES.md)** for:
+- **Overnight Battery & DarkWake Tweaks (`pmset`)** — Command ran, battery impact, and revert commands.
+- **Yabai & SKHD Window Management** — Stack layouts, floating mode toggle (`Cmd+Shift+Space`), and focus rules.
+- **Tmux Session Save/Restore** — TPM installation, `tmux-resurrect` setup, and keybinds.
+- **Node & pnpm Environment** — Path resolution fixes across Zsh and Fish.
+- **Shell Performance** — Optimization benchmarks and profile details.
