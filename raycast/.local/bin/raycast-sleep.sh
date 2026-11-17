@@ -4,16 +4,16 @@
 # @raycast.title Sleep Workspace
 # @raycast.mode compact
 # @raycast.packageName Mac Workflow
-# @raycast.description Quit all apps except Finder and Ghostty, disable Bluetooth and sleep
+# @raycast.description Quit all apps except Finder, disable Bluetooth and sleep
 
 set -e
 
 echo "Preparing Mac for sleep..."
 
-# Gracefully quit all running GUI applications except Finder, Ghostty, and Raycast.
+# Gracefully quit all running GUI applications except Finder and Raycast.
 osascript <<'APPLESCRIPT'
-set excludedNames to {"Finder", "ghostty", "Ghostty", "Raycast", "Terminal", "iTerm2", "alacritty", "kitty"}
-set excludedBundles to {"com.apple.finder", "com.mitchellh.ghostty", "com.raycast.macos", "com.apple.Terminal", "com.googlecode.iterm2"}
+set excludedNames to {"Finder", "Raycast"}
+set excludedBundles to {"com.apple.finder", "com.raycast.macos"}
 
 -- Step 1: Gather list of apps to quit upfront (avoids invalid IPC connection errors when apps terminate)
 set appsToQuit to {}

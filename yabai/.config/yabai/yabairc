@@ -25,6 +25,12 @@ yabai -m rule --add app="Antigravity IDE" space=3
 yabai -m rule --add app="Antigravity" space=3
 yabai -m rule --add app="^(Code|Visual Studio Code|VSCodium)$" space=3
 yabai -m rule --add app="Zed" space=3
+
+# Workspace 4: Finder
+yabai -m rule --add app="^Finder$" title="(Co(py|mpleting)|Move|Progress|Info)" manage=off
+yabai -m rule --add app="^Finder$" subrole="^AXDialog$" manage=off
+yabai -m rule --add app="^Finder$" space=4
+
 yabai -m rule --add app="Time Out" space=6
 yabai -m rule --add app="Spotify" space=5
 

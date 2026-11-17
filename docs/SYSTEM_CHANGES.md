@@ -10,6 +10,7 @@ This document tracks system configurations, power management tweaks, window mana
 3. [🧵 Tmux Session Save & Restore (Resurrect / TPM)](#3--tmux-session-save--restore-resurrect--tpm)
 4. [📦 Node, pnpm & Neovim LSP Environment](#4--node-pnpm--neovim-lsp-environment)
 5. [⚡ Shell Startup Optimization (Zsh & Fish)](#5--shell-startup-optimization-zsh--fish)
+6. [🌙 Raycast Sleep & Wake Automation](#6--raycast-sleep--wake-automation)
 
 ---
 
@@ -54,6 +55,7 @@ sudo pmset restoredefaults
 2. **Terminal Tab Split / Blank Space Bug**: Opening new tabs (`Cmd + T`) in `Terminal.app` on Space 1 split the window and left ghost blank halves due to BSP incompatibility with native macOS tab merging and `Stats.app` popups being tiled.
 3. **Focus Lost to Brave Browser**: Switching from Brave (Space 2) to Space 1 failed to transfer macOS keyboard focus to terminal emulators.
 4. **Window Float Toggle**: Added an ergonomic floating toggle shortcut using the `cmd` modifier.
+5. **Finder Interfering on Other Workspaces**: Finder windows had no routing rule in `yabairc`, allowing windows to spawn on Space 2 or 3 and stay open when switching away from Space 4.
 
 ### Changes Made
 * **`skhd/.config/skhd/skhdrc`**:
@@ -64,8 +66,15 @@ sudo pmset restoredefaults
     ```
 * **`yabai/.config/yabai/yabairc`**:
   - Set Workspace 1 to `stack` layout (`yabai -m space 1 --layout stack`), matching Spaces 2–5. Prevents `Cmd + T` from triggering BSP screen splitting.
+  - Added dedicated Finder rules pinning Finder windows strictly to Workspace 4, while keeping file operation dialogs floating:
+    ```bash
+    yabai -m rule --add app="^Finder$" title="(Co(py|mpleting)|Move|Progress|Info)" manage=off
+    yabai -m rule --add app="^Finder$" subrole="^AXDialog$" manage=off
+    yabai -m rule --add app="^Finder$" space=4
+    ```
   - Added `manage=off` rules for `Stats` and `universalAccessAuthWarn`.
   - Routed `space_changed` signal to `~/.config/yabai/focus_space.sh "$YABAI_SPACE_INDEX"`.
+* **Dock Cleanup**: Cleared conflicting manual macOS space assignments (`defaults delete com.apple.spaces "app-bindings" && killall Dock`).
 * **`yabai/.config/yabai/focus_space.sh`**:
   - Dedicated script that safely focuses the active window and makes its application frontmost via System Events *only if the application is currently running*.
 
@@ -155,3 +164,25 @@ time fish -i -c exit
 # Zsh (target: ~70-80ms)
 time zsh -i -c exit
 ```
+
+---
+
+## 6. 🌙 Raycast Sleep & Wake Automation
+
+### Problem & Goal
+The sleep script was keeping terminal emulators (Ghostty/Terminal/iTerm2) open, leaving stray windows and active processes. The user workflow uses **Herdr** on Space 1 and requires that **everything except Finder** terminates cleanly before sleep to conserve battery and reset workspace state.
+
+### Changes Made
+* **`raycast/.local/bin/raycast-sleep.sh`**:
+  - Excluded list narrowed to strictly `{"Finder", "Raycast"}` (`com.apple.finder`, `com.raycast.macos`).
+  - All running GUI applications (Herdr, Brave Browser, VS Code, Time Out, Spotify, etc.) are gracefully closed via AppleScript before entering sleep.
+  - Bluetooth is powered off via `blueutil --power 0` to prevent connected peripherals (like Bluetooth mice) from waking the Mac.
+  - Sleep is triggered via `/usr/bin/pmset sleepnow`.
+* **`raycast/.local/bin/raycast-wakeup.sh`**:
+  - Restores Bluetooth (`blueutil --power 1`).
+  - Launches primary workflow apps: `Brave Browser` (Workspace 2), `Herdr` (Workspace 1), and `Time Out` (Workspace 6).
+
+### How to Revert
+To keep additional applications open during sleep (e.g., Ghostty or Terminal):
+1. In `raycast/.local/bin/raycast-sleep.sh`, add application names to `excludedNames` (e.g. `set excludedNames to {"Finder", "Raycast", "Ghostty"}`).
+2. In `raycast/.local/bin/raycast-wakeup.sh`, adjust the `open -a` commands.
