@@ -24,6 +24,6 @@ echo "Bluetooth enabled."
 # Restore applications
 open -a "Brave Browser"
 open -a "Time Out"
-open -a "Herdr"
+open -a "Ghostty"
 
 echo "Workspace restored."
