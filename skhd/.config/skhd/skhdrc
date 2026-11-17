@@ -45,7 +45,7 @@ alt - p : yabai -m window --focus prev || yabai -m window --focus last
 # cmd - m : yabai -m window --toggle zoom-fullscreen
 
 # toggle window float
-# cmd - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+cmd + shift - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
 # move window and split
 # ctrl + cmd - j : yabai -m window --warp south
