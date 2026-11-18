@@ -16,29 +16,39 @@ yabai -m space 3 --layout stack
 yabai -m space 4 --layout stack
 yabai -m space 5 --layout stack
 
-# (Optional) Automatically route your browser(s) to Workspace 2
+# Workspace 1: Terminals
 yabai -m rule --add app="^Ghostty$" space=^1
 yabai -m rule --add app="^Iterm2$" space=^1
 yabai -m rule --add app="^Terminal$" space=^1
 yabai -m rule --add app="^Herdr$" space=^1
-yabai -m rule --add app="Antigravity IDE" space=3
-yabai -m rule --add app="Antigravity" space=3
-yabai -m rule --add app="^(Code|Visual Studio Code|VSCodium)$" space=3
-yabai -m rule --add app="Zed" space=3
+
+# Workspace 2: Browsers
+yabai -m rule --add app="Safari" space=2
+yabai -m rule --add app="brave" space=2
+yabai -m rule --add app="Brave Browser" space=2
+yabai -m rule --add app="Helium" space=2
+yabai -m rule --add app="Google Chrome" space=2
+yabai -m rule --add app="Tor Browser" space=2
+
+# Workspace 3: IDEs & Code Editors
+yabai -m rule --add app="^[Aa]ntigravity.*$" space=3
+yabai -m rule --add app="^(Code|Visual Studio Code|Code - Insiders|VSCodium)$" space=3
+yabai -m rule --add app="^(Cursor|Windsurf|Trae|Positron)$" space=3
+yabai -m rule --add app="^Zed.*$" space=3
+yabai -m rule --add app="^Xcode$" space=3
+yabai -m rule --add app="^(IntelliJ IDEA.*|OpenIDEA|PyCharm.*|WebStorm|CLion|Rider|DataGrip|GoLand|PhpStorm|RubyMine|Android Studio|RustRover|Fleet)$" space=3
+yabai -m rule --add app="^(Sublime Text|Nova|Eclipse)$" space=3
 
 # Workspace 4: Finder
 yabai -m rule --add app="^Finder$" title="(Co(py|mpleting)|Move|Progress|Info)" manage=off
 yabai -m rule --add app="^Finder$" subrole="^AXDialog$" manage=off
 yabai -m rule --add app="^Finder$" space=4
 
-yabai -m rule --add app="^Time Out$" space=10
+# Workspace 5: Spotify
 yabai -m rule --add app="Spotify" space=5
 
-yabai -m rule --add app="Safari" space=2
-yabai -m rule --add app="brave" space=2
-yabai -m rule --add app="Brave Browser" space=2
-yabai -m rule --add app="Helium" space=2
-yabai -m rule --add app="Google Chrome" space=2
+# Workspace 10: Time Out
+yabai -m rule --add app="^Time Out$" space=10
 
 
 # padding

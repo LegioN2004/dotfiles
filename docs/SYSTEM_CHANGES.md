@@ -57,6 +57,7 @@ sudo pmset restoredefaults
 4. **Window Float Toggle**: Added an ergonomic floating toggle shortcut using the `cmd` modifier.
 5. **Finder Interfering on Other Workspaces**: Finder windows had no routing rule in `yabairc`, allowing windows to spawn on Space 2 or 3 and stay open when switching away from Space 4.
 6. **Time Out Routing to Workspace 10**: Pinned `Time Out` permanently to Workspace 10 (`space=10`), with full keyboard navigation (`cmd - 0` to focus space 10, `cmd + shift - 0` to send window to space 10).
+7. **IDE & Code Editor Routing to Workspace 3**: Unified and pinned all IDEs (VS Code, Antigravity, Zed, Cursor, Windsurf, Xcode, JetBrains suite, Sublime Text) to Workspace 3 (`space=3`).
 
 ### Changes Made
 * **`skhd/.config/skhd/skhdrc`**:
@@ -81,6 +82,16 @@ sudo pmset restoredefaults
   - Routed `Time Out` to Space 10:
     ```bash
     yabai -m rule --add app="^Time Out$" space=10
+    ```
+  - Routed all IDEs and Code Editors to Workspace 3:
+    ```bash
+    yabai -m rule --add app="^[Aa]ntigravity.*$" space=3
+    yabai -m rule --add app="^(Code|Visual Studio Code|Code - Insiders|VSCodium)$" space=3
+    yabai -m rule --add app="^(Cursor|Windsurf|Trae|Positron)$" space=3
+    yabai -m rule --add app="^Zed.*$" space=3
+    yabai -m rule --add app="^Xcode$" space=3
+    yabai -m rule --add app="^(IntelliJ IDEA.*|OpenIDEA|PyCharm.*|WebStorm|CLion|Rider|DataGrip|GoLand|PhpStorm|RubyMine|Android Studio|RustRover|Fleet)$" space=3
+    yabai -m rule --add app="^(Sublime Text|Nova|Eclipse)$" space=3
     ```
   - Added `manage=off` rules for `Stats` and `universalAccessAuthWarn`.
   - Routed `space_changed` signal to `~/.config/yabai/focus_space.sh "$YABAI_SPACE_INDEX"`.
