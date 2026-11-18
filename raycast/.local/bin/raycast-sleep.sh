@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # @raycast.schemaVersion 1
-# @raycast.title Sleep Workspace
+# @raycast.title Sleep down
 # @raycast.mode compact
 # @raycast.packageName Mac Workflow
 # @raycast.description Quit all apps except Finder, disable Bluetooth and sleep
@@ -33,7 +33,7 @@ tell application "System Events"
         try
             set bId to bundle identifier of p
         end try
-        
+
         if (pName is not in excludedNames) and (bId is not in excludedBundles) then
             set end of appsToQuit to {appName:pName, bundleId:bId}
         end if
