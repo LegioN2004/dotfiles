@@ -31,7 +31,7 @@ yabai -m rule --add app="^Finder$" title="(Co(py|mpleting)|Move|Progress|Info)" 
 yabai -m rule --add app="^Finder$" subrole="^AXDialog$" manage=off
 yabai -m rule --add app="^Finder$" space=4
 
-yabai -m rule --add app="Time Out" space=6
+yabai -m rule --add app="^Time Out$" space=10
 yabai -m rule --add app="Spotify" space=5
 
 yabai -m rule --add app="Safari" space=2

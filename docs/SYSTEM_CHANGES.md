@@ -56,6 +56,7 @@ sudo pmset restoredefaults
 3. **Focus Lost to Brave Browser**: Switching from Brave (Space 2) to Space 1 failed to transfer macOS keyboard focus to terminal emulators.
 4. **Window Float Toggle**: Added an ergonomic floating toggle shortcut using the `cmd` modifier.
 5. **Finder Interfering on Other Workspaces**: Finder windows had no routing rule in `yabairc`, allowing windows to spawn on Space 2 or 3 and stay open when switching away from Space 4.
+6. **Time Out Routing to Workspace 10**: Pinned `Time Out` permanently to Workspace 10 (`space=10`), with full keyboard navigation (`cmd - 0` to focus space 10, `cmd + shift - 0` to send window to space 10).
 
 ### Changes Made
 * **`skhd/.config/skhd/skhdrc`**:
@@ -64,6 +65,11 @@ sudo pmset restoredefaults
     ```sh
     cmd + shift - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
     ```
+  - Added Workspace 10 focus and window transfer shortcuts:
+    ```sh
+    cmd - 0 : yabai -m space --focus 10
+    cmd + shift - 0 : yabai -m window --space 10
+    ```
 * **`yabai/.config/yabai/yabairc`**:
   - Set Workspace 1 to `stack` layout (`yabai -m space 1 --layout stack`), matching Spaces 2–5. Prevents `Cmd + T` from triggering BSP screen splitting.
   - Added dedicated Finder rules pinning Finder windows strictly to Workspace 4, while keeping file operation dialogs floating:
@@ -71,6 +77,10 @@ sudo pmset restoredefaults
     yabai -m rule --add app="^Finder$" title="(Co(py|mpleting)|Move|Progress|Info)" manage=off
     yabai -m rule --add app="^Finder$" subrole="^AXDialog$" manage=off
     yabai -m rule --add app="^Finder$" space=4
+    ```
+  - Routed `Time Out` to Space 10:
+    ```bash
+    yabai -m rule --add app="^Time Out$" space=10
     ```
   - Added `manage=off` rules for `Stats` and `universalAccessAuthWarn`.
   - Routed `space_changed` signal to `~/.config/yabai/focus_space.sh "$YABAI_SPACE_INDEX"`.
@@ -180,7 +190,7 @@ The sleep script was keeping terminal emulators (Ghostty/Terminal/iTerm2) open, 
   - Sleep is triggered via `/usr/bin/pmset sleepnow`.
 * **`raycast/.local/bin/raycast-wakeup.sh`**:
   - Restores Bluetooth (`blueutil --power 1`).
-  - Launches primary workflow apps: `Brave Browser` (Workspace 2), `Herdr` (Workspace 1), and `Time Out` (Workspace 6).
+  - Launches primary workflow apps: `Brave Browser` (Workspace 2), `Herdr` (Workspace 1), `Time Out` (Workspace 10), and `Stats` (Menu Bar).
 
 ### How to Revert
 To keep additional applications open during sleep (e.g., Ghostty or Terminal):
