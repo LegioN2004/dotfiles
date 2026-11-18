@@ -197,9 +197,13 @@ The user workflow uses **Herdr** on Space 1 and requires that **everything excep
 
 ### Changes Made
 * **`ghostty/.config/ghostty/config`**:
-  - Added `confirm-close-surface = false`: Allows Ghostty to close instantly when requested by the sleep script without prompting for confirmation.
+  - Added `confirm-close-surface = false`: Allows Ghostty to close instantly without prompting for confirmation.
+  - Symlinked `~/Library/Application Support/com.mitchellh.ghostty/config.ghostty` and `config` to `~/.config/ghostty/config` to eliminate macOS config shadowing.
   - Background `tmux` sessions remain completely intact because the `tmux` daemon runs detached from the terminal window client.
+* **`zsh/.zshrc` & `fish/.config/fish/config.fish`**:
+  - Automatically attaches to an existing `tmux` session if present on Ghostty startup (`tmux has-session 2>/dev/null && tmux attach-session`).
 * **`raycast/.local/bin/raycast-sleep.sh`**:
+  - Added `tmux detach-client -a`: Detaches all active tmux clients before requesting GUI apps to exit, ensuring terminal surfaces are idle.
   - Excluded list narrowed to strictly `{"Finder", "Raycast"}` (`com.apple.finder`, `com.raycast.macos`).
   - All running GUI applications (Herdr, Brave Browser, VS Code, Time Out, Spotify, etc.) are gracefully closed via AppleScript before entering sleep.
   - Bluetooth is powered off via `blueutil --power 0` to prevent connected peripherals (like Bluetooth mice) from waking the Mac.

@@ -136,3 +136,10 @@ set -gx BUN_INSTALL "$HOME/.bun"
 if test -d "$BUN_INSTALL/bin"; and not contains "$BUN_INSTALL/bin" $PATH
     set -gx PATH "$BUN_INSTALL/bin" $PATH
 end
+
+# Auto-attach to existing tmux session on Ghostty startup
+if test -z "$TMUX"; and test "$TERM_PROGRAM" = "ghostty" -o "$TERM_PROGRAM" = "herdr"; and test -t 0; and test -z "$VSCODE_PID"
+    if tmux has-session 2>/dev/null
+        tmux attach-session 2>/dev/null
+    end
+end

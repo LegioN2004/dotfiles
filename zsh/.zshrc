@@ -135,6 +135,13 @@ bindkey -s '\es' "tmux-sessionizer -s 3\n"
 # tmux alias
 alias cleartmux="tmux clearhist"
 
+# Auto-attach to existing tmux session on Ghostty startup
+if [[ -z "$TMUX" ]] && [[ "$TERM_PROGRAM" == "ghostty" || "$TERM_PROGRAM" == "herdr" ]] && [[ -t 0 ]] && [[ -z "$VSCODE_PID" ]] && [[ -z "$ANTIGRAVITY_PID" ]]; then
+  if tmux has-session 2>/dev/null; then
+    tmux attach-session 2>/dev/null
+  fi
+fi
+
 # claude code nvidia nim 
 export ANTHROPIC_AUTH_TOKEN="freecc"
 export ANTHROPIC_BASE_URL="http://localhost:8082"

@@ -10,6 +10,11 @@ set -e
 
 echo "Preparing Mac for sleep..."
 
+# Gracefully detach all connected tmux clients so terminals close cleanly without prompt
+if command -v tmux >/dev/null 2>&1; then
+    tmux detach-client -a 2>/dev/null || true
+fi
+
 # Gracefully quit all running GUI applications except Finder and Raycast.
 osascript <<'APPLESCRIPT'
 set excludedNames to {"Finder", "Raycast"}
