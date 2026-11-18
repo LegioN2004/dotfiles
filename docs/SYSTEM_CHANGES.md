@@ -191,9 +191,14 @@ time zsh -i -c exit
 ## 6. 🌙 Raycast Sleep & Wake Automation
 
 ### Problem & Goal
-The sleep script was keeping terminal emulators (Ghostty/Terminal/iTerm2) open, leaving stray windows and active processes. The user workflow uses **Herdr** on Space 1 and requires that **everything except Finder** terminates cleanly before sleep to conserve battery and reset workspace state.
+The sleep script was keeping terminal emulators (Ghostty/Terminal/iTerm2) open, leaving stray windows and active processes. Furthermore, Ghostty prompted with a modal confirmation dialog ("Terminate running processes?") whenever a background tool or `tmux` session was running, causing the sleep script to block until manually dismissed.
+
+The user workflow uses **Herdr** on Space 1 and requires that **everything except Finder** terminates cleanly before sleep without manual prompts, while preserving background tmux sessions.
 
 ### Changes Made
+* **`ghostty/.config/ghostty/config`**:
+  - Added `confirm-close-surface = false`: Allows Ghostty to close instantly when requested by the sleep script without prompting for confirmation.
+  - Background `tmux` sessions remain completely intact because the `tmux` daemon runs detached from the terminal window client.
 * **`raycast/.local/bin/raycast-sleep.sh`**:
   - Excluded list narrowed to strictly `{"Finder", "Raycast"}` (`com.apple.finder`, `com.raycast.macos`).
   - All running GUI applications (Herdr, Brave Browser, VS Code, Time Out, Spotify, etc.) are gracefully closed via AppleScript before entering sleep.

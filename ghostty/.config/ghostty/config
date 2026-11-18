@@ -84,3 +84,5 @@ macos-titlebar-style = transparent
 background-opacity = 0.8
 
 background-blur = 80
+
+confirm-close-surface = false
