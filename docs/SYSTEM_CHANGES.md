@@ -188,12 +188,12 @@ time zsh -i -c exit
 
 ---
 
-## 6. 🌙 Raycast Sleep & Wake Automation
+## 6. 🌙 Raycast Workflow Automation (Sleep, Wake & Quit All)
 
 ### Problem & Goal
 The sleep script was keeping terminal emulators (Ghostty/Terminal/iTerm2) open, leaving stray windows and active processes. Furthermore, Ghostty prompted with a modal confirmation dialog ("Terminate running processes?") whenever a background tool or `tmux` session was running, causing the sleep script to block until manually dismissed.
 
-The user workflow uses **Herdr** on Space 1 and requires that **everything except Finder** terminates cleanly before sleep without manual prompts, while preserving background tmux sessions.
+The user workflow uses **Herdr** on Space 1 and requires that **everything except Finder** terminates cleanly before sleep or when resetting work sessions without manual prompts, while preserving background tmux sessions.
 
 ### Changes Made
 * **`ghostty/.config/ghostty/config`**:
@@ -202,6 +202,8 @@ The user workflow uses **Herdr** on Space 1 and requires that **everything excep
   - Background `tmux` sessions remain completely intact because the `tmux` daemon runs detached from the terminal window client.
 * **`zsh/.zshrc` & `fish/.config/fish/config.fish`**:
   - Automatically attaches to an existing `tmux` session if present on Ghostty startup (`tmux has-session 2>/dev/null && tmux attach-session`).
+* **`raycast/.local/bin/raycast-quit-all.sh`**:
+  - Standalone Raycast script command ("Quit All") to gracefully quit all open GUI applications except Finder without putting the Mac to sleep or toggling Bluetooth. Detaches active tmux clients safely.
 * **`raycast/.local/bin/raycast-sleep.sh`**:
   - Added `tmux detach-client -a`: Detaches all active tmux clients before requesting GUI apps to exit, ensuring terminal surfaces are idle.
   - Excluded list narrowed to strictly `{"Finder", "Raycast"}` (`com.apple.finder`, `com.raycast.macos`).

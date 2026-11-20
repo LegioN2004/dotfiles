@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# @raycast.schemaVersion 1
+# @raycast.title Quit All
+# @raycast.mode compact
+# @raycast.packageName Mac Workflow
+# @raycast.description Quit all open applications except Finder
+
+set -e
+
+echo "Closing open applications..."
+
+# Gracefully detach all connected tmux clients so terminals close cleanly without prompt
+if command -v tmux >/dev/null 2>&1; then
+    tmux detach-client -a 2>/dev/null || true
+fi
+
+# Gracefully quit all running GUI applications except Finder and Raycast.
+osascript <<'APPLESCRIPT'
+set excludedNames to {"Finder", "Raycast"}
+set excludedBundles to {"com.apple.finder", "com.raycast.macos"}
+
+-- Step 1: Gather list of apps to quit upfront (avoids invalid IPC connection errors when apps terminate)
+set appsToQuit to {}
+tell application "System Events"
+    set procList to every application process whose background only is false
+    repeat with p in procList
+        set pName to ""
+        set bId to ""
+        try
+            set pName to name of p
+        end try
+        try
+            set bId to bundle identifier of p
+        end try
+
+        if (pName is not in excludedNames) and (bId is not in excludedBundles) then
+            set end of appsToQuit to {appName:pName, bundleId:bId}
+        end if
+    end repeat
+end tell
+
+-- Step 2: Request each target app to quit
+repeat with appInfo in appsToQuit
+    set bId to bundleId of appInfo
+    set aName to appName of appInfo
+    if bId is not "" then
+        try
+            tell application id bId to quit
+        end try
+    else if aName is not "" then
+        try
+            tell application aName to quit
+        end try
+    end if
+end repeat
+
+-- Step 3: Wait up to 5 seconds for apps to exit cleanly without raising errors
+repeat with attempt from 1 to 10
+    set stillRunning to false
+    tell application "System Events"
+        set currentProcs to every application process whose background only is false
+        repeat with p in currentProcs
+            set pName to ""
+            try
+                set pName to name of p
+            end try
+            if (pName is not "") and (pName is not in excludedNames) then
+                set stillRunning to true
+                exit repeat
+            end if
+        end repeat
+    end tell
+    if not stillRunning then
+        exit repeat
+    end if
+    delay 0.5
+end repeat
+APPLESCRIPT
+
+echo "All applications closed."
