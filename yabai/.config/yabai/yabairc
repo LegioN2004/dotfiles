@@ -42,7 +42,7 @@ yabai -m rule --add app="^(Sublime Text|Nova|Eclipse)$" space=3
 # Workspace 4: Finder
 yabai -m rule --add app="^Finder$" title="(Co(py|mpleting)|Move|Progress|Info)" manage=off
 yabai -m rule --add app="^Finder$" subrole="^AXDialog$" manage=off
-yabai -m rule --add app="^Finder$" space=4
+yabai -m rule --add app="^Finder$" space=^4
 
 # Workspace 5: Spotify
 yabai -m rule --add app="Spotify" space=5
@@ -80,6 +80,9 @@ yabai -m rule --add app="^universalAccessAuthWarn$" manage=off
 
 # Automatically focus the active window when switching to a space without launching closed apps
 yabai -m signal --add event=space_changed action="~/.config/yabai/focus_space.sh \"\$YABAI_SPACE_INDEX\""
+
+# Route and keep Finder strictly on Space 4 when activated or clicked in Dock
+yabai -m signal --add event=application_activated app="^Finder$" action="~/.config/yabai/route_finder.sh"
 
 # Clean up ghost splits created when macOS merges native tabs into a window
 yabai -m signal --add event=window_destroyed action="yabai -m space --balance 2>/dev/null"

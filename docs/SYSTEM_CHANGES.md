@@ -73,12 +73,14 @@ sudo pmset restoredefaults
     ```
 * **`yabai/.config/yabai/yabairc`**:
   - Set Workspace 1 to `stack` layout (`yabai -m space 1 --layout stack`), matching Spaces 2–5. Prevents `Cmd + T` from triggering BSP screen splitting.
-  - Added dedicated Finder rules pinning Finder windows strictly to Workspace 4, while keeping file operation dialogs floating:
+  - Added dedicated Finder rules pinning Finder windows strictly to Workspace 4 and following focus, while keeping file operation dialogs floating:
     ```bash
     yabai -m rule --add app="^Finder$" title="(Co(py|mpleting)|Move|Progress|Info)" manage=off
     yabai -m rule --add app="^Finder$" subrole="^AXDialog$" manage=off
-    yabai -m rule --add app="^Finder$" space=4
+    yabai -m rule --add app="^Finder$" space=^4
     ```
+  - Added dedicated Finder activation router (`route_finder.sh`) and signal (`event=application_activated app="^Finder$"`): Sweeps any misplaced Finder window back to Workspace 4 and switches view to Workspace 4 when clicked in Dock.
+  - Enabled native macOS Space auto-switching on activation: `defaults write -g AppleSpacesSwitchOnActivate -bool true`.
   - Routed `Time Out` to Space 10:
     ```bash
     yabai -m rule --add app="^Time Out$" space=10
