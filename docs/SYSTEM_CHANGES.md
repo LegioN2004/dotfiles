@@ -11,6 +11,7 @@ This document tracks system configurations, power management tweaks, window mana
 4. [📦 Node, pnpm & Neovim LSP Environment](#4--node-pnpm--neovim-lsp-environment)
 5. [⚡ Shell Startup Optimization (Zsh & Fish)](#5--shell-startup-optimization-zsh--fish)
 6. [🌙 Raycast Sleep & Wake Automation](#6--raycast-sleep--wake-automation)
+7. [📐 Raycast Notion LaTeX & Markdown Clipboard Cleaner](#7--raycast-notion-latex--markdown-clipboard-cleaner)
 
 ---
 
@@ -220,3 +221,47 @@ The user workflow uses **Herdr** on Space 1 and requires that **everything excep
 To keep additional applications open during sleep (e.g., Ghostty or Terminal):
 1. In `raycast/.local/bin/raycast-sleep.sh`, add application names to `excludedNames` (e.g. `set excludedNames to {"Finder", "Raycast", "Ghostty"}`).
 2. In `raycast/.local/bin/raycast-wakeup.sh`, adjust the `open -a` commands.
+
+---
+
+## 7. 📐 Raycast Notion LaTeX & Markdown Clipboard Cleaner
+
+### Problem & Goal
+Pasting raw Markdown and LaTeX math copied from ChatGPT or Gemini into Notion frequently breaks equation rendering:
+* Display math formatted as `\[ ... \]` or inside code blocks (` ```latex `) is pasted as raw text or standard code blocks instead of Notion's native equation blocks.
+* Inline equations formatted as `\( ... \)` are ignored by Notion.
+* Notion requires inline equations to have no leading or trailing whitespace inside the dollar signs (`$x$` renders, but `$ x $` fails).
+* Currency expressions (e.g. `$50 and $100`) must be safely preserved and not mistaken for math.
+
+### Solution
+Created `raycast/.local/bin/raycast-clean-latex.sh`, a standalone Raycast script command (`Clean LaTeX for Notion`) designed for instant, single-hotkey execution.
+
+#### Features
+1. **Zero-Latency Regex Engine (< 5ms)**:
+   - Converts `\[ ... \]` to Notion-native display equations (`$$\n...\n$$`) with proper blank line spacing.
+   - Converts `\( ... \)` and `$ ... $` with spaces to trimmed `$formula$`.
+   - Converts ```` ```latex ```` / ```` ```math ```` blocks into Notion display equation blocks.
+   - Protects non-math code blocks (Python, JS, Shell) so code with `$` or brackets is untouched.
+   - Preserves currency values like `$50`.
+   - Decodes common HTML entities (`&nbsp;`, `&lt;`, `&gt;`, `&amp;`, `&times;`, etc.).
+2. **Local AI Repair Fallback (LM Studio / MLX / Ollama)**:
+   - Automatically detects syntax corruption (mismatched `\begin` / `\end` environments, unbalanced `\left` / `\right` delimiters).
+   - If corrupted or if triggered with `--ai`, it connects to local OpenAI-compatible endpoints (`localhost:1234` for LM Studio/MLX or `localhost:11434` for Ollama) with a 3.5s timeout.
+   - Falls back gracefully to the regex-cleaned text if local servers are offline.
+3. **Raycast Compact HUD Feedback**:
+   - Displays a clean toast notification: e.g. `✅ Notion LaTeX (1 block, 2 inline)`.
+
+### How to Use & Bind Hotkey
+1. Open **Raycast Settings** (`Cmd + ,`) $\rightarrow$ **Extensions** $\rightarrow$ **Scripts**.
+2. Find **Clean LaTeX for Notion**.
+3. Assign a global hotkey (e.g. `Cmd + Shift + V` or `Hyper + N`).
+4. **Workflow**:
+   - Copy any markdown/math from ChatGPT or Gemini (`Cmd + C`).
+   - Hit your assigned Raycast hotkey.
+   - Paste directly into Notion (`Cmd + V`). All equations render natively.
+
+### CLI Testing
+```bash
+# Test inline and display math cleaning
+./raycast/.local/bin/raycast-clean-latex.sh --test "Inline: \( x^2 \) and display: \[ \int_0^1 f(x) dx \]"
+```
