@@ -98,7 +98,7 @@ def call_local_llm(prompt_text: str) -> str | None:
     system_prompt = (
         "You are an expert LaTeX and Markdown repair tool. "
         "Fix broken LaTeX syntax, unclosed brackets, unbalanced \\left/\\right, missing delimiters, "
-        "and format display math as '$$\\n...\\n$$' and inline math as '$...$' for Notion. "
+        "and format display math as '$$\\n...\\n$$' and inline math as '$$...$$' (double dollars) for Notion paste. "
         "Preserve all other text, markdown structure, and code blocks exactly. "
         "Do NOT output any thoughts, preamble, or markdown code fence around the response. "
         "Output ONLY the repaired markdown."
@@ -161,22 +161,24 @@ def clean_latex_markdown(text: str, force_ai: bool = False) -> tuple[str, str]:
 
     processed = re.sub(r"(?<!\$)\$\$\s*(.*?)\s*\$\$(?!\$)", format_display_blocks, processed, flags=re.DOTALL)
 
-    # Step 4: Convert \( ... \) inline math to $...$ without internal whitespace
+    # Step 4: Convert \( ... \) and single $...$ to Notion inline math ($$...$$ without internal whitespace)
+    # Notion uniquely requires double dollar signs $$...$$ for inline math on paste; single $ is ignored.
     def replace_inline_paren(m):
         content = m.group(1).strip()
-        return f"${content}$"
+        return f"$${content}$$"
 
     processed = re.sub(r"\\\(\s*(.*?)\s*\\\)", replace_inline_paren, processed, flags=re.DOTALL)
 
-    # Step 5: Fix inner spaces inside $ ... $ only when it's genuinely math (avoids currency)
+    # Step 5: Convert single $ ... $ to $$...$$ only when it's genuinely math (avoids currency like $50)
     def fix_inline_dollar(m):
         full = m.group(0)
         content = m.group(1)
         trimmed = content.strip()
         if is_math_content(trimmed):
-            return f"${trimmed}$"
+            return f"$${trimmed}$$"
         return full
 
+    # Matches single $...$ that are not already $$...$$
     processed = re.sub(r"(?<!\$)\$(?!\$)([^\$\n]+?)(?<!\$)\$(?!\$)", fix_inline_dollar, processed)
 
     # Step 6: Normalize common HTML entities
@@ -211,8 +213,8 @@ def clean_latex_markdown(text: str, force_ai: bool = False) -> tuple[str, str]:
             ai_used = True
 
     # Count equations for stats in Raycast HUD
-    num_blocks = len(re.findall(r"(?<!\$)\$\$\s*(.*?)\s*\$\$(?!\$)", processed, flags=re.DOTALL))
-    num_inline = len(re.findall(r"(?<!\$)\$(?!\$)([^\$\n]+?)(?<!\$)\$(?!\$)", processed))
+    num_blocks = len(re.findall(r"(?<!\$)\$\$\n\s*(.*?)\s*\n\$\$(?!\$)", processed, flags=re.DOTALL))
+    num_inline = len(re.findall(r"(?<!\$)\$\$([^\$\n]+?)\$\$(?!\$)", processed))
 
     summary_parts = []
     if num_blocks:
