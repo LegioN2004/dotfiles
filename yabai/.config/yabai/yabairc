@@ -38,6 +38,7 @@ yabai -m rule --add app="^Zed.*$" space=3
 yabai -m rule --add app="^Xcode$" space=3
 yabai -m rule --add app="^(IntelliJ IDEA.*|OpenIDEA|PyCharm.*|WebStorm|CLion|Rider|DataGrip|GoLand|PhpStorm|RubyMine|Android Studio|RustRover|Fleet)$" space=3
 yabai -m rule --add app="^(Sublime Text|Nova|Eclipse)$" space=3
+yabai -m rule --add app="^[Ee]macs.*$" space=3
 
 # Workspace 4: Finder
 yabai -m rule --add app="^Finder$" title="(Co(py|mpleting)|Move|Progress|Info)" manage=off
@@ -84,6 +85,16 @@ yabai -m signal --add event=space_changed action="~/.config/yabai/focus_space.sh
 # Route and keep Finder strictly on Space 4 when activated or clicked in Dock
 yabai -m signal --add event=application_activated app="^Finder$" action="~/.config/yabai/route_finder.sh"
 
+# Enforce Space 3 for Emacs and Space 10 for Time Out even when unhidden, re-focused, or spawned asynchronously
+for ev in window_created window_focused application_visible application_activated; do
+    yabai -m signal --add event="$ev" app="^[Ee]macs.*$" action="~/.config/yabai/route_app.sh '^[Ee]macs.*$' 3"
+    yabai -m signal --add event="$ev" app="^Time Out$" action="~/.config/yabai/route_app.sh '^Time Out$' 10"
+done
+
 # Clean up ghost splits created when macOS merges native tabs into a window
 yabai -m signal --add event=window_destroyed action="yabai -m space --balance 2>/dev/null"
 yabai -m rule --add subrole="^AXStandardWindow$" manage=on
+
+# Ensure already-open Emacs and Time Out windows are routed immediately on yabai reload
+~/.config/yabai/route_app.sh "^[Ee]macs.*$" 3
+~/.config/yabai/route_app.sh "^Time Out$" 10

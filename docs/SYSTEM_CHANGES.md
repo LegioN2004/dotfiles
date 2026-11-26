@@ -80,11 +80,12 @@ sudo pmset restoredefaults
     yabai -m rule --add app="^Finder$" subrole="^AXDialog$" manage=off
     yabai -m rule --add app="^Finder$" space=^4
     ```
-  - Added dedicated Finder activation router (`route_finder.sh`) and signal (`event=application_activated app="^Finder$"`): Sweeps any misplaced Finder window back to Workspace 4 and switches view to Workspace 4 when clicked in Dock.
+  - Added shared window routing helper (`route_app.sh`) plus dedicated Finder activation router (`route_finder.sh`) and signal (`event=application_activated app="^Finder$"`): Sweeps any misplaced Finder window back to Workspace 4 and switches view to Workspace 4 when clicked in Dock.
   - Enabled native macOS Space auto-switching on activation: `defaults write -g AppleSpacesSwitchOnActivate -bool true`.
-  - Routed `Time Out` to Space 10:
+  - Routed `Time Out` to Space 10 and enforced Space 10 / Space 3 pinning via `window_created`, `window_focused`, `application_visible`, and `application_activated` signals (so unhidden or asynchronously created windows stay on their spaces):
     ```bash
     yabai -m rule --add app="^Time Out$" space=10
+    yabai -m rule --add app="^[Ee]macs.*$" space=3
     ```
   - Routed all IDEs and Code Editors to Workspace 3:
     ```bash
@@ -95,6 +96,7 @@ sudo pmset restoredefaults
     yabai -m rule --add app="^Xcode$" space=3
     yabai -m rule --add app="^(IntelliJ IDEA.*|OpenIDEA|PyCharm.*|WebStorm|CLion|Rider|DataGrip|GoLand|PhpStorm|RubyMine|Android Studio|RustRover|Fleet)$" space=3
     yabai -m rule --add app="^(Sublime Text|Nova|Eclipse)$" space=3
+    yabai -m rule --add app="^[Ee]macs.*$" space=3
     ```
   - Added `manage=off` rules for `Stats` and `universalAccessAuthWarn`.
   - Routed `space_changed` signal to `~/.config/yabai/focus_space.sh "$YABAI_SPACE_INDEX"`.
