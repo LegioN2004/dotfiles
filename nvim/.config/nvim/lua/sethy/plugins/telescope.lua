@@ -47,7 +47,7 @@ return {
 
 		vim.keymap.set(
 			"n",
-			"<leader>ths",
+			"<leader>tT",
 			"<cmd>Telescope themes<CR>",
 			{ noremap = true, silent = true, desc = "Theme Switcher" }
 		)

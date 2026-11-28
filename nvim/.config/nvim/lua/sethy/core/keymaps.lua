@@ -32,7 +32,7 @@ vim.keymap.set({ "n", "v" }, "<leader>d", '"_d', { desc = "Delete to blackhole (
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<C-c>", ":nohl<CR>", { desc = "Clear search hl", silent = true })
 -- format without prettier using the built in
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, { desc = "Format buffer via LSP" })
 
 -- Unmaps Q in normal mode
 vim.keymap.set("n", "Q", "<nop>")
@@ -46,13 +46,13 @@ vim.keymap.set("n", "x", '"_x', opts)
 -- Replace the word cursor is on globally
 vim.keymap.set(
 	"n",
-	"<leader>s",
+	"<leader>sr",
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "Replace word cursor is on globally" }
 )
 
 -- Executes shell command from in here making file executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "makes file executable" })
+vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "makes file executable" })
 
 -- Hightlight yanking
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -64,12 +64,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- tab stuff
-vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>") --open new tab
-vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>") --close current tab
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "Open new empty tab" })
+vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 -- Tab movement (your file uses <TAB> and <S-TAB> for tabn/tabp, but not these)
 vim.api.nvim_set_keymap("n", "<tab>", ":tabnext<Return>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-tab>", ":tabprevious<Return>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>tnt", "<cmd>tabnew %<CR>") --open current tab in new tab
+vim.keymap.set("n", "<leader>tN", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- Copy filepath to the clipboard
 vim.keymap.set("n", "<leader>fp", function()
@@ -107,8 +107,8 @@ vim.keymap.set("n", "<C-m>", "<C-i>", { noremap = true, silent = true })
 -- Keybinds for easier saving and quitting
 vim.api.nvim_set_keymap("n", "<leader>tw", ":w!<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>tq", ":q!<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>tqa", ":qa!<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>twq", ":wq!<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tQ", ":qa!<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tW", ":wq!<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>ts", ":so<CR>", { noremap = true, silent = true })
 
 -- Buffer movement (not present)
@@ -169,4 +169,4 @@ end)
 -- end)
 
 -- Auto save keymap
-vim.api.nvim_set_keymap("n", "<leader>ast", ":ASToggle<CR>", {})
+vim.api.nvim_set_keymap("n", "<leader>ta", ":ASToggle<CR>", { noremap = true, silent = true, desc = "Toggle AutoSave" })

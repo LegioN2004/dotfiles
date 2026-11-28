@@ -15,6 +15,9 @@ return {
                 }
             },
             -- Snacks Modules
+            explorer = {
+                replace_netrw = false, -- keep oil.nvim as directory file explorer
+            },
             input = {
                 enabled = true,
             },
@@ -141,7 +144,8 @@ return {
             { "<leader>lg", function() require("snacks").lazygit() end, desc = "Lazygit" },
             { "<leader>gl", function() require("snacks").lazygit.log() end, desc = "Lazygit Logs" },
             { "<leader>rN", function() require("snacks").rename.rename_file() end, desc = "Fast Rename Current File" },
-            { "<leader>dB", function() require("snacks").bufdelete() end, desc = "Delete or Close Buffer  (Confirm)" },
+            { "<leader>bd", function() require("snacks").bufdelete() end, desc = "Delete or Close Buffer (Confirm)" },
+            { "<leader>-", function() require("snacks").explorer() end, desc = "File Explorer (Snacks Tree)" },
 
             -- Snacks Picker
             { "<leader>pf", function() require("snacks").picker.files() end, desc = "Find Files (Snacks Picker)" },
